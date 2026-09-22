@@ -17,6 +17,11 @@
   </div>
 </header>
 
+<div id="updateBanner" class="update-banner hidden">
+  <span data-i18n="update.available">Eine neue Version der App ist verfügbar.</span>
+  <button id="updateReloadBtn" type="button" data-i18n="update.reloadBtn">Jetzt neu laden</button>
+</div>
+
 <dialog id="settingsDialog">
   <h2 data-i18n="settings.title">Einstellungen</h2>
   <p data-i18n="settings.apiKeyIntro">Zum Laden echter Aufnahmen wird ein kostenloser <strong>xeno-canto API-Key</strong> benötigt
@@ -50,6 +55,12 @@
     <button id="saveKeyBtn" class="primary" data-i18n="settings.saveBtn">Speichern</button>
     <button id="closeSettingsBtn" data-i18n="settings.closeBtn">Schließen</button>
   </div>
+
+  <p class="hint" style="margin-top:1rem; border-top:1px solid #ddd; padding-top:0.8rem;">
+    <span data-i18n="settings.versionLabel">App-Version:</span> <span id="appVersionText"></span>
+    — <button id="checkUpdateBtn" type="button" data-i18n="settings.checkUpdateBtn">Nach Updates suchen</button>
+    <span id="updateStatusText"></span>
+  </p>
 </dialog>
 
 <nav class="mode-tabs">

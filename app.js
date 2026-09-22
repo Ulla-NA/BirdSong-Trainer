@@ -7,6 +7,12 @@ const STATS_KEY = "vogeltrainer_stats_v1";
 const LOG_KEY = "vogeltrainer_log_v1";
 const MAX_LOG_ENTRIES = 3000;
 
+// App-Version, rein zur Anzeige (Einstellungsdialog) und zum manuellen Prüfen, ob ein Deploy
+// angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
+// "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
+// der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
+const APP_VERSION = "2026-09-22.1";
+
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
 // werden über die Helferfunktionen unten (areaName, groupLabel, ...)
@@ -42,6 +48,14 @@ const STRINGS = {
       learnGroupHintGroup: "aktuell: Gruppe {g} mit {n} Arten.",
       saveBtn: "Speichern",
       closeBtn: "Schließen",
+      versionLabel: "App-Version:",
+      checkUpdateBtn: "Nach Updates suchen",
+    },
+    update: {
+      available: "Eine neue Version der App ist verfügbar.",
+      reloadBtn: "Jetzt neu laden",
+      checking: "Suche nach Updates …",
+      upToDate: "Du nutzt bereits die neueste Version.",
     },
     filters: {
       frequency: "Häufigkeit", freq_haeufig: "häufig", freq_mittel: "mittel", freq_selten: "selten", freq_sehr_selten: "sehr selten",
@@ -211,6 +225,14 @@ const STRINGS = {
       learnGroupHintGroup: "currently: group {g} with {n} species.",
       saveBtn: "Save",
       closeBtn: "Close",
+      versionLabel: "App version:",
+      checkUpdateBtn: "Check for updates",
+    },
+    update: {
+      available: "A new version of the app is available.",
+      reloadBtn: "Reload now",
+      checking: "Checking for updates …",
+      upToDate: "You're already using the latest version.",
     },
     filters: {
       frequency: "Frequency", freq_haeufig: "common", freq_mittel: "moderate", freq_selten: "rare", freq_sehr_selten: "very rare",
@@ -1230,6 +1252,74 @@ function setupSettings() {
     resetExcludedRecordings();
     document.getElementById("excludedCount").textContent = "0";
   });
+
+  document.getElementById("appVersionText").textContent = APP_VERSION;
+  document.getElementById("checkUpdateBtn").addEventListener("click", checkForUpdate);
+}
+
+// ---------- PWA-Update-Mechanismus ----------
+// Hintergrund: der Service Worker ist Network-First (s. service-worker.js) und bedient neue
+// Deploys daher praktisch sofort – das eigentliche Problem ist nur, dass eine bereits offene
+// Seite (v.a. die installierte App, die oft tagelang im selben Fenster offen bleibt) das *alte*
+// app.js weiter im Speicher hat, selbst wenn der Service Worker im Hintergrund längst
+// aktualisiert wurde. Der Banner + "Nach Updates suchen"-Button machen das sichtbar und geben
+// eine bewusste Reload-Möglichkeit, statt die Seite ungefragt neu zu laden (das würde sonst
+// mitten in einer Quiz-Runde passieren können).
+
+// Nur true, wenn beim Laden der Seite bereits ein Service Worker aktiv war – unterscheidet
+// "echtes Update" (Banner zeigen) von der allerersten Installation (kein Banner nötig, da noch
+// keine alte Version im Speicher war, die ersetzt werden könnte).
+const hadServiceWorkerControllerAtLoad =
+  "serviceWorker" in navigator && !!navigator.serviceWorker.controller;
+
+function showUpdateBanner() {
+  const el = document.getElementById("updateBanner");
+  if (el) el.classList.remove("hidden");
+}
+
+function setupServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+
+  navigator.serviceWorker
+    .register("service-worker.js", { updateViaCache: "none" })
+    .then(reg => {
+      state.swRegistration = reg;
+      // Aktiv nach einer neueren service-worker.js suchen, nicht nur auf den passiven
+      // Browser-Update-Zyklus warten (der bei einer lange offenen installierten App selten
+      // von selbst greift) – einmal direkt beim Laden, danach jedes Mal, wenn die App wieder
+      // in den Vordergrund geholt wird.
+      reg.update().catch(() => {});
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") reg.update().catch(() => {});
+      });
+    })
+    .catch(() => {});
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (hadServiceWorkerControllerAtLoad) showUpdateBanner();
+  });
+
+  document.getElementById("updateReloadBtn")?.addEventListener("click", () => location.reload());
+}
+
+async function checkForUpdate() {
+  const statusEl = document.getElementById("updateStatusText");
+  if (!("serviceWorker" in navigator)) return;
+  statusEl.textContent = t("update.checking");
+  try {
+    const reg = state.swRegistration || (await navigator.serviceWorker.getRegistration());
+    if (reg) await reg.update();
+  } catch {
+    // Offline oder Netzwerkfehler beim Update-Check – einfach still bleiben, kein Fehlerdialog
+    // nötig für eine reine Hintergrundprüfung.
+  }
+  // Kurze Wartezeit: falls ein Update gefunden wurde, übernimmt der neue Service Worker
+  // (skipWaiting + clients.claim in service-worker.js) fast sofort die Kontrolle und löst den
+  // "controllerchange"-Listener oben aus, der dann den Banner einblendet.
+  setTimeout(() => {
+    const bannerVisible = !document.getElementById("updateBanner").classList.contains("hidden");
+    statusEl.textContent = bannerVisible ? "" : t("update.upToDate");
+  }, 1500);
 }
 
 // Merkt sich Häufigkeit/Schwierigkeit/Gebiet/Gruppe/Anzahl/Namensanzeige
@@ -2204,10 +2294,7 @@ function init() {
   setupValidationSearch();
   setupLangToggle();
   loadQuestion();
-
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js").catch(() => {});
-  }
+  setupServiceWorker();
 }
 
 document.addEventListener("DOMContentLoaded", init);

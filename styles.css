@@ -140,6 +140,29 @@ select, input[type=text] {
 
 .hidden { display: none; }
 
+.update-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  background: var(--green-dark, #2e5339);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.update-banner button {
+  background: #fff;
+  color: var(--green-dark, #2e5339);
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
