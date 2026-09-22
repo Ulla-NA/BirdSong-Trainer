@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vogelstimmen-Trainer (Prototyp)</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-header">
+  <h1><img src="icon.svg" alt="" class="app-logo">Vogelstimmen-Trainer <span class="badge">Prototyp</span></h1>
+  <button id="settingsBtn" class="icon-btn" title="Einstellungen">⚙️</button>
+</header>
+
+<dialog id="settingsDialog">
+  <h2>Einstellungen</h2>
+  <p>Zum Laden echter Aufnahmen wird ein kostenloser <strong>xeno-canto API-Key</strong> benötigt
+     (Account anlegen auf <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>,
+     Key erscheint dann unter „Your account" → „API key").</p>
+  <label for="apiKeyInput">xeno-canto API-Key</label>
+  <input type="text" id="apiKeyInput" placeholder="dein-api-key">
+  <p class="hint">Der Key wird nur lokal in deinem Browser gespeichert, nicht an uns übertragen.</p>
+
+  <label for="maxRecInput" style="margin-top:0.8rem;">Aufnahmen pro Art laden (max.)</label>
+  <input type="number" id="maxRecInput" min="5" max="40" style="max-width:120px;">
+  <p class="hint">Höherer Wert = mehr Abwechslung, aber etwas langsameres erstes Laden pro Art.</p>
+
+  <p class="hint" style="margin-top:0.8rem;">Ausgeschlossene Aufnahmen (z.B. weil kein Ton hörbar war oder die Art falsch bestimmt wirkte): <span id="excludedCount">0</span></p>
+  <div class="dialog-actions">
+    <button id="resetExcludedBtn">Ausschlussliste zurücksetzen</button>
+  </div>
+
+  <label for="learnGroupInput" style="margin-top:0.8rem;">Lerngruppe (für Teams)</label>
+  <select id="learnGroupInput">
+    <option value="all">Keine Aufteilung – alle Arten</option>
+    <option value="A">Gruppe A</option>
+    <option value="B">Gruppe B</option>
+    <option value="C">Gruppe C</option>
+  </select>
+  <p class="hint">Wenn ihr zu mehreren die App nutzt und nicht alle mit denselben Arten anfangen wollt: jede Person wählt hier
+     einmalig ihren Buchstaben. Die drei Gruppen sind fest und ausgewogen eingeteilt (je gleich viele leichte/mittlere/schwere Arten
+     aus allen Vogelfamilien) – <span id="learnGroupCount"></span></p>
+
+  <div class="dialog-actions" style="margin-top:1rem;">
+    <button id="saveKeyBtn" class="primary">Speichern</button>
+    <button id="closeSettingsBtn">Schließen</button>
+  </div>
+</dialog>
+
+<nav class="mode-tabs">
+  <button class="tab active" data-mode="erkennen">Arten erkennen</button>
+  <button class="tab" data-mode="unterscheiden">Verwechslungsarten unterscheiden</button>
+  <button class="tab" data-mode="validieren">🔍 Validieren</button>
+  <button class="tab" data-mode="fortschritt">📊 Fortschritt</button>
+</nav>
+
+<section class="filters">
+  <div class="filter-group">
+    <span class="filter-label">Häufigkeit</span>
+    <label><input type="checkbox" class="freq-filter" value="haeufig" checked> häufig</label>
+    <label><input type="checkbox" class="freq-filter" value="mittel" checked> mittel</label>
+    <label><input type="checkbox" class="freq-filter" value="selten" checked> selten</label>
+    <label><input type="checkbox" class="freq-filter" value="sehr_selten" checked> sehr selten</label>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Schwierigkeit</span>
+    <label><input type="checkbox" class="diff-filter" value="leicht" checked> leicht</label>
+    <label><input type="checkbox" class="diff-filter" value="mittel" checked> mittel</label>
+    <label><input type="checkbox" class="diff-filter" value="schwer" checked> schwer</label>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Gebiet</span>
+    <select id="areaFilter">
+      <option value="all">Deutschlandweit</option>
+      <option value="kern11">alle 11 Gebiete</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Artengruppe</span>
+    <select id="groupFilter">
+      <option value="all">alle Gruppen</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Anzahl Arten zum Start</span>
+    <select id="countFilter">
+      <option value="all">alle</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="75">75</option>
+      <option value="100">100</option>
+      <option value="150">150</option>
+      <option value="200">200</option>
+      <option value="250">250</option>
+      <option value="300">300</option>
+      <option value="350">350</option>
+      <option value="400">400</option>
+      <option value="450">450</option>
+      <option value="500">500</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Namen anzeigen</span>
+    <label><input type="checkbox" class="name-toggle" value="de" checked> DE</label>
+    <label><input type="checkbox" class="name-toggle" value="en"> EN</label>
+    <label><input type="checkbox" class="name-toggle" value="sci"> Lat</label>
+  </div>
+</section>
+
+<main id="erkennenView" class="view">
+  <div class="card" id="quizCard">
+    <p class="muted">Lade Frage…</p>
+  </div>
+  <div class="quiz-actions">
+    <label class="autoplay-label"><input type="checkbox" id="autoplayToggle"> Automatisch abspielen</label>
+    <button id="nextBtn" class="primary">Nächste Aufnahme</button>
+  </div>
+  <p class="score" id="scoreDisplay"></p>
+</main>
+
+<main id="unterscheidenView" class="view hidden">
+  <div class="filter-group">
+    <span class="filter-label">Verwechslungspaar</span>
+    <select id="confusionSelect"></select>
+  </div>
+  <div class="card" id="confusionCard"></div>
+</main>
+
+<main id="validierenView" class="view hidden">
+  <div class="card validation-search-card">
+    <label for="validationSearchInput" class="filter-label">Art suchen (deutsch, englisch oder lateinisch)</label>
+    <div class="validation-search-row">
+      <input type="text" id="validationSearchInput" list="validationSpeciesList" placeholder="z.B. Kohlmeise, Great Tit, Parus major" autocomplete="off">
+      <button id="validationSearchBtn" class="primary">Suchen</button>
+    </div>
+    <datalist id="validationSpeciesList"></datalist>
+    <div id="validationSearchHint" class="hint"></div>
+  </div>
+  <div class="card hidden" id="validationHeaderCard"></div>
+  <div class="card" id="validationCard">
+    <p class="muted">Oben eine Art auswählen, um alle xeno-canto-Aufnahmen dazu einzeln durchzugehen.</p>
+  </div>
+  <div class="card hidden" id="validationDetailsCard"></div>
+</main>
+
+<main id="fortschrittView" class="view hidden"></main>
+
+<footer>
+  <p>Audioquelle: <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>
+     (Creative-Commons-lizenzierte Aufnahmen, Namensnennung wird jeweils angezeigt).
+     Artenliste: eigene Taxonomie-Tabelle. Gebietsvorkommen: <a href="https://ebird.org" target="_blank" rel="noopener">eBird.org</a>
+     (kumulative Hotspot-Meldungen im gebietsangepassten Suchradius, Stand 2026-07-23 – kein Ersatz für echtes Monitoring).
+     Häufigkeits- und Schwierigkeitsangaben sind weiterhin erste Einschätzungen zur Prüfung.</p>
+</footer>
+
+<script src="species-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

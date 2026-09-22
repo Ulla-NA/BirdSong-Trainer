@@ -1,0 +1,652 @@
+:root {
+  --green: #2f6b3a;
+  --green-dark: #1e4a26;
+  --sand: #f6f3ea;
+  --ink: #223022;
+  --muted: #6b7a6b;
+  --card-bg: #ffffff;
+  --border: #dfe4d8;
+  --danger: #a63d3d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  padding-bottom: 3rem;
+}
+
+.app-header {
+  background: var(--green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+}
+
+.app-header h1 {
+  font-size: 1.15rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.badge {
+  font-size: 0.65rem;
+  background: rgba(255,255,255,0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-weight: normal;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+}
+
+.mode-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem 0;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.tab.active {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: white;
+  margin: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 0.1rem;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+select, input[type=text] {
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.view {
+  padding: 0 1.2rem;
+}
+
+.hidden { display: none; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.4rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.muted { color: var(--muted); }
+
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding: 0.7rem 0 1rem;
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(to top, var(--sand) 60%, rgba(246,243,234,0));
+  z-index: 5;
+}
+
+.autoplay-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button.primary:hover { background: var(--green-dark); }
+button.primary:disabled { opacity: 0.5; cursor: default; }
+
+.score {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.play-btn {
+  background: var(--green);
+  color: white;
+  border: none;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.attribution {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+  .options-grid { grid-template-columns: 1fr; }
+}
+
+.option-btn {
+  background: var(--sand);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.option-btn:hover { border-color: var(--green); }
+
+.option-btn.correct {
+  background: #dff2df;
+  border-color: var(--green);
+}
+
+.option-btn.incorrect {
+  background: #f6dede;
+  border-color: var(--danger);
+}
+
+.details {
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.details h3 { margin: 0 0 0.4rem; color: var(--green-dark); font-size: 1rem; }
+
+.tag {
+  display: inline-block;
+  background: var(--sand);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  margin: 0.1rem 0.2rem 0.1rem 0;
+}
+
+.error-box {
+  background: #fbeaea;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 0.8rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.confusion-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .confusion-pair { grid-template-columns: 1fr; }
+}
+
+.confusion-species {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  /* Ohne das hier zwingt das (bewusst breite, ungestauchte) Sonogramm-Bild
+     die Grid-Spalte auf, weil Grid-Items standardmäßig nicht unter ihre
+     Inhaltsbreite schrumpfen – dadurch lief die ganze Seite aus dem Rahmen. */
+  min-width: 0;
+}
+
+.confusion-note {
+  background: #eef5ec;
+  border-radius: 10px;
+  padding: 0.9rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+dialog {
+  border-radius: 14px;
+  border: none;
+  padding: 1.5rem;
+  max-width: 420px;
+}
+
+dialog::backdrop { background: rgba(0,0,0,0.4); }
+
+.dialog-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.hint { font-size: 0.75rem; color: var(--muted); }
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 2rem 1.2rem 0;
+}
+
+.spectrogram {
+  display: block;
+  height: 190px;
+  width: auto;
+  max-width: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.spectrogram.loaded {
+  opacity: 1;
+}
+
+.sound-type {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Feste, gut lesbare Höhe statt Stauchen auf Kartenbreite – sonst wird die
+   Frequenzachse bei längeren (= breiteren) Sonogrammen winzig. Stattdessen
+   wird bei Bedarf horizontal gescrollt. */
+.sono-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+.sono-scroll {
+  overflow-x: auto;
+  border-radius: 0 8px 8px 0;
+  border: 1px solid var(--border);
+  border-left: none;
+  background: #f3f1ea;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Frequenzachse (kHz) links neben dem Sonogramm – bleibt fix stehen, auch
+   wenn das Sonogramm selbst horizontal gescrollt wird. */
+.sono-yaxis {
+  position: relative;
+  width: 34px;
+  height: 190px;
+  flex-shrink: 0;
+  background: #f3f1ea;
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+}
+
+.sono-yaxis .ytick {
+  position: absolute;
+  right: 4px;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sono-yaxis .axis-caption-y {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+
+.sono-wrap {
+  position: relative;
+  width: fit-content;
+}
+
+.sono-imgwrap {
+  position: relative;
+  line-height: 0;
+}
+
+/* Zeitachse (Sekunden) unter dem Sonogramm – scrollt zusammen mit dem Bild,
+   damit die Sekundenmarken immer zur richtigen Bildspalte passen. */
+.sono-xaxis {
+  position: relative;
+  height: 16px;
+  line-height: normal;
+  border-top: 1px solid var(--border);
+}
+
+.sono-xaxis .xtick {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 2px;
+  height: 100%;
+  background: #d9432e;
+  box-shadow: 0 0 4px rgba(217,67,46,0.7);
+  transition: left 0.1s linear;
+  pointer-events: none;
+}
+
+.details-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--green-dark);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.8rem;
+}
+
+.details-toggle:hover { border-color: var(--green); }
+
+.rec-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rec-actions .details-toggle {
+  margin-top: 0;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.7rem;
+}
+
+.species-photo {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin: 0.4rem 0;
+  display: block;
+}
+
+.confusion-hint {
+  background: #fdf2e2;
+  border: 1px solid #e0a940;
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  margin-top: 0.9rem;
+}
+
+.confusion-hint .details-toggle {
+  display: block;
+  margin-top: 0.6rem;
+  border-color: #e0a940;
+  color: #8a5a10;
+}
+
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.progress-table th, .progress-table td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-table th {
+  color: var(--green-dark);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-neu { background: #e8e8e8; color: #555; }
+.status-lernen { background: #fbe6c8; color: #8a5a10; }
+.status-gut { background: #dcefe0; color: #1e6b3a; }
+.status-sicher { background: #d2ecd8; color: #145227; border: 1px solid #2f6b3a; }
+
+.progress-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.2rem 0.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 46px;
+}
+
+.progress-bar-stack {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 26px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.chart-seg { width: 100%; }
+.chart-seg.seg-neu { background: #cfcfcf; }
+.chart-seg.seg-lernen { background: #e0a940; }
+.chart-seg.seg-gut { background: #7fbf8e; }
+.chart-seg.seg-sicher { background: #2f6b3a; }
+
+.chart-week-label {
+  font-size: 0.72rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.chart-week-sub {
+  font-size: 0.68rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.legend-swatch.seg-neu { background: #cfcfcf; }
+.legend-swatch.seg-lernen { background: #e0a940; }
+.legend-swatch.seg-gut { background: #7fbf8e; }
+.legend-swatch.seg-sicher { background: #2f6b3a; }
+
+/* ---------- Validierungs-Seite ---------- */
+
+.validation-search-card { max-width: 640px; }
+
+.validation-search-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.validation-search-row input[type="text"] {
+  flex: 1;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.validation-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.validation-nav button {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.validation-nav button:hover:not(:disabled) { border-color: var(--green); }
+.validation-nav button:disabled { opacity: 0.4; cursor: default; }
+
+.validation-counter {
+  font-weight: 600;
+  color: var(--green-dark);
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.validation-excluded-badge {
+  background: #f6dede;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.validation-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.validation-info-grid h4 {
+  margin: 0 0 0.3rem;
+  color: var(--green-dark);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}

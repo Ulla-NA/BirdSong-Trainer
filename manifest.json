@@ -1,0 +1,11 @@
+{
+  "name": "Vogelstimmen-Trainer",
+  "short_name": "Vogelstimmen",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f3ea",
+  "theme_color": "#2f6b3a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

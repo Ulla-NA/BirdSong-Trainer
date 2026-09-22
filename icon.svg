@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a8a58"/>
+      <stop offset="100%" stop-color="#1c4423"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2c14e"/>
+      <stop offset="100%" stop-color="#d99a2c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="100" height="100" rx="22" fill="url(#bg)"/>
+
+  <!-- Ast -->
+  <path d="M 12 81 Q 50 75 92 83" stroke="#6b4423" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Beine -->
+  <line x1="39" y1="67" x2="37" y2="80" stroke="#d99a3d" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="49" y1="68" x2="52" y2="81" stroke="#d99a3d" stroke-width="2.2" stroke-linecap="round"/>
+
+  <g transform="rotate(-7 46 55)">
+    <!-- Schwanz -->
+    <polygon points="27,53 11,44 13,62 27,63" fill="#e9e2cf"/>
+    <!-- Koerper -->
+    <ellipse cx="47" cy="57" rx="18" ry="14" fill="#f6f3ea"/>
+    <!-- Fluegel -->
+    <path d="M 39 60 Q 29 51 40 42 Q 53 48 49 63 Q 44 66 39 60 Z" fill="url(#wing)"/>
+  </g>
+
+  <!-- Kopf -->
+  <circle cx="65" cy="43" r="11.5" fill="#f6f3ea"/>
+  <!-- Schnabel -->
+  <polygon points="75,41 86,38 76,47" fill="#e0763a"/>
+  <!-- Auge -->
+  <circle cx="67" cy="40" r="2.1" fill="#223022"/>
+  <circle cx="67.7" cy="39.2" r="0.7" fill="#ffffff"/>
+
+  <!-- Gesang / Klangwellen -->
+  <path d="M 86 33 A 6 6 0 0 1 90 38" stroke="#f6f3ea" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <path d="M 89 28 A 11 11 0 0 1 95 36" stroke="#f6f3ea" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55"/>
+  <path d="M 92 23 A 16 16 0 0 1 99 35" stroke="#f6f3ea" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+</svg>
