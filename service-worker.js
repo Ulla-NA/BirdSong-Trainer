@@ -3,7 +3,7 @@
 // Audiodateien von xeno-canto werden bewusst NICHT gecacht (Cross-Origin,
 // Lizenzbedingungen, Speicherbedarf).
 
-const CACHE_NAME = "vogelstimmen-shell-v1";
+const CACHE_NAME = "vogelstimmen-shell-v2";
 const SHELL_FILES = [
   "./index.html",
   "./styles.css",
@@ -31,10 +31,21 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
-  // Nur eigene App-Shell-Dateien aus dem Cache bedienen, alles andere (xeno-canto API/Audio) normal durchreichen.
+  // Nur eigene App-Shell-Dateien betreffen, alles andere (xeno-canto API/Audio) normal durchreichen.
+  // Network-first: immer zuerst versuchen, die aktuelle Version aus dem Netz zu holen (und den Cache
+  // dabei zu aktualisieren) – nur wenn das fehlschlägt (offline), auf den Cache zurückfallen. So bleibt
+  // die Offline-Fähigkeit erhalten, aber Nutzer:innen sehen nach einem Deploy sofort die neue Version,
+  // statt auf eine geänderte service-worker.js warten zu müssen (die sich bei reinen Inhaltsänderungen
+  // an app.js/species-data.js/index.html ja gar nicht ändert und ein Update sonst nie auslösen würde).
   if (url.origin === self.location.origin) {
     event.respondWith(
-      caches.match(event.request).then(cached => cached || fetch(event.request))
+      fetch(event.request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
     );
   }
 });
