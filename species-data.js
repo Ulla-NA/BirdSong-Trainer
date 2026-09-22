@@ -2186,7 +2186,7 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Häufigster Wintergast unter den arktischen Gänsen im Wattenmeer, oft in riesigen Schwärmen. Ruf: hohes, mehrsilbiges, lachendes Gegacker 'kljü-jüjüjü'.",
     background_en: "The most common Arctic goose wintering in the Wadden Sea, often in huge flocks. Call: a high, multi-syllable, laughing cackle.",
-    habitat: [],
+    habitat: ["farmland_open"],
     vocalMonths: [10,3]
   },
   {
@@ -2608,6 +2608,7 @@ const SPECIES = [
     areas: ["uot"],
     background: "Arktische/subarktische Wildgans, der Blässgans ähnlich, aber ohne weiße Stirnblesse. Rastbestand in Deutschland stark rückläufig und aktuell nur noch rund 12.000 Individuen (Rote Liste: stark gefährdet) – Schwerpunkte Nordostdeutschland (u.a. Elbtal, Mecklenburg-Vorpommern) und Niederrhein, September bis März. Ruf: tiefes, nasales 'ung-unk'.",
     background_en: "An Arctic/subarctic wild goose, similar to the White-fronted Goose but without the white forehead blaze. Numbers stopping over in Germany have declined sharply and currently stand at only around 12,000 individuals (Red List: severely endangered) – concentrated in north-east Germany (including the Elbe valley, Mecklenburg-Western Pomerania) and the Lower Rhine, September to March. Call: a deep, nasal 'ung-unk'.",
+    habitat: ["farmland_open"],
   },
   {
     id: "streifengans",
@@ -2638,6 +2639,7 @@ const SPECIES = [
     areas: ["eif", "hrz", "jtb", "nwm", "ssc", "uot"],
     background: "Arktische Wildgans, überwintert in wachsender Zahl v.a. im Nordosten Deutschlands, der Saatgans/Blässgans ähnlich. Ruf: tiefes, nasales Gegacker, ähnlich Graugans aber rauer.",
     background_en: "An Arctic wild goose, wintering in growing numbers mainly in north-eastern Germany, similar to the Bean Goose/White-fronted Goose. Call: deep, nasal cackling, similar to the Greylag Goose's but harsher.",
+    habitat: ["farmland_open"],
   },
   {
     id: "brachpieper",
@@ -2973,7 +2975,7 @@ const SPECIES = [
     areas: ["eif", "hrz", "nwm", "ssc", "uot"],
     background: "Arktische Wildgans mit schwarz-weißem Kopf, überwintert in großer Zahl im Wattenmeer. Ruf: kurzes, bellendes, bei großen Trupps sehr lautes Kläffen.",
     background_en: "An Arctic wild goose with a black-and-white head, wintering in large numbers in the Wadden Sea. Call: a short, barking yap, very loud in large flocks.",
-    habitat: [],
+    habitat: ["farmland_open"],
     vocalMonths: null
   },
   {
@@ -3609,7 +3611,7 @@ const SPECIES = [
     areas: ["byw", "eif", "nwm", "uot"],
     background: "Kleinster heimischer Falke, jagt kleine Vögel im schnellen, niedrigen Verfolgungsflug, in Deutschland v.a. Wintergast. Ruf: schnelle, hohe Serie, meist nur am Brutplatz (nicht in Deutschland) zu hören.",
     background_en: "Germany's smallest native falcon, hunting small birds in fast, low pursuit flight, mainly a winter visitor in Germany. Call: a fast, high series, mostly only heard at the breeding site (not in Germany).",
-    habitat: [],
+    habitat: ["farmland_open"],
     vocalMonths: [9,10]
   },
   {
