@@ -59,6 +59,20 @@ body {
   color: white;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+#langToggleBtn {
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+}
+
 .mode-tabs {
   display: flex;
   gap: 0.5rem;

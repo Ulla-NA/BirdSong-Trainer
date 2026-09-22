@@ -7,8 +7,348 @@ const STATS_KEY = "vogeltrainer_stats_v1";
 const LOG_KEY = "vogeltrainer_log_v1";
 const MAX_LOG_ENTRIES = 3000;
 
+// Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
+// background-Texte, Verwechslungshinweise) stehen in species-data.js und
+// werden über die Helferfunktionen unten (areaName, groupLabel, ...)
+// eingebunden, nicht hier.
+const STRINGS = {
+  de: {
+    header: { title: "Vogelstimmen-Trainer", badge: "Prototyp", settingsBtn: "Einstellungen" },
+    tabs: {
+      erkennen: "Arten erkennen",
+      unterscheiden: "Verwechslungsarten unterscheiden",
+      validieren: "🔍 Validieren",
+      fortschritt: "📊 Fortschritt",
+      anleitung: "❓ Anleitung",
+      disclaimer: "⚠️ Hinweise",
+    },
+    settings: {
+      title: "Einstellungen",
+      apiKeyIntro: 'Zum Laden echter Aufnahmen wird ein kostenloser <strong>xeno-canto API-Key</strong> benötigt (Account anlegen auf <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>, Key erscheint dann unter „Your account" → „API key"). Eine ausführlichere Anleitung dazu gibt es auf der Anleitung-Seite oben.',
+      apiKeyLabel: "xeno-canto API-Key",
+      apiKeyPlaceholder: "dein-api-key",
+      apiKeyHint: "Der Key wird nur lokal in deinem Browser gespeichert, nicht an uns übertragen.",
+      maxRecLabel: "Aufnahmen pro Art laden (max.)",
+      maxRecHint: "Höherer Wert = mehr Abwechslung, aber etwas langsameres erstes Laden pro Art.",
+      excludedLabel: "Ausgeschlossene Aufnahmen (z.B. weil kein Ton hörbar war oder die Art falsch bestimmt wirkte):",
+      resetExcludedBtn: "Ausschlussliste zurücksetzen",
+      learnGroupLabel: "Lerngruppe (für Teams)",
+      learnGroupNone: "Keine Aufteilung – alle Arten",
+      learnGroupA: "Gruppe A",
+      learnGroupB: "Gruppe B",
+      learnGroupC: "Gruppe C",
+      learnGroupHintIntro: "Wenn ihr zu mehreren die App nutzt und nicht alle mit denselben Arten anfangen wollt: jede Person wählt hier einmalig ihren Buchstaben. Die drei Gruppen sind fest und ausgewogen eingeteilt (je gleich viele leichte/mittlere/schwere Arten aus allen Vogelfamilien) –",
+      learnGroupHintNone: "aktuell: keine Aufteilung, alle {n} Arten.",
+      learnGroupHintGroup: "aktuell: Gruppe {g} mit {n} Arten.",
+      saveBtn: "Speichern",
+      closeBtn: "Schließen",
+    },
+    filters: {
+      frequency: "Häufigkeit", freq_haeufig: "häufig", freq_mittel: "mittel", freq_selten: "selten", freq_sehr_selten: "sehr selten",
+      difficulty: "Schwierigkeit", diff_leicht: "leicht", diff_mittel: "mittel", diff_schwer: "schwer",
+      area: "Gebiet", area_all: "Deutschlandweit", area_kern11: "alle 11 Gebiete",
+      group: "Artengruppe", group_all: "alle Gruppen",
+      count: "Anzahl Arten zum Start", count_all: "alle",
+      names: "Namen anzeigen", names_de: "DE", names_en: "EN", names_sci: "Lat",
+    },
+    erkennen: {
+      loadingQuestion: "Lade Frage…",
+      autoplayLabel: "Automatisch abspielen",
+      nextBtn: "Nächste Aufnahme",
+      tooFewSpecies: "Zu wenige Arten für diese Filterkombination im aktuellen Artenset ({total} Arten enthalten). Bitte Filter lockern.",
+      loadingRecording: "Lade Aufnahme…",
+    },
+    audioError: {
+      noKey: "Kein xeno-canto API-Key hinterlegt. Über das Zahnrad oben rechts einen Key eintragen (kostenloser Account auf xeno-canto.org).",
+      noRecordings: "Für diese Art sind auf xeno-canto aktuell keine Aufnahmen zu finden (auch nicht außerhalb Deutschlands) – kein technischer Fehler, es gibt schlicht keinen Treffer für diese Art in der Datenbank.",
+      network: "Aufnahme konnte nicht geladen werden – vermutlich ein Netzwerk- oder Bot-Schutz-Problem (xeno-canto blockiert manchmal automatisierte Anfragen). Die Seite der Art lässt sich manuell öffnen.",
+      generic: "Aufnahme konnte nicht geladen werden ({msg}). Die Seite der Art lässt sich manuell öffnen.",
+      viewManually: "Art manuell auf xeno-canto.org ansehen →",
+    },
+    audio: {
+      unknownType: "Aufnahmetyp unbekannt",
+      lengthLabel: " · Länge: {length}",
+      recordingBy: "Aufnahme: {recordist} · xeno-canto.org",
+      unknownRecordist: "unbekannt",
+      source: "Quelle",
+      license: ", Lizenz: ",
+      licenseLink: "CC",
+      remarksLabel: "Bemerkung der/des Aufnehmenden: „{remarks}\"",
+      neighborNote: "Hinweis: keine deutsche Aufnahme gefunden, zeige eine Aufnahme aus dem Nachbarland {country}.",
+      europeNote: "Hinweis: keine Aufnahme aus Deutschland oder den Nachbarländern gefunden, zeige eine Aufnahme aus einem anderen europäischen Land ({country}).",
+      worldNote: "Hinweis: keine europäische Aufnahme gefunden, zeige eine Aufnahme von außerhalb Europas ({country}).",
+      longRecordingHint: "Diese Aufnahme ist {length} lang. xeno-canto erzeugt das Sonogramm bei längeren Aufnahmen aber offenbar nur für die ersten 2 Minuten. Der Cursor läuft daher bis zum rechten Rand und bleibt dort stehen, auch wenn die Audiodatei danach noch weiterläuft.",
+      normalRecordingHint: "Das Sonogramm zeigt die gesamte Aufnahme in fester Höhe (nicht nur die Zielart – Hintergrundgeräusche oder andere Vögel können mit abgebildet sein). Bei längeren Aufnahmen scrollt die Ansicht automatisch mit, sobald die rote Linie den sichtbaren Rand erreicht.",
+      unknownSampleRateSuffix: " Achtung: Sample-Rate dieser Aufnahme unbekannt, y-Achse zeigt daher keine kHz-Werte.",
+      altRecBtn: "🔄 Andere Aufnahme",
+      excludeBtnDefault: "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)",
+      playError: 'Wiedergabe fehlgeschlagen. Das kann an einer Autoplay-Sperre liegen (einfach nochmal auf ▶ klicken) oder daran, dass dein Browser (v.a. Safari auf Mac/iPhone) genau diese Aufnahmedatei nicht unterstützt. Falls Letzteres: bitte "🔄 Andere Aufnahme" probieren, oder Direktlink: <a href="{url}" target="_blank" rel="noopener">Audiodatei öffnen</a>',
+      autoplayBlocked: "Automatische Wiedergabe wurde vom Browser blockiert – bitte einmal auf ▶ klicken.",
+    },
+    swap: {
+      loading: "Lade andere Aufnahme…",
+      error: "Konnte keine andere Aufnahme laden ({msg}).",
+    },
+    score: { label: "Punktestand: {correct} / {total}" },
+    details: {
+      confusionHint: "⚠️ {name} kann akustisch mit <strong>{partner}</strong> verwechselt werden.",
+      jumpConfusionBtn: "🔁 Verwechslungsarten vergleichen",
+      moreAbout: "ℹ️ Mehr über {name} erfahren",
+      lessInfo: "▲ Weniger anzeigen",
+      imageLoading: "Bild wird geladen…",
+      frequencyTag: "Häufigkeit: {v}",
+      difficultyTag: "Schwierigkeit: {v}",
+      groupTag: "Gruppe: {v}",
+      areasLabel: "Vorkommen in euren Gebieten (eBird-Hotspot-Meldungen, kumulativ):",
+      noAreaData: "bisher keine eBird-Meldung in den gesampelten Gebieten",
+      confusionDangerPrefix: "Verwechslungsgefahr – {title}:",
+      jumpValidationBtn: "🔍 Alle xeno-canto-Aufnahmen dieser Art durchgehen",
+      imageCaption: "Bild: Wikipedia",
+      notYetTranslated: "(Text noch nicht ins Englische übersetzt, zeige deutschen Originaltext)",
+    },
+    confusion: {
+      pairLabel: "Verwechslungspaar",
+      loadingRecording: "Lade Aufnahme…",
+      noApiKey: "Kein API-Key hinterlegt (Zahnrad oben rechts).",
+      cannotAutoLoad: "Aufnahme nicht automatisch ladbar.",
+      viewManually: "manuell auf xeno-canto.org ansehen →",
+    },
+    validation: {
+      searchLabel: "Art suchen (deutsch, englisch oder lateinisch)",
+      searchPlaceholder: "z.B. Kohlmeise, Great Tit, Parus major",
+      searchBtn: "Suchen",
+      initialHint: "Oben eine Art auswählen, um alle xeno-canto-Aufnahmen dazu einzeln durchzugehen.",
+      noMatch: "Keine Art gefunden – bitte deutschen, englischen oder lateinischen Namen (auch als Teilstring) versuchen.",
+      multipleMatches: '{count} Treffer, zeige „{name}" – für eine andere Art genauer eingeben.',
+      loadingRecordings: "Lade Aufnahmen… (bei sehr häufigen Arten mit vielen xeno-canto-Aufnahmen kann das etwas dauern)",
+      noKey: "Kein xeno-canto API-Key hinterlegt. Über das Zahnrad oben rechts einen Key eintragen.",
+      noRecordings: "Für diese Art sind auf xeno-canto aktuell keine Aufnahmen zu finden.",
+      genericError: "Aufnahmen konnten nicht geladen werden ({msg}).",
+      habitatLabel: "Habitat",
+      seasonLabel: "Ruf-/Gesangssaison",
+      areasLabel: "Vorkommen in euren Gebieten",
+      noDataYet: "keine Angabe (noch nicht recherchiert)",
+      yearRoundNoSeason: "ganzjährig aktiv / keine ausgeprägte Rufsaison bekannt",
+      viewOnXc: "Art auf xeno-canto.org ansehen →",
+      viewOnEbird: "Art auf eBird ansehen →",
+      noRecordingsFound: "Für diese Art sind auf xeno-canto keine Aufnahmen zu finden.",
+      prevBtn: "← Vorherige",
+      nextBtn: "Nächste →",
+      counter: "{i} / {n}",
+      excludedBadge: "🚫 Diese Aufnahme ist aktuell ausgeschlossen (wird im Lernmodus nicht mehr gezeigt).",
+      excludeBtn: "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)",
+      unexcludeBtn: "↩️ Ausschluss aufheben",
+    },
+    progress: {
+      title: "Dein Fortschritt",
+      description: 'Arten, die du sicher erkennst (Serie von mehreren richtigen Antworten), werden seltener abgefragt – neue oder noch unsichere Arten häufiger. Basiert nur auf dem Modus „Arten erkennen", lokal in diesem Browser gespeichert.',
+      noAnswers: 'Noch keine Antworten erfasst – leg im Modus „Arten erkennen" los.',
+      weeklyAll: "Verlauf pro Woche – alle {n} Arten",
+      weeklyFilter: "Verlauf pro Woche – aktueller Filter ({n} Arten)",
+      filterHint: "Bezieht sich auf die gerade in den Filtern oben ausgewählte Artenmenge (Häufigkeit/Schwierigkeit/Gebiet/Gruppe/Lerngruppe/Anzahl Arten zum Start).",
+      allSpeciesDetail: "Alle Arten im Detail",
+      colSpecies: "Art", colAttempts: "Versuche", colCorrect: "Richtig", colStatus: "Status", colLastPracticed: "Zuletzt geübt",
+      resetBtn: "Fortschritt zurücksetzen",
+      resetConfirm: "Gesamten Lernfortschritt (inkl. Verlauf) in diesem Browser wirklich zurücksetzen?",
+      practicedThisWeek: "{n} geübt",
+      noneThisWeek: "–",
+      statusNew: "neu", statusLearning: "lernen", statusGood: "gut", statusMastered: "sicher",
+      chartHint: "Balken = Lernstand aller {n} Demo-Arten am Ende der jeweiligen Woche (kumulativ). Text darunter = diese Woche tatsächlich geübte Arten und Trefferquote.",
+    },
+    footer: {
+      text: 'Audioquelle: <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a> (Creative-Commons-lizenzierte Aufnahmen, Namensnennung wird jeweils angezeigt). Artenliste: eigene Taxonomie-Tabelle. Gebietsvorkommen: <a href="https://ebird.org" target="_blank" rel="noopener">eBird.org</a> (kumulative Hotspot-Meldungen im gebietsangepassten Suchradius – kein Ersatz für echtes Monitoring). Wichtige Einschränkungen zur Datenqualität: siehe Tab „⚠️ Hinweise".',
+    },
+    disclaimer: {
+      heading: "⚠️ Wichtige Hinweise zu dieser App",
+      intro: "Bitte vor der Nutzung lesen – besonders, wenn du die App zur Validierung echter Monitoring-Ergebnisse einsetzt.",
+      s1h: "KI-gestützte Inhalte", s1: "Große Teile der Artdaten in dieser App (Häufigkeits-/Schwierigkeitseinstufung, Hintergrundtexte, Ruf-/Gesangsbeschreibungen) wurden mit Unterstützung von KI (Claude) recherchiert und formuliert – auf Basis öffentlicher Quellen wie NABU, BfN, DDA, IUCN, Wikipedia und Landesämtern, aber nicht durchgehend von Ornitholog:innen gegengeprüft. Insbesondere bei selten behandelten Arten sind Fehler möglich.",
+      s2h: "Datenqualität im Detail", s2: "eBird-Gebietsvorkommen sind kumulative Meldungen (jemals dort beobachtet), keine aktuelle Bestandsaufnahme – eine Art kann als „vorkommend\" markiert sein, obwohl sie dort nur einmal vor Jahren gemeldet wurde. Die Artbestimmung der xeno-canto-Aufnahmen stammt von der jeweils aufnehmenden Person und ist nicht durch die App geprüft – gelegentliche Fehlbestimmungen sind möglich (nutzt den „Ausschließen\"-Button, wenn dir eine Aufnahme fragwürdig vorkommt). Häufigkeits- und Schwierigkeitsangaben sind fortlaufend verbesserte Einschätzungen, kein amtlicher Status.",
+      s3h: "Trainingstool, kein Ersatz für Monitoring", s3: "Diese App dient dem Einüben und Auffrischen von Rufkenntnissen sowie als Hilfsmittel bei der manuellen Validierung von automatisierten Erkennungen (z.B. BirdNET). Sie ersetzt keine fachliche Bestimmung, keine offizielle Artenliste und keine wissenschaftliche Auswertung.",
+      s4h: "Keine Gewähr", s4: "Die App wird ohne Gewähr für Richtigkeit oder Vollständigkeit bereitgestellt. Bei Zweifeln an einer Angabe: bitte unabhängig gegenprüfen (z.B. über die verlinkten Quellen) und uns gerne Bescheid geben.",
+      s5h: "Fehler gefunden?", s5: "Rückmeldungen sind sehr willkommen – bitte an {email} melden.",
+    },
+    anleitung: {
+      heading: "❓ Kurzanleitung",
+      s1h: "1. xeno-canto API-Key besorgen (einmalig nötig)",
+      s1: '<ol><li>Kostenlosen Account anlegen auf <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a> (oben rechts „Sign in / Register").</li><li>Nach dem Einloggen oben rechts auf deinen Nutzernamen → „Your account" klicken.</li><li>Dort den Menüpunkt „API key" öffnen – dort steht dein persönlicher Key (eine Zeichenkette).</li><li>Key kopieren, in dieser App oben rechts auf das ⚙️-Zahnrad klicken, Key einfügen, „Speichern".</li></ol><p class="hint">Der Key wird nur lokal in deinem Browser gespeichert (localStorage), nicht an uns übertragen. Ohne Key funktioniert die App nur eingeschränkt (keine echten Audio-Aufnahmen).</p>',
+      s2h: "2. Die vier Modi",
+      s2: "<ul><li><strong>Arten erkennen</strong>: Quiz-Modus – Aufnahme anhören, richtige Art aus mehreren Optionen auswählen. Mit den Filtern oben (Häufigkeit, Schwierigkeit, Gebiet, Artengruppe, Anzahl, Lerngruppe) lässt sich der Umfang einschränken.</li><li><strong>Verwechslungsarten unterscheiden</strong>: zwei leicht verwechselbare Arten direkt nebeneinander anhören und vergleichen.</li><li><strong>🔍 Validieren</strong>: gezielt eine bestimmte Art suchen und alle xeno-canto-Aufnahmen dazu der Reihe nach durchgehen – gedacht für den Abgleich von automatisierten Erkennungsergebnissen (z.B. BirdNET) mit der echten Aufnahme.</li><li><strong>📊 Fortschritt</strong>: zeigt, welche Arten du schon sicher erkennst und wie sich das über die Zeit entwickelt hat.</li></ul>",
+      s3h: "3. Nützliche Kleinigkeiten",
+      s3: '<ul><li>🚫 „Diese Aufnahme ausschließen": falls eine Aufnahme keinen Ton enthält oder die Art falsch bestimmt wirkt – merkt sich die App dauerhaft (nur in diesem Browser).</li><li>Die App lässt sich als eigenständige App installieren (Desktop-Icon/Smartphone-Startbildschirm) – Anleitung dazu von {contact} erfragen.</li><li>Sprache umschalten: Button oben rechts neben dem Zahnrad.</li></ul>',
+      s4h: "Fragen?", s4: "Bei Problemen oder Fragen: {email}",
+    },
+  },
+  en: {
+    header: { title: "Bird Song Trainer", badge: "Prototype", settingsBtn: "Settings" },
+    tabs: {
+      erkennen: "Identify Species",
+      unterscheiden: "Compare Similar Species",
+      validieren: "🔍 Validate",
+      fortschritt: "📊 Progress",
+      anleitung: "❓ Guide",
+      disclaimer: "⚠️ Disclaimer",
+    },
+    settings: {
+      title: "Settings",
+      apiKeyIntro: 'A free <strong>xeno-canto API key</strong> is needed to load real recordings (create an account at <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>, the key then appears under "Your account" → "API key"). A more detailed guide is available on the Guide tab above.',
+      apiKeyLabel: "xeno-canto API key",
+      apiKeyPlaceholder: "your-api-key",
+      apiKeyHint: "The key is only stored locally in your browser, never sent to us.",
+      maxRecLabel: "Recordings to load per species (max.)",
+      maxRecHint: "Higher value = more variety, but slightly slower first load per species.",
+      excludedLabel: "Excluded recordings (e.g. because no sound was audible, or the species seemed misidentified):",
+      resetExcludedBtn: "Reset exclusion list",
+      learnGroupLabel: "Learning group (for teams)",
+      learnGroupNone: "No split – all species",
+      learnGroupA: "Group A",
+      learnGroupB: "Group B",
+      learnGroupC: "Group C",
+      learnGroupHintIntro: "If several of you use the app and don't want to all start with the same species: each person picks their letter here once. The three groups are fixed and balanced (equal numbers of easy/medium/hard species from every bird family) –",
+      learnGroupHintNone: "currently: no split, all {n} species.",
+      learnGroupHintGroup: "currently: group {g} with {n} species.",
+      saveBtn: "Save",
+      closeBtn: "Close",
+    },
+    filters: {
+      frequency: "Frequency", freq_haeufig: "common", freq_mittel: "moderate", freq_selten: "rare", freq_sehr_selten: "very rare",
+      difficulty: "Difficulty", diff_leicht: "easy", diff_mittel: "medium", diff_schwer: "hard",
+      area: "Area", area_all: "Nationwide (Germany)", area_kern11: "all 11 areas",
+      group: "Species group", group_all: "all groups",
+      count: "Number of species to start", count_all: "all",
+      names: "Show names", names_de: "DE", names_en: "EN", names_sci: "Lat",
+    },
+    erkennen: {
+      loadingQuestion: "Loading question…",
+      autoplayLabel: "Autoplay",
+      nextBtn: "Next recording",
+      tooFewSpecies: "Too few species for this filter combination in the current species set ({total} species included). Please loosen the filters.",
+      loadingRecording: "Loading recording…",
+    },
+    audioError: {
+      noKey: "No xeno-canto API key set. Enter one via the gear icon top right (free account at xeno-canto.org).",
+      noRecordings: "No recordings currently found for this species on xeno-canto (not even outside Germany) – not a technical error, there's simply no match for this species in the database.",
+      network: "Recording could not be loaded – likely a network or bot-protection issue (xeno-canto sometimes blocks automated requests). You can open the species page manually.",
+      generic: "Recording could not be loaded ({msg}). You can open the species page manually.",
+      viewManually: "View species manually on xeno-canto.org →",
+    },
+    audio: {
+      unknownType: "Recording type unknown",
+      lengthLabel: " · Length: {length}",
+      recordingBy: "Recording: {recordist} · xeno-canto.org",
+      unknownRecordist: "unknown",
+      source: "Source",
+      license: ", License: ",
+      licenseLink: "CC",
+      remarksLabel: 'Recordist\'s remark: "{remarks}"',
+      neighborNote: "Note: no German recording found, showing a recording from the neighboring country {country}.",
+      europeNote: "Note: no recording found from Germany or neighboring countries, showing a recording from another European country ({country}).",
+      worldNote: "Note: no European recording found, showing a recording from outside Europe ({country}).",
+      longRecordingHint: "This recording is {length} long. xeno-canto apparently only generates the sonogram for the first 2 minutes on longer recordings. The cursor therefore runs to the right edge and stays there, even though the audio file continues afterwards.",
+      normalRecordingHint: "The sonogram shows the whole recording at a fixed height (not just the target species – background noise or other birds may be visible too). On longer recordings the view scrolls automatically once the red line reaches the visible edge.",
+      unknownSampleRateSuffix: " Note: sample rate of this recording unknown, so the y-axis shows no kHz values.",
+      altRecBtn: "🔄 Different recording",
+      excludeBtnDefault: "🚫 Exclude this recording (no sound audible, wrong species, etc.)",
+      playError: 'Playback failed. This can be due to your browser blocking autoplay (just click ▶ again), or your browser (especially Safari on Mac/iPhone) not supporting this particular recording file. If it\'s the latter: please try "🔄 Different recording", or the direct link: <a href="{url}" target="_blank" rel="noopener">open audio file</a>',
+      autoplayBlocked: "Automatic playback was blocked by the browser – please click ▶ once.",
+    },
+    swap: {
+      loading: "Loading a different recording…",
+      error: "Could not load a different recording ({msg}).",
+    },
+    score: { label: "Score: {correct} / {total}" },
+    details: {
+      confusionHint: "⚠️ {name} can be confused acoustically with <strong>{partner}</strong>.",
+      jumpConfusionBtn: "🔁 Compare similar species",
+      moreAbout: "ℹ️ Learn more about {name}",
+      lessInfo: "▲ Show less",
+      imageLoading: "Loading image…",
+      frequencyTag: "Frequency: {v}",
+      difficultyTag: "Difficulty: {v}",
+      groupTag: "Group: {v}",
+      areasLabel: "Occurrence in your areas (eBird hotspot reports, cumulative):",
+      noAreaData: "no eBird report so far in the sampled areas",
+      confusionDangerPrefix: "Risk of confusion – {title}:",
+      jumpValidationBtn: "🔍 Go through all xeno-canto recordings of this species",
+      imageCaption: "Image: Wikipedia",
+      notYetTranslated: "(text not yet translated into English, showing the German original)",
+    },
+    confusion: {
+      pairLabel: "Species pair",
+      loadingRecording: "Loading recording…",
+      noApiKey: "No API key set (gear icon top right).",
+      cannotAutoLoad: "Recording could not be loaded automatically.",
+      viewManually: "view manually on xeno-canto.org →",
+    },
+    validation: {
+      searchLabel: "Search species (German, English or scientific name)",
+      searchPlaceholder: "e.g. Kohlmeise, Great Tit, Parus major",
+      searchBtn: "Search",
+      initialHint: "Select a species above to go through all its xeno-canto recordings one by one.",
+      noMatch: "No species found – please try the German, English or scientific name (partial matches work too).",
+      multipleMatches: '{count} matches, showing "{name}" – enter more specifically for a different species.',
+      loadingRecordings: "Loading recordings… (can take a moment for very common species with many xeno-canto recordings)",
+      noKey: "No xeno-canto API key set. Enter one via the gear icon top right.",
+      noRecordings: "No recordings currently found for this species on xeno-canto.",
+      genericError: "Recordings could not be loaded ({msg}).",
+      habitatLabel: "Habitat",
+      seasonLabel: "Calling/singing season",
+      areasLabel: "Occurrence in your areas",
+      noDataYet: "no data (not yet researched)",
+      yearRoundNoSeason: "active year-round / no distinct calling season known",
+      viewOnXc: "View species on xeno-canto.org →",
+      viewOnEbird: "View species on eBird →",
+      noRecordingsFound: "No recordings found for this species on xeno-canto.",
+      prevBtn: "← Previous",
+      nextBtn: "Next →",
+      counter: "{i} / {n}",
+      excludedBadge: "🚫 This recording is currently excluded (no longer shown in learning mode).",
+      excludeBtn: "🚫 Exclude this recording (no sound audible, wrong species, etc.)",
+      unexcludeBtn: "↩️ Undo exclusion",
+    },
+    progress: {
+      title: "Your Progress",
+      description: 'Species you recognize reliably (a streak of several correct answers) are asked less often – new or still-uncertain species more often. Based only on "Identify Species" mode, stored locally in this browser.',
+      noAnswers: 'No answers recorded yet – get started in "Identify Species" mode.',
+      weeklyAll: "Progress per week – all {n} species",
+      weeklyFilter: "Progress per week – current filter ({n} species)",
+      filterHint: "Refers to the species set currently selected in the filters above (frequency/difficulty/area/group/learning group/number of species to start).",
+      allSpeciesDetail: "All species in detail",
+      colSpecies: "Species", colAttempts: "Attempts", colCorrect: "Correct", colStatus: "Status", colLastPracticed: "Last practiced",
+      resetBtn: "Reset progress",
+      resetConfirm: "Really reset your entire learning progress (including history) in this browser?",
+      practicedThisWeek: "{n} practiced",
+      noneThisWeek: "–",
+      statusNew: "new", statusLearning: "learning", statusGood: "good", statusMastered: "mastered",
+      chartHint: "Bars = learning status of all {n} demo species at the end of each week (cumulative). Text below = species actually practiced that week and success rate.",
+    },
+    footer: {
+      text: 'Audio source: <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a> (Creative Commons licensed recordings, attribution shown for each). Species list: own taxonomy table. Area occurrence: <a href="https://ebird.org" target="_blank" rel="noopener">eBird.org</a> (cumulative hotspot reports within an area-adjusted search radius – not a substitute for real monitoring). Important data-quality caveats: see the "⚠️ Disclaimer" tab.',
+    },
+    disclaimer: {
+      heading: "⚠️ Important notes about this app",
+      intro: "Please read before use – especially if you're using the app to validate real monitoring results.",
+      s1h: "AI-assisted content", s1: "Large parts of the species data in this app (frequency/difficulty classification, background texts, call/song descriptions) were researched and written with the help of AI (Claude) – based on public sources such as NABU, BfN, DDA, IUCN, Wikipedia and state agencies, but not comprehensively cross-checked by ornithologists. Errors are possible, especially for less commonly covered species.",
+      s2h: "Data quality in detail", s2: "eBird area occurrence is cumulative reporting (ever observed there), not a current population count – a species can be marked as \"present\" even if it was only reported there once, years ago. Species identification on xeno-canto recordings comes from the person who recorded it and is not verified by this app – occasional misidentifications are possible (use the \"Exclude\" button if a recording seems questionable to you). Frequency and difficulty ratings are ongoing, improving estimates, not an official status.",
+      s3h: "A training tool, not a substitute for monitoring", s3: "This app is meant for practicing and refreshing call/song recognition, and as an aid when manually validating automated detections (e.g. BirdNET). It does not replace expert identification, an official species list, or scientific analysis.",
+      s4h: "No warranty", s4: "This app is provided without warranty of correctness or completeness. If you doubt a piece of information: please cross-check it independently (e.g. via the linked sources) and let us know.",
+      s5h: "Found an error?", s5: "Feedback is very welcome – please report it to {email}.",
+    },
+    anleitung: {
+      heading: "❓ Quick guide",
+      s1h: "1. Get an xeno-canto API key (one-time setup)",
+      s1: '<ol><li>Create a free account at <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a> ("Sign in / Register" top right).</li><li>After logging in, click your username top right → "Your account".</li><li>Open the "API key" menu item there – your personal key (a string of characters) is shown.</li><li>Copy the key, click the ⚙️ gear icon top right in this app, paste the key, "Save".</li></ol><p class="hint">The key is only stored locally in your browser (localStorage), never sent to us. Without a key the app only works in a limited way (no real audio recordings).</p>',
+      s2h: "2. The four modes",
+      s2: "<ul><li><strong>Identify Species</strong>: quiz mode – listen to a recording, pick the right species from several options. The filters above (frequency, difficulty, area, species group, count, learning group) narrow down the scope.</li><li><strong>Compare Similar Species</strong>: listen to and compare two easily-confused species side by side.</li><li><strong>🔍 Validate</strong>: search for a specific species and go through all its xeno-canto recordings one by one – meant for cross-checking automated detection results (e.g. BirdNET) against the actual recording.</li><li><strong>📊 Progress</strong>: shows which species you already recognize reliably and how that has developed over time.</li></ul>",
+      s3h: "3. Handy details",
+      s3: '<ul><li>🚫 "Exclude this recording": if a recording has no audible sound or the species seems misidentified – the app remembers this permanently (only in this browser).</li><li>The app can be installed as a standalone app (desktop icon/phone home screen) – ask {contact} for instructions.</li><li>Switch language: button top right next to the gear icon.</li></ul>',
+      s4h: "Questions?", s4: "For problems or questions: {email}",
+    },
+  },
+};
+
 const state = {
   mode: "erkennen",
+  lang: "de",              // "de" | "en" – s. Abschnitt "---------- i18n ----------"
   score: { correct: 0, total: 0 },
   currentQuestion: null,
   recordingListCache: {}, // sciName -> array of recording objects (Lernmodus, gedeckelt)
@@ -19,6 +359,122 @@ const state = {
   answerLog: [],          // [{ speciesId, correct, ts }] – für Verlauf über Zeit
   questionRequestId: 0,   // Schutz gegen Race Conditions bei schnellem Klicken
 };
+
+// ---------- i18n ----------
+// Einfacher, selbstgebauter Übersetzungsmechanismus (kein Framework nötig):
+// - STRINGS enthält alle UI-Texte (Buttons, Labels, Meldungen, Disclaimer-/
+//   Anleitungs-Seite) doppelt, unter "de" und "en".
+// - t("a.b.c", {var: "..."}) holt den Text per Punkt-Pfad, ersetzt optional
+//   {platzhalter} durch vars, fällt bei fehlendem Schlüssel auf Deutsch zurück
+//   (nie ein rohes "undefined" in der UI).
+// - Artdaten (species-data.js) werden NICHT hier übersetzt, sondern haben
+//   eigene Parallel-Strukturen: AREAS_EN/HABITAT_LABELS_EN/GROUP_ORDER_EN
+//   (Kurztexte, immer vorhanden) sowie sp.background_en und
+//   CONFUSION_NOTES[key].title_en/note_en (lange Fachtexte, werden
+//   schrittweise ergänzt – s. areaName()/groupLabel()/habitatLabel()/
+//   speciesBackground()/confusionTitle()/confusionNote() unten, die bei
+//   fehlender Übersetzung automatisch auf den deutschen Text zurückfallen
+//   und das per Hinweistext kenntlich machen).
+const LANG_KEY = "vogeltrainer_lang";
+
+function getStoredLang() {
+  const v = localStorage.getItem(LANG_KEY);
+  return v === "en" ? "en" : "de";
+}
+
+function t(key, vars) {
+  const path = key.split(".");
+  const lookup = (dict) => path.reduce((node, p) => (node && typeof node === "object") ? node[p] : undefined, dict);
+  let val = lookup(STRINGS[state.lang]);
+  if (val === undefined) val = lookup(STRINGS.de); // Fallback: fehlende EN-Strings zeigen deutschen Text statt nichts
+  if (typeof val !== "string") return key;
+  if (vars) {
+    return val.replace(/\{(\w+)\}/g, (m, k) => (vars[k] !== undefined ? String(vars[k]) : m));
+  }
+  return val;
+}
+
+// Übersetzte Art-/Gebiets-/Gruppen-Hilfsfelder: fallen mangels Übersetzung
+// automatisch auf den deutschen Wert zurück (nie eine leere/kaputte Anzeige).
+function areaName(code) {
+  return state.lang === "en" ? (AREAS_EN[code] || AREAS[code] || code) : (AREAS[code] || code);
+}
+function habitatLabel(tag) {
+  const src = state.lang === "en" ? HABITAT_LABELS_EN : HABITAT_LABELS;
+  return src[tag] || HABITAT_LABELS[tag] || tag;
+}
+function groupLabel(deName) {
+  if (!deName) return deName;
+  return state.lang === "en" ? (GROUP_ORDER_EN[deName] || deName) : deName;
+}
+// sp.background_en wird schrittweise ergänzt (großes Übersetzungsprojekt,
+// s. CLAUDE.md) – bis eine Art an der Reihe war, zeigt EN-Modus den
+// deutschen Text plus kurzem Hinweis, statt nichts oder Deutsch ohne Hinweis.
+function speciesBackground(sp) {
+  if (state.lang !== "en") return { text: sp.background, translated: true };
+  if (sp.background_en) return { text: sp.background_en, translated: true };
+  return { text: sp.background, translated: false };
+}
+function confusionTitle(info) {
+  return state.lang === "en" ? (info.title_en || info.title) : info.title;
+}
+function confusionNote(info) {
+  if (state.lang !== "en") return { text: info.note, translated: true };
+  if (info.note_en) return { text: info.note_en, translated: true };
+  return { text: info.note, translated: false };
+}
+
+// Läuft über alle statisch in index.html stehenden Texte (data-i18n-*
+// Attribute) und setzt sie auf die aktuelle Sprache. Wird beim Start und bei
+// jedem Sprachwechsel aufgerufen.
+function applyStaticTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    // innerHTML statt textContent: manche STRINGS-Werte (z.B. settings.apiKeyIntro,
+    // footer.text) enthalten bewusst HTML (<strong>, <a>) - Inhalt kommt nur aus
+    // unserem eigenen STRINGS-Objekt, nie aus Nutzereingaben, daher unbedenklich.
+    el.innerHTML = t(el.getAttribute("data-i18n"));
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach(el => {
+    el.setAttribute("title", t(el.getAttribute("data-i18n-title")));
+  });
+  document.documentElement.lang = state.lang;
+  const langBtn = document.getElementById("langToggleBtn");
+  if (langBtn) langBtn.textContent = state.lang === "de" ? "EN" : "DE";
+}
+
+// Sprachwechsel: State + Persistenz + statische Texte sofort aktualisieren,
+// danach die aktuell sichtbare Ansicht neu rendern (dynamische Texte stecken
+// in den render*-Funktionen, nicht im DOM).
+function setupLangToggle() {
+  state.lang = getStoredLang();
+  const btn = document.getElementById("langToggleBtn");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    state.lang = state.lang === "de" ? "en" : "de";
+    localStorage.setItem(LANG_KEY, state.lang);
+    applyStaticTranslations();
+    populateAreaFilter();
+    populateGroupFilter();
+    populateConfusionSelect();
+    rerenderCurrentView();
+  });
+}
+
+function rerenderCurrentView() {
+  if (state.mode === "erkennen") loadQuestion();
+  else if (state.mode === "unterscheiden") renderConfusionPair();
+  else if (state.mode === "fortschritt") renderFortschritt();
+  else if (state.mode === "anleitung") renderAnleitung();
+  else if (state.mode === "disclaimer") renderDisclaimer();
+  else if (state.mode === "validieren" && state.validation && state.validation.sp) {
+    renderValidationHeader(state.validation.sp);
+    renderValidationDetails(state.validation.sp);
+    if (state.validation.recordings.length) renderValidationRecording();
+  }
+}
 
 // ---------- Fortschritt / Lernstatistik ----------
 // Wird dauerhaft im Browser gespeichert (localStorage), damit man über
@@ -85,7 +541,7 @@ function masteryInfo(sp) {
 }
 
 function statusLabelDe(label) {
-  return { neu: "neu", lernen: "lernen", gut: "gut", sicher: "sicher" }[label] || label;
+  return t({ neu: "progress.statusNew", lernen: "progress.statusLearning", gut: "progress.statusGood", sicher: "progress.statusMastered" }[label] || "progress.statusNew");
 }
 
 // ---------- Wochen-Verlauf ----------
@@ -180,11 +636,12 @@ function renderProgressChart(weeklyData, totalSpecies) {
       return `<div class="chart-seg seg-${key}" style="height:${h}px" title="${statusLabelDe(key)}: ${count} Art(en)"></div>`;
     }).join("");
     const acc = w.totalThisWeek ? Math.round((w.correctThisWeek / w.totalThisWeek) * 100) : null;
+    const weekSub = w.practicedThisWeek ? t("progress.practicedThisWeek", { n: w.practicedThisWeek }) : t("progress.noneThisWeek");
     return `
       <div class="progress-bar-col">
         <div class="progress-bar-stack" style="height:${maxH}px;">${segs}</div>
         <div class="chart-week-label">${formatWeekLabel(w.weekStart)}</div>
-        <div class="chart-week-sub muted">${w.practicedThisWeek ? w.practicedThisWeek + " geübt" : "–"}${acc !== null ? ", " + acc + "%" : ""}</div>
+        <div class="chart-week-sub muted">${weekSub}${acc !== null ? ", " + acc + "%" : ""}</div>
       </div>
     `;
   }).join("");
@@ -192,12 +649,12 @@ function renderProgressChart(weeklyData, totalSpecies) {
   return `
     <div class="progress-chart">${bars}</div>
     <div class="chart-legend">
-      <span class="legend-item"><span class="legend-swatch seg-sicher"></span>sicher</span>
-      <span class="legend-item"><span class="legend-swatch seg-gut"></span>gut</span>
-      <span class="legend-item"><span class="legend-swatch seg-lernen"></span>lernen</span>
-      <span class="legend-item"><span class="legend-swatch seg-neu"></span>neu</span>
+      <span class="legend-item"><span class="legend-swatch seg-sicher"></span>${t("progress.statusMastered")}</span>
+      <span class="legend-item"><span class="legend-swatch seg-gut"></span>${t("progress.statusGood")}</span>
+      <span class="legend-item"><span class="legend-swatch seg-lernen"></span>${t("progress.statusLearning")}</span>
+      <span class="legend-item"><span class="legend-swatch seg-neu"></span>${t("progress.statusNew")}</span>
     </div>
-    <p class="hint">Balken = Lernstand aller ${totalSpecies} Demo-Arten am Ende der jeweiligen Woche (kumulativ). Text darunter = diese Woche tatsächlich geübte Arten und Trefferquote.</p>
+    <p class="hint">${t("progress.chartHint", { n: totalSpecies })}</p>
   `;
 }
 
@@ -560,15 +1017,10 @@ async function fetchAllRecordingsForSpecies(sp) {
 
 function originNote(rec) {
   if (!rec.tier || rec.tier === "germany") return "";
-  if (rec.tier === "neighbor") {
-    return `Hinweis: keine deutsche Aufnahme gefunden, zeige eine Aufnahme aus dem Nachbarland ${rec.country || "?"}.`;
-  }
-  if (rec.tier === "europe") {
-    return `Hinweis: keine Aufnahme aus Deutschland oder den Nachbarländern gefunden, zeige eine Aufnahme aus einem anderen europäischen Land (${rec.country || "?"}).`;
-  }
-  if (rec.tier === "world") {
-    return `Hinweis: keine europäische Aufnahme gefunden, zeige eine Aufnahme von außerhalb Europas (${rec.country || "?"}).`;
-  }
+  const country = rec.country || "?";
+  if (rec.tier === "neighbor") return t("audio.neighborNote", { country });
+  if (rec.tier === "europe") return t("audio.europeNote", { country });
+  if (rec.tier === "world") return t("audio.worldNote", { country });
   return "";
 }
 
@@ -625,37 +1077,54 @@ async function fetchWikiImage(sp) {
 
 // ---------- UI: Init ----------
 
+// Baut die Gebiets-Dropdown-Optionen neu (behält die aktuelle Auswahl bei,
+// wichtig beim Sprachwechsel: die ersten beiden Optionen "all"/"kern11"
+// stehen bereits statisch in index.html mit data-i18n und bleiben stehen,
+// nur die dynamisch angehängten Gebiete werden neu aufgebaut).
 function populateAreaFilter() {
   const sel = document.getElementById("areaFilter");
-  Object.entries(AREAS).forEach(([code, name]) => {
+  const prev = sel.value;
+  Array.from(sel.querySelectorAll("option[data-dynamic]")).forEach(o => o.remove());
+  Object.entries(AREAS).forEach(([code]) => {
     const opt = document.createElement("option");
     opt.value = code;
-    opt.textContent = name;
+    opt.dataset.dynamic = "1";
+    opt.textContent = areaName(code);
     sel.appendChild(opt);
   });
+  if (Array.from(sel.options).some(o => o.value === prev)) sel.value = prev;
 }
 
 // Nur Gruppen anzeigen, die tatsächlich im aktuellen Artenset vorkommen –
 // in fester, alltagstauglicher Reihenfolge (GROUP_ORDER), nicht alphabetisch.
+// sp.group bleibt immer der deutsche Name (Artdaten sind nicht übersetzt),
+// nur die Anzeige im Dropdown wird per groupLabel() übersetzt.
 function populateGroupFilter() {
   const sel = document.getElementById("groupFilter");
+  const prev = sel.value;
+  Array.from(sel.querySelectorAll("option[data-dynamic]")).forEach(o => o.remove());
   const present = new Set(SPECIES.map(sp => sp.group).filter(Boolean));
   GROUP_ORDER.filter(g => present.has(g)).forEach(g => {
     const opt = document.createElement("option");
     opt.value = g;
-    opt.textContent = g;
+    opt.dataset.dynamic = "1";
+    opt.textContent = groupLabel(g);
     sel.appendChild(opt);
   });
+  if (Array.from(sel.options).some(o => o.value === prev)) sel.value = prev;
 }
 
 function populateConfusionSelect() {
   const sel = document.getElementById("confusionSelect");
+  const prev = sel.value;
+  sel.innerHTML = "";
   Object.entries(CONFUSION_NOTES).forEach(([key, val]) => {
     const opt = document.createElement("option");
     opt.value = key;
-    opt.textContent = val.title;
+    opt.textContent = confusionTitle(val);
     sel.appendChild(opt);
   });
+  if (Array.from(sel.options).some(o => o.value === prev)) sel.value = prev;
 }
 
 function switchMode(mode, opts) {
@@ -673,10 +1142,12 @@ function switchMode(mode, opts) {
   document.getElementById("unterscheidenView").classList.toggle("hidden", mode !== "unterscheiden");
   document.getElementById("validierenView").classList.toggle("hidden", mode !== "validieren");
   document.getElementById("fortschrittView").classList.toggle("hidden", mode !== "fortschritt");
+  document.getElementById("anleitungView").classList.toggle("hidden", mode !== "anleitung");
+  document.getElementById("disclaimerView").classList.toggle("hidden", mode !== "disclaimer");
   // Die Quiz-Filterleiste (Häufigkeit/Schwierigkeit/Gebiet/...) betrifft nur
-  // Erkennen/Unterscheiden/Fortschritt – auf der Validierungs-Seite sucht man
-  // gezielt nach einer Art, da wäre sie nur verwirrend.
-  document.querySelector(".filters").classList.toggle("hidden", mode === "validieren");
+  // Erkennen/Unterscheiden/Fortschritt – auf der Validierungs-Seite sowie den
+  // reinen Infoseiten (Anleitung/Disclaimer) wäre sie nur verwirrend.
+  document.querySelector(".filters").classList.toggle("hidden", mode === "validieren" || mode === "anleitung" || mode === "disclaimer");
 
   if (mode === "erkennen") {
     loadQuestion();
@@ -685,6 +1156,10 @@ function switchMode(mode, opts) {
     renderConfusionPair();
   } else if (mode === "fortschritt") {
     renderFortschritt();
+  } else if (mode === "anleitung") {
+    renderAnleitung();
+  } else if (mode === "disclaimer") {
+    renderDisclaimer();
   } else if (mode === "validieren") {
     if (opts.speciesId) {
       const sp = SPECIES.find(s => s.id === opts.speciesId);
@@ -703,10 +1178,10 @@ function updateLearnGroupHint() {
   const val = document.getElementById("learnGroupInput").value;
   const hintEl = document.getElementById("learnGroupCount");
   if (val === "all") {
-    hintEl.textContent = `aktuell: keine Aufteilung, alle ${SPECIES.length} Arten.`;
+    hintEl.textContent = t("settings.learnGroupHintNone", { n: SPECIES.length });
   } else {
     const n = SPECIES.filter(sp => LEARN_GROUPS[sp.id] === val).length;
-    hintEl.textContent = `aktuell: Gruppe ${val} mit ${n} Arten.`;
+    hintEl.textContent = t("settings.learnGroupHintGroup", { g: val, n });
   }
 }
 
@@ -828,7 +1303,7 @@ async function loadQuestion() {
   const pool = currentFilteredSpecies();
 
   if (pool.length < 2) {
-    card.innerHTML = `<p class="muted">Zu wenige Arten für diese Filterkombination im aktuellen Artenset (${SPECIES.length} Arten enthalten). Bitte Filter lockern.</p>`;
+    card.innerHTML = `<p class="muted">${t("erkennen.tooFewSpecies", { total: SPECIES.length })}</p>`;
     return;
   }
 
@@ -854,7 +1329,7 @@ async function loadQuestion() {
   const nextBtn = document.getElementById("nextBtn");
   nextBtn.disabled = true;
 
-  card.innerHTML = `<p class="muted">Lade Aufnahme…</p>`;
+  card.innerHTML = `<p class="muted">${t("erkennen.loadingRecording")}</p>`;
 
   try {
     const rec = await pickRecording(target);
@@ -872,17 +1347,17 @@ function renderAudioError(err, target) {
   const card = document.getElementById("quizCard");
   let msg;
   if (err.message === "no-key") {
-    msg = "Kein xeno-canto API-Key hinterlegt. Über das Zahnrad oben rechts einen Key eintragen (kostenloser Account auf xeno-canto.org).";
+    msg = t("audioError.noKey");
   } else if (err.message === "no-recordings") {
-    msg = "Für diese Art sind auf xeno-canto aktuell keine Aufnahmen zu finden (auch nicht außerhalb Deutschlands) – kein technischer Fehler, es gibt schlicht keinen Treffer für diese Art in der Datenbank.";
+    msg = t("audioError.noRecordings");
   } else if (err.message === "network") {
-    msg = "Aufnahme konnte nicht geladen werden – vermutlich ein Netzwerk- oder Bot-Schutz-Problem (xeno-canto blockiert manchmal automatisierte Anfragen). Die Seite der Art lässt sich manuell öffnen.";
+    msg = t("audioError.network");
   } else {
-    msg = `Aufnahme konnte nicht geladen werden (${err.message}). Die Seite der Art lässt sich manuell öffnen.`;
+    msg = t("audioError.generic", { msg: err.message });
   }
   card.innerHTML = `
     <div class="error-box">${msg}</div>
-    <p><a href="${xcSpeciesPageUrl(target)}" target="_blank" rel="noopener">Art manuell auf xeno-canto.org ansehen →</a></p>
+    <p><a href="${xcSpeciesPageUrl(target)}" target="_blank" rel="noopener">${t("audioError.viewManually")}</a></p>
     <div class="options-grid" id="optionsGrid"></div>
   `;
   renderOptions(document.getElementById("optionsGrid"));
@@ -931,20 +1406,21 @@ function renderAudioSection(rec, target, containerId, opts) {
   const isLongRecording = durSec && durSec > XC_SONO_MAX_SECONDS;
   const audioMime = guessAudioMimeType(rec.fileUrl);
   const isExcluded = getExcludedIds().has(String(rec.xcId));
-  const altLabel = opts.altLabel || "🔄 Andere Aufnahme";
+  const altLabel = opts.altLabel || t("audio.altRecBtn");
   const excludeLabel = opts.excludeLabel
     ? opts.excludeLabel(isExcluded)
-    : "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)";
+    : t("audio.excludeBtnDefault");
+  const licenseHtml = rec.license ? `${t("audio.license")}<a href="${rec.license}" target="_blank" rel="noopener">${t("audio.licenseLink")}</a>` : "";
   container.innerHTML = `
     <div class="audio-row">
       <button class="play-btn" id="playBtn">▶</button>
       <div>
-        <div class="sound-type">${rec.type || "Aufnahmetyp unbekannt"}${rec.length ? ` · Länge: ${rec.length}` : ""}</div>
-        <div class="attribution">Aufnahme: ${rec.recordist || "unbekannt"} · xeno-canto.org
-          (<a href="${rec.pageUrl}" target="_blank" rel="noopener">Quelle</a>${rec.license ? `, Lizenz: <a href="${rec.license}" target="_blank" rel="noopener">CC</a>` : ""})
+        <div class="sound-type">${rec.type || t("audio.unknownType")}${rec.length ? t("audio.lengthLabel", { length: rec.length }) : ""}</div>
+        <div class="attribution">${t("audio.recordingBy", { recordist: rec.recordist || t("audio.unknownRecordist") })}
+          (<a href="${rec.pageUrl}" target="_blank" rel="noopener">${t("audio.source")}</a>${licenseHtml})
         </div>
         ${originNote(rec) ? `<div class="hint">${originNote(rec)}</div>` : ""}
-        ${rec.remarks && rec.remarks.trim() ? `<div class="hint">Bemerkung der/des Aufnehmenden: „${rec.remarks.trim()}"</div>` : ""}
+        ${rec.remarks && rec.remarks.trim() ? `<div class="hint">${t("audio.remarksLabel", { remarks: rec.remarks.trim() })}</div>` : ""}
       </div>
     </div>
     <audio id="audioPlayer" preload="metadata">
@@ -964,9 +1440,9 @@ function renderAudioSection(rec, target, containerId, opts) {
         </div>
       </div>
       <p class="hint">${isLongRecording
-        ? `Diese Aufnahme ist ${rec.length} lang. xeno-canto erzeugt das Sonogramm bei längeren Aufnahmen aber offenbar nur für die ersten 2 Minuten. Der Cursor läuft daher bis zum rechten Rand und bleibt dort stehen, auch wenn die Audiodatei danach noch weiterläuft.`
-        : `Das Sonogramm zeigt die gesamte Aufnahme in fester Höhe (nicht nur die Zielart – Hintergrundgeräusche oder andere Vögel können mit abgebildet sein). Bei längeren Aufnahmen scrollt die Ansicht automatisch mit, sobald die rote Linie den sichtbaren Rand erreicht.`
-      }${rec.sampleRate ? "" : " Achtung: Sample-Rate dieser Aufnahme unbekannt, y-Achse zeigt daher keine kHz-Werte."}</p>
+        ? t("audio.longRecordingHint", { length: rec.length })
+        : t("audio.normalRecordingHint")
+      }${rec.sampleRate ? "" : t("audio.unknownSampleRateSuffix")}</p>
     ` : ""}
     <div id="playError"></div>
     <div class="rec-actions">
@@ -996,12 +1472,12 @@ async function swapRecording(sp, containerId, exclude, xcId) {
   if (exclude && xcId != null) excludeRecording(xcId);
   const container = document.getElementById(containerId);
   if (!container) return;
-  container.innerHTML = `<p class="muted">Lade andere Aufnahme…</p>`;
+  container.innerHTML = `<p class="muted">${t("swap.loading")}</p>`;
   try {
     const rec = await pickRecording(sp);
     renderAudioSection(rec, sp, containerId);
   } catch (err) {
-    container.innerHTML = `<div class="error-box">Konnte keine andere Aufnahme laden (${err.message}).</div>`;
+    container.innerHTML = `<div class="error-box">${t("swap.error", { msg: err.message })}</div>`;
   }
 }
 
@@ -1200,7 +1676,7 @@ function setupAudioControls(rec, container, autoplayAllowed) {
   // Server), daher der Hinweis auf "Andere Aufnahme" als praktischer Ausweg.
   function showPlayError() {
     if (!playError) return;
-    playError.innerHTML = `<div class="error-box">Wiedergabe fehlgeschlagen. Das kann an einer Autoplay-Sperre liegen (einfach nochmal auf ▶ klicken) oder daran, dass dein Browser (v.a. Safari auf Mac/iPhone) genau diese Aufnahmedatei nicht unterstützt. Falls Letzteres: bitte "🔄 Andere Aufnahme" probieren, oder Direktlink: <a href="${rec.fileUrl}" target="_blank" rel="noopener">Audiodatei öffnen</a></div>`;
+    playError.innerHTML = `<div class="error-box">${t("audio.playError", { url: rec.fileUrl })}</div>`;
   }
 
   playBtn.addEventListener("click", () => {
@@ -1223,7 +1699,7 @@ function setupAudioControls(rec, container, autoplayAllowed) {
     audio.play().catch(() => {
       // Browser hat automatische Wiedergabe blockiert (Autoplay-Richtlinie) –
       // dann einfach manuell über den Play-Button starten.
-      if (playError) playError.innerHTML = `<p class="hint">Automatische Wiedergabe wurde vom Browser blockiert – bitte einmal auf ▶ klicken.</p>`;
+      if (playError) playError.innerHTML = `<p class="hint">${t("audio.autoplayBlocked")}</p>`;
     });
   }
 }
@@ -1264,7 +1740,7 @@ function handleAnswer(chosen, btnEl, rec, target) {
 
 function updateScore() {
   document.getElementById("scoreDisplay").textContent =
-    `Punktestand: ${state.score.correct} / ${state.score.total}`;
+    t("score.label", { correct: state.score.correct, total: state.score.total });
 }
 
 // Zeigt zunächst nur einen Toggle-Button; Inhalt (inkl. Wikipedia-Bild)
@@ -1277,11 +1753,11 @@ function renderDetailsToggle(sp) {
   panel.innerHTML = `
     ${partner ? `
       <div class="confusion-hint">
-        ⚠️ ${sp.de} kann akustisch mit <strong>${partner.de}</strong> verwechselt werden.
-        <button class="details-toggle" id="jumpConfusionBtn">🔁 Verwechslungsarten vergleichen</button>
+        ${t("details.confusionHint", { name: sp.de, partner: partner.de })}
+        <button class="details-toggle" id="jumpConfusionBtn">${t("details.jumpConfusionBtn")}</button>
       </div>
     ` : ""}
-    <button class="details-toggle" id="detailsToggleBtn">ℹ️ Mehr über ${sp.de} erfahren</button>
+    <button class="details-toggle" id="detailsToggleBtn">${t("details.moreAbout", { name: sp.de })}</button>
     <div class="details hidden" id="detailsContent"></div>
   `;
 
@@ -1298,7 +1774,7 @@ function renderDetailsToggle(sp) {
   toggleBtn.addEventListener("click", async () => {
     const willShow = content.classList.contains("hidden");
     content.classList.toggle("hidden");
-    toggleBtn.textContent = willShow ? `▲ Weniger anzeigen` : `ℹ️ Mehr über ${sp.de} erfahren`;
+    toggleBtn.textContent = willShow ? t("details.lessInfo") : t("details.moreAbout", { name: sp.de });
     if (willShow && !loaded) {
       loaded = true;
       renderDetailsContent(sp, content);
@@ -1307,20 +1783,22 @@ function renderDetailsToggle(sp) {
 }
 
 async function renderDetailsContent(sp, content) {
-  const areaNames = sp.areas.map(a => AREAS[a]).join(", ");
+  const areaNames = sp.areas.map(a => areaName(a)).join(", ");
   const confusion = sp.confusionGroup ? CONFUSION_NOTES[sp.confusionGroup] : null;
+  const bg = speciesBackground(sp);
+  const confNote = confusion ? confusionNote(confusion) : null;
   content.innerHTML = `
     <h3>${sp.de} <span class="muted">(${sp.en}, <em>${sp.sci}</em>)</span></h3>
-    <div id="speciesImgWrap" class="muted" style="font-size:0.8rem;">Bild wird geladen…</div>
-    <p>${sp.background}</p>
+    <div id="speciesImgWrap" class="muted" style="font-size:0.8rem;">${t("details.imageLoading")}</div>
+    <p>${bg.text}${bg.translated ? "" : ` <span class="hint">${t("details.notYetTranslated")}</span>`}</p>
     <p>
-      <span class="tag">Häufigkeit: ${sp.frequency}</span>
-      <span class="tag">Schwierigkeit: ${sp.difficulty}</span>
-      ${sp.group ? `<span class="tag">Gruppe: ${sp.group}</span>` : ""}
+      <span class="tag">${t("details.frequencyTag", { v: t("filters.freq_" + sp.frequency) })}</span>
+      <span class="tag">${t("details.difficultyTag", { v: t("filters.diff_" + sp.difficulty) })}</span>
+      ${sp.group ? `<span class="tag">${t("details.groupTag", { v: groupLabel(sp.group) })}</span>` : ""}
     </p>
-    <p><strong>Vorkommen in euren Gebieten (eBird-Hotspot-Meldungen, kumulativ):</strong><br>${areaNames || "bisher keine eBird-Meldung in den gesampelten Gebieten"}</p>
-    ${confusion ? `<div class="confusion-note"><strong>Verwechslungsgefahr – ${confusion.title}:</strong> ${confusion.note}</div>` : ""}
-    <button class="details-toggle" id="jumpValidationBtn">🔍 Alle xeno-canto-Aufnahmen dieser Art durchgehen</button>
+    <p><strong>${t("details.areasLabel")}</strong><br>${areaNames || t("details.noAreaData")}</p>
+    ${confusion ? `<div class="confusion-note"><strong>${t("details.confusionDangerPrefix", { title: confusionTitle(confusion) })}</strong> ${confNote.text}${confNote.translated ? "" : ` <span class="hint">${t("details.notYetTranslated")}</span>`}</div>` : ""}
+    <button class="details-toggle" id="jumpValidationBtn">${t("details.jumpValidationBtn")}</button>
   `;
   document.getElementById("jumpValidationBtn").addEventListener("click", () => {
     switchMode("validieren", { speciesId: sp.id });
@@ -1330,7 +1808,7 @@ async function renderDetailsContent(sp, content) {
   try {
     const imgUrl = await fetchWikiImage(sp);
     if (imgUrl) {
-      imgWrap.innerHTML = `<img class="species-photo" src="${imgUrl}" alt="${sp.de}"><div class="hint">Bild: Wikipedia</div>`;
+      imgWrap.innerHTML = `<img class="species-photo" src="${imgUrl}" alt="${sp.de}"><div class="hint">${t("details.imageCaption")}</div>`;
     } else {
       imgWrap.innerHTML = "";
     }
@@ -1347,8 +1825,9 @@ async function renderConfusionPair() {
   const pairSpecies = SPECIES.filter(sp => sp.confusionGroup === key);
   const card = document.getElementById("confusionCard");
 
+  const confNote = confusionNote(info);
   card.innerHTML = `
-    <div class="confusion-note"><strong>${info.title}:</strong> ${info.note}</div>
+    <div class="confusion-note"><strong>${confusionTitle(info)}:</strong> ${confNote.text}${confNote.translated ? "" : ` <span class="hint">${t("details.notYetTranslated")}</span>`}</div>
     <div class="confusion-pair" id="pairGrid"></div>
   `;
 
@@ -1357,10 +1836,11 @@ async function renderConfusionPair() {
     const box = document.createElement("div");
     box.className = "confusion-species";
     const audioContainerId = `confAudio-${sp.id}`;
+    const bg = speciesBackground(sp);
     box.innerHTML = `
       <h3>${formatName(sp)}</h3>
-      <div id="${audioContainerId}"><p class="muted">Lade Aufnahme…</p></div>
-      <p>${sp.background}</p>
+      <div id="${audioContainerId}"><p class="muted">${t("confusion.loadingRecording")}</p></div>
+      <p>${bg.text}${bg.translated ? "" : ` <span class="hint">${t("details.notYetTranslated")}</span>`}</p>
     `;
     grid.appendChild(box);
 
@@ -1369,11 +1849,11 @@ async function renderConfusionPair() {
       renderAudioSection(rec, sp, audioContainerId);
     } catch (err) {
       const msg = err.message === "no-key"
-        ? "Kein API-Key hinterlegt (Zahnrad oben rechts)."
-        : "Aufnahme nicht automatisch ladbar.";
+        ? t("confusion.noApiKey")
+        : t("confusion.cannotAutoLoad");
       document.getElementById(audioContainerId).innerHTML = `
         <p class="muted">${msg}</p>
-        <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">manuell auf xeno-canto.org ansehen →</a></p>
+        <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">${t("confusion.viewManually")}</a></p>
       `;
     }
   }
@@ -1433,12 +1913,10 @@ function setupValidationSearch() {
   const doSearch = () => {
     const { match, count } = resolveSpeciesInput(input.value);
     if (!match) {
-      hint.textContent = input.value.trim()
-        ? "Keine Art gefunden – bitte deutschen, englischen oder lateinischen Namen (auch als Teilstring) versuchen."
-        : "";
+      hint.textContent = input.value.trim() ? t("validation.noMatch") : "";
       return;
     }
-    hint.textContent = count > 1 ? `${count} Treffer, zeige „${match.de}" – für eine andere Art genauer eingeben.` : "";
+    hint.textContent = count > 1 ? t("validation.multipleMatches", { count, name: match.de }) : "";
     loadValidationSpecies(match);
   };
 
@@ -1460,7 +1938,7 @@ function setupValidationSearch() {
 // Ohne Code lieber gar keinen Link zeigen als einen geratenen/kaputten.
 function ebirdSpeciesLinkHtml(sp) {
   if (!sp.ebirdCode) return "";
-  return `<p><a href="https://ebird.org/species/${sp.ebirdCode}" target="_blank" rel="noopener">Art auf eBird ansehen →</a></p>`;
+  return `<p><a href="https://ebird.org/species/${sp.ebirdCode}" target="_blank" rel="noopener">${t("validation.viewOnEbird")}</a></p>`;
 }
 
 function renderValidationHeader(sp) {
@@ -1469,32 +1947,36 @@ function renderValidationHeader(sp) {
   card.innerHTML = `
     <h3 style="margin-top:0;">${sp.de} <span class="muted">(${sp.en}, <em>${sp.sci}</em>)</span></h3>
     <p style="margin-bottom:0;">
-      <span class="tag">Häufigkeit: ${sp.frequency}</span>
-      <span class="tag">Schwierigkeit: ${sp.difficulty}</span>
-      ${sp.group ? `<span class="tag">Gruppe: ${sp.group}</span>` : ""}
+      <span class="tag">${t("details.frequencyTag", { v: t("filters.freq_" + sp.frequency) })}</span>
+      <span class="tag">${t("details.difficultyTag", { v: t("filters.diff_" + sp.difficulty) })}</span>
+      ${sp.group ? `<span class="tag">${t("details.groupTag", { v: groupLabel(sp.group) })}</span>` : ""}
     </p>
   `;
 }
 
+const MONTH_NAMES_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 function renderValidationDetails(sp) {
   const card = document.getElementById("validationDetailsCard");
   card.classList.remove("hidden");
-  const areaNames = sp.areas.map(a => AREAS[a]).join(", ") || "bisher keine eBird-Meldung in den gesampelten Gebieten";
+  const areaNames = sp.areas.map(a => areaName(a)).join(", ") || t("details.noAreaData");
+  const monthNames = state.lang === "en" ? MONTH_NAMES_EN : MONTH_NAMES_DE;
   const habitatText = (sp.habitat && sp.habitat.length)
-    ? sp.habitat.map(h => HABITAT_LABELS[h] || h).join(", ")
-    : "keine Angabe (noch nicht recherchiert)";
+    ? sp.habitat.map(h => habitatLabel(h)).join(", ")
+    : t("validation.noDataYet");
   const seasonText = sp.vocalMonths
-    ? `${MONTH_NAMES_DE[sp.vocalMonths[0] - 1]}–${MONTH_NAMES_DE[sp.vocalMonths[1] - 1]}`
-    : (sp.habitat ? "ganzjährig aktiv / keine ausgeprägte Rufsaison bekannt" : "keine Angabe (noch nicht recherchiert)");
+    ? `${monthNames[sp.vocalMonths[0] - 1]}–${monthNames[sp.vocalMonths[1] - 1]}`
+    : (sp.habitat ? t("validation.yearRoundNoSeason") : t("validation.noDataYet"));
+  const bg = speciesBackground(sp);
 
   card.innerHTML = `
     <div class="validation-info-grid">
-      <div><h4>Habitat</h4>${habitatText}</div>
-      <div><h4>Ruf-/Gesangssaison</h4>${seasonText}</div>
-      <div><h4>Vorkommen in euren Gebieten</h4>${areaNames}</div>
+      <div><h4>${t("validation.habitatLabel")}</h4>${habitatText}</div>
+      <div><h4>${t("validation.seasonLabel")}</h4>${seasonText}</div>
+      <div><h4>${t("validation.areasLabel")}</h4>${areaNames}</div>
     </div>
-    <p style="margin-top:0.8rem;">${sp.background}</p>
-    <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">Art auf xeno-canto.org ansehen →</a></p>
+    <p style="margin-top:0.8rem;">${bg.text}${bg.translated ? "" : ` <span class="hint">${t("details.notYetTranslated")}</span>`}</p>
+    <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">${t("validation.viewOnXc")}</a></p>
     ${ebirdSpeciesLinkHtml(sp)}
   `;
 }
@@ -1505,7 +1987,7 @@ async function loadValidationSpecies(sp) {
   renderValidationHeader(sp);
   renderValidationDetails(sp);
   const card = document.getElementById("validationCard");
-  card.innerHTML = `<p class="muted">Lade Aufnahmen… (bei sehr häufigen Arten mit vielen xeno-canto-Aufnahmen kann das etwas dauern)</p>`;
+  card.innerHTML = `<p class="muted">${t("validation.loadingRecordings")}</p>`;
   try {
     const list = await fetchAllRecordingsForSpecies(sp);
     state.validation.recordings = list;
@@ -1513,15 +1995,15 @@ async function loadValidationSpecies(sp) {
   } catch (err) {
     let msg;
     if (err.message === "no-key") {
-      msg = "Kein xeno-canto API-Key hinterlegt. Über das Zahnrad oben rechts einen Key eintragen.";
+      msg = t("validation.noKey");
     } else if (err.message === "no-recordings") {
-      msg = "Für diese Art sind auf xeno-canto aktuell keine Aufnahmen zu finden.";
+      msg = t("validation.noRecordings");
     } else {
-      msg = `Aufnahmen konnten nicht geladen werden (${err.message}).`;
+      msg = t("validation.genericError", { msg: err.message });
     }
     card.innerHTML = `
       <div class="error-box">${msg}</div>
-      <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">Art manuell auf xeno-canto.org ansehen →</a></p>
+      <p><a href="${xcSpeciesPageUrl(sp)}" target="_blank" rel="noopener">${t("audioError.viewManually")}</a></p>
     `;
   }
 }
@@ -1530,18 +2012,18 @@ function renderValidationRecording() {
   const { sp, recordings, index } = state.validation;
   const card = document.getElementById("validationCard");
   if (!recordings.length) {
-    card.innerHTML = `<div class="error-box">Für diese Art sind auf xeno-canto keine Aufnahmen zu finden.</div>`;
+    card.innerHTML = `<div class="error-box">${t("validation.noRecordingsFound")}</div>`;
     return;
   }
   const rec = recordings[index];
   const isExcluded = getExcludedIds().has(String(rec.xcId));
   card.innerHTML = `
     <div class="validation-nav">
-      <button id="valPrevBtn" ${index === 0 ? "disabled" : ""}>← Vorherige</button>
-      <span class="validation-counter">${index + 1} / ${recordings.length}</span>
-      <button id="valNextBtn" ${index === recordings.length - 1 ? "disabled" : ""}>Nächste →</button>
+      <button id="valPrevBtn" ${index === 0 ? "disabled" : ""}>${t("validation.prevBtn")}</button>
+      <span class="validation-counter">${t("validation.counter", { i: index + 1, n: recordings.length })}</span>
+      <button id="valNextBtn" ${index === recordings.length - 1 ? "disabled" : ""}>${t("validation.nextBtn")}</button>
     </div>
-    ${isExcluded ? `<div class="validation-excluded-badge">🚫 Diese Aufnahme ist aktuell ausgeschlossen (wird im Lernmodus nicht mehr gezeigt).</div>` : ""}
+    ${isExcluded ? `<div class="validation-excluded-badge">${t("validation.excludedBadge")}</div>` : ""}
     <div id="validationAudioSection"></div>
   `;
 
@@ -1555,8 +2037,8 @@ function renderValidationRecording() {
   renderAudioSection(rec, sp, "validationAudioSection", {
     hideAltButton: true, // Navigation (oben) übernimmt "andere Aufnahme" hier vollständig
     excludeLabel: (excluded) => excluded
-      ? "↩️ Ausschluss aufheben"
-      : "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)",
+      ? t("validation.unexcludeBtn")
+      : t("validation.excludeBtn"),
     onExclude: (xcId, wasExcluded) => {
       if (wasExcluded) unexcludeRecording(xcId);
       else excludeRecording(xcId);
@@ -1590,21 +2072,21 @@ function renderFortschritt() {
 
   view.innerHTML = `
     <div class="card" style="max-width: 760px;">
-      <h2 style="margin-top:0; color: var(--green-dark);">Dein Fortschritt</h2>
-      <p class="muted">Arten, die du sicher erkennst (Serie von mehreren richtigen Antworten), werden seltener abgefragt – neue oder noch unsichere Arten häufiger. Basiert nur auf dem Modus „Arten erkennen“, lokal in diesem Browser gespeichert.</p>
-      ${totalAttempts === 0 ? `<p class="muted">Noch keine Antworten erfasst – leg im Modus „Arten erkennen" los.</p>` : `
-      <h3 style="color: var(--green-dark); margin-bottom:0.3rem;">Verlauf pro Woche – alle ${SPECIES.length} Arten</h3>
+      <h2 style="margin-top:0; color: var(--green-dark);">${t("progress.title")}</h2>
+      <p class="muted">${t("progress.description")}</p>
+      ${totalAttempts === 0 ? `<p class="muted">${t("progress.noAnswers")}</p>` : `
+      <h3 style="color: var(--green-dark); margin-bottom:0.3rem;">${t("progress.weeklyAll", { n: SPECIES.length })}</h3>
       ${renderProgressChart(weeklyData)}
       ${filterIsActive ? `
-      <h3 style="color: var(--green-dark); margin-top:1.6rem; margin-bottom:0.3rem;">Verlauf pro Woche – aktueller Filter (${filterPool.length} Arten)</h3>
-      <p class="hint" style="margin-top:0;">Bezieht sich auf die gerade in den Filtern oben ausgewählte Artenmenge (Häufigkeit/Schwierigkeit/Gebiet/Gruppe/Lerngruppe/Anzahl Arten zum Start).</p>
+      <h3 style="color: var(--green-dark); margin-top:1.6rem; margin-bottom:0.3rem;">${t("progress.weeklyFilter", { n: filterPool.length })}</h3>
+      <p class="hint" style="margin-top:0;">${t("progress.filterHint")}</p>
       ${renderProgressChart(filterWeeklyData, filterPool.length)}
       ` : ""}
-      <h3 style="color: var(--green-dark); margin-top:1.6rem;">Alle Arten im Detail</h3>
+      <h3 style="color: var(--green-dark); margin-top:1.6rem;">${t("progress.allSpeciesDetail")}</h3>
 
       <table class="progress-table">
         <thead>
-          <tr><th>Art</th><th>Versuche</th><th>Richtig</th><th>Status</th><th>Zuletzt geübt</th></tr>
+          <tr><th>${t("progress.colSpecies")}</th><th>${t("progress.colAttempts")}</th><th>${t("progress.colCorrect")}</th><th>${t("progress.colStatus")}</th><th>${t("progress.colLastPracticed")}</th></tr>
         </thead>
         <tbody>
           ${rows.map(r => `
@@ -1613,18 +2095,18 @@ function renderFortschritt() {
               <td>${r.info.attempts}</td>
               <td>${r.acc === null ? "–" : r.acc + "%"}</td>
               <td><span class="status-badge status-${r.info.label}">${statusLabelDe(r.info.label)}</span></td>
-              <td>${r.info.lastSeen ? new Date(r.info.lastSeen).toLocaleDateString("de-DE") : "–"}</td>
+              <td>${r.info.lastSeen ? new Date(r.info.lastSeen).toLocaleDateString(state.lang === "en" ? "en-GB" : "de-DE") : "–"}</td>
             </tr>
           `).join("")}
         </tbody>
       </table>
       `}
-      <button id="resetStatsBtn" class="details-toggle" style="margin-top:1.2rem;">Fortschritt zurücksetzen</button>
+      <button id="resetStatsBtn" class="details-toggle" style="margin-top:1.2rem;">${t("progress.resetBtn")}</button>
     </div>
   `;
 
   document.getElementById("resetStatsBtn").addEventListener("click", () => {
-    if (confirm("Gesamten Lernfortschritt (inkl. Verlauf) in diesem Browser wirklich zurücksetzen?")) {
+    if (confirm(t("progress.resetConfirm"))) {
       state.stats = {};
       state.answerLog = [];
       saveStats();
@@ -1634,10 +2116,59 @@ function renderFortschritt() {
   });
 }
 
+// ---------- Disclaimer-Seite ----------
+// Statischer, zweisprachiger Hinweistext (s. Task "Disclaimer-Seite bauen").
+// Enthält v.a. den Hinweis auf KI-gestützt recherchierte/formulierte
+// Artdaten und die bekannten Datenqualitäts-Einschränkungen (eBird kumulativ,
+// xeno-canto-Artbestimmung ungeprüft) – s. STRINGS.*.disclaimer.
+const CONTACT_EMAIL = "ursula.verfuss@natureanalytics.earth";
+
+function renderDisclaimer() {
+  const view = document.getElementById("disclaimerView");
+  const d = t; // kurz
+  view.innerHTML = `
+    <div class="card" style="max-width: 760px;">
+      <h2 style="margin-top:0; color: var(--green-dark);">${d("disclaimer.heading")}</h2>
+      <p class="muted">${d("disclaimer.intro")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s1h")}</h3>
+      <p>${d("disclaimer.s1")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s2h")}</h3>
+      <p>${d("disclaimer.s2")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s3h")}</h3>
+      <p>${d("disclaimer.s3")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s4h")}</h3>
+      <p>${d("disclaimer.s4")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s5h")}</h3>
+      <p>${d("disclaimer.s5", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+    </div>
+  `;
+}
+
+// ---------- Anleitungs-Seite ----------
+function renderAnleitung() {
+  const view = document.getElementById("anleitungView");
+  const d = t;
+  view.innerHTML = `
+    <div class="card" style="max-width: 760px;">
+      <h2 style="margin-top:0; color: var(--green-dark);">${d("anleitung.heading")}</h2>
+      <h3 style="color: var(--green-dark);">${d("anleitung.s1h")}</h3>
+      ${d("anleitung.s1")}
+      <h3 style="color: var(--green-dark);">${d("anleitung.s2h")}</h3>
+      ${d("anleitung.s2")}
+      <h3 style="color: var(--green-dark);">${d("anleitung.s3h")}</h3>
+      ${d("anleitung.s3", { contact: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}
+      <h3 style="color: var(--green-dark);">${d("anleitung.s4h")}</h3>
+      <p>${d("anleitung.s4", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+    </div>
+  `;
+}
+
 // ---------- Init ----------
 
 function init() {
+  state.lang = getStoredLang();
   loadStats();
+  applyStaticTranslations();
   populateAreaFilter();
   populateGroupFilter();
   populateConfusionSelect();
@@ -1646,6 +2177,7 @@ function init() {
   setupFilters();
   setupAutoplayToggle();
   setupValidationSearch();
+  setupLangToggle();
   loadQuestion();
 
   if ("serviceWorker" in navigator) {

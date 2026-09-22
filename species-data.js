@@ -26,6 +26,24 @@ const AREAS = {
   de: "außerhalb der 11 Gebiete"
 };
 
+// Englische Übersetzung von AREAS (gleiche Codes als Schlüssel), für den
+// Sprachumschalter DE/EN in app.js. Eigennamen (Nationalpark-/Gebietsnamen)
+// bleiben meist unübersetzt bzw. bekommen nur die englische Beschreibung.
+const AREAS_EN = {
+  byw: "Bavarian Forest",
+  eif: "Eifel",
+  hai: "Hainich",
+  hho: "Hunsrück-Hochwald",
+  hrz: "Harz",
+  jtb: "Brandenburg Wilderness Area – Jüterbog",
+  kwe: "Kellerwald-Edersee",
+  lbr: "Brandenburg Wilderness Area – Lieberose",
+  nwm: "Lower Saxon Wadden Sea",
+  ssc: "Saxon Switzerland",
+  uot: "Lower Oder Valley",
+  de: "outside the 11 areas"
+};
+
 // Habitat-Tags für die Validierungs-Seite (Erkennen-Modus nutzt sie nicht).
 // habitat/vocalMonths-Felder, zwei unterschiedliche Quellen (Stand 2026-09-21,
 // s. CLAUDE.md Abschnitt "Validierungs-Seite" für Details):
@@ -51,6 +69,17 @@ const HABITAT_LABELS = {
   alpine: "Alpin",
   water_shoreline: "Gewässer/Ufer",
   montane_mixed_forest: "Bergmischwald",
+};
+
+// Englische Übersetzung von HABITAT_LABELS (gleiche Schlüssel).
+const HABITAT_LABELS_EN = {
+  wetland_reed: "Wetland/Reed bed",
+  boreal_montane_conifer: "Boreal/montane conifer forest",
+  farmland_open: "Open farmland",
+  offshore_coast: "Offshore/Coast",
+  alpine: "Alpine",
+  water_shoreline: "Water/Shoreline",
+  montane_mixed_forest: "Montane mixed forest",
 };
 
 // Artengruppen – grobe, alltagstaugliche Gruppierung (keine strenge
@@ -85,6 +114,39 @@ const GROUP_ORDER = [
   "Exoten & Gefangenschaftsflüchtlinge",
 ];
 
+// Englische Übersetzung der Gruppennamen aus GROUP_ORDER (deutscher Name als
+// Schlüssel, da sp.group bei allen 543 Arten weiterhin den deutschen
+// Gruppennamen enthält – so muss dieses riesige Feld nicht bei jeder Art
+// dupliziert werden, nur diese 26 Einträge hier).
+const GROUP_ORDER_EN = {
+  "Meisen": "Tits",
+  "Grasmücken & Laubsänger": "Warblers",
+  "Drosseln": "Thrushes",
+  "Schnäpper & Rotschwänze": "Flycatchers & Redstarts",
+  "Schwalben": "Swallows & Martins",
+  "Spechte": "Woodpeckers",
+  "Kleiber & Baumläufer": "Nuthatches & Treecreepers",
+  "Finken": "Finches",
+  "Rabenvögel": "Crows & Allies",
+  "Stare": "Starlings",
+  "Tauben": "Pigeons & Doves",
+  "Eulen": "Owls",
+  "Greifvögel": "Birds of Prey",
+  "Kuckuck, Segler & Wiedehopf": "Cuckoo, Swift & Hoopoe",
+  "Störche & Kraniche": "Storks & Cranes",
+  "Wasservögel": "Waterbirds",
+  "Enten, Gänse & Schwäne": "Ducks, Geese & Swans",
+  "Möwen & Seeschwalben": "Gulls & Terns",
+  "Seevögel (Hochsee & Küste)": "Seabirds (Offshore & Coast)",
+  "Watvögel & Wiesenvögel": "Waders & Meadow Birds",
+  "Stelzen & Pieper": "Wagtails & Pipits",
+  "Feld- und Wiesenvögel": "Farmland & Grassland Birds",
+  "Rauhfußhühner": "Grouse",
+  "Sonstige Singvögel": "Other Songbirds",
+  "Seltene Gäste (Irrgäste)": "Rare Vagrants",
+  "Exoten & Gefangenschaftsflüchtlinge": "Exotics & Escapees",
+};
+
 // frequency: haeufig | mittel | selten | sehr_selten
 // difficulty: leicht | mittel | schwer
 const SPECIES = [
@@ -100,6 +162,7 @@ const SPECIES = [
     confusionGroup: "zilpzalp_fitis_iberienzilpzalp",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Einer der häufigsten Waldvögel Deutschlands. Gesang: monotones, meist zweisilbiges 'zilp-zalp-zilp-zalp-zelp' in wechselndem Rhythmus. Zugvogel, überwintert teils schon im Mittelmeerraum.",
+    background_en: "One of Germany's most common woodland birds. Song: a monotonous, usually two-syllable 'chiff-chaff-chiff-chaff' in a varying rhythm. Migratory, some already winter in the Mediterranean region.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -115,6 +178,7 @@ const SPECIES = [
     confusionGroup: "zilpzalp_fitis_iberienzilpzalp",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Optisch dem Zilpzalp fast identisch, gesanglich aber klar unterscheidbar: eine wehmütige, absteigende Strophe aus klaren Tönen ('Kaskade'), nicht das monotone Zilp-Zalp. Langstreckenzieher bis ins südliche Afrika.",
+    background_en: "Visually almost identical to the Chiffchaff, but clearly distinguishable by song: a wistful, descending phrase of clear notes ('cascade'), not the monotonous chiff-chaff. Long-distance migrant, wintering as far as southern Africa.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -130,6 +194,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Sehr anpassungsfähig, in fast jedem Lebensraum mit Bäumen zu finden. Gesang: rhythmisches, klingendes 'zi-zi-bä, zi-zi-bä' – sehr variabel, jedes Individuum hat mehrere Strophentypen.",
+    background_en: "Highly adaptable, found in almost any habitat with trees. Song: a rhythmic, ringing 'teacher-teacher' – very variable, each individual has several song types.",
     habitat: [],
     vocalMonths: null
   },
@@ -145,6 +210,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bevorzugt Laub- und Mischwald mit alten Bäumen (Höhlenbrüter). Gesang beginnt oft mit hohen, klaren Pfeiftönen gefolgt von einem trillernden Triller.",
+    background_en: "Prefers deciduous and mixed woodland with old trees (cavity nester). Song often starts with high, clear whistled notes followed by a trilling warble.",
     habitat: [],
     vocalMonths: null
   },
@@ -160,6 +226,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Wald mit dichtem Unterwuchs, auch Gärten. Gesang: perlend, wehmütig, mit hohen und tiefen Passagen im Wechsel; singt oft auch nachts und im Winter.",
+    background_en: "Woodland with dense undergrowth, also gardens. Song: warbling, wistful, alternating high and low passages; often sings at night and in winter too.",
     habitat: [],
     vocalMonths: null
   },
@@ -175,6 +242,7 @@ const SPECIES = [
     confusionGroup: "berg_buchfink",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Einer der häufigsten Brutvögel Mitteleuropas. Gesang: kurze, kraftvolle Strophe, die wie ein 'Ausrufer-Schnörkel' mit Schlussschnalzer endet ('...zizizizizizi-zöh').",
+    background_en: "One of the most common breeding birds in Central Europe. Song: a short, powerful phrase ending in a distinctive flourish with a final flourish ('...chip-chip-chip-chip-chip-cheweeoo').",
     habitat: [],
     vocalMonths: null
   },
@@ -190,6 +258,7 @@ const SPECIES = [
     confusionGroup: "sumpfmeise_weidenmeise",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Trotz des Namens kein Sumpfvogel, sondern Laub-/Mischwald mit Totholz. Ruf: scharfes 'pitchuu'. Von der Weidenmeise oft nur am Ruf sicher zu trennen.",
+    background_en: "Despite its name, not a wetland bird but found in deciduous/mixed woodland with dead wood. Call: sharp 'pitchou'. Often only reliably told apart from the Willow Tit by call.",
     habitat: [],
     vocalMonths: null
   },
@@ -205,6 +274,7 @@ const SPECIES = [
     confusionGroup: "sumpfmeise_weidenmeise",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bevorzugt feuchte, morastige Wälder und Moorränder, zimmert eigene Bruthöhlen in morschem Holz. Ruf: näselndes, gezogenes 'dääh-dääh-dääh' – nasaler als die Sumpfmeise.",
+    background_en: "Prefers damp, boggy woodland and bog margins, excavates its own nest cavity in rotten wood. Call: nasal, drawn-out 'dzaa-dzaa-dzaa' – more nasal than the Marsh Tit.",
     habitat: [],
     vocalMonths: null
   },
@@ -220,6 +290,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Charakterart alter, geschlossener Buchenwälder mit wenig Unterwuchs. Gesang: beschleunigender 'Schwirrgesang', der wie eine klimpernde Münze auf einem Teller endet.",
+    background_en: "Characteristic species of old, closed beech forests with little undergrowth. Song: an accelerating trilling song that ends like a coin spinning to a stop on a plate.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -235,6 +306,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "kwe", "ssc", "uot"],
     background: "Scheuer Bewohner großer, störungsarmer Wälder mit Feuchtgebieten in der Nähe. Ruf am Horst: helles 'fjuih'; im Flug meist stumm. Bestand in Deutschland wieder zunehmend.",
+    background_en: "A shy inhabitant of large, undisturbed forests with nearby wetlands. Call at the nest: bright 'fyuih'; usually silent in flight. Population in Germany increasing again.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -250,6 +322,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw","hrz"] /* eBird: keine Treffer (0 Meldungen in Suchradius) – bekannte, aber sehr seltene Reliktvorkommen manuell beibehalten, s. Kommentar oben */,
     background: "Stark gefährdete (Rote Liste 1, 'vom Aussterben bedroht') Charakterart alter, lichter Bergnadelwälder. Deutschlandweit nur noch rund 2.000 Exemplare, Schwerpunkte Bayern (v.a. Alpen und Bayerischer Wald, wo eine überlebensfähige Population existiert) und Schwarzwald – die Restpopulation im Harz gilt inzwischen als erloschen (Auswilderungsprogramme eingestellt). Der Balzgesang ('Knappen, Hauptschlag, Wetzen, Schleifen') ist hochkomplex und akustisch einzigartig – ein Highlight für akustisches Monitoring, aber selten aufzunehmen.",
+    background_en: "Highly endangered (Red List 1, 'critically endangered') characteristic species of old, open montane conifer forest. Only around 2,000 individuals remain in Germany, concentrated in Bavaria (mainly the Alps and Bavarian Forest, where a viable population exists) and the Black Forest – the remaining population in the Harz is now considered extinct (reintroduction programmes discontinued). The lek display ('clicking, main beat, whetting, grinding') is highly complex and acoustically unique – a highlight for acoustic monitoring, but rarely recorded.",
     habitat: ["boreal_montane_conifer","montane_mixed_forest"],
     vocalMonths: [1,7]
   },
@@ -265,6 +338,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "An große Gewässer und Küsten gebunden. Ruf: eine Serie hoher, bellender 'kjück-kjück-kjück'-Rufe, oft am Horst zu hören. Größter heimischer Greifvogel.",
+    background_en: "Tied to large bodies of water and coasts. Call: a series of high, barking 'kyick-kyick-kyick' calls, often heard near the nest. Germany's largest native raptor.",
     habitat: [],
     vocalMonths: null
   },
@@ -283,6 +357,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Einer der bekanntesten Singvögel, in Wald und Siedlung gleichermaßen zu Hause. Gesang: melodisch, flötend, mit ruhigem Tempo – oft die ersten und letzten Vogelstimmen des Tages.",
+    background_en: "One of the best-known songbirds, equally at home in woodland and settlements. Song: melodic, fluting, at a relaxed pace – often the first and last bird voices of the day.",
     habitat: [],
     vocalMonths: null
   },
@@ -298,6 +373,7 @@ const SPECIES = [
     confusionGroup: "singdrossel_misteldrossel",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Waldvogel mit Vorliebe für Unterholz. Gesang: kurze, klare Motive, die charakteristisch 2-3-mal wiederholt werden, bevor ein neues Motiv folgt – dieses 'Wiederholungsmuster' ist das beste Erkennungsmerkmal.",
+    background_en: "A woodland bird with a preference for undergrowth. Song: short, clear phrases that are characteristically repeated 2-3 times before a new phrase follows – this 'repetition pattern' is the best identification feature.",
     habitat: [],
     vocalMonths: [3,7]
   },
@@ -313,6 +389,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Winziger Vogel mit erstaunlich lautem, schmetterndem Gesang inklusive charakteristischem Schnurren/Triller in der Mitte der Strophe. Bevorzugt dichten Unterwuchs und Totholzbereiche.",
+    background_en: "A tiny bird with a surprisingly loud, blaring song including a characteristic whirring trill in the middle of the phrase. Prefers dense undergrowth and areas with dead wood.",
     habitat: [],
     vocalMonths: null
   },
@@ -328,6 +405,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Unscheinbarer Bodenvogel in Gebüsch und Unterholz. Gesang: hoher, gleichmäßiger, leicht hektischer Triller ohne klare Struktur – wird oft übersehen/überhört.",
+    background_en: "An unassuming ground-dwelling bird in scrub and undergrowth. Song: a high, even, slightly hurried trill without clear structure – often overlooked or unheard.",
     habitat: [],
     vocalMonths: null
   },
@@ -343,6 +421,7 @@ const SPECIES = [
     confusionGroup: "garten_hausrotschwanz",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Höhlenbrüter lichter, alter Wälder und Streuobstwiesen; in vielen Regionen im Rückgang. Gesang: kurze, wehmütige Strophe, endet oft in einem leisen, kratzigen Schnörkel.",
+    background_en: "A cavity nester of open, old woodland and traditional orchards; declining in many regions. Song: a short, wistful phrase, often ending in a quiet, scratchy flourish.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -358,6 +437,7 @@ const SPECIES = [
     confusionGroup: "kleine_schnaepper_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Zugvogel alter Laubwälder mit Höhlenangebot. Gesang: klare, rhythmische Wechseltöne, oft als 'zritt-zritt zree zree' beschrieben.",
+    background_en: "A migratory bird of old deciduous forest with cavities available. Song: clear, rhythmic alternating notes, often described as 'zritt-zritt zree zree'.",
     habitat: [],
     vocalMonths: [4,5]
   },
@@ -373,6 +453,7 @@ const SPECIES = [
     confusionGroup: "habichtskauz_waldkauz",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Häufigste Eule Mitteleuropas, nachtaktiv. Der klassische, gedehnte 'huhuhuuuu'-Ruf des Männchens ist eines der bekanntesten nächtlichen Waldgeräusche überhaupt.",
+    background_en: "The most common owl in Central Europe, nocturnal. The male's classic, drawn-out 'hoo-hoo-hoooo' call is one of the best-known nocturnal woodland sounds of all.",
     habitat: [],
     vocalMonths: null
   },
@@ -388,6 +469,7 @@ const SPECIES = [
     confusionGroup: "spechte_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufigster Specht Deutschlands. Kurzer, scharfer 'kick'-Ruf sowie das charakteristische, sehr schnelle Trommeln (unter einer Sekunde) zur Balz.",
+    background_en: "Germany's most common woodpecker. A short, sharp 'kick' call as well as the characteristic, very fast drumming (under one second) during display.",
     habitat: [],
     vocalMonths: null
   },
@@ -403,6 +485,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Specht, braucht alte, störungsarme Wälder mit dicken Bäumen zum Höhlenbau. Ruf: lautes, weithin hörbares 'krri-krri-krri' sowie langes, lautes Trommeln.",
+    background_en: "Germany's largest native woodpecker, needs old, undisturbed forest with thick trees for cavity excavation. Call: a loud, far-carrying 'krri-krri-krri' as well as long, loud drumming.",
     habitat: [],
     vocalMonths: null
   },
@@ -418,6 +501,7 @@ const SPECIES = [
     confusionGroup: "gruenspecht_grauspecht_wendehals",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bodenspecht, der viel Zeit auf Wiesen bei der Ameisensuche verbringt. Ruf: lautes, lachendes 'kchükchükchükchü', oft im Fallton absteigend.",
+    background_en: "A ground-feeding woodpecker that spends much of its time on meadows searching for ants. Call: a loud, laughing 'kyu-kyu-kyu-kyu', often falling in pitch.",
     habitat: [],
     vocalMonths: null
   },
@@ -433,6 +517,7 @@ const SPECIES = [
     confusionGroup: "gruenspecht_grauspecht_wendehals",
     areas: ["byw", "eif", "hai", "hrz", "kwe", "lbr", "ssc"],
     background: "Seltener und heimlicher als der Grünspecht, ähnliches Habitat. Ruf: ebenfalls eine 'lachende' Serie, aber langsamer, leiser und zum Ende hin abfallend in Tonhöhe UND Tempo.",
+    background_en: "Rarer and more secretive than the Green Woodpecker, similar habitat. Call: also a 'laughing' series, but slower, quieter and dropping in both pitch AND tempo towards the end.",
     habitat: [],
     vocalMonths: [1,7]
   },
@@ -448,6 +533,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Einziger heimischer Vogel, der kopfüber Baumstämme herabläuft. Ruf: laut, klar, weittragend, oft ein schnelles 'wid-wid-wid-wid' oder ein einzelner, gepfiffener Ton.",
+    background_en: "The only native bird that climbs down tree trunks head-first. Call: loud, clear, far-carrying, often a fast 'vid-vid-vid-vid' or a single whistled note.",
     habitat: [],
     vocalMonths: null
   },
@@ -463,6 +549,7 @@ const SPECIES = [
     confusionGroup: "waldbaumlaeufer_gartenbaumlaeufer",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bevorzugt Nadel- und Bergmischwälder. Sehr hoher, feiner Gesang – am sichersten vom Gartenbaumläufer über den Ruf zu trennen, der Gesang ist eher gleichmäßig-fließend.",
+    background_en: "Prefers coniferous and montane mixed forest. A very high, fine song – most reliably told apart from the Short-toed Treecreeper by call; the song is more even and flowing.",
     habitat: [],
     vocalMonths: null
   },
@@ -478,6 +565,7 @@ const SPECIES = [
     confusionGroup: "waldbaumlaeufer_gartenbaumlaeufer",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufiger als der Waldbaumläufer, auch in Parks und Gärten mit alten Bäumen. Gesang endet typischerweise mit einem betonten, abgehackten Schlusston ('...tü-tü-tü-teruit'), anders als beim gleichmäßigeren Waldbaumläufer.",
+    background_en: "More common than the Eurasian Treecreeper, also found in parks and gardens with old trees. Song typically ends with an accented, clipped final note ('...tü-tü-tü-teruit'), unlike the more even song of the Eurasian Treecreeper.",
     habitat: [],
     vocalMonths: null
   },
@@ -493,6 +581,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Wald-Rabenvogel, wichtiger 'Waldgärtner' durch das Vergraben von Eicheln. Ruf: lauter, rauer, krächzender Warnschrei, oft beim Anblick von Greifvögeln oder Menschen.",
+    background_en: "A woodland corvid and important 'forest gardener' through burying acorns. Call: a loud, harsh, screeching alarm call, often given at the sight of raptors or people.",
     habitat: [],
     vocalMonths: null
   },
@@ -507,7 +596,8 @@ const SPECIES = [
     group: "Tauben",
     confusionGroup: "hohl_ringeltaube",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
-    background: "Größte heimische Taube. Gesang: rhythmisches, gedämpftes 'gru-GUU-guu, gu-guu' in fünf Silben, oft wiederholt."
+    background: "Größte heimische Taube. Gesang: rhythmisches, gedämpftes 'gru-GUU-guu, gu-guu' in fünf Silben, oft wiederholt.",
+    background_en: "Germany's largest native pigeon. Song: a rhythmic, muffled 'coo-COO-coo, coo-coo' in five syllables, often repeated.",
   },
   {
     id: "star",
@@ -521,6 +611,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Geselliger Höhlenbrüter, hervorragender Stimmenimitator (ahmt oft andere Vogelarten oder sogar Maschinengeräusche nach). Gesang: langes, plapperndes Gemisch aus Pfeifen, Schnarren und Klicklauten.",
+    background_en: "A sociable cavity nester and excellent vocal mimic (often imitates other bird species or even machine sounds). Song: a long, chattering mix of whistles, wheezes and clicks.",
+    background_en: "Germany's largest native pigeon. Song: a rhythmic, muffled 'coo-COO-coo, coo-coo' in five syllables, often repeated.",
     habitat: [],
     vocalMonths: null
   },
@@ -536,6 +628,7 @@ const SPECIES = [
     confusionGroup: "moenchsgrasmuecke_gartengrasmuecke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufiger Waldsänger mit dichtem Unterwuchs. Gesang: beginnt oft leise-plappernd und mündet in eine laute, klare, flötende Schlussstrophe – der 'Überschlag' ist das Erkennungsmerkmal.",
+    background_en: "A common woodland songster with dense undergrowth. Song: often starts with quiet chattering and builds into a loud, clear, fluting final phrase – the 'flourish' is the identifying feature.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -551,6 +644,7 @@ const SPECIES = [
     confusionGroup: "moenchsgrasmuecke_gartengrasmuecke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbarer als die Mönchsgrasmücke, ähnliches Habitat. Gesang durchgehend gleichmäßig plappernd-sprudelnd, OHNE den klaren, lauten Überschlag der Mönchsgrasmücke – eher eintönig-fließend.",
+    background_en: "Less conspicuous than the Blackcap, similar habitat. Song is evenly chattering and burbling throughout, WITHOUT the Blackcap's clear, loud flourish – more monotonous and flowing.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -566,6 +660,7 @@ const SPECIES = [
     confusionGroup: "klapper_dorngrasmuecke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Offenlandart in Hecken, Gebüsch und Waldrändern. Gesang: kurze, kratzig-schnarrende Strophe, oft im Singflug vorgetragen.",
+    background_en: "An open-country species of hedgerows, scrub and woodland edges. Song: a short, scratchy, hurried phrase, often delivered in a song flight.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -581,6 +676,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Charaktervogel von Mooren und Feuchtgebieten, in Deutschland wieder zunehmend. Ruf: sehr lautes, trompetendes, weithin hörbares Trompeten, oft im Duett oder Flug.",
+    background_en: "A characteristic bird of bogs and wetlands, increasing again in Germany. Call: very loud, trumpeting, far-carrying, often given as a duet or in flight.",
     habitat: [],
     vocalMonths: null
   },
@@ -596,6 +692,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bekannter Kulturfolger, brütet auf Dächern/Masten nahe Feuchtwiesen. Fast stumm, kommuniziert stattdessen über lautes 'Klappern' mit dem Schnabel.",
+    background_en: "A well-known commensal species, nesting on roofs/poles near wet meadows. Almost silent, communicating instead via loud bill-clattering.",
     habitat: [],
     vocalMonths: [2,9]
   },
@@ -611,6 +708,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "nwm", "uot"],
     background: "Wiesenbrüter offener, feuchter Flächen, stark im Rückgang. Ruf: unverwechselbares, quietschendes 'kie-witt', besonders auffällig im artistischen Balzflug.",
+    background_en: "A meadow-breeding bird of open, damp ground, strongly declining. Call: an unmistakable, squeaky 'pee-wit', especially conspicuous during its acrobatic display flight.",
     habitat: [],
     vocalMonths: null
   },
@@ -626,6 +724,7 @@ const SPECIES = [
     confusionGroup: "bekassine_zwergschnepfe",
     areas: ["byw", "eif", "hai", "hrz", "nwm", "ssc", "uot"],
     background: "Seltener, versteckt lebender Wiesen- und Moorvogel. Im Balzflug erzeugt sie mit den Schwanzfedern ein meckerndes 'Wummern' ('Himmelsziege') statt eines klassischen Gesangs.",
+    background_en: "A rare, secretive bird of meadows and bogs. During its display flight it produces a bleating 'drumming' sound with its tail feathers instead of a classic song.",
     habitat: [],
     vocalMonths: [8,11]
   },
@@ -641,6 +740,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Greifvogel großer Schilfgebiete. Meist eher still; am Horst ein hohes, nasales 'kjeuw'. Charakteristischer, niedriger Suchflug über Röhricht ist oft das beste Erkennungsmerkmal.",
+    background_en: "A raptor of large reedbeds. Usually rather quiet; a high, nasal 'kyeww' at the nest. Its characteristic low quartering flight over reeds is often the best identification feature.",
     habitat: ["wetland_reed","farmland_open"],
     vocalMonths: [4,9]
   },
@@ -656,6 +756,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Spezialistin für Nadelwald. Gesang ähnelt dem der Kohlmeise, aber höher, schneller und dünner ('zi-dü, zi-dü, zi-dü').",
+    background_en: "A conifer-forest specialist. Song resembles the Great Tit's, but higher, faster and thinner ('zi-du, zi-du, zi-du').",
     habitat: [],
     vocalMonths: null
   },
@@ -671,6 +772,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Schnellster Vogel der Welt im Sturzflug, brütet an Felsen oder hohen Gebäuden. Ruf: lautes, schnelles, kreischendes 'kjäk-kjäk-kjäk', vor allem am Horst.",
+    background_en: "The world's fastest bird in a stoop, nesting on cliffs or tall buildings. Call: a loud, fast, screeching 'kek-kek-kek', mainly at the nest.",
     habitat: [],
     vocalMonths: null
   },
@@ -689,6 +791,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Auffälliger schwarz-weißer Rabenvogel mit langem Schwanz, in Kulturlandschaft und Gärten häufig. Ruf: lautes, hartes 'schack-schack-schack', oft als Erregungsruf bei Störung.",
+    background_en: "A conspicuous black-and-white corvid with a long tail, common in farmland and gardens. Call: a loud, hard 'chack-chack-chack', often given as an alarm call when disturbed.",
     habitat: [],
     vocalMonths: null
   },
@@ -704,6 +807,7 @@ const SPECIES = [
     confusionGroup: "rabenvoegel_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Die 'Allerweltskrähe' Deutschlands, in fast jedem Lebensraum mit Bäumen zu finden. Ruf: tiefes, heiseres 'krah-krah-krah', meist 3-4-mal wiederholt.",
+    background_en: "Germany's 'everyday crow', found in almost any habitat with trees. Call: deep, hoarse 'craa-craa-craa', usually repeated 3-4 times.",
     habitat: [],
     vocalMonths: null
   },
@@ -719,6 +823,7 @@ const SPECIES = [
     confusionGroup: "rabenvoegel_trio",
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Koloniebrüter mit charakteristischer heller Schnabelbasis (adult), oft in großen, lauten Schwärmen auf Feldern. Ruf: näselndes 'kaah', rauer und höher als die Rabenkrähe.",
+    background_en: "A colonial breeder with a characteristic pale bill base (adult), often in large, noisy flocks on farmland. Call: nasal 'kaah', harsher and higher than the Carrion Crow's.",
     habitat: [],
     vocalMonths: null
   },
@@ -734,6 +839,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Rabenvogel, brütet in Kolonien in Baumhöhlen, alten Gemäuern und Kirchtürmen. Ruf: helles, metallisches 'kjak' oder 'tschack', oft im Duett/Schwarm.",
+    background_en: "The smallest native corvid, breeding in colonies in tree cavities, old walls and church towers. Call: bright, metallic 'kyak' or 'chack', often given as a duet/in a flock.",
     habitat: [],
     vocalMonths: null
   },
@@ -749,6 +855,7 @@ const SPECIES = [
     confusionGroup: "rabenvoegel_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter Rabenvogel der Welt, mit tiefem, weit tragendem, glucksendem 'krropp-krropp'. In störungsarmen Wäldern und Gebirgen wieder zunehmend.",
+    background_en: "The world's largest corvid, with a deep, far-carrying, gurgling 'kronk-kronk'. Increasing again in undisturbed forests and mountains.",
     habitat: [],
     vocalMonths: null
   },
@@ -764,6 +871,7 @@ const SPECIES = [
     confusionGroup: "maeusebussard_wespenbussard",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufigster Greifvogel Deutschlands, oft an Feldrändern auf Ansitzwarten. Ruf: klagendes, katzenartiges 'hiää', weithin hörbar im Kreisflug.",
+    background_en: "Germany's most common raptor, often seen perched on lookout posts along field margins. Call: a plaintive, cat-like 'peee-yah', far-carrying during circling flight.",
     habitat: [],
     vocalMonths: null
   },
@@ -779,6 +887,7 @@ const SPECIES = [
     confusionGroup: "turmfalke_baumfalke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleiner Falke, bekannt für den charakteristischen 'Rüttelflug' bei der Jagd. Ruf: schnelle, schrille Serie 'ki-ki-ki-ki-ki'.",
+    background_en: "A small falcon, known for its characteristic hovering flight while hunting. Call: a fast, shrill series 'ki-ki-ki-ki-ki'.",
     habitat: [],
     vocalMonths: null
   },
@@ -794,6 +903,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Eleganter Greifvogel mit tief gegabeltem Schwanz, in Deutschland ein globaler Brutvogel-Schwerpunkt. Ruf: hohes, wehmütiges Wiehern/Miauen, oft im gleitenden Suchflug.",
+    background_en: "An elegant raptor with a deeply forked tail; Germany holds a globally important share of the breeding population. Call: a high, wistful whinnying/mewing, often given during a gliding search flight.",
     habitat: [],
     vocalMonths: null
   },
@@ -809,6 +919,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Dem Rotmilan ähnlich, aber dunkler und mit weniger tief gegabeltem Schwanz, oft an Gewässern. Ruf: helles, wieherndes Trillern.",
+    background_en: "Similar to the Red Kite but darker and with a less deeply forked tail, often found near water. Call: a bright, whinnying trill.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -824,6 +935,7 @@ const SPECIES = [
     confusionGroup: "sperber_habicht",
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Heimlicher Waldgreifvogel, deutlich größer als der Sperber. Ruf (v.a. am Horst): schnelles, hartes 'gick-gick-gick-gick'.",
+    background_en: "A secretive woodland raptor, noticeably larger than the Sparrowhawk. Call (mainly at the nest): a fast, hard 'gick-gick-gick-gick'.",
     habitat: [],
     vocalMonths: null
   },
@@ -839,6 +951,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "jtb", "lbr", "nwm", "uot"],
     background: "Nachtaktive Waldeule, tagsüber gut getarnt an Stämmen sitzend. Ruf des Männchens: tiefes, monotones, weit tragendes 'huu' in langen Serien.",
+    background_en: "A nocturnal woodland owl, well camouflaged against tree trunks during the day. The male's call: a deep, monotonous, far-carrying 'hoo' given in long series.",
     habitat: [],
     vocalMonths: null
   },
@@ -854,6 +967,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz"],
     background: "Kleine, tagaktive Eule der offenen Kulturlandschaft mit altem Baumbestand (Streuobstwiesen). Ruf: klagendes, gedehntes 'kiuu'.",
+    background_en: "A small, diurnal owl of open farmland with old trees (traditional orchards). Call: plaintive, drawn-out 'kiew'.",
     habitat: [],
     vocalMonths: null
   },
@@ -869,6 +983,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif"],
     background: "Größte heimische Eule, besiedelt Felsen und Steinbrüche. Ruf: sehr tiefes, weit tragendes zweisilbiges 'buho', oft schon aus großer Entfernung hörbar.",
+    background_en: "Germany's largest native owl, inhabits cliffs and quarries. Call: a very deep, far-carrying, two-syllable 'buho', often audible from a great distance.",
     habitat: [],
     vocalMonths: [11,6]
   },
@@ -884,6 +999,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kulturfolger, in Siedlungen und Gärten allgegenwärtig. Gesang: monotones, dreisilbiges 'gu-GUU-gu', ständig wiederholt.",
+    background_en: "A commensal species, ubiquitous in settlements and gardens. Song: a monotonous, three-syllable 'coo-COO-coo', constantly repeated.",
     habitat: [],
     vocalMonths: null
   },
@@ -899,6 +1015,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hai", "hrz", "jtb", "ssc", "uot"],
     background: "Kleiner, zierlicher als die Türkentaube, im Rückgang begriffen. Gesang: sanftes, schnurrendes 'turr-turr-turr'.",
+    background_en: "Smaller and daintier than the Collared Dove, in decline. Song: a soft, purring 'turr-turr-turr'.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -914,6 +1031,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufigste Ente an praktisch jedem Gewässer. Ruf des Weibchens: das klassische, laute 'Quaak-Quaak-Quaak'; Erpel deutlich leiser und rauer.",
+    background_en: "The most common duck on practically any body of water. The female's call: the classic, loud 'quack-quack-quack'; the drake is noticeably quieter and hoarser.",
     habitat: [],
     vocalMonths: null
   },
@@ -929,6 +1047,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größte heimische Gans, Stammform der Hausgans. Ruf: lautes, nasales Schnattern/Gackern, besonders im Flug in Keilformation.",
+    background_en: "Germany's largest native goose, ancestor of the domestic goose. Call: loud, nasal honking/cackling, especially in flight in V-formation.",
     habitat: [],
     vocalMonths: null
   },
@@ -944,6 +1063,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Ursprünglich afrikanischer Neubürger, mittlerweile weit verbreitet an Gewässern und Grünflächen. Ruf: lautes, raues Schnattern/Fauchen.",
+    background_en: "Originally an African newcomer, now widespread at bodies of water and on green spaces. Call: loud, harsh honking/hissing.",
     habitat: [],
     vocalMonths: null
   },
@@ -959,6 +1079,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Großer, stelzenbeiniger Schreitvogel an Gewässern. Ruf: lautes, raues 'Krrschk', vor allem im Flug oder beim Auffliegen.",
+    background_en: "A large, long-legged wading bird found at bodies of water. Call: a loud, harsh 'krrschk', mainly in flight or when flushed.",
     habitat: [],
     vocalMonths: null
   },
@@ -974,6 +1095,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Schwarzer Wasservogel mit weißer Stirnplatte, an vielen Gewässern häufig. Ruf: scharfes, metallisches 'Pix' oder 'Kit'.",
+    background_en: "A black waterbird with a white frontal shield, common on many bodies of water. Call: a sharp, metallic 'pix' or 'kit'.",
     habitat: ["water_shoreline","wetland_reed"],
     vocalMonths: null
   },
@@ -989,6 +1111,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "uot"],
     background: "Verwandte des Blässhuhns, meist versteckter im Uferbewuchs. Ruf: lautes, plötzliches 'Krrock', oft nachts zu hören.",
+    background_en: "A relative of the Coot, usually more hidden in bankside vegetation. Call: a loud, sudden 'krrock', often heard at night.",
     habitat: ["water_shoreline","wetland_reed"],
     vocalMonths: null
   },
@@ -1004,6 +1127,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Wasservogel, meist stumm, aber mit charakteristischem, rhythmischem Flügelsingen im Flug sowie zischenden Drohlauten.",
+    background_en: "Germany's largest native waterbird, usually silent, but with a characteristic, rhythmic wing-singing in flight as well as hissing threat calls.",
     habitat: [],
     vocalMonths: null
   },
@@ -1019,6 +1143,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "nwm", "uot"],
     background: "Extrem heimlicher Schilfbewohner, fast nie zu sehen. Ruf des Männchens: dumpfes, weit tragendes 'Wummern' wie ein Nebelhorn – einzigartig und unverwechselbar.",
+    background_en: "An extremely secretive reed dweller, almost never seen. The male's call: a dull, far-carrying 'booming' like a foghorn – unique and unmistakable.",
     habitat: ["wetland_reed"],
     vocalMonths: [11,6]
   },
@@ -1034,6 +1159,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Auffälliger schwarz-weißer Küstenvogel mit langem orangerotem Schnabel. Ruf: sehr lautes, durchdringendes 'kleep-kleep-kleep'.",
+    background_en: "A conspicuous black-and-white coastal bird with a long orange-red bill. Call: a very loud, piercing 'kleep-kleep-kleep'.",
     habitat: [],
     vocalMonths: [2,10]
   },
@@ -1049,6 +1175,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "nwm", "uot"],
     background: "Größter heimischer Watvogel mit charakteristisch langem, gebogenem Schnabel. Ruf: unverwechselbares, blubberndes, ansteigendes 'courlie'.",
+    background_en: "Germany's largest native wader, with a characteristically long, curved bill. Call: an unmistakable, bubbling, rising 'coor-lee'.",
     habitat: [],
     vocalMonths: null
   },
@@ -1064,6 +1191,7 @@ const SPECIES = [
     confusionGroup: "rotschenkel_gruenschenkel",
     areas: ["byw", "hrz", "kwe", "nwm", "uot"],
     background: "Watvogel mit auffällig orangeroten Beinen, sehr wachsam. Ruf: durchdringendes, mehrsilbiges 'tjuu-huu-huu' bei Störung.",
+    background_en: "A wader with conspicuous orange-red legs, very wary. Call: a piercing, multi-syllable 'tyu-hu-hu' when disturbed.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -1079,6 +1207,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Dämmerungs- und nachtaktiver Waldvogel, tagsüber am Boden perfekt getarnt. Balzflug ('Schnepfenstrich'): tiefes Grunzen gefolgt von einem hohen, scharfen Pfiff.",
+    background_en: "A crepuscular and nocturnal woodland bird, perfectly camouflaged on the ground by day. Display flight ('roding'): a low grunt followed by a high, sharp whistle.",
     habitat: [],
     vocalMonths: [10,6]
   },
@@ -1094,6 +1223,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Brutparasit, legt Eier in fremde Nester. Ruf des Männchens: der weltberühmte, unverwechselbare zweisilbige 'ku-ckuck'-Ruf.",
+    background_en: "A brood parasite that lays its eggs in other birds' nests. The male's call: the world-famous, unmistakable two-syllable 'cuck-oo' call.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -1109,6 +1239,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Verbringt fast sein ganzes Leben in der Luft, auch schlafend. Ruf: durchdringende, kreischende Rufe in schnellen Verfolgungsjagden über Dächern, typisch für Sommerabende.",
+    background_en: "Spends almost its entire life in the air, even sleeping on the wing. Call: piercing, screaming calls during fast chases over rooftops, typical of summer evenings.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -1124,6 +1255,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "jtb", "lbr", "uot"],
     background: "Auffälliger Vogel mit orange-brauner Federhaube. Ruf: weiches, dumpfes, dreisilbiges 'hup-hup-hup' – namensgebend und absolut unverwechselbar.",
+    background_en: "A conspicuous bird with an orange-brown crest. Call: a soft, dull, three-syllable 'hoop-hoop-hoop' – the source of its name and utterly unmistakable.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -1139,6 +1271,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Langschwänzige Schwalbe, brütet in Ställen und Scheunen. Gesang: fröhliches, zwitscherndes Geplapper mit charakteristischem trillerndem Schlussschnörkel.",
+    background_en: "A long-tailed swallow, breeding in stables and barns. Song: a cheerful, twittering chatter with a characteristic trilling flourish at the end.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -1153,7 +1286,8 @@ const SPECIES = [
     group: "Schwalben",
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
-    background: "Kurzschwänziger als die Rauchschwalbe, mit weißem Bürzel, baut Lehmnester an Hausfassaden. Ruf: helles, knarrendes Zwitschern, meist im Schwarm."
+    background: "Kurzschwänziger als die Rauchschwalbe, mit weißem Bürzel, baut Lehmnester an Hausfassaden. Ruf: helles, knarrendes Zwitschern, meist im Schwarm.",
+    background_en: "Shorter-tailed than the Barn Swallow, with a white rump, builds mud nests on house facades. Call: bright, creaky twittering, usually given in a flock.",
   },
   {
     id: "feldlerche",
@@ -1167,6 +1301,8 @@ const SPECIES = [
     confusionGroup: "heidelerche_feldlerche",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Steigt singend fast senkrecht in große Höhen auf und trägt dort minutenlang einen ununterbrochenen, sprudelnden Gesang vor – eines der bekanntesten Geräusche der offenen Feldflur.",
+    background_en: "Rises singing almost vertically to great heights and delivers an uninterrupted, bubbling song there for minutes on end – one of the best-known sounds of open farmland.",
+    background_en: "Shorter-tailed than the Barn Swallow, with a white rump, builds mud nests on house facades. Call: bright, creaky twittering, usually given in a flock.",
     habitat: ["farmland_open"],
     vocalMonths: [2,7]
   },
@@ -1182,6 +1318,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleinstes heimisches Feldhuhn, extrem heimlich, fast nie zu sehen. Ruf des Männchens: unverwechselbares, dreisilbiges 'pick-wick-wick' ('Wachtelschlag').",
+    background_en: "Germany's smallest native gamebird, extremely secretive, almost never seen. The male's call: an unmistakable, three-syllable 'wet-my-lips' ('quail call').",
     habitat: ["farmland_open"],
     vocalMonths: [5,7]
   },
@@ -1197,6 +1334,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "nwm", "ssc", "uot"],
     background: "Auffälliger, in Deutschland eingebürgerter Hühnervogel offener Feldfluren mit Gebüsch. Ruf: lautes, krächzendes 'korrk-kok', meist gefolgt von kurzem, schnarrendem Flügelschlag.",
+    background_en: "A conspicuous gamebird, naturalised in Germany, found in open farmland with scrub. Call: a loud, croaking 'korrk-kok', usually followed by a short, whirring wingbeat.",
     habitat: [],
     vocalMonths: null
   },
@@ -1212,6 +1350,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufiger Vogel an Feldhecken und Waldrändern. Gesang: rhythmische Strophe, im Volksmund als 'Wie-wie-wie hab ich dich lieb' beschrieben, endet oft mit gezogenem Schlusston.",
+    background_en: "A common bird of field hedges and woodland edges. Song: a rhythmic phrase, popularly rendered as 'a little bit of bread and no cheese', often ending in a drawn-out final note.",
     habitat: [],
     vocalMonths: null
   },
@@ -1227,6 +1366,7 @@ const SPECIES = [
     confusionGroup: "bachstelze_gebirgsstelze",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Schlanker, ständig mit dem Schwanz wippender Bodenvogel. Ruf: scharfes, zweisilbiges 'tschilip', meist im wellenförmigen Flug gerufen.",
+    background_en: "A slender ground-dwelling bird that constantly bobs its tail. Call: a sharp, two-syllable 'chisick', usually given in undulating flight.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -1242,6 +1382,7 @@ const SPECIES = [
     confusionGroup: "haussperling_feldsperling",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Klassischer Kulturfolger an Gebäuden. Ruf: einfaches, unstrukturiertes 'Tschilp', in Gruppen zu lebhaftem Geschnatter kombiniert.",
+    background_en: "A classic commensal species found on buildings. Call: a simple, unstructured 'chirrup', combined into lively chattering in groups.",
     habitat: [],
     vocalMonths: null
   },
@@ -1257,6 +1398,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Bewohner von Schilf- und Röhrichtzonen. Gesang: kurze, einfache, etwas eintönige Strophe aus wenigen abgehackten Tönen, vom Schilfhalm aus vorgetragen.",
+    background_en: "An inhabitant of reed and rush zones. Song: a short, simple, somewhat monotonous phrase of a few clipped notes, delivered from a reed stem.",
     habitat: [],
     vocalMonths: null
   },
@@ -1272,6 +1414,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kräftiger, olivgrüner Fink mit gelben Flügelbinden. Gesang: Mix aus trillernden Passagen und einem charakteristischen, nasalen, gezogenen 'dzwiii'.",
+    background_en: "A stocky, olive-green finch with yellow wing bars. Song: a mix of trilling passages and a characteristic, nasal, drawn-out wheeze.",
     habitat: [],
     vocalMonths: null
   },
@@ -1287,6 +1430,7 @@ const SPECIES = [
     confusionGroup: "stieglitz_erlenzeisig",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bunter Fink mit rotem Gesicht und gelber Flügelbinde, oft an Distelfeldern. Ruf: helles, klingendes 'stiglit' oder 'didelit', namensgebend.",
+    background_en: "A colourful finch with a red face and yellow wing bar, often found at thistle fields. Call: a bright, tinkling call, the source of its German name.",
     habitat: [],
     vocalMonths: null
   },
@@ -1302,6 +1446,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Leuchtend gelber Vogel (Männchen), aber selbst im Blattwerk der Baumkronen fast nie zu sehen. Gesang: unverwechselbarer, wohlklingender, flötender Ruf 'düdlü-düo'.",
+    background_en: "A brilliant yellow bird (male), but almost never seen even in the foliage of the treetops. Song: an unmistakable, melodious, fluting call.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -1317,6 +1462,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "hrz", "nwm", "ssc"],
     background: "Einziger heimischer Singvogel, der aktiv taucht und unter Wasser nach Nahrung sucht, an klaren, schnellen Bächen. Gesang: langer, plätschernder, unstrukturiert wirkender Gesang, oft am Ufer sitzend vorgetragen.",
+    background_en: "The only native songbird that actively dives and forages underwater, found on clear, fast-flowing streams. Song: a long, babbling, seemingly unstructured song, often delivered while perched at the water's edge.",
     habitat: [],
     vocalMonths: null
   },
@@ -1332,6 +1478,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "nwm", "uot"],
     background: "Schlanker, langschwänziger Röhrichtbewohner mit auffälligem 'Bart' (Männchen). Ruf: charakteristisches, metallisches 'ping', oft aus dem Schilf zu hören, bevor man den Vogel sieht.",
+    background_en: "A slender, long-tailed reedbed dweller with a conspicuous 'moustache' (male). Call: a characteristic, metallic 'ping', often heard from the reeds before the bird is seen.",
     habitat: ["wetland_reed"],
     vocalMonths: null
   },
@@ -1347,6 +1494,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Leuchtend blau-orangener Vogel an klaren Bächen und Teichen, meist nur als schneller, tief über dem Wasser fliegender Farbblitz zu sehen. Ruf: hoher, durchdringender, einzelner oder gereihter Pfiff 'tiit'.",
+    background_en: "A brilliant blue-and-orange bird found on clear streams and ponds, usually only seen as a fast flash of colour flying low over the water. Call: a high, piercing, single or repeated 'tseet'.",
     habitat: [],
     vocalMonths: null
   },
@@ -1367,6 +1515,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Verwandter des Kormorans, an felsigen Meeresküsten. In Deutschland nur an der Nordseeküste ein sehr seltener Gast. Ruf: heisere, grunzende Laute am Brutplatz, meist aber stumm.",
+    background_en: "A relative of the Cormorant, found on rocky sea coasts. In Germany only a very rare visitor, restricted to the North Sea coast. Call: hoarse, grunting sounds at the breeding site, but usually silent.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -1382,6 +1531,7 @@ const SPECIES = [
     confusionGroup: "regenpfeifer_trio",
     areas: ["nwm"],
     background: "Kleiner Watvogel sandiger Meeresküsten und Salzwiesen, in Deutschland vom Aussterben bedroht. Ruf: kurzes, hartes 'pit' oder 'twiet'.",
+    background_en: "A small wader of sandy sea coasts and salt marshes, critically endangered in Germany. Call: a short, hard 'pit' or 'twiet'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -1397,6 +1547,7 @@ const SPECIES = [
     confusionGroup: "regenpfeifer_trio",
     areas: ["byw", "eif", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Häufiger als der Seeregenpfeifer, besiedelt Kiesbänke, Kiesgruben und Ufer von Binnengewässern. Ruf: klares, gepfiffenes, absteigendes 'pjuu'.",
+    background_en: "More common than the Kentish Plover, found on gravel banks, gravel pits and the banks of inland waters. Call: a clear, whistled, falling 'peeu'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -1412,6 +1563,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "jtb", "uot"],
     background: "Kleinste heimische Reiherart, extrem heimlich in dichtem Schilf. Ruf des Männchens: dumpfes, monoton wiederholtes 'wumpf' in der Dämmerung.",
+    background_en: "Germany's smallest native heron species, extremely secretive in dense reeds. The male's call: a dull, monotonously repeated 'wumpf' at dusk.",
     habitat: ["wetland_reed"],
     vocalMonths: [5,8]
   },
@@ -1427,6 +1579,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "uot"],
     background: "Kleiner Verwandter des Kormorans. Seit 2022 neuer deutscher Brutvogel (bislang zwei Kolonien in Bayern: Schweinfurt/Bamberg, seit 2025 auch München) – breitet sich seit einigen Jahrzehnten von Südosteuropa nach Westen aus (in Österreich am Neusiedler See seit 2007 Brutvogel), tritt dabei zunehmend auch als einzelner Gastvogel in Deutschland auf, oft im Winter. Meist stumm, gelegentlich krächzende Rufe am Brutplatz.",
+    background_en: "A small relative of the Cormorant. A new German breeding species since 2022 (so far two colonies in Bavaria: Schweinfurt/Bamberg, and since 2025 also Munich) – has been spreading westward from south-eastern Europe for several decades (a breeding bird in Austria at Lake Neusiedl since 2007), increasingly also appearing as a single vagrant in Germany, often in winter. Usually silent, occasionally harsh calls at the breeding site.",
     habitat: [],
     vocalMonths: null
   },
@@ -1442,6 +1595,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Kleiner, gedrungener Reiher, ursprünglich Afrika/Asien, breitet sich als Klimafolger zunehmend nach Mitteleuropa aus. Ruf: raue, krächzende Laute, meist eher stumm.",
+    background_en: "A small, stocky heron, originally from Africa/Asia, increasingly spreading into Central Europe as a result of climate change. Call: rough, croaking sounds, but usually rather silent.",
     habitat: [],
     vocalMonths: [4,11]
   },
@@ -1457,6 +1611,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Der Rauchschwalbe ähnlich, aber mit rostrotem Bürzel, brütet v.a. im Mittelmeerraum. Erster deutscher Nachweis bereits 1855 auf Helgoland; bis 1970 nur zehn, von 1970-2010 aber schon 82 anerkannte Nachweise – die meisten Beobachtungen im Frühjahr (Ende April/Anfang Mai), vermutlich überschießende Zugvögel auf dem Heimzug aus Afrika. Gesang: schwirrend-zwitschernd, dem der Mehlschwalbe ähnlich.",
+    background_en: "Similar to the Barn Swallow but with a rust-red rump, breeds mainly around the Mediterranean. The first German record was already in 1855 on Heligoland; only ten records up to 1970, but 82 accepted records from 1970-2010 – most observations in spring (late April/early May), presumably overshooting migrants returning from Africa. Song: whirring and twittering, similar to the House Martin's.",
   },
   {
     id: "wuestenregenpfeifer",
@@ -1470,6 +1625,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Asiatischer Watvogel, in Deutschland eine extreme Seltenheit: insgesamt nur rund 12 Nachweise (Stand 2022), meist in der norddeutschen Tiefebene, überwiegend im Juli/August. Ruf: kurzes, trillerndes 'trrit'.",
+    background_en: "An Asian wader, an extreme rarity in Germany: only around 12 records in total (as of 2022), mostly in the North German lowlands, predominantly in July/August. Call: a short, trilling 'trrit'.",
   },
   {
     id: "mornellregenpfeifer",
@@ -1483,6 +1639,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "lbr"],
     background: "Als Brutvogel in Deutschland schon länger ausgestorben, tritt bei uns nur noch als Durchzügler auf abgeernteten Feldern/kurzen Wiesen auf (Herbstzug Richtung Nordafrika). 2018 wurde der Gesamtbestand auf dem Durchzug auf unter 100 Tiere geschätzt, rastende Trupps meist nur rund 10 Vögel – wenige traditionelle Rastplätze, u.a. Schröcker Feld bei Marburg, Eifel-Maifeld.",
+    background_en: "Has long been extinct as a breeding bird in Germany, now occurring here only as a passage migrant on harvested fields/short meadows (autumn migration towards North Africa). In 2018 the total passage population was estimated at under 100 birds, with roosting flocks usually only around 10 birds – few traditional stopover sites, including Schröcker Feld near Marburg and the Eifel-Maifeld.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -1498,6 +1655,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Auffällig kontrastreich gefärbte Gans aus der sibirischen Arktis, überwintert normalerweise am Schwarzen Meer. Seit 1970 fast alljährlich in Nordwestdeutschland (meist 5-7 Individuen), seit dem Bestandsanstieg der Art in den 1990er-Jahren deutschlandweit bis zu rund 50 durchziehende/überwinternde Vögel zu erwarten – meist in Gesellschaft anderer arktischer Gänse. Ruf: hohes, doppeltöniges Bellen.",
+    background_en: "A strikingly high-contrast goose from the Siberian Arctic, normally wintering around the Black Sea. Almost annual in north-west Germany since 1970 (usually 5-7 individuals); since the species' population increase in the 1990s, up to around 50 passage/wintering birds can be expected nationwide – usually in the company of other Arctic geese. Call: a high, two-note barking.",
     habitat: [],
     vocalMonths: [10,5]
   },
@@ -1513,6 +1671,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleiner arktischer Alkenvogel, brütet in dichten Kolonien weit im Norden (u.a. Spitzbergen). Fast jedes Jahr einzelne Vögel an der deutschen Nordseeküste, meist nach schweren Herbst-/Winterstürmen ('Sturmschwemmlinge') – deutlich seltener sind echte Masseneinflüge mit über 1.000 Vögeln. Ruf: schnatterndes Trillern (v.a. am Brutplatz, in Deutschland meist stumm).",
+    background_en: "A small Arctic auk, breeding in dense colonies far to the north (including Svalbard). Individual birds turn up almost every year on the German North Sea coast, usually after severe autumn/winter storms ('storm-wrecked' birds) – true mass influxes of over 1,000 birds are much rarer. Call: a chattering trill (mainly at the breeding site, usually silent in Germany).",
     habitat: ["offshore_coast"],
     vocalMonths: [1,1]
   },
@@ -1528,6 +1687,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Nordamerikanische Gans; in Deutschland kein natürliches Vorkommen, sondern überwiegend entflogene Ziervögel oder echte Irrgäste. Einzige (verwilderte) Brutkolonie an einem Parksee bei Neuss (rund 100 Individuen, Stand 2012). Ruf: hohes, näselndes Bellen, oft in großen, lauten Schwärmen.",
+    background_en: "A North American goose; not naturally occurring in Germany, mostly escaped ornamental birds or genuine vagrants. The only (feral) breeding colony is at a park lake near Neuss (around 100 individuals, as of 2012). Call: a high, nasal barking, often in large, noisy flocks.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -1543,6 +1703,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleinere Verwandte der Schneegans aus Nordamerika (etwa ringelgansgroß, 53-66 cm), von dieser durch kürzeren, an der Basis grünlich-blauen Schnabel und runderen Kopf zu unterscheiden. In Westeuropa eine extreme Rarität – ein Teil der Beobachtungen dürfte auf Gefangenschaftsflüchtlinge statt echte Wildvögel zurückgehen. Ruf: höher und weniger rau als die Schneegans.",
+    background_en: "A smaller North American relative of the Snow Goose (about Brent Goose-sized, 53-66 cm), distinguished from it by a shorter bill with a greenish-blue base and a rounder head. An extreme rarity in Western Europe – some observations are likely to be escapees rather than genuine wild birds. Call: higher-pitched and less harsh than the Snow Goose's.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -1558,6 +1719,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Nordamerikanischer Singvogel (Neuweltammer), in Westeuropa (v.a. Großbritannien) schon mehrfach als Irrgast beobachtet – für Deutschland selbst gibt es aber bislang keinen zweifelsfrei anerkannten Nachweis. Eine gemeldete Beobachtung wäre also höchst ungewöhnlich und sollte besonders sorgfältig geprüft werden (Verwechslung wahrscheinlicher als echter Nachweis). Ruf: helles, metallisches Schmatzen; Gesang ein einfacher Triller.",
+    background_en: "A North American songbird (New World sparrow), repeatedly recorded as a vagrant in Western Europe (mainly Britain) – but for Germany itself there is so far no unequivocally accepted record. A reported observation would therefore be highly unusual and should be checked especially carefully (misidentification more likely than a genuine record). Call: bright, metallic smacking; song a simple trill.",
   },
   {
     id: "wellensittich",
@@ -1571,6 +1733,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Ursprünglich australischer Sittich, in Deutschland ausschließlich als Haus-/Käfigvogel verbreitet. Anders als z.B. Halsband-/Alexandersittich (4.600-7.500 etablierte Brutpaare in Städten wie Köln/Stuttgart/Wiesbaden) hat sich der Wellensittich in Deutschland NICHT dauerhaft freilebend etabliert – Berichte über einzelne langlebige Freiland-Kolonien sind nicht eindeutig belegt. Ein Fund entspricht praktisch immer einem entflogenen Ziervogel.",
+    background_en: "Originally an Australian parakeet, found in Germany exclusively as a pet/cage bird. Unlike, for example, Rose-ringed/Alexandrine Parakeets (4,600-7,500 established breeding pairs in cities such as Cologne/Stuttgart/Wiesbaden), the Budgerigar has NOT established itself as a permanent free-living population in Germany – reports of individual long-lived outdoor colonies are not clearly documented. A record is practically always an escaped pet bird.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -1586,6 +1749,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["ssc"],
     background: "Indischer Hühnervogel mit prachtvollem Federkleid, in Deutschland seit Generationen als Ziervogel gehalten und gut ans Klima angepasst. Mehrere Wiederansiedlungsversuche blieben erfolglos – eine dauerhaft freilebende Population gibt es in Deutschland nicht. Jede Beobachtung außerhalb von Zoos/Gehegen geht auf einen (oft nur vorübergehend) entflogenen Vogel zurück.",
+    background_en: "An Indian gamebird with magnificent plumage, kept as an ornamental bird in Germany for generations and well adapted to the climate. Several reintroduction attempts have failed – there is no permanently free-living population in Germany. Any observation outside zoos/enclosures traces back to a (often only temporarily) escaped bird.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -1601,6 +1765,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Südamerikanischer Flamingo. Die einzige freilebende Population außerhalb Südamerikas brütet seit 1982/83 im Zwillbrocker Venn (NRW, an der deutsch-niederländischen Grenze) zusammen mit Rosa- und Kubaflamingos – nördlichste Flamingokolonie der Welt, inzwischen bis zu rund 80 Vögel gleichzeitig im Frühjahr. Entstanden aus entflogenen Ziervögeln, da wilde Chileflamingos nicht nach Europa ziehen.",
+    background_en: "A South American flamingo. The only free-living population outside South America has been breeding since 1982/83 at the Zwillbrocker Venn (North Rhine-Westphalia, on the German-Dutch border) alongside Greater and Caribbean Flamingos – the world's northernmost flamingo colony, now with up to around 80 birds at once in spring. It arose from escaped ornamental birds, since wild Chilean Flamingos do not migrate to Europe.",
     habitat: [],
     vocalMonths: [2,8]
   },
@@ -1616,6 +1781,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw"],
     background: "Nordamerikanisches Wildhuhn. Mehrere Ansiedlungsversuche seit dem späten 19. Jahrhundert blieben langfristig erfolglos – die einzige verbliebene deutsche Population lebt im Kottenforst bei Bonn (rund 100-150 Tiere auf ca. 3.000 ha), ist aber ohne Zufütterung im Winter nicht überlebensfähig (kann anders als heimische Hühnervögel keine Knospen/Nadeln verdauen). Der NABU fordert einen Ansiedlungsstopp.",
+    background_en: "A North American wild fowl. Several introduction attempts since the late 19th century have ultimately failed – the only remaining German population lives in the Kottenforst near Bonn (around 100-150 birds over c. 3,000 ha), but is not viable without winter supplementary feeding (unlike native gamebirds, it cannot digest buds/needles). NABU is calling for a halt to further introductions.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -1631,6 +1797,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm"],
     background: "Ursprünglich mittel-/südamerikanische Art, in Deutschland verbreitet als verwilderte Park-/Hausform an Teichen. Kaum vokal, gelegentlich leises Zischen/Pfeifen.",
+    background_en: "Originally a Central/South American species, found in Germany as a feral park/domestic form on ponds. Barely vocal, occasionally a quiet hiss/whistle.",
     habitat: [],
     vocalMonths: null
   },
@@ -1646,6 +1813,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["ssc"],
     background: "Ursprünglich sibirisch-mongolische Wildgans, vor rund 3.000 Jahren in China zur Höckergans domestiziert, kam erst in den 1920er-Jahren nach Europa. In Deutschland nur wenige kleine verwilderte Populationen entkommener Ziervögel/Höckergänse, u.a. am Neckarufer bei Heidelberg (von 20 Vögeln 1994 auf zeitweise 160 gewachsen) und am Ammersee.",
+    background_en: "Originally a Siberian-Mongolian wild goose, domesticated into the Chinese Goose in China around 3,000 years ago, only reaching Europe in the 1920s. In Germany only a few small feral populations of escaped ornamental birds/Chinese Geese, including on the banks of the Neckar near Heidelberg (grown from 20 birds in 1994 to as many as 160 at times) and at Lake Ammersee.",
     habitat: [],
     vocalMonths: null
   },
@@ -1665,6 +1833,7 @@ const SPECIES = [
     confusionGroup: "habichtskauz_waldkauz",
     areas: ["byw"] /* eBird: keine Treffer im Hotspot-Datensatz – bekanntes, weltweit beachtetes Wiederansiedlungsprojekt im Bayerischen Wald manuell beibehalten (analog Auerhuhn, s. Kommentar oben) */,
     background: "Große, langschwänzige Eule alter, störungsarmer Wälder. Im Bayerischen Wald weltweit bekanntes Wiederansiedlungsprojekt. Ruf: dumpfes, mehrsilbiges 'wuho-wuho-wuho'.",
+    background_en: "A large, long-tailed owl of old, undisturbed forest. A globally known reintroduction project is underway in the Bavarian Forest. Call: a dull, multi-syllable 'woo-hoo-woo-hoo-woo-hoo'.",
     habitat: [],
     vocalMonths: [3,6]
   },
@@ -1680,6 +1849,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "ssc"],
     background: "Charakterart alter Nadel- und Bergmischwälder mit viel Totholz, u.a. Leitart des Bayerischen Waldes und der Bayerischen Alpen (dort fast flächendeckend, knapp 1 Brutpaar je 100 ha) – das Brutareal hat sich seit den 1990er-Jahren deutlich vergrößert. Neben dem Weißrückenspecht einer der beiden seltensten Standvögel Deutschlands. Ruf: scharfes 'kix'; Trommelwirbel langsamer und länger als bei anderen Spechten.",
+    background_en: "A characteristic species of old conifer and montane mixed forest with plenty of dead wood, among others a flagship species of the Bavarian Forest and Bavarian Alps (there almost throughout, nearly 1 breeding pair per 100 ha) – its breeding range has expanded considerably since the 1990s. Alongside the White-backed Woodpecker, one of Germany's two rarest resident birds. Call: a sharp 'kik'; drum roll slower and longer than other woodpeckers'.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: null
   },
@@ -1695,6 +1865,7 @@ const SPECIES = [
     confusionGroup: "sperlingskauz_raufusskauz",
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "ssc"],
     background: "Kleine, nachtaktive Eule störungsarmer Bergwälder mit Schwarzspecht-Höhlen. Gesang: rhythmische Serie dumpfer, aufsteigender 'pu-pu-pu-pu'-Rufe.",
+    background_en: "A small, nocturnal owl of undisturbed montane forest with Black Woodpecker cavities. Song: a rhythmic series of dull, rising 'poo-poo-poo-poo' calls.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: [2,6]
   },
@@ -1710,6 +1881,7 @@ const SPECIES = [
     confusionGroup: "sperlingskauz_raufusskauz",
     areas: ["byw", "eif", "hrz", "kwe", "ssc"],
     background: "Kleinste heimische Eule, tag- und dämmerungsaktiv in Nadel- und Bergwäldern. Ruf: hohe, gleichmäßig gereihte Pfeiftöne 'düü-düü-düü'.",
+    background_en: "Germany's smallest native owl, active by day and at dusk in coniferous and montane forest. Call: high, evenly spaced whistled notes 'doo-doo-doo'.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: [1,4]
   },
@@ -1725,6 +1897,7 @@ const SPECIES = [
     confusionGroup: "pieper_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "nwm", "ssc", "uot"],
     background: "Charaktervogel offener Grünländer, Moore und Heiden. Singflug mit Fallschirm-artigem Abgleiten; Gesang eine beschleunigte Serie feiner 'ist-ist-ist'-Töne.",
+    background_en: "A characteristic bird of open grassland, bogs and heathland. Song flight with a parachute-like glide down; song an accelerating series of thin 'ist-ist-ist' notes.",
     habitat: [],
     vocalMonths: [9,11]
   },
@@ -1740,6 +1913,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "hrz", "jtb", "lbr", "nwm", "uot"],
     background: "Bodenbrüter offener, steiniger oder kurzrasiger Flächen wie Truppenübungsplätze und Hochflächen. Gesang: kratzig-schwätzend, oft von einer Warte aus.",
+    background_en: "A ground-nesting bird of open, stony or short-cropped ground such as military training areas and plateaus. Song: scratchy and chattering, often delivered from a perch.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -1755,6 +1929,7 @@ const SPECIES = [
     confusionGroup: "schwarz_braunkehlchen",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Bodenbrüter extensiv genutzter Wiesen mit Ansitzwarten, stark rückläufig. Gesang: kurze, variable Strophen, oft mit nachgeahmten Fremdlauten.",
+    background_en: "A ground-nesting bird of extensively managed meadows with perches, strongly declining. Song: short, variable phrases, often incorporating mimicry of other species' calls.",
     habitat: ["farmland_open"],
     vocalMonths: [4,6]
   },
@@ -1770,6 +1945,7 @@ const SPECIES = [
     confusionGroup: "pieper_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Vogel halboffener Landschaften mit einzelnen Bäumen als Singwarten. Auffälliger Singflug: startet vom Baum, endet mit gleitendem 'sia-sia-sia' im Abwärtsfallen.",
+    background_en: "A bird of semi-open landscapes with scattered trees as song posts. Conspicuous song flight: starts from a tree, ends with a gliding 'sia-sia-sia' as it parachutes down.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -1785,6 +1961,7 @@ const SPECIES = [
     confusionGroup: "neuntoeter_raubwuerger",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Würgerart dornenreicher Hecken und Gebüsche, bekannt für das Aufspießen von Beute an Dornen. Gesang: leise, schwätzende Strophe mit vielen nachgeahmten Vogelrufen.",
+    background_en: "A shrike of thorny hedges and scrub, known for impaling prey on thorns. Song: a quiet, chattering phrase with many imitated bird calls.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -1800,6 +1977,7 @@ const SPECIES = [
     confusionGroup: "neuntoeter_raubwuerger",
     areas: ["byw", "eif", "jtb", "kwe", "lbr", "nwm", "uot"],
     background: "Größter heimischer Würger, Charaktervogel offener Landschaften mit Ansitzwarten. Ruf: hartes, wiederholtes 'schäck-schäck'; Gesang leise und variabel.",
+    background_en: "Germany's largest native shrike, a characteristic bird of open landscapes with perches. Call: a hard, repeated 'shack-shack'; song quiet and variable.",
     habitat: [],
     vocalMonths: [9,3]
   },
@@ -1815,6 +1993,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif"],
     background: "Wärmeliebender Grasmückenverwandter an Gebüschrändern. Breitet sich seit Jahrzehnten von Südwesteuropa nach Nordosten aus und brütet seit 1983 in Deutschland, mit starkem Wachstum und Arealausdehnung v.a. in den 1990er-Jahren – mittlerweile in vielen Teilen Deutschlands, profitiert dabei offenbar vom Rückgang des nah verwandten Gelbspötters. Weitere Ausbreitung erwartet. Gesang: sehr schneller, plappernder, endlos wirkender Wortschwall.",
+    background_en: "A heat-loving warbler relative found at the edges of scrub. Has been spreading north-eastward from south-western Europe for decades and has bred in Germany since 1983, with strong growth and range expansion especially in the 1990s – now found in many parts of Germany, apparently benefiting from the decline of the closely related Icterine Warbler. Further spread is expected. Song: a very fast, chattering, seemingly endless stream of notes.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -1830,6 +2009,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw"],
     background: "Sehr heimliches Raufußhuhn dichter, strukturreicher Mischwälder mit Unterwuchs. Ruf: sehr hohes, kaum hörbares Pfeifen, für viele Menschen an der Hörgrenze.",
+    background_en: "A very secretive grouse of dense, structurally rich mixed forest with undergrowth. Call: a very high, barely audible whistle, at the edge of hearing for many people.",
     habitat: ["boreal_montane_conifer","montane_mixed_forest"],
     vocalMonths: [8,1]
   },
@@ -1845,6 +2025,7 @@ const SPECIES = [
     confusionGroup: "spechte_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Leitart alter, grobborkiger Eichen- und Buchenwälder mit hohem Totholzanteil. Ruf: nasales, gereihtes 'quäg-quäg-quäg'; trommelt selten.",
+    background_en: "A flagship species of old, rough-barked oak and beech forest with a high proportion of dead wood. Call: nasal, repeated 'quäg-quäg-quäg'; drums rarely.",
     habitat: [],
     vocalMonths: null
   },
@@ -1860,6 +2041,7 @@ const SPECIES = [
     confusionGroup: "turmfalke_baumfalke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Schneller, schlanker Falke halboffener Landschaften mit Feldgehölzen, jagt Libellen und Schwalben im Flug. Ruf: schnelle, hohe Serie 'ki-ki-ki-ki'.",
+    background_en: "A fast, slender falcon of semi-open landscapes with copses, hunting dragonflies and swallows on the wing. Call: a fast, high series 'ki-ki-ki-ki'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -1875,6 +2057,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbare, robuste Ammer der offenen Agrarlandschaft, singt oft von Zäunen oder Leitungsdrähten. Gesang: unverwechselbar wie klirrende Schlüssel ('Schlüsselbund-Gesang').",
+    background_en: "An unassuming, sturdy bunting of open farmland, often singing from fences or power lines. Song: unmistakable, like a jangling bunch of keys.",
     habitat: [],
     vocalMonths: [3,7]
   },
@@ -1890,6 +2073,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "hrz", "ssc"],
     background: "Rabenvogel der Nadel- und Bergmischwälder, spezialisiert auf Haselnüsse und Zirbelkiefernsamen, legt Wintervorräte an. Ruf: lautes, raues, weit tragendes 'krähg-krähg'.",
+    background_en: "A corvid of coniferous and montane mixed forest, specialised in hazelnuts and Swiss pine seeds, caches winter stores. Call: a loud, harsh, far-carrying 'krair-krair'.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: [6,11]
   },
@@ -1905,6 +2089,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "jtb", "lbr", "nwm"],
     background: "Dämmerungs- und nachtaktiver Vogel warmer, sandiger Heiden und lichter Kiefernwälder (v.a. ehem. Truppenübungsplätze). Gesang: minutenlang anhaltendes, mechanisches Schnurren, das leicht auf- und abschwillt. In der Taxonomie-Tabelle als 'Nachtschwalbe' geführt.",
+    background_en: "A crepuscular and nocturnal bird of warm, sandy heathland and open pine forest (mainly former military training areas). Song: a mechanical churring that lasts for minutes and gently rises and falls. Listed as 'Nachtschwalbe' in the taxonomy table.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -1920,6 +2105,7 @@ const SPECIES = [
     confusionGroup: "maeusebussard_wespenbussard",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Dem Mäusebussard ähnlicher Greifvogel, spezialisiert auf Wespen- und Hummelnester. Meist stumm; Ruf ein hohes, klagendes 'wjüh-wjüh'.",
+    background_en: "A raptor similar to the Common Buzzard, specialised in wasp and bumblebee nests. Usually silent; call a high, plaintive 'pee-lu'.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -1934,7 +2120,8 @@ const SPECIES = [
     group: "Feld- und Wiesenvögel",
     confusionGroup: "heidelerche_feldlerche",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
-    background: "Vogel halboffener, sandiger Heiden und lichter Kiefernwälder. Gesang: melancholische, abfallende Tonfolgen 'lülülülü', oft im hohen Singflug oder in der Dämmerung."
+    background: "Vogel halboffener, sandiger Heiden und lichter Kiefernwälder. Gesang: melancholische, abfallende Tonfolgen 'lülülülü', oft im hohen Singflug oder in der Dämmerung.",
+    background_en: "A bird of semi-open, sandy heathland and open pine forest. Song: melancholic, falling note sequences 'lu-lu-lu-lu', often given in high song flight or at dusk.",
   },
   {
     id: "saebelschnaebler",
@@ -1948,6 +2135,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Elegant schwarz-weißer Watvogel mit charakteristisch aufwärts gebogenem Schnabel, brütet an Salzwiesen und Wattflächen. Ruf: klares, fluteartiges 'kluit-kluit'.",
+    background_en: "An elegant black-and-white wader with a characteristic upturned bill, breeding on salt marshes and mudflats. Call: a clear, fluty 'kluit-kluit'.",
+    background_en: "A bird of semi-open, sandy heathland and open pine forest. Song: melancholic, falling note sequences 'lu-lu-lu-lu', often given in high song flight or at dusk.",
     habitat: [],
     vocalMonths: [4,10]
   },
@@ -1963,6 +2152,7 @@ const SPECIES = [
     confusionGroup: "kleine_strandlaeufer_trio",
     areas: ["hrz", "nwm", "uot"],
     background: "Kleiner Watvogel, typisch für das ständige Hin-und-Herlaufen mit der Brandung am Sandstrand, in Deutschland vor allem Durchzügler/Wintergast. Ruf: kurzes, hartes 'plit'.",
+    background_en: "A small wader, typical for its constant running back and forth with the surf on sandy beaches, mainly a passage migrant/winter visitor in Germany. Call: a short, hard 'plit'.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -1978,6 +2168,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm"],
     background: "Großer, weißer Schreitvogel mit löffelförmigem Schnabel, brütet u.a. auf Wattenmeer-Inseln, Bestand deutlich zunehmend. Meist stumm; gelegentlich raue Grunzlaute am Brutplatz.",
+    background_en: "A large, white wading bird with a spoon-shaped bill, breeding on Wadden Sea islands among other places, its population increasing markedly. Usually silent; occasionally harsh grunting sounds at the breeding site.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -1993,6 +2184,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Häufigster Wintergast unter den arktischen Gänsen im Wattenmeer, oft in riesigen Schwärmen. Ruf: hohes, mehrsilbiges, lachendes Gegacker 'kljü-jüjüjü'.",
+    background_en: "The most common Arctic goose wintering in the Wadden Sea, often in huge flocks. Call: a high, multi-syllable, laughing cackle.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -2008,6 +2200,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm", "uot"],
     background: "Kleine, dunkle Meeresgans, überwintert in großer Zahl im Wattenmeer und ernährt sich v.a. von Seegras. Ruf: tiefes, rollendes, gurgelndes 'rott-rott'.",
+    background_en: "A small, dark sea goose, wintering in large numbers in the Wadden Sea and feeding mainly on eelgrass. Call: a deep, rolling, gurgling 'rott-rott'.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: [10,10]
   },
@@ -2023,6 +2216,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Arktische Gans, seltener Wintergast/Durchzügler v.a. an der Küste (nur 150-450 Individuen deutschlandweit), meist einzeln unter Bläss-/Saatgans-Schwärmen. Der Blässgans ähnlich aber ohne weiße Stirnblesse. Ruf: höher und heller als Blässgans, 'ang-ank'. Hinweis für die Validierung: Bei häufigen BirdNET-Meldungen lohnt ein kritischer Blick, da die Art wegen der geringen echten Bestandszahl leicht mit den viel häufigeren Bläss-/Saatgans-Rufen verwechselt werden kann.",
+    background_en: "An Arctic goose, a rare winter visitor/passage migrant mainly on the coast (only 150-450 individuals nationwide), usually singly among flocks of White-fronted/Bean Geese. Similar to the White-fronted Goose but without the white forehead blaze. Call: higher and brighter than the White-fronted Goose's, 'ang-ank'. Note for validation: given its low true population, frequent BirdNET detections of this species deserve a critical look, since it can easily be confused with the calls of the much more common White-fronted/Bean Geese.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2038,6 +2232,7 @@ const SPECIES = [
     confusionGroup: "kleine_schnaepper_trio",
     areas: ["byw", "kwe", "ssc", "uot"],
     background: "Kleiner Schnäpper alter, schattiger Buchen- und Mischwälder mit hohem Kronendach, in Deutschland ein seltener Brutvogel mit Verbreitungsschwerpunkt in östlichen Mittelgebirgen. Gesang: klare, absteigende Strophe, entfernt an Fitis erinnernd.",
+    background_en: "A small flycatcher of old, shady beech and mixed forest with a closed canopy, a rare breeding bird in Germany concentrated in the eastern uplands. Song: a clear, descending phrase, distantly reminiscent of the Willow Warbler's.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -2053,6 +2248,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Auf Fischfang spezialisierter Greifvogel an Seen und Flüssen, stürzt sich mit den Füßen voran ins Wasser. Ruf: hohe, pfeifende Serie 'pji-pji-pji-pji'.",
+    background_en: "A raptor specialised in catching fish at lakes and rivers, plunging feet-first into the water. Call: a high, whistling series 'pyew-pyew-pyew-pyew'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -2068,6 +2264,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["uot"],
     background: "Kleinster heimischer Adler. Rote Liste 1 'vom Aussterben bedroht' – deutschlandweit nur noch rund 130 Brutpaare, praktisch ausschließlich im äußersten Nordosten (Schwerpunkt Mecklenburg-Vorpommern, Brandenburg – deckt sich mit unserem Gebiet Unteres Odertal), Feuchtwälder/Grünland-Mosaik. Sehr niedriger Bruterfolg (nur 0,6 flügge Jungvögel pro Paar und Jahr im Schnitt), Hauptgefährdung Lebensraumverlust und Wilderei auf dem Zug. Ruf: helles, kläffendes 'küjück-küjück', hundeartig.",
+    background_en: "Germany's smallest native eagle. Red List 1 'critically endangered' – only around 130 breeding pairs remain nationwide, found practically only in the far north-east (concentrated in Mecklenburg-Western Pomerania and Brandenburg – matching our Lower Oder Valley area), in a mosaic of wet forest and grassland. Very low breeding success (only 0.6 fledged young per pair per year on average), with habitat loss and poaching on migration the main threats. Call: a bright, yelping 'kyu-yick-kyu-yick', dog-like.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -2083,6 +2280,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Heimlicher Rallenvogel extensiv genutzter, hochgrasiger Feuchtwiesen, nachtaktiv rufend. Unverwechselbarer, rätschender Ruf 'krrp-krrp', oft stundenlang wiederholt.",
+    background_en: "A secretive rail of extensively managed, tall wet meadows, calling nocturnally. An unmistakable, rasping call 'krrp-krrp', often repeated for hours.",
     habitat: ["farmland_open","wetland_reed"],
     vocalMonths: [5,7]
   },
@@ -2098,6 +2296,7 @@ const SPECIES = [
     confusionGroup: "sumpf_seeschwalben_trio",
     areas: ["hho", "nwm", "uot"],
     background: "Sumpfseeschwalbe verlandender Gewässer mit Schwimmblattzonen, in Deutschland nur an wenigen Stellen brütend. Ruf: kurzes, kratziges 'kek' oder 'krett'.",
+    background_en: "A marsh tern of vegetated waters with floating-leaf zones, breeding at only a few sites in Germany. Call: a short, scratchy 'kek' or 'krett'.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -2113,6 +2312,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hai", "jtb", "nwm", "uot"],
     background: "Großer, gelb-schwarz geschnäbelter Wildschwan, brütet vereinzelt und überwintert in größerer Zahl v.a. im Wattenmeer-Umfeld. Ruf: lautes, trompetendes 'whoop-whoop', ganz anders als der stumme Höckerschwan.",
+    background_en: "A large wild swan with a yellow-and-black bill, breeding sparsely and wintering in larger numbers mainly around the Wadden Sea. Call: a loud, trumpeting 'whoop-whoop', quite unlike the silent Mute Swan.",
     habitat: [],
     vocalMonths: [11,3]
   },
@@ -2135,6 +2335,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "nwm", "ssc", "uot"],
     background: "Kleiner, nordischer Fink, in Deutschland v.a. unregelmäßiger Wintergast in Trupps. Ruf: trockenes, schnarrendes Rattern, ähnlich Erlenzeisig aber härter.",
+    background_en: "A small, northern finch, mainly an irregular winter visitor to Germany in flocks. Call: a dry, rattling churr, similar to the Siskin's but harder.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -2150,6 +2351,7 @@ const SPECIES = [
     confusionGroup: "sperber_habicht",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleiner, wendiger Greifvogel, jagt Kleinvögel im schnellen Flug durch Deckung. Ruf (v.a. am Horst): schnelle, hohe Serie 'ki-ki-ki-ki', meist aber still.",
+    background_en: "A small, agile raptor, hunting small birds in fast flight through cover. Call (mainly at the nest): a fast, high series 'ki-ki-ki-ki', but usually silent.",
     habitat: [],
     vocalMonths: null
   },
@@ -2165,6 +2367,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Rohrsänger, in dichtem Schilf an größeren Gewässern. Gesang: sehr laut, rau und knarrend, 'karre-karre-kiek-kiek'.",
+    background_en: "Germany's largest native reed warbler, found in dense reeds at larger waterbodies. Song: very loud, rough and grating, 'karre-karre-kiek-kiek'.",
     habitat: ["wetland_reed"],
     vocalMonths: [5,7]
   },
@@ -2180,6 +2383,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Osteuropäischer Rohrsänger-Verwandter mit Brutgebiet vom südlichen Finnland/Baltikum ostwärts, in Deutschland ein seltener, nicht alljährlicher Irrgast (im Schnitt rund ein Nachweis pro Jahr seit Ende der 1970er). Gesang ähnlich Sumpfrohrsänger, aber langsamer.",
+    background_en: "An Eastern European relative of the reed warblers with a breeding range from southern Finland/the Baltic states eastward, a rare, not-annual vagrant in Germany (on average around one record per year since the late 1970s). Song similar to the Marsh Warbler's, but slower.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -2195,6 +2399,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["uot"],
     background: "Stark gefährdeter Rohrsänger-Verwandter von Niedermooren, weltweit vom Aussterben bedroht (Weltbestand nur 22.000-32.000 Individuen, gesamte Brutfläche kleiner als die Insel Rügen). Die einst letzte deutsche Population im Unteren Odertal ist dramatisch eingebrochen (1995: 34 singende Männchen, 2000: 19, 2005: höchstens 12) – bei der Zählung 2017 wurden dort keine Seggenrohrsänger mehr festgestellt, die Art gilt dort inzwischen praktisch als erloschen. Gesang: monotones, schwirrendes Rattern, insektenartig.",
+    background_en: "A highly endangered reed-warbler relative of fen mires, globally critically endangered (world population only 22,000-32,000 individuals, total breeding area smaller than the island of Rügen). The once-last German population in the Lower Oder Valley has collapsed dramatically (1995: 34 singing males, 2000: 19, 2005: at most 12) – the 2017 count found no Aquatic Warblers there at all, and the species is now considered practically extinct there. Song: a monotonous, whirring rattle, insect-like.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -2210,6 +2415,7 @@ const SPECIES = [
     confusionGroup: "sumpfrohrsaenger_teichrohrsaenger",
     areas: ["byw", "eif", "hai", "hrz", "jtb", "nwm", "ssc", "uot"],
     background: "Rohrsänger-Verwandter feuchter Hochstaudenfluren, berühmt für seine Fähigkeit, Fremdgesänge anderer Vogelarten einzubauen. Gesang: sehr variabel, plaudernd, mit vielen nachgeahmten Motiven.",
+    background_en: "A reed-warbler relative of damp tall-herb vegetation, famous for its ability to incorporate other species' songs into its own. Song: highly variable, chattering, with many imitated motifs.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -2225,6 +2431,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Rohrsänger-Verwandter feuchter Ufer- und Schilfzonen. Gesang: schnelles, unruhiges Gemisch aus Schnarr- und Pfeiftönen, oft im kurzen Singflug vorgetragen.",
+    background_en: "A reed-warbler relative of damp bankside and reed zones. Song: a fast, restless mix of grating and whistled notes, often delivered in a short song flight.",
     habitat: ["wetland_reed"],
     vocalMonths: [4,7]
   },
@@ -2240,6 +2447,7 @@ const SPECIES = [
     confusionGroup: "sumpfrohrsaenger_teichrohrsaenger",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Rohrsänger dichter Schilfbestände, sehr heimlich lebend. Gesang: rhythmisches, monotones 'karr-karr-tit-tit-tirr', gleichmäßiger als Sumpfrohrsänger.",
+    background_en: "A reed warbler of dense reedbeds, living very secretively. Song: a rhythmic, monotonous 'karr-karr-tit-tit-tirr', more even than the Marsh Warbler's.",
     habitat: ["wetland_reed"],
     vocalMonths: [5,8]
   },
@@ -2255,6 +2463,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Kleiner Watvogel an kiesigen Fluss- und Seeufern, typisch wippend laufend. Ruf: hohe, klare, gereihte Pfeiftöne 'hidi-hidi-hidi', meist im schnellen, niedrigen Flug.",
+    background_en: "A small wader on gravelly river and lake banks, typically bobbing as it walks. Call: high, clear, repeated whistled notes 'hidi-hidi-hidi', usually given in fast, low flight.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -2270,6 +2479,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleiner, rundlicher Vogel mit sehr langem Schwanz, lebt in kleinen, eng zusammenhaltenden Trupps. Ruf: hohes, trillerndes 'srii-srii-srii' als ständiger Kontaktruf der Gruppe.",
+    background_en: "A small, round bird with a very long tail, living in small, tightly bonded flocks. Call: a high, trilling 'srii-srii-srii' as a constant contact call within the group.",
     habitat: [],
     vocalMonths: null
   },
@@ -2285,6 +2495,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif"],
     background: "Größter europäischer Greifvogel (bis 12 kg, bis 3 m Flügelspannweite), in Deutschland kein Brutvogel. Wie der Gänsegeier inzwischen kein seltener Anblick mehr – einzeln oder in Trupps von über 10 Tieren aus spanischen oder Balkan-Populationen (in Spanien wieder rund 3.000 Vögel), begünstigt durch gute Thermik und den Klimawandel. Meist still.",
+    background_en: "Europe's largest raptor (up to 12 kg, up to 3 m wingspan), not a breeding bird in Germany. Like the Griffon Vulture, no longer a rare sight – singly or in groups of over 10 birds from Spanish or Balkan populations (around 3,000 birds again in Spain), favoured by good thermals and climate change. Usually silent.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -2300,6 +2511,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Ursprünglich ostasiatische Zierente, in Deutschland verwildert an Parkgewässern und Flüssen, Männchen unverwechselbar bunt. Ruf: kurzes, ansteigendes, pfeifendes 'hwick'.",
+    background_en: "Originally an East Asian ornamental duck, feral in Germany on park waters and rivers, the drake unmistakably colourful. Call: a short, rising, whistled 'hwick'.",
     habitat: [],
     vocalMonths: null
   },
@@ -2315,6 +2527,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm"],
     background: "Nordamerikanische Zierente mit prächtigem Gefieder der Erpel, seit dem 17. Jahrhundert in Deutschland gehalten. Mehrere gezielte Ansiedlungsversuche (u.a. um 1900 in Dresden mit rund 75 freifliegenden Vögeln) blieben langfristig erfolglos – aktuell nur eine kleine verwilderte Population von 25-35 Brutpaaren deutschlandweit, meist entflogene Ziervögel. Ruf: hohes, ansteigendes 'wheek'.",
+    background_en: "A North American ornamental duck with magnificent drake plumage, kept in Germany since the 17th century. Several deliberate introduction attempts (including around 1900 in Dresden with around 75 free-flying birds) ultimately failed – currently only a small feral population of 25-35 breeding pairs nationwide, mostly escaped ornamental birds. Call: a high, rising 'wheek'.",
     habitat: [],
     vocalMonths: null
   },
@@ -2330,6 +2543,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Alkenvogel mit kräftigem, seitlich abgeflachtem Schnabel. Einziger deutscher Brutplatz ist wie bei der Trottellumme Helgoland, dort am Rand der großen Lummenkolonien – nach Erlöschen in den 1960er-Jahren seit Ende der 1980er wieder mit langsam steigendem, aber weiterhin kleinem Bestand (2019: 80-90, 2021: 84 Brutpaare). Außerhalb Helgolands (wie in unseren Gebieten) nur seltener Wintergast/Sturmopfer an der Küste. Meist still fernab der Kolonien.",
+    background_en: "An auk with a powerful, laterally flattened bill. As with the Common Guillemot, its only German breeding site is Heligoland, on the edge of the large guillemot colonies there – after dying out in the 1960s, numbers have slowly increased again since the late 1980s, though the population remains small (2019: 80-90, 2021: 84 breeding pairs). Away from Heligoland (as in our areas) only a rare winter visitor/storm-driven bird on the coast. Usually silent away from the colonies.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2345,6 +2559,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "nwm", "ssc", "uot"],
     background: "Schlanke, elegante Ente mit spitzem Schwanz, in Deutschland überwiegend Durchzügler und Wintergast. Ruf des Erpels: weiches, flötendes 'prrüp'.",
+    background_en: "A slender, elegant duck with a pointed tail, mainly a passage migrant and winter visitor in Germany. The drake's call: a soft, fluting 'prrup'.",
     habitat: [],
     vocalMonths: [9,4]
   },
@@ -2359,7 +2574,8 @@ const SPECIES = [
     group: "Enten, Gänse & Schwäne",
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
-    background: "Kleinste heimische Ente, an flachen, deckungsreichen Gewässern und Feuchtwiesen. Ruf des Erpels: helles, glockenklares, oft wiederholtes 'krrick'."
+    background: "Kleinste heimische Ente, an flachen, deckungsreichen Gewässern und Feuchtwiesen. Ruf des Erpels: helles, glockenklares, oft wiederholtes 'krrick'.",
+    background_en: "Germany's smallest native duck, found on shallow waters with plenty of cover and wet meadows. The drake's call: a bright, bell-clear, often repeated 'krrick'.",
   },
   {
     id: "zwerggans",
@@ -2373,6 +2589,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "uot"],
     background: "Kleine, stark gefährdete arktische Wildgans – Weltbestand knapp 25.000 Individuen, europäischer Bestand durch Lebensraumverlust im Brutgebiet und hohen Jagddruck auf dem Zug auf nur noch wenige hundert Vögel eingebrochen. In Deutschland nur 10-30 Individuen pro Jahr, meist einzeln unter Bläss-/Saatgansschwärmen. Ruf: höher und heller als Blässgans.",
+    background_en: "A small, highly endangered Arctic wild goose – world population just under 25,000 individuals, the European population collapsed to only a few hundred birds due to habitat loss on the breeding grounds and heavy hunting pressure on migration. In Germany only 10-30 individuals per year, usually singly among White-fronted/Bean Goose flocks. Call: higher and brighter than the White-fronted Goose's.",
+    background_en: "Germany's smallest native duck, found on shallow waters with plenty of cover and wet meadows. The drake's call: a bright, bell-clear, often repeated 'krrick'.",
     habitat: [],
     vocalMonths: null
   },
@@ -2388,6 +2606,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["uot"],
     background: "Arktische/subarktische Wildgans, der Blässgans ähnlich, aber ohne weiße Stirnblesse. Rastbestand in Deutschland stark rückläufig und aktuell nur noch rund 12.000 Individuen (Rote Liste: stark gefährdet) – Schwerpunkte Nordostdeutschland (u.a. Elbtal, Mecklenburg-Vorpommern) und Niederrhein, September bis März. Ruf: tiefes, nasales 'ung-unk'.",
+    background_en: "An Arctic/subarctic wild goose, similar to the White-fronted Goose but without the white forehead blaze. Numbers stopping over in Germany have declined sharply and currently stand at only around 12,000 individuals (Red List: severely endangered) – concentrated in north-east Germany (including the Elbe valley, Mecklenburg-Western Pomerania) and the Lower Rhine, September to March. Call: a deep, nasal 'ung-unk'.",
   },
   {
     id: "streifengans",
@@ -2401,6 +2620,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["ssc", "uot"],
     background: "Auffällig gezeichnete asiatische Gans, heimisch in Zentral-/Südasien. Seit Mitte des 20. Jahrhunderts kleine, unregelmäßige Brutvorkommen in Deutschland (Bayern bis Schleswig-Holstein), die auf die freifliegende Population des Max-Planck-Instituts am Starnberger See zurückgehen – gilt aber weiterhin nicht als etablierter Brutvogel, gelegentlich Mischbruten mit Graugänsen. Ruf: lautes, nasales, tutendes Trompeten.",
+    background_en: "A strikingly marked Asian goose, native to Central/South Asia. Small, irregular breeding occurrences in Germany since the mid-20th century (Bavaria to Schleswig-Holstein), traced back to the free-flying population kept by the Max Planck Institute at Lake Starnberg – still not considered an established breeding bird, occasionally mixed pairs with Greylag Geese. Call: a loud, nasal, honking trumpet.",
     habitat: [],
     vocalMonths: null
   },
@@ -2415,7 +2635,8 @@ const SPECIES = [
     group: "Enten, Gänse & Schwäne",
     confusionGroup: null,
     areas: ["eif", "hrz", "jtb", "nwm", "ssc", "uot"],
-    background: "Arktische Wildgans, überwintert in wachsender Zahl v.a. im Nordosten Deutschlands, der Saatgans/Blässgans ähnlich. Ruf: tiefes, nasales Gegacker, ähnlich Graugans aber rauer."
+    background: "Arktische Wildgans, überwintert in wachsender Zahl v.a. im Nordosten Deutschlands, der Saatgans/Blässgans ähnlich. Ruf: tiefes, nasales Gegacker, ähnlich Graugans aber rauer.",
+    background_en: "An Arctic wild goose, wintering in growing numbers mainly in north-eastern Germany, similar to the Bean Goose/White-fronted Goose. Call: deep, nasal cackling, similar to the Greylag Goose's but harsher.",
   },
   {
     id: "brachpieper",
@@ -2429,6 +2650,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "jtb", "lbr"],
     background: "Pieper trockener, vegetationsarmer Sandflächen wie Truppenübungsplätze, in Deutschland stark gefährdet. Gesang: monotone, gereihte Serie 'sirlü-sirlü-sirlü', oft im Singflug.",
+    background_en: "A pipit of dry, sparsely vegetated sandy ground such as military training areas, severely endangered in Germany. Song: a monotonous, repeated series 'sirlu-sirlu-sirlu', often in song flight.",
+    background_en: "An Arctic wild goose, wintering in growing numbers mainly in north-eastern Germany, similar to the Bean Goose/White-fronted Goose. Call: deep, nasal cackling, similar to the Greylag Goose's but harsher.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -2444,6 +2667,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Nordischer Pieper, brütet in der Tundra von Skandinavien bis Westalaska, überwintert in Afrika bzw. Südostchina/auf den Philippinen. In Mitteleuropa ein regelmäßiger, aber zahlenmäßig kleiner Durchzügler (Herbst Mitte August-November mit Höhepunkt Ende September/Anfang Oktober, Frühjahr April/Mai) – v.a. an der Küste. Ruf: hohes, gezogenes 'psieh'.",
+    background_en: "A northern pipit, breeding in tundra from Scandinavia to western Alaska, wintering in Africa or south-east China/the Philippines. A regular but numerically small passage migrant in Central Europe (autumn mid-August-November, peaking late September/early October; spring April/May) – mainly on the coast. Call: a high, drawn-out 'psieh'.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2459,6 +2683,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Sibirischer Pieper, in Deutschland alljährlicher, aber seltener Herbst-Irrgast (v.a. Oktober, Schwerpunkt Helgoland/Küste), jeweils nur wenige Individuen. Ruf: dünnes, gepresstes 'tsiii'.",
+    background_en: "A Siberian pipit, an annual but rare autumn vagrant in Germany (mainly October, concentrated on Heligoland/the coast), only a few individuals each time. Call: a thin, pressed 'tsiii'.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2474,6 +2699,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Pieper felsiger/sandiger Meeresküsten, in Deutschland kein Brutvogel, aber häufiger und typischer Wintergast im Wattenmeer (Nov-März, mehrere Tausend Individuen allein an der niedersächsischen Küste). Ruf: kräftiges 'ist' ähnlich Wiesenpieper.",
+    background_en: "A pipit of rocky/sandy sea coasts, not a breeding bird in Germany, but a common and typical winter visitor in the Wadden Sea (Nov-Mar, several thousand individuals on the Lower Saxon coast alone). Call: a strong 'ist', similar to the Meadow Pipit's.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2489,6 +2715,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Großer, ostasiatischer Pieper, der im Süden Asiens überwintert. Zieht im Herbst regelmäßig in kleiner Zahl (rund 100 Individuen pro Saison) nach Westen und wird alljährlich an den Küsten West- und Mitteleuropas beobachtet, v.a. Mitte September bis November an der Nordseeküste – im Binnenland nur ausnahmsweise. Ruf: rauer, kräftiger Schnalzlaut.",
+    background_en: "A large East Asian pipit that winters in southern Asia. Regularly migrates west in small numbers in autumn (around 100 individuals per season) and is observed annually on the coasts of Western and Central Europe, mainly mid-September to November on the North Sea coast – only exceptionally inland. Call: a rough, hard clicking sound.",
     habitat: [],
     vocalMonths: [8,11]
   },
@@ -2504,6 +2731,7 @@ const SPECIES = [
     confusionGroup: "pieper_trio",
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Pieper der Hochgebirgslagen, in Deutschland v.a. an der Küste und im Bergland als Wintergast/Durchzügler. Ruf: feines, dünnes 'sist'.",
+    background_en: "A pipit of high mountain regions, in Germany mainly a winter visitor/passage migrant on the coast and in the uplands. Call: a thin, fine 'sist'.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -2519,6 +2747,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Großer, rein weißer Reiher, seit einigen Jahrzehnten stark zunehmend an Gewässern und Feuchtwiesen. Meist still; Ruf ein raues, krächzendes 'kraak', ähnlich Graureiher aber höher.",
+    background_en: "A large, pure-white heron, strongly increasing at bodies of water and wet meadows over the past few decades. Usually silent; call a rough, croaking 'kraak', similar to the Grey Heron's but higher.",
     habitat: [],
     vocalMonths: null
   },
@@ -2534,6 +2763,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "kwe", "nwm"],
     background: "Schlanker, dunkler Reiher dichter Schilfgebiete, in Deutschland seltener Brutvogel. Ruf: raues, kehliges Krächzen, seltener zu hören als beim Graureiher.",
+    background_en: "A slender, dark heron of dense reedbeds, a rare breeding bird in Germany. Call: rough, throaty croaking, heard less often than the Grey Heron's.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -2549,6 +2779,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Hochsee-Sturmvogel, der eigentlich auf der Südhalbkugel (Australien, Neuseeland, Südamerika) brütet und in Deutschland kein Brutvogel ist. An der Nordseeküste regelmäßiger, aber insgesamt seltener Durchzügler von August bis November, am ehesten bei Sturm von Helgoland oder den Inseln aus zu beobachten; die Beobachtungszahlen nehmen seit den 1970er Jahren zu. Meist still.",
+    background_en: "A pelagic shearwater that actually breeds in the Southern Hemisphere (Australia, New Zealand, South America) and is not a breeding bird in Germany. A regular but overall rare passage migrant on the North Sea coast from August to November, best observed during storms from Heligoland or the islands; observation numbers have been increasing since the 1970s. Usually silent.",
     habitat: [],
     vocalMonths: [7,12]
   },
@@ -2564,6 +2795,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleiner, südeuropäischer Reiher (nördlichste Brutvorkommen in Ungarn/Slowakei), in Deutschland kein Brutvogel, sondern ein seltener, aber regelmäßig auftretender Gast während der Zugzeit. Meist still.",
+    background_en: "A small southern European heron (northernmost breeding occurrences in Hungary/Slovakia), not a breeding bird in Germany but a rare, yet regularly occurring visitor during migration periods. Usually silent.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -2579,6 +2811,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Kompakter Watvogel steiniger/felsiger Küsten, durchsucht mit dem Schnabel Steine und Tang nach Nahrung. Als Durchzügler und Wintergast im Wattenmeer verbreitet und häufig (bis zu 2.100 Individuen in Niedersachsen, Vögel aus Nordostkanada/Grönland/Skandinavien/Russland) – als Brutvogel dagegen seit der Roten Liste 2020 in Deutschland offiziell ausgestorben (zuvor seit Mitte der 1990er nur ein sehr kleiner Brutbestand). Ruf: kurzes, hartes, staccatoartiges Kichern.",
+    background_en: "A compact wader of stony/rocky coasts, using its bill to turn over stones and seaweed in search of food. Widespread and common as a passage migrant and winter visitor in the Wadden Sea (up to 2,100 individuals in Lower Saxony, birds from north-east Canada/Greenland/Scandinavia/Russia) – but as a breeding bird officially extinct in Germany since the 2020 Red List (before that only a very small breeding population since the mid-1990s). Call: a short, hard, staccato-like chattering.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -2594,6 +2827,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "nwm"],
     background: "Tagaktive Eule offener Moore und Feuchtwiesen. Rote Liste 1 (vom Aussterben bedroht) als Brutvogel (nur 40-45 Brutpaare, Schwerpunkt Ostfriesische Inseln), aber regelmäßiger, wenn auch seltener Durchzügler/Wintergast (Okt-Jan). Ruf: dumpfes, gereihtes 'bu-bu-bu', meist nur zur Balz.",
+    background_en: "A diurnal owl of open bogs and wet meadows. Red List 1 (critically endangered) as a breeding bird (only 40-45 breeding pairs, concentrated on the East Frisian Islands), but a regular, if scarce, passage migrant/winter visitor (Oct-Jan). Call: a dull, repeated 'boo-boo-boo', mostly only during display.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2609,6 +2843,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleine nordamerikanische Tauchente, verhält sich mit hoher Wasserlage und häufigem Gründeln eher wie eine Schwimmente. Ursprünglich ein sehr seltener amerikanischer Irrgast, wird aber seit den 1970er-Jahren zunehmend häufiger gemeldet und mittlerweile nahezu jährlich mit mehreren Nachweisen in Deutschland festgestellt (Oktober-März) – ein Teil der Beobachtungen dürfte auch auf Gefangenschaftsflüchtlinge zurückgehen, da die Art auch als Ziervogel gehalten wird.",
+    background_en: "A small North American diving duck that, riding high in the water and dabbling often, behaves rather like a dabbling duck. Originally a very rare American vagrant, but reported increasingly often since the 1970s and now recorded with several records almost every year in Germany (October-March) – some observations are probably also escaped birds, as the species is also kept as an ornamental bird.",
     habitat: [],
     vocalMonths: [11,2]
   },
@@ -2624,6 +2859,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Tauchente mit rostrotem Kopf und grauem Rücken, an größeren, fischreichen Seen. Meist still; Balzruf ein heiseres, katzenartiges 'wurr'.",
+    background_en: "A diving duck with a rust-red head and grey back, found on larger, fish-rich lakes. Usually silent; display call a hoarse, cat-like 'wurr'.",
     habitat: [],
     vocalMonths: null
   },
@@ -2639,6 +2875,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Tauchente mit charakteristischem Federschopf, an Seen und Teichen weit verbreitet. Meist recht ruhig; gelegentlich raue, knurrende Balzlaute des Erpels.",
+    background_en: "A diving duck with a characteristic head tuft, widespread on lakes and ponds. Usually fairly quiet; occasionally rough, growling display calls from the drake.",
     habitat: [],
     vocalMonths: null
   },
@@ -2654,6 +2891,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hai", "nwm", "uot"],
     background: "Tauchente der Meeresküste, in Deutschland Durchzügler und Wintergast, der Reiherente ähnlich. Meist still; Rufe selten zu hören.",
+    background_en: "A diving duck of the sea coast, a passage migrant and winter visitor in Germany, similar to the Tufted Duck. Usually silent; calls rarely heard.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -2669,6 +2907,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "uot"],
     background: "Kleine, dunkel-kastanienbraune Tauchente mit weißem Unterschwanz. Rote Liste 1 'vom Aussterben bedroht' – deutschlandweit nur noch bis zu 9 Brutpaare (Mitte des 19. Jahrhunderts noch verbreiteter Brutvogel mit Schwerpunkt Lausitz/Mittelfranken), seit den 1970er-Jahren nicht mehr jährlich brütend. Hauptursachen: Lebensraumzerstörung durch Entwässerung sowie hohe Verluste durch Bejagung auf dem Zug. Meist still; Balzruf ein leises, nasales Krächzen.",
+    background_en: "A small, dark chestnut-brown diving duck with a white undertail. Red List 1 'critically endangered' – only up to 9 breeding pairs remain nationwide (still a widespread breeding bird in the mid-19th century, concentrated in Lusatia/Central Franconia), no longer breeding annually since the 1970s. Main causes: habitat destruction through drainage and heavy losses to hunting on migration. Usually silent; display call a quiet, nasal croak.",
     habitat: [],
     vocalMonths: null
   },
@@ -2684,6 +2923,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Nordischer, auffällig gehaubter Beerenfresser mit stark schwankendem Auftreten (Invasionsvogel): in Invasionswintern (z.B. 2004/05 mit rund 500.000 bundesweit gemeldeten Vögeln) massenhaft und weit verbreitet, in anderen Wintern kaum zu sehen. Vor allem Norddeutschland, nur im Winter. Ruf: feines, klingelndes, silbriges Trillern, oft im Flug oder Trupp zu hören.",
+    background_en: "A northern, conspicuously crested berry-eater with strongly fluctuating occurrence (an irruptive species): in invasion winters (e.g. 2004/05 with around 500,000 birds reported nationwide) present in huge numbers and widespread, in other winters barely seen at all. Mainly northern Germany, only in winter. Call: a fine, tinkling, silvery trill, often heard in flight or in flocks.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -2699,6 +2939,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Große, ursprünglich nordamerikanische Gans, in Deutschland als eingebürgerter Neubürger an Parkgewässern und Seen verbreitet. Ruf: lautes, trompetendes, zweisilbiges 'ah-honk'.",
+    background_en: "A large, originally North American goose, established in Germany on park waters and lakes. Call: a loud, trumpeting, two-syllable 'ah-honk'.",
     habitat: [],
     vocalMonths: null
   },
@@ -2714,6 +2955,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["uot"],
     background: "Kleine nordamerikanische Kanadagans-Verwandte, in Europa ein sehr seltener Irrgast, der Kanadagans ähnlich aber deutlich kleiner. Ruf: höher als Kanadagans.",
+    background_en: "A small North American relative of the Canada Goose, a very rare vagrant in Europe, similar to the Canada Goose but noticeably smaller. Call: higher than the Canada Goose's.",
     habitat: [],
     vocalMonths: [12,12]
   },
@@ -2729,6 +2971,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "nwm", "ssc", "uot"],
     background: "Arktische Wildgans mit schwarz-weißem Kopf, überwintert in großer Zahl im Wattenmeer. Ruf: kurzes, bellendes, bei großen Trupps sehr lautes Kläffen.",
+    background_en: "An Arctic wild goose with a black-and-white head, wintering in large numbers in the Wadden Sea. Call: a short, barking yap, very loud in large flocks.",
     habitat: [],
     vocalMonths: null
   },
@@ -2744,6 +2987,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Tauchente mit rundem, grün-schwarz glänzendem Kopf, brütet in Baumhöhlen an Gewässern. Namensgebend: lautes, klirrendes Flügelschwirren im Flug; Rufe meist unauffällig.",
+    background_en: "A diving duck with a round, glossy green-black head, breeding in tree cavities near water. Its name comes from the loud, whistling whirr of its wings in flight; calls otherwise unremarkable.",
     habitat: [],
     vocalMonths: [10,5]
   },
@@ -2758,7 +3002,8 @@ const SPECIES = [
     group: "Greifvögel",
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
-    background: "Nordischer Bussard, in Deutschland Wintergast offener Landschaften, rüttelt auffällig oft im Stand. Meist still, dem Mäusebussard ähnlicher Ruf."
+    background: "Nordischer Bussard, in Deutschland Wintergast offener Landschaften, rüttelt auffällig oft im Stand. Meist still, dem Mäusebussard ähnlicher Ruf.",
+    background_en: "A northern buzzard, a winter visitor to open landscapes in Germany, conspicuously often hovering in place. Usually silent, call similar to the Common Buzzard's.",
   },
   {
     id: "spornammer",
@@ -2772,6 +3017,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Arktischer, dem Schneeammer nahe verwandter Ammer-Verwandter. Seit rund 2000 ein sehr seltener Wintergast in Deutschland (knapp über 60 dokumentierte Nachweise insgesamt) – am ehesten an der Küste Schleswig-Holsteins, in Niedersachsen und im Binnenland eine echte Ausnahme. Ruf: trockenes, klapperndes Rasseln im Flug.",
+    background_en: "An Arctic bunting relative, closely related to the Snow Bunting. A very rare winter visitor in Germany since around 2000 (just over 60 documented records in total) – most likely on the Schleswig-Holstein coast, a real exception in Lower Saxony and inland. Call: a dry, rattling clatter in flight.",
+    background_en: "A northern buzzard, a winter visitor to open landscapes in Germany, conspicuously often hovering in place. Usually silent, call similar to the Common Buzzard's.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2787,6 +3034,7 @@ const SPECIES = [
     confusionGroup: "kleine_strandlaeufer_trio",
     areas: ["byw", "hai", "hrz", "nwm", "uot"],
     background: "Häufigster Strandläufer im Wattenmeer, oft in großen, dicht fliegenden Schwärmen. Ruf: raues, schnarrendes 'trrri'.",
+    background_en: "The most common sandpiper in the Wadden Sea, often in large, densely flying flocks. Call: a rough, grating 'trrri'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -2802,6 +3050,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Mittelgroßer Strandläufer, rastet im Wattenmeer oft in dichten, synchron fliegenden Schwärmen. Extremer Langstreckenzieher aus Ostkanada/Nordsibirien – im deutschen Wattenmeer zeitweise bis zu mehreren Hunderttausend Individuen (Schätzungen reichen von 200.000 bis 800.000), ganzjährig anwesend. Trotz dieser hohen Zahlen an einzelnen Rastplätzen konzentriert und außerhalb der Wattenmeer-Gebiete kaum zu erwarten. Ruf: leises, nasales 'knutt'.",
+    background_en: "A medium-sized sandpiper, stopping over in the Wadden Sea often in dense, synchronously flying flocks. An extreme long-distance migrant from eastern Canada/northern Siberia – present in the German Wadden Sea at times in numbers up to several hundred thousand (estimates range from 200,000 to 800,000), present year-round. Despite these high numbers, concentrated at individual stopover sites and barely to be expected outside the Wadden Sea areas. Call: a quiet, nasal 'knutt'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -2817,6 +3066,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe"],
     background: "Kleiner Strandläufer mit auffällig breitem, an der Spitze abgeflachtem Schnabel, seltener, aber regelmäßiger Durchzügler vor allem an der Nordseeküste; bekannte Rastplätze u.a. im südlichen Dithmarschen, entlang der schleswig-holsteinischen Westküste, auf Fehmarn sowie in Feuchtgebieten Mecklenburg-Vorpommerns (Bessin/Hiddensee, Karrendorfer Wiesen), Hauptdurchzug Mitte Mai. Ruf: trockenes, schwirrendes 'trrit'.",
+    background_en: "A small sandpiper with a conspicuously broad bill flattened at the tip, a rare but regular passage migrant mainly on the North Sea coast; known stopover sites include southern Dithmarschen, along the Schleswig-Holstein west coast, Fehmarn and wetlands of Mecklenburg-Western Pomerania (Bessin/Hiddensee, Karrendorfer Wiesen), main passage mid-May. Call: a dry, whirring 'trrit'.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -2832,6 +3082,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Strandläufer mit charakteristisch abwärts gebogenem Schnabel, regelmäßiger, aber insgesamt seltener Durchzügler vor allem im Wattenmeer; im niederländischen Wattenmeer werden zeitweise 500-6.000 Individuen gezählt, in Deutschland treten regelmäßig Trupps von mehreren hundert Vögeln auf. Ruf: weiches, rollendes 'tschirrip'.",
+    background_en: "A sandpiper with a characteristically downcurved bill, a regular but overall rare passage migrant mainly in the Wadden Sea; up to 500-6,000 individuals are counted at times in the Dutch Wadden Sea, and flocks of several hundred birds occur regularly in Germany. Call: a soft, rolling 'chirrip'.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -2847,6 +3098,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Dunkler Strandläufer felsiger/steiniger Küsten (Buhnen, Molen, Uferbefestigungen), in Deutschland kein Brutvogel, aber seltener und regelmäßiger Wintergast von Ende September bis Ende Mai. Winterbestand an Nord- und Ostseeküste insgesamt nur einige hundert Individuen, im niedersächsischen Wattenmeer bis zu 250 rastende Vögel. Ruf: kurzes, weiches 'wit'.",
+    background_en: "A dark sandpiper of rocky/stony coasts (groynes, breakwaters, bank reinforcements), not a breeding bird in Germany but a rare and regular winter visitor from late September to late May. The wintering population on the North Sea and Baltic coasts totals only a few hundred individuals, with up to 250 birds stopping over in the Lower Saxon Wadden Sea. Call: a short, soft 'wit'.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -2862,6 +3114,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Nordamerikanischer Strandläufer, in Deutschland ein seltener, aber offenbar regelmäßiger (nicht nur zufälliger) Durchzügler auf dem Weg in noch unklare afrikanische Überwinterungsgebiete – seit 1980 im Schnitt unter fünf Nachweise pro Jahr. Ruf: raues, gurgelndes 'krrit'.",
+    background_en: "A North American sandpiper, a rare but apparently regular (not merely accidental) passage migrant in Germany en route to still-unclear African wintering grounds – on average fewer than five records per year since 1980. Call: a rough, gurgling 'krrit'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -2877,6 +3130,7 @@ const SPECIES = [
     confusionGroup: "kleine_strandlaeufer_trio",
     areas: ["byw", "hai", "nwm", "uot"],
     background: "Winziger Strandläufer, Durchzügler an Schlammufern und Wattflächen. Ruf: kurzes, trockenes 'stit'.",
+    background_en: "A tiny sandpiper, a passage migrant on muddy banks and mudflats. Call: a short, dry 'stit'.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -2892,6 +3146,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hai", "hrz", "nwm", "uot"],
     background: "Watvogel mit ausgeprägtem Balzverhalten (Halskrausen der Männchen), in Deutschland seltener Durchzügler/Brutvogel. Meist still.",
+    background_en: "A wader with pronounced display behaviour (the males' neck ruffs), a rare passage migrant/breeding bird in Germany. Usually silent.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -2907,6 +3162,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "nwm"],
     background: "Nordamerikanischer Watvogel (Brutgebiet arktisches Nordamerika, Überwinterung in Südamerika), in Deutschland eine große Seltenheit: zwischen 1977 und 1997 nur 18 Beobachtungen, meist Jungvögel, die im Frühherbst nach Europa verdriftet werden. Meist still.",
+    background_en: "A North American wader (breeding in Arctic North America, wintering in South America), a great rarity in Germany: only 18 observations between 1977 and 1997, mostly young birds carried to Europe in early autumn. Usually silent.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -2922,6 +3178,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Kleiner, unscheinbarer, in Eurasiens Tundren brütender Strandläufer, in Mitteleuropa regelmäßiger, aber seltener Durchzügler an Schlammufern und kleinen Uferstreifen zu beiden Zugzeiten – deutlich seltener als der ähnlich kleine Zwergstrandläufer, obwohl dessen Brutgebiete weiter entfernt liegen. Ruf: trockenes, schnurrendes Trillern.",
+    background_en: "A small, unassuming sandpiper breeding in the tundras of Eurasia, a regular but rare passage migrant in Central Europe on muddy banks and small stretches of shoreline during both migration periods – noticeably rarer than the similarly small Little Stint, even though its breeding grounds lie further away. Call: a dry, whirring trill.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -2937,6 +3194,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "uot"],
     background: "Auffällig rot gefärbter Fink (Männchen). Areal breitete sich seit den 1930er-Jahren nach Westen bis Mitteleuropa/Südskandinavien aus, Deutschland liegt am Westrand der Verbreitung mit Schwerpunkt Vorpommern/Ostseeküste – aktuell 600-1.000 Brutpaare bundesweit, nach jahrzehntelangem Wachstum seit Ende der 1990er aber wieder rückläufig. Gesang: unverwechselbare, wehmütig gepfiffene Phrase, oft als 'Pleased-to-meet-you' umschrieben.",
+    background_en: "A strikingly red-coloured finch (male). Its range has spread westward into Central Europe/southern Scandinavia since the 1930s, with Germany at the western edge of its distribution, concentrated in Western Pomerania/the Baltic coast – currently 600-1,000 breeding pairs nationwide, but declining again since the late 1990s after decades of growth. Song: an unmistakable, wistfully whistled phrase, often rendered as 'pleased to meet you'.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -2952,6 +3210,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Heimlicher, dichtes Gebüsch an Gewässern bewohnender Sänger. Breitet sich seit einigen Jahren spürbar von Süden/Westen nach Deutschland aus (erste Brut 1975, dann erst wieder 2015, 2020 bereits 13 Reviere bei Kleve am Niederrhein) – ein Kandidat für weitere Ausbreitung, aktuell aber noch auf wenige Regionen beschränkt. Unverwechselbarer Gesang: sehr laut, explosionsartig, abrupt beginnend 'tschwit-tschwit-tschwit-tschwit'.",
+    background_en: "A secretive songster living in dense scrub near water. Has been noticeably spreading into Germany from the south/west for several years (first breeding 1975, then not again until 2015, with already 13 territories near Kleve on the Lower Rhine by 2020) – a candidate for further spread, but currently still confined to a few regions. Unmistakable song: very loud, explosive, starting abruptly 'chwit-chwit-chwit-chwit'.",
     habitat: [],
     vocalMonths: [3,8]
   },
@@ -2967,6 +3226,7 @@ const SPECIES = [
     confusionGroup: "regenpfeifer_trio",
     areas: ["byw", "nwm", "uot"],
     background: "Kompakter Regenpfeifer sandiger Küsten, mit auffälligem schwarzem Brustband. Ruf: weiches, flötendes, zweisilbiges 'tu-li'.",
+    background_en: "A compact plover of sandy coasts, with a conspicuous black breast band. Call: a soft, fluting, two-syllable 'too-li'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -2982,6 +3242,7 @@ const SPECIES = [
     confusionGroup: "sumpf_seeschwalben_trio",
     areas: ["kwe", "uot"],
     background: "Sumpfseeschwalbe mit auffällig hellen Flügeln im Brutkleid, in Deutschland kein regulärer Brutvogel, aber ein spärlicher Durchzügler v.a. im Nordosten – anders als im 20. Jahrhundert inzwischen regelmäßig auf dem Heimzug im Frühjahr zu beobachten, im Herbst deutlich seltener. Ruf ähnlich Trauerseeschwalbe, kurz und kratzig.",
+    background_en: "A marsh tern with conspicuously pale wings in breeding plumage, not a regular breeding bird in Germany but a sparse passage migrant mainly in the north-east – unlike in the 20th century, now regularly observed on spring passage, much rarer in autumn. Call similar to the Black Tern's, short and scratchy.",
   },
   {
     id: "trauerseeschwalbe",
@@ -2995,6 +3256,7 @@ const SPECIES = [
     confusionGroup: "sumpf_seeschwalben_trio",
     areas: ["kwe", "nwm", "uot"],
     background: "Dunkel gefärbte Sumpfseeschwalbe, jagt Insekten tief über Gewässern. Bestand Ende des 20. Jahrhunderts drastisch auf rund 1.000 Brutpaare bundesweit eingebrochen (v.a. durch Eutrophierung – der Krebsschere als Nistunterlage fehlt in nährstoffreichen Gewässern), seither dank Nisthilfen stabilisiert (heute rund 80% der Brutpaare auf künstlichen Flößen) und in der Roten Liste 2021 von Kategorie 1/2 auf Kategorie 3 'gefährdet' heruntergestuft. Ruf: kurzes, kratziges 'kik'.",
+    background_en: "A dark-coloured marsh tern, hunting insects low over water. Its population collapsed dramatically to around 1,000 breeding pairs nationwide by the end of the 20th century (mainly through eutrophication – water-soldier plants needed as a nesting substrate are absent from nutrient-rich waters), but has since stabilised thanks to artificial nesting rafts (today around 80% of breeding pairs use artificial floats) and was downgraded from Category 1/2 to Category 3 'endangered' in the 2021 Red List. Call: a short, scratchy 'kik'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -3010,6 +3272,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Häufigste Möwe Deutschlands, an Gewässern aller Art bis in Städte. Ruf: lautes, krächzendes, kreischendes 'krrrr'/'kjarr', namensgebend für 'Lachmöwe'.",
+    background_en: "Germany's most common gull, found on bodies of water of all kinds, even into cities. Call: a loud, harsh, screeching 'krrrr'/'kyarr' – the source of its German name ('laughing gull').",
     habitat: [],
     vocalMonths: null
   },
@@ -3025,6 +3288,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm"],
     background: "Großer, auf Schlangen und Reptilien spezialisierter Greifvogel, war bis ins 19. Jahrhundert in geringer Zahl Brutvogel in Deutschland, seit Beginn des 20. Jahrhunderts aber als Brutvogel ausgestorben. Heute jährlich nur vereinzelte sehr seltene Nahrungsgäste, praktisch ausschließlich von Juni bis Mitte August (kein Wintervorkommen, da Langstreckenzieher mit Überwinterung südlich der Sahara). Ruf: pfeifendes 'hio-hio'.",
+    background_en: "A large raptor specialised in snakes and reptiles, was a breeding bird in small numbers in Germany until the 19th century, but has been extinct as a breeding bird since the early 20th century. Today only occasional, very rare non-breeding visitors each year, practically only from June to mid-August (no winter occurrence, as it is a long-distance migrant wintering south of the Sahara). Call: a whistled 'hio-hio'.",
   },
   {
     id: "kornweihe",
@@ -3038,6 +3302,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Schlanker Greifvogel offener Landschaften, gleitet niedrig mit angehobenen Flügeln über Felder und Moore. Meist still; Ruf ein schnelles, kecklendes 'jick-jick-jick'.",
+    background_en: "A slender raptor of open landscapes, gliding low with raised wings over fields and bogs. Usually silent; call a fast, chattering 'jick-jick-jick'.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -3053,6 +3318,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Osteuropäisch-asiatische Weihenart, war bis 1850 vereinzelt Brutvogel in Deutschland (letzter Brutnachweis 1952), heute extrem seltener Durchzügler und gelegentlicher Wintergast – allerdings mit deutlich zunehmender Tendenz: von rund 30 Nachweisen in den letzten drei Jahrzehnten des 20. Jahrhunderts auf über 130 im folgenden Jahrzehnt, vermutlich durch die Nordausbreitung des Brutgebiets bis Finnland. Meist still.",
+    background_en: "An Eastern European/Asian harrier species, an occasional breeding bird in Germany until 1850 (last breeding record 1952), today an extremely rare passage migrant and occasional winter visitor – though with a clearly increasing trend: from around 30 records in the last three decades of the 20th century to over 130 in the following decade, probably due to the breeding range expanding north to Finland. Usually silent.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3068,6 +3334,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "nwm", "ssc", "uot"],
     background: "Schlankste heimische Weihenart, brütet am Boden in Feldern, stark auf Schutzmaßnahmen angewiesen. Meist still; Ruf ähnlich Kornweihe, aber höher.",
+    background_en: "The slenderest native harrier, nesting on the ground in fields, strongly dependent on protective measures. Usually silent; call similar to the Hen Harrier's, but higher.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -3083,6 +3350,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Winziger, mediterraner Sänger von Feuchtwiesen. Breitet sich klimawandelbedingt zunehmend nach Norden aus – von 1977-2018 nur 17 anerkannte deutsche Nachweise, 2020 aber der erste deutsche Brutnachweis (Losheim am See, Saarland), seitdem weitere Nachweise v.a. in Süd-/Westdeutschland (Bayern, Baden-Württemberg, Hessen, Rheinland-Pfalz). Ein Kandidat für weitere Ausbreitung. Ruf: charakteristisches, gereihtes 'zip-zip-zip' im welligen Singflug.",
+    background_en: "A tiny Mediterranean songster of wet meadows. Increasingly spreading northward due to climate change – only 17 accepted German records from 1977-2018, but the first German breeding record came in 2020 (Losheim am See, Saarland), with further records since then mainly in southern/western Germany (Bavaria, Baden-Württemberg, Hesse, Rhineland-Palatinate). A candidate for further spread. Call: a characteristic, repeated 'zip-zip-zip' in undulating song flight.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -3098,6 +3366,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hho", "nwm"],
     background: "Arktische Meeresente – in Deutschland fast ausschließlich ein Ostsee-Vogel: bis zu 350.000 Überwinterer in Pommerscher Bucht, Kieler und Lübecker Bucht (nicht, wie oft angenommen, an der Nordsee). Am Wattenmeer und in unseren Gebieten dagegen eine echte Rarität, da die Art die flachen Wattgebiete meidet – nur vereinzelte Einzelnachweise. Ruf: melodisches, jodelndes 'ah-ah-lee'.",
+    background_en: "An Arctic sea duck – in Germany almost exclusively a Baltic Sea bird: up to 350,000 wintering birds in Pomeranian Bay, and Kiel and Lübeck Bays (not, as often assumed, on the North Sea). In the Wadden Sea and our areas, by contrast, a genuine rarity, as the species avoids the shallow tidal flats – only occasional isolated records. Call: a melodic, yodelling 'ah-ah-lee'.",
     habitat: ["offshore_coast"],
     vocalMonths: [10,4]
   },
@@ -3113,6 +3382,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kräftigster heimischer Fink mit sehr dickem Schnabel zum Knacken von Kirsch-/Hainbuchenkernen, oft in Baumkronen versteckt. Ruf: kurzes, scharfes, metallisches 'zick'.",
+    background_en: "Germany's most powerfully built native finch, with a very thick bill for cracking cherry stones/hornbeam seeds, often hidden in treetops. Call: a short, sharp, metallic 'tzick'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3128,6 +3398,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Stammform der Stadttaube, in Städten und an Gebäuden allgegenwärtig. Ruf: charakteristisches, gurrendes 'gru-gru-guuuu'.",
+    background_en: "Ancestor of the feral city pigeon, ubiquitous in cities and on buildings. Call: a characteristic, cooing 'gru-gru-guuuu'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3143,6 +3414,7 @@ const SPECIES = [
     confusionGroup: "hohl_ringeltaube",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinere, unscheinbarere Verwandte der Ringeltaube, brütet in Baumhöhlen und alten Spechthöhlen. Ruf: dumpfes, zweisilbiges, monoton wiederholtes 'huu-hu'.",
+    background_en: "A smaller, less conspicuous relative of the Woodpigeon, breeding in tree cavities and old woodpecker holes. Call: a dull, two-syllable, monotonously repeated 'hoo-hu'.",
     habitat: [],
     vocalMonths: [2,10]
   },
@@ -3158,6 +3430,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Östliche Farbform der Rabenkrähe mit grauem Rumpf, in Deutschland v.a. im äußersten Nordosten, dort auch Mischformen. Ruf akustisch identisch mit der Rabenkrähe – nur optisch zu unterscheiden.",
+    background_en: "The eastern colour form of the Carrion Crow with a grey body, found in Germany mainly in the far north-east, where intermediate forms also occur. Its call is acoustically identical to the Carrion Crow's – distinguishable only by appearance.",
     habitat: [],
     vocalMonths: null
   },
@@ -3173,6 +3446,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif"],
     background: "Kleine, mediterrane Grasmücke (Brutgebiet Halbwüsten/Salzsteppen rund ums Mittelmeer), in Deutschland ein extrem seltener Irrgast. Im Juli 2017 gelang in der Eifel mit einem Brutpaar samt 5 Jungvögeln der erste deutsche und vierte mitteleuropäische Brutnachweis überhaupt – eine absolute Ausnahme. Gesang schnell und kratzig.",
+    background_en: "A small Mediterranean warbler (breeding range in semi-deserts/salt steppes around the Mediterranean), an extremely rare vagrant in Germany. In July 2017 a breeding pair with 5 fledglings in the Eifel produced the first German and fourth Central European breeding record ever – an absolute exception. Song fast and scratchy.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -3188,6 +3462,7 @@ const SPECIES = [
     confusionGroup: "klapper_dorngrasmuecke",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleine, unscheinbare Grasmücke dichter Hecken und Gebüsche. Gesang: leises Plaudern, mündet in ein hartes, rasselndes 'klapper-klapper-klapper' – namensgebend.",
+    background_en: "A small, unassuming warbler of dense hedges and scrub. Song: quiet murmuring, building into a hard, rattling clatter – the source of its German name.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3203,6 +3478,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hai", "uot"],
     background: "Größte heimische Grasmücke mit fein gesperberter Unterseite. Bundesweit je nach Quelle 5.500-16.000 Brutpaare, Schwerpunkt fast ausschließlich im Osten Deutschlands (v.a. Brandenburg), im Westen nur unregelmäßiger, sehr seltener Brutvogel. Rote Liste Kategorie 1 (vom Aussterben bedroht) mit starkem Rückgang, Bestände schwanken jahrweise stark. Gesang: der Dorngrasmücke ähnlich, aber tiefer und rauer.",
+    background_en: "Germany's largest native warbler, with a finely barred underside. Depending on the source, 5,500-16,000 breeding pairs nationwide, concentrated almost exclusively in eastern Germany (mainly Brandenburg), only an irregular, very rare breeding bird in the west. Red List Category 1 (critically endangered) with a strong decline, populations fluctuating sharply from year to year. Song: similar to the Common Whitethroat's, but lower and rougher.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -3218,6 +3494,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm", "uot"],
     background: "Kleinster heimischer Wildschwan, dem Singschwan ähnlich, überwintert in kleiner Zahl v.a. im Wattenmeer-Umfeld. Ruf: hohes, weiches, gänseartiges Trompeten.",
+    background_en: "Germany's smallest native wild swan, similar to the Whooper Swan, wintering in small numbers mainly around the Wadden Sea. Call: a high, soft, goose-like trumpeting.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -3233,6 +3510,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw"],
     background: "Seltener Specht alter, totholzreicher Bergmischwälder – deutschlandweit nur 700-1.100 Brutpaare, beschränkt auf die Alpen und den Bayerischen Wald (die einzigen beiden deutschen Vorkommen). Im Bayerischen Wald früher weiter verbreitet, seit dem Beginn großflächiger Holznutzung aber stark rückläufig mit nur noch sehr kleinen Restvorkommen – braucht Wälder mit sehr hohem Totholz- und Laubholzanteil, ernährt sich ausschließlich von Insekten totem Laubholzes. Trommelwirbel beschleunigt zum Ende hin, anders als bei anderen Spechten.",
+    background_en: "A rare woodpecker of old, dead-wood-rich montane mixed forest – only 700-1,100 breeding pairs nationwide, confined to the Alps and the Bavarian Forest (Germany's only two occurrences). Formerly more widespread in the Bavarian Forest, but strongly declining since large-scale timber harvesting began, with only very small remnant populations left – needs forest with a very high proportion of dead and broadleaved wood, feeding exclusively on insects in dead broadleaved timber. Its drum roll accelerates towards the end, unlike other woodpeckers'.",
     habitat: [],
     vocalMonths: [3,8]
   },
@@ -3248,6 +3526,7 @@ const SPECIES = [
     confusionGroup: "spechte_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Specht, sperlingsgroß, oft hoch in Baumkronen und daher leicht übersehen. Ruf: hohe, gereihte Serie 'ki-ki-ki-ki-ki'; Trommelwirbel sehr lang und leise.",
+    background_en: "Germany's smallest native woodpecker, sparrow-sized, often high in the treetops and therefore easily overlooked. Call: a high, repeated series 'ki-ki-ki-ki-ki'; drum roll very long and quiet.",
     habitat: [],
     vocalMonths: null
   },
@@ -3263,6 +3542,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "kwe", "nwm", "uot"],
     background: "Kleiner, weißer Reiher mit schwarzem Schnabel und gelben Füßen, breitet sich von Süden her aus. Ruf: raues, krächzendes Schnarren am Brutplatz, sonst meist still.",
+    background_en: "A small, white heron with a black bill and yellow feet, spreading northward. Call: rough, croaking chattering at the breeding site, otherwise usually silent.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -3278,6 +3558,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm"],
     background: "Kleiner, hell gefärbter Greifvogel mit charakteristischem Rüttelflug, ursprünglich südlich verbreitet. Bis 2009 mit nur 13 Beobachtungen in 25 Jahren eine ausgesprochene Seltenheit, seit 2010 aber (bis auf 2011) jährlich nachgewiesen mit rasch steigenden Zahlen – 2025 neuer Höchststand mit 57 Nachweisen/62 Individuen sowie der ersten dokumentierten Brut in Deutschland (Wesermarsch). Meist still.",
+    background_en: "A small, pale-coloured raptor with a characteristic hovering flight, originally distributed further south. A real rarity with only 13 observations in 25 years up to 2009, but recorded annually since 2010 (except 2011) with rapidly rising numbers – a new record in 2025 with 57 records/62 individuals as well as the first documented breeding in Germany (Wesermarsch). Usually silent.",
     habitat: [],
     vocalMonths: [9,12]
   },
@@ -3293,6 +3574,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["uot"],
     background: "Ammer wärmebegünstigter, offener Kulturlandschaft. In Deutschland aktuell rund 10.000-14.000 Brutpaare (davon ca. 1.400 in Niedersachsen), aber mit starkem Rückgang und seit der jüngsten Roten Liste in Kategorie 2 'stark gefährdet' (zuvor Kategorie 3) – Hauptursachen: Mais-Intensivlandwirtschaft, dichte Getreidebestände als ungeeignetes Brut-/Nahrungshabitat, zunehmende Starkregenereignisse zur Brutzeit sowie Nahrungsmangel im Winterquartier. Gesang: kurze, klare Strophe, endet mit tieferem, gezogenem Schlusston.",
+    background_en: "A bunting of warm, open farmland. Currently around 10,000-14,000 breeding pairs in Germany (of which around 1,400 in Lower Saxony), but with a strong decline and, under the most recent Red List, in Category 2 'severely endangered' (previously Category 3) – main causes: intensive maize farming, dense cereal stands as unsuitable breeding/foraging habitat, increasing heavy-rain events during the breeding season, and food shortages in the winter quarters. Song: a short, clear phrase, ending in a lower, drawn-out final note.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -3308,6 +3590,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Nordische Lerche mit schwarzer Gesichtszeichnung. Früher (1960er-80er) ein nahezu regelmäßiger Wintergast in kleiner Zahl an der Küste, seit den 1990ern/2000ern aber deutlich rückläufig und mittlerweile vielerorts eine echte Ausnahmeerscheinung – sucht November bis März zusammen mit Schneeammern und Berghänflingen die Spülsäume nach angeschwemmten Samen ab. Ruf: hohes, dünnes 'tsii-titi'.",
+    background_en: "A northern lark with black facial markings. Formerly (1960s-80s) an almost regular winter visitor in small numbers on the coast, but clearly declining since the 1990s/2000s and now a genuine rarity in many places – from November to March it forages the strandlines together with Snow Buntings and Twites for washed-up seeds. Call: a high, thin 'tsii-titi'.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -3323,6 +3606,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "nwm", "uot"],
     background: "Kleinster heimischer Falke, jagt kleine Vögel im schnellen, niedrigen Verfolgungsflug, in Deutschland v.a. Wintergast. Ruf: schnelle, hohe Serie, meist nur am Brutplatz (nicht in Deutschland) zu hören.",
+    background_en: "Germany's smallest native falcon, hunting small birds in fast, low pursuit flight, mainly a winter visitor in Germany. Call: a fast, high series, mostly only heard at the breeding site (not in Germany).",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -3338,6 +3622,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "kwe", "nwm", "uot"],
     background: "Kleiner, geselliger Falke, jagt oft Insekten im Rüttelflug über Feuchtwiesen, in Deutschland seltener Durchzügler. Ruf: hohes, kecklendes 'ki-ki-ki'.",
+    background_en: "A small, sociable falcon, often hunting insects in hovering flight over wet meadows, a rare passage migrant in Germany. Call: a high, chattering 'ki-ki-ki'.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -3353,6 +3638,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "ssc"],
     background: "Dem Trauerschnäpper sehr ähnlicher Schnäpper mit weißem Halsband, in Deutschland lokal in alten Laubwäldern. Gesang ähnlich Trauerschnäpper, aber variabler.",
+    background_en: "A flycatcher very similar to the Pied Flycatcher, with a white collar, found locally in old deciduous forest in Germany. Song similar to the Pied Flycatcher's, but more variable.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3368,6 +3654,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Alkenvogel mit auffällig buntem, papageienartigem Schnabel. Ehemals Brutvogel auf Helgoland, erloschen seit Ende des 19. Jh.; heute nur noch sehr seltener Seegast/Sturmopfer vor der deutschen Nordseeküste. Meist still fernab der Kolonien.",
+    background_en: "An auk with a strikingly colourful, parrot-like bill. Formerly a breeding bird on Heligoland, extinct there since the late 19th century; today only a very rare sea visitor/storm-driven bird off the German North Sea coast. Usually silent away from the colonies.",
     habitat: ["offshore_coast"],
     vocalMonths: [9,11]
   },
@@ -3383,6 +3670,7 @@ const SPECIES = [
     confusionGroup: "berg_buchfink",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Nordischer Verwandter des Buchfinken, in Deutschland v.a. Wintergast in großen, oft riesigen Schwärmen an Buchen. Ruf: nasales, schnarrendes 'quäk'.",
+    background_en: "A northern relative of the Chaffinch, mainly a winter visitor in Germany in large, sometimes huge flocks in beech woods. Call: a nasal, rasping wheeze.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -3398,6 +3686,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Hochseevogel, brütet in Deutschland ausschließlich an den Steilküsten von Helgoland (seit 1972), fliegt mit charakteristisch steifen, starren Flügeln. Der Bestand ist entgegen dem Trend vieler anderer Seevögel rückläufig: von einem Höchststand von 121 Paaren (2005) auf nur noch 23-25 Paare (2022). Meist still fernab der Kolonie.",
+    background_en: "A pelagic bird, breeding in Germany exclusively on the cliffs of Heligoland (since 1972), flying with characteristically stiff, rigid wings. Contrary to the trend for many other seabirds, its population is declining: from a peak of 121 pairs (2005) to only 23-25 pairs (2022). Usually silent away from the colony.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -3413,6 +3702,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "jtb", "uot"],
     background: "Lerche mit auffälliger Federhaube, an offenen, vegetationsarmen Flächen wie Industriegelände und Bahnhöfen, stark rückläufig. Gesang: wehmütige, gedehnte Pfeiftöne wie 'tri-tri-tüh' oder 'wi-wi-wjü', oft im Flug vorgetragen, langsamer und melancholischer als die Feldlerche.",
+    background_en: "A lark with a conspicuous crest, found on open, sparsely vegetated ground such as industrial sites and railway stations, strongly declining. Song: wistful, drawn-out whistled notes like 'tri-tri-tüh' or 'wi-wi-wjü', often delivered in flight, slower and more melancholic than the Sky Lark's.",
     habitat: [],
     vocalMonths: null
   },
@@ -3428,6 +3718,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "lbr", "nwm"],
     background: "Seetaucher, in Deutschland Durchzügler/Wintergast v.a. an der Küste. Meist still in Deutschland; Brutgesang unverwechselbar heulend (nicht hier zu hören).",
+    background_en: "A diver, a passage migrant/winter visitor in Germany mainly on the coast. Usually silent in Germany; breeding song unmistakably wailing (not heard here).",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: null
   },
@@ -3443,6 +3734,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hai", "nwm"],
     background: "Großer nordamerikanischer Seetaucher, in Deutschland ein seltener, aber regelmäßiger Wintergast an der Nordseeküste (nur rund 100 Individuen deutschlandweit, November–März) – meist weit draußen auf See und schwer zu entdecken. Weltbestand laut IUCN nicht gefährdet. Meist still im Winterquartier.",
+    background_en: "A large North American diver, a rare but regular winter visitor on the German North Sea coast (only around 100 individuals nationwide, November–March) – usually far out at sea and hard to spot. World population not considered threatened according to the IUCN. Usually silent in its winter quarters.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: [10,2]
   },
@@ -3458,6 +3750,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm"],
     background: "Kleinster und häufigster der drei Seetaucher-Arten in Deutschland, regelmäßiger Wintergast auf Nord- und Ostsee (allein in der östlichen Deutschen Bucht ca. 6500 Individuen). Auf See meist still, an Land gelegentlich klagende Rufe.",
+    background_en: "The smallest and most common of the three diver species in Germany, a regular winter visitor on the North Sea and Baltic (around 6,500 individuals in the eastern German Bight alone). Usually silent at sea, occasionally plaintive calls on land.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: null
   },
@@ -3473,6 +3766,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Seeschwalbe mit kräftigem, schwarzem Schnabel, jagt auch über Land nach Insekten. In Deutschland nur noch sehr seltener Brutvogel mit stark geschrumpftem Bestand: 47 Brutpaare (Stand 2020), beschränkt auf wenige eingedeichte Köge und Flussvorländer an den niedersächsischen Elbeästuaren und im Neufelder-Koog. Rote Liste Kategorie 1 (vom Aussterben bedroht). Ruf: raues, näselndes 'ka-wek'.",
+    background_en: "A tern with a stout, black bill, also hunting insects over land. In Germany now only a very rare breeding bird with a strongly shrunken population: 47 breeding pairs (as of 2020), confined to a few embanked polders and river forelands on the Lower Saxon Elbe estuaries and at Neufelder Koog. Red List Category 1 (critically endangered). Call: a rough, nasal 'ka-wek'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -3488,6 +3782,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif"],
     background: "Großer Geier, in Deutschland kein Brutvogel. Vor allem junge, noch nicht geschlechtsreife Vögel aus spanischen/französischen Kolonien unternehmen ausgedehnte Erkundungsflüge und werden bei günstiger Thermik nach Deutschland verdriftet – ist in den letzten Jahren fast zu einer regelmäßigen Frühjahrs-/Sommererscheinung geworden und dürfte durch wachsende europäische Bestände und Klimawandel weiter zunehmen. Meist still, gelegentlich zischende/grunzende Laute am Fressplatz.",
+    background_en: "A large vulture, not a breeding bird in Germany. Mainly young, not-yet-mature birds from Spanish/French colonies undertake extended exploratory flights and are carried to Germany when thermals are favourable – in recent years it has become an almost regular spring/summer occurrence and is likely to increase further as European populations grow and with climate change. Usually silent, occasionally hissing/grunting sounds at feeding sites.",
   },
   {
     id: "zwergadler",
@@ -3501,6 +3796,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleiner, dem Mäusebussard ähnlicher Adler Südeuropas, in Deutschland ein seltener Durchzügler und Gast mit nur einem einzigen dokumentierten Brutnachweis (1995, Hakel bei Halberstadt) – die Nachweishäufigkeit nimmt Richtung Norden und Westen weiter ab. Ruf: hohes, pfeifendes 'kli-kli-kli'.",
+    background_en: "A small eagle similar to the Common Buzzard, found in southern Europe, a rare passage migrant and visitor in Germany with only a single documented breeding record (1995, Hakel near Halberstadt) – the frequency of records continues to decrease further north and west. Call: a high, whistled 'kli-kli-kli'.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -3516,6 +3812,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Watvogel mit extrem langen, roten Beinen. War in Deutschland lange nur unregelmäßiger Gast, brütet seit 2012 klimabedingt regelmäßig, mit wachsender Tendenz (2020 bundesweit bis zu 17 Brutpaare, u.a. in Schleswig-Holstein, Mecklenburg-Vorpommern und Niedersachsen) – absolute Zahlen bleiben aber sehr klein. Ruf: lautes, scharfes, kläffendes 'kjick-kjick-kjick'.",
+    background_en: "A wader with extremely long, red legs. Long only an irregular visitor in Germany, it has bred regularly since 2012 due to climate change, with an increasing trend (up to 17 breeding pairs nationwide in 2020, including in Schleswig-Holstein, Mecklenburg-Western Pomerania and Lower Saxony) – but absolute numbers remain very small. Call: a loud, sharp, yapping 'kyick-kyick-kyick'.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -3531,6 +3828,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "uot"],
     background: "Gelblicher Sänger lichter Laubwälder und Parks mit Unterholz. Gesang: sehr langer, schwatzhafter, plappernder Wortschwall mit vielen nachgeahmten Elementen.",
+    background_en: "A yellowish songster of open deciduous woodland and parks with undergrowth. Song: a very long, chattering, babbling stream of notes with many imitated elements.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -3546,6 +3844,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Winziger, nachtaktiver Hochseevogel, brütet auf abgelegenen Westatlantikinseln, an der Nordseeküste (inkl. Helgoland) seltener, aber regelmäßiger Gast nach Herbststürmen, im Binnenland/an der Ostsee extreme Ausnahmeerscheinung. Meist auf See stumm.",
+    background_en: "A tiny, nocturnal pelagic bird, breeding on remote western Atlantic islands, a rare but regular visitor to the North Sea coast (including Heligoland) after autumn storms, an extreme rarity inland/on the Baltic. Usually silent at sea.",
     habitat: ["offshore_coast"],
     vocalMonths: [9,11]
   },
@@ -3561,6 +3860,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hai", "kwe", "nwm", "uot"],
     background: "Kleinste Möwe der Welt, in Deutschland Durchzügler an Gewässern. Ruf: hohes, kurzes, kecklendes 'kek-kek'.",
+    background_en: "The world's smallest gull, a passage migrant on bodies of water in Germany. Call: a high, short, chattering 'kek-kek'.",
     habitat: [],
     vocalMonths: [7,11]
   },
@@ -3576,6 +3876,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm", "uot"],
     background: "Größte Seeschwalbe der Welt mit kräftigem rotem Schnabel. Als Brutvogel in Deutschland inzwischen erloschen (letzter erfolgreicher Brutnachweis 2012 auf Rügen, seither keine weiteren Bruten, Rote Liste 1 'vom Aussterben bedroht') – tritt bei uns nur noch als Durchzügler v.a. an der Küste auf. Ruf: sehr lautes, heiseres, krähenartiges 'kraah'.",
+    background_en: "The world's largest tern, with a stout red bill. Now extinct as a breeding bird in Germany (last successful breeding record 2012 on Rügen, no further breeding since, Red List 1 'critically endangered') – occurs here now only as a passage migrant, mainly on the coast. Call: a very loud, hoarse, crow-like 'kraah'.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -3591,6 +3892,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm", "uot"],
     background: "Möwe mit schwarzer Kopfkappe und rotem Schnabel, breitet sich seit dem ersten deutschen Brutnachweis 1951 von Südosteuropa her aus. Bestand wuchs von 50-60 Brutpaaren (1996) auf mittlerweile über 100 Brutpaare, mit starkem Schwerpunkt in einer einzigen großen Kolonie an der niedersächsischen Elbe (über 90% des Landesbestands); insgesamt aber weiterhin ein seltener Brutvogel mit jahrweise stark schwankenden Beständen an wenigen, weit verstreuten Orten. Ruf: nasales, näselndes 'jaa-err'.",
+    background_en: "A gull with a black head cap and red bill, spreading from south-eastern Europe since the first German breeding record in 1951. The population grew from 50-60 breeding pairs (1996) to now over 100 breeding pairs, with a strong focus on a single large colony on the Lower Saxon Elbe (over 90% of the national population); overall, however, still a rare breeding bird with populations fluctuating sharply year to year at a few, widely scattered sites. Call: a nasal 'yaa-err'.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -3606,6 +3908,7 @@ const SPECIES = [
     confusionGroup: "gruenspecht_grauspecht_wendehals",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Ungewöhnlicher, zugvoller Spechtverwandter ohne Trommelwirbel, in Streuobstwiesen und lichten Wäldern. Unverwechselbarer Ruf: laute, gereihte Serie nasaler 'quii-quii-quii'-Töne.",
+    background_en: "An unusual, migratory woodpecker relative without a drum roll, found in traditional orchards and open woodland. Unmistakable call: a loud, repeated series of nasal 'qui-qui-qui' notes.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3621,6 +3924,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Mediterraner Würger mit auffällig rotem Scheitel. War im 19. Jahrhundert noch bis Mecklenburg-Vorpommern verbreiteter, stellenweise häufiger Brutvogel, schrumpfte in den 1980ern auf wenige südwestdeutsche Regionen (Oberrheinische Tiefebene) und gilt seit dem letzten Brutnachweis 2009 als in Deutschland ausgestorben (Ursachen: Landwirtschaftswandel, Flurbereinigung, Brutplatzverlust). Heute nur noch extrem seltener Irrgast. Gesang leise und schwätzend, ähnlich Neuntöter.",
+    background_en: "A Mediterranean shrike with a strikingly red crown. Was still a widespread, locally common breeding bird as far as Mecklenburg-Western Pomerania in the 19th century, shrank to a few south-western German regions (Upper Rhine Plain) in the 1980s, and has been considered extinct in Germany since the last breeding record in 2009 (causes: agricultural change, land consolidation, loss of nesting sites). Today only an extremely rare vagrant. Song quiet and chattering, similar to the Red-backed Shrike's.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -3635,7 +3939,8 @@ const SPECIES = [
     group: "Möwen & Seeschwalben",
     confusionGroup: "grossmoewen_trio",
     areas: ["eif", "hai", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
-    background: "Große, kräftige Möwe der Küste und großer Gewässer. Ruf: lautes, weittragendes 'kjau-kjau-kjau', typischer 'Möwenschrei'."
+    background: "Große, kräftige Möwe der Küste und großer Gewässer. Ruf: lautes, weittragendes 'kjau-kjau-kjau', typischer 'Möwenschrei'.",
+    background_en: "A large, powerful gull of the coast and large waterbodies. Call: a loud, far-carrying 'kyow-kyow-kyow', the classic 'gull scream'.",
   },
   {
     id: "steppenmoewe",
@@ -3649,6 +3954,8 @@ const SPECIES = [
     confusionGroup: "grossmoewen_trio",
     areas: ["eif", "hai", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Der Silbermöwe sehr ähnliche, aus Osteuropa stammende Großmöwe, breitet sich in Deutschland aus. Ruf der Silbermöwe sehr ähnlich, im Feld kaum zu unterscheiden.",
+    background_en: "A large gull very similar to the Herring Gull, originating from Eastern Europe, spreading in Germany. Call very similar to the Herring Gull's, barely distinguishable in the field.",
+    background_en: "A large, powerful gull of the coast and large waterbodies. Call: a loud, far-carrying 'kyow-kyow-kyow', the classic 'gull scream'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3664,6 +3971,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "nwm", "uot"],
     background: "Mittelgroße, zierliche Möwe, an Küsten und im Binnenland auf Feldern und Gewässern. Ruf: hohes, klagendes, miauendes 'kiiu'.",
+    background_en: "A medium-sized, dainty gull, found on coasts and inland on fields and waterbodies. Call: a high, plaintive, mewing 'kiew'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3679,6 +3987,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm", "ssc", "uot"],
     background: "Große, dunkelmantelige Möwe, brütet u.a. auf Wattenmeer-Inseln. Ruf ähnlich Silbermöwe, aber etwas heiserer.",
+    background_en: "A large, dark-mantled gull, breeding among other places on Wadden Sea islands. Call similar to the Herring Gull's, but somewhat hoarser.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -3694,6 +4003,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Arktische Großmöwe ganz ohne dunkle Flügelspitzen (Brutgebiet Kanada/Grönland, Überwinterung meist Island/Nordatlantik bis Britische Inseln), erscheint nur bei extremen Wetterlagen ausnahmsweise an deutschen Küsten oder Seen – in Europa insgesamt seltener als die nah verwandte Eismöwe. Ruf ähnlich Silbermöwe.",
+    background_en: "An Arctic large gull entirely without dark wingtips (breeding range Canada/Greenland, wintering mainly Iceland/North Atlantic to the British Isles), appearing only exceptionally on German coasts or lakes during extreme weather – overall rarer in Europe than the closely related Glaucous Gull. Call similar to the Herring Gull's.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -3709,6 +4019,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Sehr große arktische Möwe ganz ohne dunkle Zeichnung, in Deutschland kein Brutvogel, sondern seltener, aber regelmäßiger Wintergast v.a. an der Nordseeküste – Helgoland gilt als Schwerpunkt mit fast alljährlichen Nachweisen, oft mehreren Individuen pro Jahr, während es im übrigen Deutschland meist nur Einzelexemplare sind. Ruf ähnlich, aber tiefer als Silbermöwe.",
+    background_en: "A very large Arctic gull entirely without dark markings, not a breeding bird in Germany but a rare, yet regular winter visitor, mainly on the North Sea coast – Heligoland is considered a stronghold with almost annual records, often several individuals per year, while elsewhere in Germany usually only single birds occur. Call similar to but lower than the Herring Gull's.",
     habitat: [],
     vocalMonths: null
   },
@@ -3724,6 +4035,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm", "uot"],
     background: "Größte Möwe der Welt, sehr kräftig mit fast schwarzem Mantel. In Deutschland erst seit Mitte der 1980er Brutvogel, aktuell rund 100 Brutpaare (46-52 an Nord-/Ostseeküste, am Wattenmeer selbst fehlt sie als Brutvogel) – im Winterhalbjahr sammeln sich aber zusätzlich tausende skandinavische Vögel an unseren Küsten, ganzjährig zu beobachten. Ruf: tiefes, langsames, sehr kräftiges 'auu-auu'.",
+    background_en: "The world's largest gull, very powerfully built with an almost black mantle. Only a breeding bird in Germany since the mid-1980s, currently around 100 breeding pairs (46-52 on the North/Baltic Sea coast, absent as a breeding bird in the Wadden Sea itself) – but in the winter half-year thousands of additional Scandinavian birds gather on our coasts, observable year-round. Call: a deep, slow, very powerful 'ow-ow'.",
     habitat: [],
     vocalMonths: [8,1]
   },
@@ -3739,6 +4051,7 @@ const SPECIES = [
     confusionGroup: "grossmoewen_trio",
     areas: ["byw", "eif", "hai", "kwe", "nwm", "ssc", "uot"],
     background: "Große Möwe mit gelben Beinen, ursprünglich Mittelmeerraum, in Deutschland zunehmend verbreitet. Ruf ähnlich Silbermöwe, aber tendenziell tiefer und rauer.",
+    background_en: "A large gull with yellow legs, originally from the Mediterranean, increasingly widespread in Germany. Call similar to the Herring Gull's, but tending to be lower and rougher.",
     habitat: [],
     vocalMonths: null
   },
@@ -3754,6 +4067,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Langschnäbliger Watvogel, der Uferschnepfe ähnlich, aber mit leicht aufwärts gebogenem Schnabel. Im Wattenmeer ein regelmäßiger und sehr häufiger Durchzügler/Wintergast – bis zu 60.000-67.000 rastende Vögel allein im deutschen Wattenmeer (Niedersachsen), auf dem Weg in die Überwinterungsgebiete Westeuropas/Westafrikas. Der Weltbestand gilt dennoch als gefährdet (2015 auf die IUCN-Vorwarnliste gesetzt). Ruf: kurzes, kehliges 'kirrick'.",
+    background_en: "A long-billed wader, similar to the Black-tailed Godwit but with a slightly upturned bill. A regular and very common passage migrant/winter visitor in the Wadden Sea – up to 60,000-67,000 birds stopping over in the German Wadden Sea alone (Lower Saxony), en route to wintering grounds in Western Europe/West Africa. The world population is nonetheless considered threatened (added to the IUCN's near-threatened list in 2015). Call: a short, throaty 'kirrick'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -3769,6 +4083,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Großer, langschnäbliger Watvogel der Feuchtwiesen. Rote Liste 1 'vom Aussterben bedroht' – deutschlandweit noch 3.900-4.400 Brutpaare, aber seit Mitte der 1980er um rund 69% eingebrochen (Verbreitungsschwerpunkte Niederlande, Norddeutschland, Nordpolen). In einzelnen Bundesländern dramatisch, z.B. NRW mit nur noch 73 Brutpaaren (2022). Ruf: lautes, namensgebendes 'grutto-grutto'.",
+    background_en: "A large, long-billed wader of wet meadows. Red List 1 'critically endangered' – still 3,900-4,400 breeding pairs nationwide, but down by around 69% since the mid-1980s (distribution concentrated in the Netherlands, northern Germany, northern Poland). Dramatic in individual states, e.g. North Rhine-Westphalia with only 73 breeding pairs left (2022). Call: a loud 'grutto-grutto', the source of its Dutch/German name.",
     habitat: [],
     vocalMonths: [3,9]
   },
@@ -3783,7 +4098,8 @@ const SPECIES = [
     group: "Finken",
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
-    background: "Kleiner Fink offener, buschreicher Landschaften und Heiden. Gesang: angenehmes, plauderndes Zwitschern mit eingestreuten Trillern."
+    background: "Kleiner Fink offener, buschreicher Landschaften und Heiden. Gesang: angenehmes, plauderndes Zwitschern mit eingestreuten Trillern.",
+    background_en: "A small finch of open, scrubby landscapes and heathland. Song: a pleasant, chattering twitter interspersed with trills.",
   },
   {
     id: "berghaenfling",
@@ -3797,6 +4113,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["jtb", "nwm", "uot"],
     background: "Nordischer, dem Bluthänfling ähnlicher Fink. Im Wattenmeer häufiger Durchzügler/Wintergast (bis 13.600 rastende Vögel in Niedersachsen, fast die Hälfte der skandinavischen Population überwintert dort), im übrigen Binnenland dagegen nur unregelmäßiger Gast. Ruf: nasales, hartes 'tvite'.",
+    background_en: "A northern finch similar to the Linnet. A common passage migrant/winter visitor in the Wadden Sea (up to 13,600 birds stopping over in Lower Saxony, with almost half the Scandinavian population wintering there), but only an irregular visitor elsewhere inland. Call: a nasal, hard 'tvite'.",
+    background_en: "A small finch of open, scrubby landscapes and heathland. Song: a pleasant, chattering twitter interspersed with trills.",
     habitat: [],
     vocalMonths: [10,2]
   },
@@ -3812,6 +4130,7 @@ const SPECIES = [
     confusionGroup: "schwirl_trio",
     areas: ["byw", "hrz", "nwm", "ssc", "uot"],
     background: "Heimlicher Sänger feuchter Gebüsche, in Deutschland v.a. im Osten. Gesang: gleichmäßiges, hartes Schwirren, tiefer als Feldschwirl.",
+    background_en: "A secretive songster of damp scrub, in Germany mainly in the east. Song: an even, hard reeling, lower than the Grasshopper Warbler's.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -3827,6 +4146,7 @@ const SPECIES = [
     confusionGroup: "schwirl_trio",
     areas: ["byw", "hrz", "nwm", "uot"],
     background: "Heimlicher Sänger dichter Schilfbestände. Gesang: schnelles, weiches, gleichmäßiges Schwirren, tiefer und weicher als Feldschwirl.",
+    background_en: "A secretive songster of dense reedbeds. Song: a fast, soft, even reeling, lower and softer than the Grasshopper Warbler's.",
     habitat: ["wetland_reed"],
     vocalMonths: [4,7]
   },
@@ -3842,6 +4162,7 @@ const SPECIES = [
     confusionGroup: "schwirl_trio",
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Heimlicher Sänger feuchter Hochstaudenfluren und Brachen. Unverwechselbarer Gesang: minutenlang anhaltendes, mechanisches Schwirren, wie ein Angelrollen-Geräusch.",
+    background_en: "A secretive songster of damp tall-herb vegetation and fallow land. Unmistakable song: a mechanical reeling lasting for minutes, like the sound of a fishing reel.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -3857,6 +4178,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Meise mit charakteristischer, spitzer Federhaube, an Nadelwald gebunden. Ruf: unverwechselbares, schnurrendes 'zi-zi-ziriirrr'.",
+    background_en: "A tit with a characteristic pointed crest, tied to coniferous forest. Call: an unmistakable, purring 'zi-zi-ziriirrr'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3872,6 +4194,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Fichtenspezialist mit überkreuztem Schnabel zum Öffnen von Zapfen, nomadisch je nach Zapfenernte. Ruf: hartes, klopfendes 'gip-gip-gip'.",
+    background_en: "A spruce specialist with a crossed bill for opening cones, nomadic depending on the cone harvest. Call: a hard, tapping 'gip-gip-gip'.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: null
   },
@@ -3887,6 +4210,7 @@ const SPECIES = [
     confusionGroup: "nachtigall_sprosser",
     areas: ["uot"],
     background: "Der Nachtigall sehr ähnlicher, östlicher Verwandter, in Deutschland nur im äußersten Nordosten (Linie Schleswig-Holstein bis Oder-Neiße-Mündung) als Brutvogel, dort in feuchten, dichten Gebüschen an Gewässern, Auen und Niedermooren. Bundesweit immerhin 4.000-6.000 Brutpaare (Stand 2016), Bestand aber stark rückläufig (Rote Liste Kategorie V, Vorwarnliste). Gesang ähnlich Nachtigall, aber rauer und mit mehr schnarrenden Elementen.",
+    background_en: "An eastern relative very similar to the Nightingale, breeding in Germany only in the far north-east (a line from Schleswig-Holstein to the Oder-Neisse estuary), there in damp, dense scrub by water, floodplains and fen mires. Still 4,000-6,000 breeding pairs nationwide (as of 2016), but strongly declining (Red List Category V, near-threatened). Song similar to the Nightingale's, but coarser and with more churring elements.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -3902,6 +4226,7 @@ const SPECIES = [
     confusionGroup: "nachtigall_sprosser",
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbarer, meist versteckt in dichtem Gebüsch lebender Sänger, berühmt für seinen nächtlichen Gesang. Gesang: kraftvoll, sehr abwechslungsreich, mit dem unverwechselbaren, anschwellenden 'düo düo düo düo'.",
+    background_en: "An unassuming songster, usually living hidden in dense scrub, famous for its nocturnal song. Song: powerful, highly varied, with the unmistakable, swelling 'du-du-du-du'.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3917,6 +4242,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "nwm", "uot"],
     background: "Auffällig blaukehliger Verwandter des Rotkehlchens, in Deutschland seltener Brutvogel an Röhricht-/Gebüschzonen. Gesang: sehr variabel, mit metallischem, glockenklarem 'ding-ding-ding'-Motiv.",
+    background_en: "A relative of the Robin with a striking blue throat, a rare breeding bird in Germany in reed/scrub zones. Song: highly variable, with a metallic, bell-clear 'ding-ding-ding' motif.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3932,6 +4258,7 @@ const SPECIES = [
     confusionGroup: "bekassine_zwergschnepfe",
     areas: ["eif", "hrz", "nwm", "uot"],
     background: "Kleinste Schnepfenart, sehr heimlich in Sumpfgebieten, fliegt erst bei sehr naher Störung auf. Meist stumm; Balzruf ein leises, galoppierendes Ticken (in Deutschland kaum zu hören).",
+    background_en: "The smallest snipe species, extremely secretive in marshy areas, only flushing when disturbed at very close range. Usually silent; display call a quiet, galloping ticking (barely heard in Germany).",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -3947,6 +4274,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif"],
     background: "Charaktervogel der Hochmoore und offenen Bergwälder, Balz an traditionellen Balzplätzen. Deutschlandweit 850-1.400 Brutpaare (Rote Liste 2, stark gefährdet), Hauptvorkommen entlang der alpinen Baumgrenze – in unseren Gebieten (kein echtes Hochgebirge) praktisch nicht zu erwarten, ein eBird-Eintrag dürfte auf einen Einzelfund oder eine Verwechslung zurückgehen. Balzgesang: weit tragendes, blasenartig-gurgelndes Rukseln.",
+    background_en: "A characteristic bird of raised bogs and open montane forest, displaying at traditional lek sites. 850-1,400 breeding pairs nationwide (Red List 2, severely endangered), mainly occurring along the alpine tree line – practically not to be expected in our areas (no true high mountains), and an eBird entry is likely to reflect a single find or a misidentification. Display song: a far-carrying, bubbling, gurgling roo-ing.",
     habitat: [],
     vocalMonths: [12,6]
   },
@@ -3962,6 +4290,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Pfeifende, wildfarbene Ente, in Deutschland vor allem Wintergast auf Gewässern und Feuchtwiesen. Namensgebender Ruf: weithin hörbares, klares, pfeifendes 'wjüüh'.",
+    background_en: "A whistling, russet-coloured duck, mainly a winter visitor to waterbodies and wet meadows in Germany. Its namesake call: a far-carrying, clear, whistled 'whee-oo'.",
     habitat: [],
     vocalMonths: [9,4]
   },
@@ -3977,6 +4306,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unauffällig grau-braune Ente stehender Gewässer mit Verlandungszonen, mittlerweile auch verbreiteter Brutvogel. Ruf des Erpels: kurzes, raues, knarrendes 'gäck'.",
+    background_en: "An unassuming grey-brown duck of standing waters with reedy margins, now also a widespread breeding bird. The drake's call: a short, rough, croaking 'gack'.",
     habitat: [],
     vocalMonths: null
   },
@@ -3992,6 +4322,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm", "uot"],
     background: "Dunkle Meerente mit weißem Flügelspiegel, überwintert vor allem auf der Ostsee (Hauptvorkommen Pommersche Bucht), an der Nordsee deutlich seltener. Der europäische Winterbestand ist von rund 1 Million auf etwa 373.000 Individuen eingebrochen (IUCN: gefährdet), entsprechend ist die Art trotz gelegentlich großer Trupps kein verlässlicher Anblick in unseren Gebieten. Meist still.",
+    background_en: "A dark sea duck with a white wing patch, wintering mainly on the Baltic (main occurrence Pomeranian Bay), much rarer on the North Sea. The European wintering population has collapsed from around 1 million to about 373,000 individuals (IUCN: vulnerable); accordingly, despite occasionally large flocks, this species is not a reliable sighting in our areas. Usually silent.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -4007,6 +4338,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Ganz dunkle Meerente. Hält sich meist weit draußen bis zur 20-m-Tiefenlinie auf, daher vom Land aus schwer zu entdecken – trotzdem ein sehr häufiger Durchzügler und Wintergast im Wattenmeer, mit bis zu 57.000 Individuen allein im niedersächsischen Küstenmeer (rund 200.000 deutschlandweite Überwinterer in der Pommerschen Bucht). Ruf des Erpels: melodisches, pfeifendes 'düü'.",
+    background_en: "An entirely dark sea duck. Usually stays far offshore down to the 20 m depth line, and is therefore hard to spot from land – nonetheless a very common passage migrant and winter visitor in the Wadden Sea, with up to 57,000 individuals in Lower Saxon coastal waters alone (around 200,000 wintering nationwide in Pomeranian Bay). The drake's call: a melodic, whistled 'duu'.",
     habitat: ["offshore_coast"],
     vocalMonths: [10,2]
   },
@@ -4022,6 +4354,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm", "uot"],
     background: "Kleinster Säger, Männchen überwiegend weiß mit schwarzer Zeichnung. Regelmäßiger Wintergast aus Nordosteuropa (Oktober-April), v.a. an der Küste (rund 70% der 15.000-25.000 nordwesteuropäischen Überwinterer auf der Ostsee) – im Binnenland deutlich seltener. Bestände seit den 1970ern stabil bis lokal wieder zunehmend. Meist still; Balzruf ein leises Knarren.",
+    background_en: "The smallest merganser, the male mostly white with black markings. A regular winter visitor from north-eastern Europe (October-April), mainly on the coast (around 70% of the 15,000-25,000 north-western European wintering birds are on the Baltic) – much rarer inland. Populations stable since the 1970s, locally increasing again. Usually silent; display call a quiet croak.",
     habitat: [],
     vocalMonths: [11,3]
   },
@@ -4036,7 +4369,8 @@ const SPECIES = [
     group: "Enten, Gänse & Schwäne",
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
-    background: "Großer, schlanker Sägerbeim Fischfang an klaren Flüssen und Seen, Männchen mit auffälligem grün-schwarzem Kopf. Meist recht still; Balzruf ein tiefes, klingendes 'oaach'."
+    background: "Großer, schlanker Sägerbeim Fischfang an klaren Flüssen und Seen, Männchen mit auffälligem grün-schwarzem Kopf. Meist recht still; Balzruf ein tiefes, klingendes 'oaach'.",
+    background_en: "A large, slender merganser catching fish on clear rivers and lakes, the male with a striking green-black head. Usually fairly quiet; display call a deep, ringing 'oaach'.",
   },
   {
     id: "mittelsaeger",
@@ -4050,6 +4384,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "kwe", "nwm", "uot"],
     background: "Schlanker Säger der Küstengewässer mit zerzaustem Federschopf. Meist still; Balzruf ein leises, katzenartiges Miauen.",
+    background_en: "A slender merganser of coastal waters with a shaggy crest. Usually silent; display call a quiet, cat-like mewing.",
+    background_en: "A large, slender merganser catching fish on clear rivers and lakes, the male with a striking green-black head. Usually fairly quiet; display call a deep, ringing 'oaach'.",
     habitat: [],
     vocalMonths: null
   },
@@ -4065,6 +4401,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Sehr bunt gefärbter, wärmeliebender Insektenjäger, ca. 1150 Brutpaare deutschlandweit (Schwerpunkt Sachsen-Anhalt, Baden-Württemberg, Rheinland-Pfalz), Bestand klimabedingt deutlich wachsend und sich ausbreitend, brütet in Steilwänden/Abbaugruben. Unverwechselbarer Ruf: weiches, liquides, rollendes 'prrüp', oft im Flug.",
+    background_en: "A very colourfully plumaged, heat-loving insect hunter, around 1,150 breeding pairs nationwide (concentrated in Saxony-Anhalt, Baden-Württemberg, Rhineland-Palatinate), population clearly growing and spreading due to climate change, breeding in steep banks/quarry pits. Unmistakable call: a soft, liquid, rolling 'prrup', often in flight.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -4080,6 +4417,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Großer, spitzflügeliger Hochseevogel, stürzt sich spektakulär aus großer Höhe nach Fischen ins Wasser. Einzige deutsche Brutkolonie seit 1991 an der Langen Anna auf Helgoland, mit rasant wachsendem Bestand (2019: 1.206, 2020: 1.298 Brutpaare) – 2022 fielen allerdings rund 90% der Küken der Vogelgrippe zum Opfer. Außerhalb Helgolands (wie in unseren Gebieten) nur Durchzügler auf See. Meist still fernab der Kolonie.",
+    background_en: "A large, sharp-winged pelagic bird, plunging spectacularly from great height into the water after fish. Germany's only breeding colony has been at Lange Anna on Heligoland since 1991, with a rapidly growing population (2019: 1,206, 2020: 1,298 breeding pairs) – though around 90% of chicks were lost to avian influenza in 2022. Away from Heligoland (as in our areas) only a passage migrant at sea. Usually silent away from the colony.",
     habitat: ["offshore_coast"],
     vocalMonths: [5,6]
   },
@@ -4095,6 +4433,7 @@ const SPECIES = [
     confusionGroup: "bachstelze_gebirgsstelze",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Schlanke Stelze mit langem Schwanz und gelber Unterseite, an schnell fließenden Bächen und Flüssen. Ruf: hartes, metallisches 'zit-zit', dem der Bachstelze ähnlich aber schärfer.",
+    background_en: "A slender wagtail with a long tail and yellow underside, found on fast-flowing streams and rivers. Call: a hard, metallic 'zit-zit', similar to the White Wagtail's but sharper.",
     habitat: [],
     vocalMonths: null
   },
@@ -4110,6 +4449,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "uot"],
     background: "Osteuropäisch-asiatische, gelbköpfige Stelze, in Deutschland ein sehr seltener Irrgast/Durchzügler mit nur vereinzelten Brutnachweisen (u.a. Niedersachsen, Mecklenburg-Vorpommern, Brandenburg); Herbstzug der westlichen Population Mitte August bis November, Frühjahrszug März bis Ende Mai. Ruf ähnlich Schafstelze.",
+    background_en: "An Eastern European/Asian, yellow-headed wagtail, a very rare vagrant/passage migrant in Germany with only isolated breeding records (including Lower Saxony, Mecklenburg-Western Pomerania, Brandenburg); the western population's autumn migration runs mid-August to November, spring migration March to late May. Call similar to the Yellow Wagtail's.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -4125,6 +4465,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "uot"],
     background: "Zierliche, gelbe Stelze auf Feuchtwiesen und Weiden, oft bei Weidevieh. Ruf: kurzes, ansteigendes 'psjüü'.",
+    background_en: "A dainty, yellow wagtail of wet meadows and pastures, often among grazing livestock. Call: a short, rising 'psyew'.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -4140,6 +4481,7 @@ const SPECIES = [
     confusionGroup: "kleine_schnaepper_trio",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbarer, aufrecht sitzender Schnäpper, fängt Fluginsekten im typischen Ausfallflug von einer Warte aus. Gesang: sehr leise, unauffällige Serie feiner, quietschender Töne.",
+    background_en: "An unassuming, upright-perching flycatcher, catching flying insects in its typical sally flight from a perch. Song: a very quiet, unremarkable series of thin, squeaky notes.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -4155,6 +4497,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "nwm", "uot"],
     background: "Tauchente mit auffällig orangerotem Kopf und rotem Schnabel, Verbreitungsschwerpunkt in Osteuropa, in Deutschland lokal. Ruf: heiseres, schnarrendes 'krrr'.",
+    background_en: "A diving duck with a striking orange-red head and red bill, mainly distributed in Eastern Europe, local in Germany. Call: a hoarse, rasping 'krrr'.",
     habitat: [],
     vocalMonths: null
   },
@@ -4170,6 +4513,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Kleinerer Verwandter des Großen Brachvogels, kein Brutvogel, aber regelmäßiger Durchzügler (April/Mai und Juli-Oktober), am häufigsten an Nord-/Ostseeküste, im Binnenland seltener. Unverwechselbarer Ruf: schnelle, gereihte Serie von 7 hellen Pfeiftönen.",
+    background_en: "A smaller relative of the Eurasian Curlew, not a breeding bird but a regular passage migrant (April/May and July-October), most common on the North/Baltic Sea coast, rarer inland. Unmistakable call: a fast, repeated series of 7 bright whistled notes.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -4185,6 +4529,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Dämmerungs- und nachtaktiver, gedrungener Reiher. Brütet in Deutschland nur sehr lokal in wenigen Kolonien (18-22 Brutpaare, Schwerpunkt Bayern/Baden-Württemberg) – die eBird-Nachweise in nwm/uot betreffen umherstreifende Einzelvögel, keine Brutvorkommen dort. Ruf: kurzes, raues 'quok', meist im nächtlichen Flug zu hören.",
+    background_en: "A crepuscular and nocturnal, stocky heron. Breeds in Germany only very locally in a few colonies (18-22 breeding pairs, concentrated in Bavaria/Baden-Württemberg) – the eBird records in our Lower Saxon Wadden Sea/Lower Oder Valley areas concern roaming individual birds, not breeding occurrences there. Call: a short, rough 'quok', usually heard in nocturnal flight.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -4200,6 +4545,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Südeuropäischer/nordwestafrikanischer Steinschmätzer-Verwandter, in Mitteleuropa eine große Seltenheit: bis 1988 nur 40 dokumentierte Nachweise in Deutschland, überwiegend (78%) im Frühjahr (März-Juni) – vermutlich Vögel, die auf dem Heimzug über ihr Brutgebiet hinausschießen. Gesang kratzig-schwätzend, ähnlich Steinschmätzer.",
+    background_en: "A southern European/north-west African relative of the Northern Wheatear, a great rarity in Central Europe: only 40 documented records in Germany up to 1988, predominantly (78%) in spring (March-June) – presumably birds overshooting their breeding range on return migration. Song scratchy and chattering, similar to the Northern Wheatear's.",
     habitat: [],
     vocalMonths: [4,5]
   },
@@ -4215,6 +4561,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Osteuropäisch-asiatischer Steinschmätzer-Verwandter (westlichste Brutvorkommen Südosteuropa, Überwinterung Nordostafrika), in Deutschland eine große Seltenheit: rund 21-30 Nachweise zwischen 1862 und 2023, weit überwiegend im Nordseeraum – allein Helgoland kommt auf 14 Beobachtungen. Gesang kratzig, ähnlich anderen Steinschmätzern.",
+    background_en: "An Eastern European/Asian relative of the Northern Wheatear (westernmost breeding occurrences in south-eastern Europe, wintering in north-east Africa), a great rarity in Germany: around 21-30 records between 1862 and 2023, overwhelmingly in the North Sea region – Heligoland alone accounts for 14 observations. Song scratchy, similar to other wheatears'.",
     habitat: [],
     vocalMonths: [10,12]
   },
@@ -4230,6 +4577,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Nordamerikanische Steifschwanzente, in Europa als eingeschleppter Neubürger etabliert und aktiv bekämpft (Gefahr der Hybridisierung mit der bedrohten Weißkopf-Ruderente). In Deutschland seit den ersten Beobachtungen 1980 rund 50 dokumentierte Nachweise (Stand 2001) aus fast allen Bundesländern, regelmäßiger in Niedersachsen/NRW/Schleswig-Holstein zur Sommer-/Brutzeit; bislang nur 2001 und 2002 je eine erfolgreiche Brut in Niedersachsen. Meist still.",
+    background_en: "A North American stiff-tailed duck, established in Europe as an introduced species and actively controlled (risk of hybridisation with the threatened White-headed Duck). In Germany around 50 documented records since the first observations in 1980 (as of 2001) from almost all federal states, more regular in Lower Saxony/North Rhine-Westphalia/Schleswig-Holstein during summer/breeding season; so far only one successful breeding record each in 2001 and 2002 in Lower Saxony. Usually silent.",
     habitat: [],
     vocalMonths: null
   },
@@ -4245,6 +4593,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Mediterraner Sperling. Wichtiger Hinweis für die Validierung: Für Deutschland liegt bislang **kein anerkannter Nachweis** vor – die Art gilt hier als noch nicht bestätigt. Aus benachbarten Ländern existieren dokumentierte Einzelbeobachtungen (u.a. Finnland 1996, Niederlande 1997, Schweden 2013, Dänemark 2019, Schweiz 2019), was ein Auftreten als Irrgast grundsätzlich plausibel macht, aber ein BirdNET-Treffer sollte hier besonders kritisch geprüft werden. Ruf ähnlich Haussperling.",
+    background_en: "A Mediterranean sparrow. Important note for validation: there is so far **no accepted record** for Germany – the species is considered unconfirmed here. Documented individual observations exist from neighbouring countries (including Finland 1996, the Netherlands 1997, Sweden 2013, Denmark 2019, Switzerland 2019), which makes an occurrence as a vagrant plausible in principle, but a BirdNET hit here should be checked especially critically. Call similar to the House Sparrow's.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -4260,6 +4609,7 @@ const SPECIES = [
     confusionGroup: "haussperling_feldsperling",
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleiner, schlankerer Verwandter des Haussperlings mit braunem Scheitel und schwarzem Wangenfleck, an Dörfern und Feldgehölzen. Ruf: helles, hartes 'tek-tek', Gesang ein einfaches Zwitschern.",
+    background_en: "A small, slimmer relative of the House Sparrow with a brown crown and black cheek patch, found in villages and farmland copses. Call: a bright, hard 'tek-tek', song a simple twitter.",
     habitat: [],
     vocalMonths: null
   },
@@ -4274,7 +4624,8 @@ const SPECIES = [
     group: "Stare",
     confusionGroup: null,
     areas: ["nwm"],
-    background: "Auffällig rosa-schwarz gefärbter, osteuropäisch-asiatischer Star-Verwandter. Irrgast mit inzwischen alljährlichen Nachweisen (über 100 seit 1945), Schwerpunkt Helgoland, kann bei Invasionsjahren auch in kleinen Trupps auftreten. Ruf ähnlich Star, aber rauer."
+    background: "Auffällig rosa-schwarz gefärbter, osteuropäisch-asiatischer Star-Verwandter. Irrgast mit inzwischen alljährlichen Nachweisen (über 100 seit 1945), Schwerpunkt Helgoland, kann bei Invasionsjahren auch in kleinen Trupps auftreten. Ruf ähnlich Star, aber rauer.",
+    background_en: "A strikingly pink-and-black-coloured Eastern European/Asian relative of the Starling. A vagrant with now-annual records (over 100 since 1945), concentrated on Heligoland, can also appear in small flocks in invasion years. Call similar to the Starling's, but rougher.",
   },
   {
     id: "rebhuhn",
@@ -4288,6 +4639,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "nwm", "uot"],
     background: "Bodenbrütendes Feldhuhn offener Agrarlandschaften, stark rückläufig durch Lebensraumverlust. Unverwechselbarer Ruf: raues, knarrendes 'kirrik', v.a. abends und morgens.",
+    background_en: "A ground-nesting gamebird of open farmland, strongly declining due to habitat loss. Unmistakable call: a rough, creaking 'kirrik', mainly in the evening and morning.",
+    background_en: "A strikingly pink-and-black-coloured Eastern European/Asian relative of the Starling. A vagrant with now-annual records (over 100 since 1945), concentrated on Heligoland, can also appear in small flocks in invasion years. Call similar to the Starling's, but rougher.",
     habitat: ["farmland_open"],
     vocalMonths: null
   },
@@ -4303,6 +4656,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Großer, schwarzer Wasservogel, oft mit ausgebreiteten Flügeln zum Trocknen an Gewässern sitzend. Meist still; am Brutplatz raue, grunzende Laute.",
+    background_en: "A large, black waterbird, often seen perched at waterbodies with wings spread out to dry. Usually silent; rough, grunting sounds at the breeding site.",
     habitat: [],
     vocalMonths: null
   },
@@ -4318,6 +4672,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Arktischer, schwimmender Watvogel, in Deutschland seltener, aber – anders als früher angenommen – mittlerweile verlässlich genug registrierter Durchzügler an der Nordseeküste, v.a. nach Herbststürmen; im Schlichtkleid dem ähnlichen, aber insgesamt häufigeren Odinshühnchen leicht zu verwechseln. Meist still.",
+    background_en: "An Arctic, swimming wader, a rare but – unlike previously assumed – now reliably enough recorded passage migrant on the North Sea coast in Germany, mainly after autumn storms; in non-breeding plumage easily confused with the similar but overall more common Red-necked Phalarope. Usually silent.",
   },
   {
     id: "odinshuehnchen",
@@ -4331,6 +4686,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm"],
     background: "Zierlicher, schwimmender Watvogel, dreht sich charakteristisch im Kreis, um Nahrung aufzuwirbeln. In Deutschland seltener, aber regelmäßiger Durchzügler v.a. an den Küsten (Nordsee: August/September und April/Mai; auch Ostsee), meist einzeln oder in kleinen Trupps und insgesamt etwas häufiger als das ähnliche Thorshühnchen. Meist still.",
+    background_en: "A dainty, swimming wader, characteristically spinning in circles to stir up food. A rare but regular passage migrant in Germany, mainly on the coasts (North Sea: August/September and April/May; also the Baltic), usually singly or in small groups and overall somewhat more common than the similar Grey Phalarope. Usually silent.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -4346,6 +4702,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Großer, rosa gefärbter Flamingo. Die einzige freilebende Kolonie in Deutschland lebt im Zwillbrocker Venn (NRW, an der deutsch-niederländischen Grenze) zusammen mit Chile- und Kubaflamingos – vermutlich entflogene Ziervögel, die sich dort erfolgreich fortpflanzen und nur zur Überwinterung ins südwestliche Holland ziehen. Nachweise anderswo in Deutschland (wie in unseren Gebieten) sind einzelne umherstreifende Vögel dieser Kolonie. Ruf: lautes, gänseartiges Schnattern/Trompeten.",
+    background_en: "A large, pink-coloured flamingo. Germany's only free-living colony lives at the Zwillbrocker Venn (North Rhine-Westphalia, on the German-Dutch border) alongside Chilean and Caribbean Flamingos – presumably escaped ornamental birds that breed successfully there and migrate only to winter in south-western Holland. Records elsewhere in Germany (as in our areas) are individual roaming birds from this colony. Call: loud, goose-like honking/trumpeting.",
     habitat: [],
     vocalMonths: null
   },
@@ -4361,6 +4718,7 @@ const SPECIES = [
     confusionGroup: "garten_hausrotschwanz",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Auf Felsen, Gebäuden und Industriegelände häufig, rotschwanz-zitternd auf Ansitzwarten. Gesang: kratzige Strophe mit charakteristischem 'knisterndem' Mittelteil, erinnert an zerknülltes Papier.",
+    background_en: "Common on rocks, buildings and industrial sites, tail-quivering from lookout perches. Song: a scratchy phrase with a characteristic 'crunching' middle section, reminiscent of crumpled paper.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -4376,6 +4734,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Sibirischer Laubsänger, überwintert ausschließlich in Südostasien – in Deutschland eine der seltensten Vogelarten überhaupt mit nur einer Handvoll bestätigter Nachweise (zum Vergleich: Niederlande 1935-1999 nur 10 Nachweise, meiste europäische Beobachtungen stammen von den Britischen Inseln). Ruf: hartes, schnalzendes 'dzik'.",
+    background_en: "A Siberian leaf warbler, wintering exclusively in South-East Asia – one of the rarest bird species in Germany altogether, with only a handful of confirmed records (for comparison: the Netherlands had only 10 records from 1935-1999, most European observations coming from the British Isles). Call: a hard, clicking 'dzik'.",
     habitat: [],
     vocalMonths: [9,9]
   },
@@ -4391,6 +4750,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Sibirischer Laubsänger, in Deutschland ein seltener Irrgast im Spätherbst (v.a. Oktober bis Anfang Dezember) – inzwischen an Nord- und Ostseeküste aber alljährlich nachgewiesen, mit zunehmender Tendenz in den letzten Jahren. Ruf: hartes, tackendes 'tack', ähnlich Zaunkönig.",
+    background_en: "A Siberian leaf warbler, a rare vagrant to Germany in late autumn (mainly October to early December) – now recorded annually on the North and Baltic Sea coasts, with an increasing trend in recent years. Call: a hard, ticking 'tack', similar to the Wren's.",
     habitat: [],
     vocalMonths: [10,12]
   },
@@ -4406,6 +4766,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Zentralasiatischer Laubsänger, äußerlich kaum vom Gelbbrauen-Laubsänger zu unterscheiden und wie dieser anfällig für weiträumiges Verdriften. In Deutschland ein extrem seltener Irrgast, u.a. mit einem dokumentierten Nachweis auf der Ostsee-Insel Greifswalder Oie. Ruf: hohes, ansteigendes 'süiit'.",
+    background_en: "A Central Asian leaf warbler, barely distinguishable in appearance from the Yellow-browed Warbler and, like it, prone to being carried far off course. An extremely rare vagrant in Germany, with one documented record on the Baltic island of Greifswalder Oie among others. Call: a high, rising 'sooeet'.",
     habitat: [],
     vocalMonths: [10,1]
   },
@@ -4421,6 +4782,7 @@ const SPECIES = [
     confusionGroup: "zilpzalp_fitis_iberienzilpzalp",
     areas: ["eif"],
     background: "Iberischer, dem Zilpzalp sehr ähnlicher Laubsänger mit Verbreitungsschwerpunkt auf der Iberischen Halbinsel/Nordwestafrika – Deutschland liegt weit außerhalb des natürlichen Verbreitungsgebiets. Nur wenige gesicherte Nachweise (u.a. 4 in Baden-Württemberg seit 1995, meist singende Männchen im Nordschwarzwald, sowie ein Fund 2018 in Dortmund). Gesang ähnlich Zilpzalp, aber mit anderem Rhythmus.",
+    background_en: "An Iberian leaf warbler very similar to the Common Chiffchaff, mainly distributed on the Iberian Peninsula/north-west Africa – Germany lies well outside its natural range. Only a few confirmed records (including 4 in Baden-Württemberg since 1995, mostly singing males in the northern Black Forest, and a find in Dortmund in 2018). Song similar to the Chiffchaff's, but with a different rhythm.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -4436,6 +4798,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Sibirischer Laubsänger, in Deutschland kein Brutvogel. An der Nordseeküste, v.a. auf Helgoland, aber ein alljährlicher Herbstgast (September/Oktober) mit seit 2005 stark zunehmenden Beobachtungszahlen, in manchen Jahren invasionsartig. Im Binnenland dagegen nur vereinzelte Nachweise. Ruf: sehr hohes, durchdringendes 'süiist'.",
+    background_en: "A Siberian leaf warbler, not a breeding bird in Germany. On the North Sea coast, especially Heligoland, an annual autumn visitor (September/October) with strongly increasing observation numbers since 2005, in some years almost invasion-like. Inland, by contrast, only isolated records. Call: a very high, piercing 'sooeest'.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -4451,6 +4814,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Winziger sibirischer Laubsänger (Zugrouten eigentlich zwischen Südsibirien und Südostasien), in Deutschland ein seltener Herbstgast (v.a. Oktober/November), inzwischen im Zuge einer generellen Westausbreitung jedes Jahr beobachtet – Schwerpunkt Nordseeküste/Helgoland, jährliche Nachweiszahl schwankt zwischen wenigen und mehreren Dutzend Individuen. Ruf: hohes, gedehntes 'süiih', ansteigend.",
+    background_en: "A tiny Siberian leaf warbler (migration routes actually run between southern Siberia and South-East Asia), a rare autumn visitor to Germany (mainly October/November), now observed every year as part of a general westward spread – concentrated on the North Sea coast/Heligoland, annual record numbers fluctuating between a few and several dozen individuals. Call: a high, drawn-out, rising 'sooeeh'.",
   },
   {
     id: "gruenlaubsaenger",
@@ -4464,6 +4828,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "hrz", "ssc"],
     background: "Sibirisch-osteuropäischer Laubsänger mit Hauptverbreitung von der Taiga bis Nordost-Europa, überwintert in Indien. Breitet sich seit dem ersten deutschen Brutnachweis 1990 (Helgoland) langsam nach Westen aus (aktuelle Westgrenze durch Mecklenburg-Vorpommern) – deutschlandweit aber weiterhin nur 2-10 Brutpaare, verstreut auch in Mittelgebirgsregionen. Gesang: hohe, schnelle, klingelnde Strophe.",
+    background_en: "A Siberian-Eastern European leaf warbler mainly distributed from the taiga to north-eastern Europe, wintering in India. Has been slowly spreading westward since the first German breeding record in 1990 (Heligoland) (current western boundary running through Mecklenburg-Western Pomerania) – but still only 2-10 breeding pairs nationwide, scattered also in upland regions. Song: a high, fast, tinkling phrase.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -4479,6 +4844,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Großer, nordischer Fink der Taiga (23 cm, einer der größten Finken überhaupt). Im 19. Jahrhundert noch invasionsartig, seither aber nur noch einzelne Vögel – letzter dokumentierter deutscher Nachweis 1993, mit einer bemerkenswerten Ausnahme: 2019 zogen 11 Vögel im Zuge eines skandinavischen Masseneinflugs über Sylt hinweg. Ruf: klares, flötendes Pfeifen.",
+    background_en: "A large, northern finch of the taiga (23 cm, one of the largest finches of all). Still invasion-like in the 19th century, but only single birds since then – the last documented German record was in 1993, with a notable exception: in 2019, 11 birds crossed over Sylt as part of a Scandinavian mass influx. Call: a clear, fluting whistle.",
   },
   {
     id: "schneeammer",
@@ -4492,6 +4858,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "nwm"],
     background: "Arktischer Singvogel, seltener, aber alljährlicher Wintergast v.a. an Nord-/Ostseeküste (Dünen, Strände, Felder), oft in kleinen Trupps zusammen mit Berghänflingen/Strandpiepern. Ruf: klares, klingelndes 'tirrilirrit'.",
+    background_en: "An Arctic songbird, a rare but annual winter visitor mainly on the North/Baltic Sea coast (dunes, beaches, fields), often in small flocks together with Twites/Rock Pipits. Call: a clear, tinkling 'tirrilirrit'.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -4507,6 +4874,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm", "uot"],
     background: "Dunkler Ibis mit charakteristisch gebogenem Schnabel, Brutvogel v.a. im Mittelmeerraum, in Deutschland kein etablierter Brutvogel, aber inzwischen alljährlich als Gastvogel zu beobachten – Teil einer generellen Ausbreitung nach Norden; als Brutvogel ist die Art insgesamt sprunghaft und verlässt selbst erfolgreiche Kolonien mitunter ohne erkennbaren Grund wieder. Ruf: raue, grunzende Laute am Brutplatz, sonst meist still.",
+    background_en: "A dark ibis with a characteristically curved bill, a breeding bird mainly around the Mediterranean, not an established breeding bird in Germany, but now observed as a visitor every year – part of a general spread northward; as a breeding species overall this ibis is erratic, sometimes abandoning even successful colonies for no obvious reason. Call: rough, grunting sounds at the breeding site, otherwise usually silent.",
     habitat: [],
     vocalMonths: null
   },
@@ -4521,7 +4889,8 @@ const SPECIES = [
     group: "Watvögel & Wiesenvögel",
     confusionGroup: null,
     areas: ["eif", "hrz", "nwm", "uot"],
-    background: "Watvogel offener Moore und Feuchtwiesen, in Deutschland v.a. Durchzügler/Wintergast in großen Trupps. Ruf: weiches, melancholisches, gepfiffenes 'tlüü'."
+    background: "Watvogel offener Moore und Feuchtwiesen, in Deutschland v.a. Durchzügler/Wintergast in großen Trupps. Ruf: weiches, melancholisches, gepfiffenes 'tlüü'.",
+    background_en: "A wader of open bogs and wet meadows, mainly a passage migrant/winter visitor in Germany in large flocks. Call: a soft, melancholic, whistled 'tlooee'.",
   },
   {
     id: "praerie_goldregenpfeifer",
@@ -4535,6 +4904,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Nordamerikanischer Goldregenpfeifer-Verwandter (Pluvialis dominica), in Deutschland extrem seltener Irrgast, in Europa regelmäßiger (wenn auch nur in geringen Zahlen) vor allem auf den Britischen Inseln zu beobachten. Ruf ähnlich Goldregenpfeifer, aber schärfer.",
+    background_en: "A North American relative of the European Golden Plover (Pluvialis dominica), an extremely rare vagrant in Germany, observed more regularly (though still in small numbers) in Europe, mainly on the British Isles. Call similar to the European Golden Plover's, but sharper.",
+    background_en: "A wader of open bogs and wet meadows, mainly a passage migrant/winter visitor in Germany in large flocks. Call: a soft, melancholic, whistled 'tlooee'.",
   },
   {
     id: "kiebitzregenpfeifer",
@@ -4547,7 +4918,8 @@ const SPECIES = [
     group: "Watvögel & Wiesenvögel",
     confusionGroup: null,
     areas: ["byw", "hai", "hrz", "nwm", "uot"],
-    background: "Watvogel der Wattflächen, dem Goldregenpfeifer ähnlich aber mit schwarzer Achselfeder im Flug erkennbar. Ruf: klagendes, dreisilbiges, flötendes 'tlü-i-üü'."
+    background: "Watvogel der Wattflächen, dem Goldregenpfeifer ähnlich aber mit schwarzer Achselfeder im Flug erkennbar. Ruf: klagendes, dreisilbiges, flötendes 'tlü-i-üü'.",
+    background_en: "A wader of mudflats, similar to the European Golden Plover but recognisable in flight by black axillary feathers ('armpits'). Call: a plaintive, three-syllable, fluting 'tlee-oo-ee'.",
   },
   {
     id: "ohrentaucher",
@@ -4561,6 +4933,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm"],
     background: "Nordischer Lappentaucher, in Deutschland seltener Durchzügler und Wintergast, meist einzeln oder in kleinen Gruppen auf Nord- und Ostsee sowie größeren Binnengewässern; deutschlandweit werden im Winter insgesamt nur rund 1.000 Individuen gezählt. Als Brutvogel seit 1999 nicht mehr bestätigt. Meist still in Deutschland.",
+    background_en: "A northern grebe, a rare passage migrant and winter visitor in Germany, usually singly or in small groups on the North and Baltic Seas and larger inland waters; only around 1,000 individuals in total are counted nationwide in winter. Not confirmed as a breeding bird since 1999. Usually silent in Germany.",
+    background_en: "A wader of mudflats, similar to the European Golden Plover but recognisable in flight by black axillary feathers ('armpits'). Call: a plaintive, three-syllable, fluting 'tlee-oo-ee'.",
   },
   {
     id: "haubentaucher",
@@ -4574,6 +4948,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Lappentaucher mit auffälligem Federschmuck, verbreitet auf Seen und Teichen. Ruf: raues, knurrendes Bellen, v.a. bei der auffälligen Balz.",
+    background_en: "Germany's largest native grebe with striking ornamental plumage, widespread on lakes and ponds. Call: a rough, growling bark, especially during its elaborate courtship display.",
     habitat: [],
     vocalMonths: null
   },
@@ -4589,6 +4964,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "kwe", "nwm", "uot"],
     background: "Mittelgroßer Lappentaucher mit rostrotem Hals im Brutkleid, in Deutschland seltener Brutvogel/Durchzügler. Ruf: lautes, wieherndes Kreischen.",
+    background_en: "A medium-sized grebe with a rust-red neck in breeding plumage, a rare breeding bird/passage migrant in Germany. Call: loud, whinnying screeching.",
     habitat: [],
     vocalMonths: null
   },
@@ -4603,7 +4979,8 @@ const SPECIES = [
     group: "Wasservögel",
     confusionGroup: null,
     areas: ["byw", "eif", "nwm", "uot"],
-    background: "Lappentaucher mit auffälligen goldenen Federbüscheln im Brutkleid, an nährstoffreichen Seen. Ruf: weiches, pfeifendes 'püit'."
+    background: "Lappentaucher mit auffälligen goldenen Federbüscheln im Brutkleid, an nährstoffreichen Seen. Ruf: weiches, pfeifendes 'püit'.",
+    background_en: "A grebe with striking golden ear tufts in breeding plumage, found on nutrient-rich lakes. Call: a soft, whistled 'poo-eet'.",
   },
   {
     id: "tuepfelsumpfhuhn",
@@ -4617,6 +4994,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "nwm", "uot"],
     background: "Heimliches Sumpfhuhn in überfluteten Feuchtgebieten. Rote Liste 3 (gefährdet), ca. 540-1500 Brutpaare in Deutschland, Schwerpunkt norddeutsches Tiefland (Peeneniederung, Unteres Odertal). Ruf: peitschenartiges, weit tragendes, rhythmisch wiederholtes 'hwitt', v.a. nachts.",
+    background_en: "A secretive crake of flooded wetlands. Red List 3 (endangered), around 540-1,500 breeding pairs in Germany, concentrated in the north German lowlands (Peene valley, Lower Oder Valley). Call: a whip-like, far-carrying, rhythmically repeated 'hwitt', mainly at night.",
+    background_en: "A grebe with striking golden ear tufts in breeding plumage, found on nutrient-rich lakes. Call: a soft, whistled 'poo-eet'.",
     habitat: ["wetland_reed"],
     vocalMonths: [8,10]
   },
@@ -4632,6 +5011,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw"],
     background: "Braunellen-Verwandte des Hochgebirges (Felsgelände, Blockhalden, Karen, Alpinrasen), in Deutschland nur ganz lokal in den Alpen Brutvogel – Rote Liste Kategorie 5 (geografische Restriktion: sehr kleine, räumlich eng begrenzte Population). Seit 2003 auch am Fichtelberg/Klínovec im Erzgebirge beobachtet, 2018 dort erster (eher zufälliger) Brutnachweis außerhalb der Alpen. Gesang: klingelndes, lerchenartiges Trillern.",
+    background_en: "A relative of the Dunnock found in high mountains (rocky terrain, scree slopes, cirques, alpine meadows), in Germany a breeding bird only very locally in the Alps – Red List Category 5 (geographic restriction: a very small, spatially confined population). Also observed at Fichtelberg/Klínovec in the Ore Mountains since 2003, with the first (rather incidental) breeding record outside the Alps there in 2018. Song: a tinkling, lark-like trill.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -4647,6 +5027,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Rundlicher, farbenprächtiger Fink mit schwarzer Kappe, meist paarweise in Gebüschen und Wäldern. Ruf: weiches, klagendes, unverwechselbares 'düü'.",
+    background_en: "A round, colourful finch with a black cap, usually found in pairs in scrub and woodland. Call: a soft, plaintive, unmistakable 'deu'.",
     habitat: [],
     vocalMonths: null
   },
@@ -4662,6 +5043,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Sehr heimlicher Rallenvogel dichter Schilf- und Röhrichtbestände, kaum je zu sehen. Unverwechselbarer Ruf: schweineartiges, quiekendes Kreischen ('Ferkellaut').",
+    background_en: "A very secretive rail of dense reed and rush beds, almost never seen. Unmistakable call: pig-like, squealing screeching ('piglet call').",
     habitat: ["wetland_reed"],
     vocalMonths: null
   },
@@ -4677,6 +5059,7 @@ const SPECIES = [
     confusionGroup: "goldhaehnchen",
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Dem Wintergoldhähnchen sehr ähnlich, mit auffälligem schwarz-weißem Augenstreif, auch in Laubbäumen. Gesang ähnlich Wintergoldhähnchen, aber gleichmäßiger, ohne Schnörkel am Ende.",
+    background_en: "Very similar to the Goldcrest, with a striking black-and-white eye-stripe, also found in broadleaved trees. Song similar to the Goldcrest's, but more even, without the flourish at the end.",
     habitat: [],
     vocalMonths: [3,11]
   },
@@ -4692,6 +5075,7 @@ const SPECIES = [
     confusionGroup: "goldhaehnchen",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Vogel, fast ausschließlich in Nadelbäumen, ständig in Bewegung. Gesang: extrem hohe, kaum hörbare Serie 'sisisi-sisisi', endet mit kleinem Schnörkel.",
+    background_en: "Germany's smallest native bird, found almost exclusively in conifers, constantly on the move. Song: an extremely high, barely audible series 'sisisi-sisisi', ending with a small flourish.",
     habitat: [],
     vocalMonths: [9,3]
   },
@@ -4706,7 +5090,8 @@ const SPECIES = [
     group: "Meisen",
     confusionGroup: null,
     areas: ["byw", "hrz", "nwm", "uot"],
-    background: "Kleiner Vogel mit charakteristischer schwarzer Augenmaske, baut kunstvolle, beutelförmige Hängenester an Gewässern. Ruf: dünnes, klagendes, gezogenes 'tsiii'."
+    background: "Kleiner Vogel mit charakteristischer schwarzer Augenmaske, baut kunstvolle, beutelförmige Hängenester an Gewässern. Ruf: dünnes, klagendes, gezogenes 'tsiii'.",
+    background_en: "A small bird with a characteristic black eye mask, building elaborate, pouch-shaped hanging nests near water. Call: a thin, plaintive, drawn-out 'tsiii'.",
   },
   {
     id: "uferschwalbe",
@@ -4719,7 +5104,8 @@ const SPECIES = [
     group: "Schwalben",
     confusionGroup: null,
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
-    background: "Kleinste heimische Schwalbe, brütet kolonieweise in selbstgegrabenen Röhren in Steilwänden/Abbaugruben. Ruf: trockenes, schnarrendes Zwitschern, rauer als bei anderen Schwalben."
+    background: "Kleinste heimische Schwalbe, brütet kolonieweise in selbstgegrabenen Röhren in Steilwänden/Abbaugruben. Ruf: trockenes, schnarrendes Zwitschern, rauer als bei anderen Schwalben.",
+    background_en: "Germany's smallest native swallow, breeding colonially in self-dug tunnels in steep banks/quarry pits. Call: a dry, rasping twitter, harsher than other swallows'.",
   },
   {
     id: "dreizehenmoewe",
@@ -4733,6 +5119,9 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm"],
     background: "Meeresmöwe, brütet an Steilküsten; in Deutschland ausschließlich auf Helgoland Brutvogel, dort aber die zahlenmäßig häufigste Brutvogelart überhaupt. Bestand allerdings stark rückläufig: vom Maximum 8.600 Paaren (2001) über 7.000-8.000 auf inzwischen nur noch rund 3.500-5.000 Paare. Sonst Durchzügler. Namensgebender Ruf: lautes, rhythmisches 'kittiwake'.",
+    background_en: "A sea gull, breeding on sea cliffs; in Germany a breeding bird only on Heligoland, but there the numerically most common breeding species of all. Population strongly declining, however: from a peak of 8,600 pairs (2001) through 7,000-8,000 to now only around 3,500-5,000 pairs. Otherwise a passage migrant. Its namesake call: a loud, rhythmic 'kitti-wake'.",
+    background_en: "Germany's smallest native swallow, breeding colonially in self-dug tunnels in steep banks/quarry pits. Call: a dry, rasping twitter, harsher than other swallows'.",
+    background_en: "A small bird with a characteristic black eye mask, building elaborate, pouch-shaped hanging nests near water. Call: a thin, plaintive, drawn-out 'tsiii'.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -4748,6 +5137,7 @@ const SPECIES = [
     confusionGroup: "schwarz_braunkehlchen",
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "uot"],
     background: "Kleiner Ansitzjäger offener, buschreicher Flächen, oft auf exponierten Warten sitzend. Ruf: hartes, schmatzendes 'tschack', wie zwei Steine aneinandergeschlagen.",
+    background_en: "A small perch-hunter of open, scrubby ground, often sitting on exposed lookouts. Call: a hard, smacking 'tschack', like two stones knocked together.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -4763,6 +5153,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Winziger, gelbgrüner Fink, gerne auf hohen Singwarten wie Antennen. Gesang: sehr schnelles, klirrend-sprudelndes Geleier, oft mit 'Zisch'-Endung.",
+    background_en: "A tiny, yellow-green finch, fond of high song posts such as antennas. Song: a very fast, jangling, bubbling jingle, often ending in a 'zip' sound.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -4778,6 +5169,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["eif", "nwm"],
     background: "Große, gedrungene Meeresente – in Wirklichkeit keineswegs selten: Deutschland beherbergt über 400.000 überwinternde Individuen (rund 40% der gesamten biogeografischen Population), über 95% der deutschen Brutpaare (1.000-1.400) an der Nordseeküste, seit 1985 auch an der Ostsee (Fehmarn, Wismarer Bucht). 'Seevogel des Jahres 2019'. Bestand allerdings europaweit rückläufig (über 40% Rückgang in 27 Jahren). Ruf des Erpels: unverwechselbares, weiches, stöhnendes 'ah-uuu'.",
+    background_en: "A large, stocky sea duck – in reality by no means rare: Germany hosts over 400,000 wintering individuals (around 40% of the entire biogeographic population), with over 95% of German breeding pairs (1,000-1,400) on the North Sea coast, and on the Baltic since 1985 too (Fehmarn, Wismar Bay). Named 'Seabird of the Year 2019'. Population nonetheless declining Europe-wide (over 40% decline in 27 years). The drake's call: an unmistakable, soft, moaning 'ah-ooo'.",
     habitat: ["offshore_coast"],
     vocalMonths: [9,10]
   },
@@ -4793,6 +5185,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hai", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Ente mit auffällig breitem, löffelförmigem Schnabel, an flachen, nahrungsreichen Gewässern. Meist still; Ruf des Erpels ein dumpfes, doppeltes 'tuck-tuck'.",
+    background_en: "A duck with a strikingly broad, spoon-shaped bill, found on shallow, food-rich waters. Usually silent; the drake's call a dull, double 'tuck-tuck'.",
     habitat: [],
     vocalMonths: [8,1]
   },
@@ -4808,6 +5201,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hrz", "nwm", "uot"],
     background: "Kleine Ente an flachen Feuchtwiesen-Gewässern, in Deutschland seltener werdender Brutvogel. Ruf des Erpels: trockenes, holzartiges Knarren, klingt wie reißender Stoff.",
+    background_en: "A small duck of shallow wet-meadow waterbodies, an increasingly rare breeding bird in Germany. The drake's call: a dry, wooden creak, sounding like tearing cloth.",
     habitat: [],
     vocalMonths: [3,5]
   },
@@ -4823,6 +5217,7 @@ const SPECIES = [
     confusionGroup: "stieglitz_erlenzeisig",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleiner, wendiger Fink, oft in Trupps an Erlen und Birken im Winter. Ruf: hohes, quietschendes 'tsililit', Gesang ein zwitschernd-schnarrendes Plaudern.",
+    background_en: "A small, agile finch, often in flocks in alders and birches in winter. Call: a high, squeaky 'tsililit', song a twittering, wheezy chatter.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -4838,6 +5233,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "nwm"],
     background: "Schlanke Raubmöwe mit sehr langen mittleren Schwanzfedern, brütet in der Arktis. In Deutschland der seltenste der vier heimischen Raubmöwen-Durchzügler und außerhalb der Brutzeit eine ausgesprochen pelagische Art, kaum im Binnenland zu beobachten – bemerkenswerte Masseneinflüge gab es 1988, 1991, 1994, 2002 und 2012. Meist still.",
+    background_en: "A slender skua with very long central tail feathers, breeding in the Arctic. The rarest of the four native skua species on passage in Germany and, outside the breeding season, a decidedly pelagic species, barely seen inland – notable mass influxes occurred in 1988, 1991, 1994, 2002 and 2012. Usually silent.",
   },
   {
     id: "schmarotzerraubmoewe",
@@ -4851,6 +5247,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm"],
     background: "Raubmöwe, jagt andere Seevögel und zwingt sie zur Beuteabgabe; in Deutschland seltener, aber unter den vier Raubmöwenarten die während der Zugzeit (v.a. August/September) an Nord- und Ostseeküste am häufigsten beobachtete – am ehesten auf den Nordsee-Halligen zu sehen. Brütet im hohen Norden, überwintert südlich des Äquators. Meist still.",
+    background_en: "A skua that hunts other seabirds and forces them to give up their catch; a rare species in Germany, but the most frequently observed of the four skua species during the migration period (mainly August/September) on the North and Baltic Sea coasts – best seen on the North Sea Halligen islands. Breeds in the far north, winters south of the equator. Usually silent.",
   },
   {
     id: "spatelraubmoewe",
@@ -4864,6 +5261,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Raubmöwe mit löffelartig verdrehten mittleren Schwanzfedern (Brutgebiet arktische Tundra, Nahrung dort v.a. Lemminge), an der deutschen Nordseeküste regelmäßiger, aber seltener Durchzügler; im Binnenland eine große Ausnahme. Überwintert auf See in Tropen/Subtropen. Meist still.",
+    background_en: "A skua with spoon-like twisted central tail feathers (breeding range Arctic tundra, feeding there mainly on lemmings), a regular but rare passage migrant on the German North Sea coast; a great exception inland. Winters at sea in the tropics/subtropics. Usually silent.",
   },
   {
     id: "skua",
@@ -4877,6 +5275,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm"],
     background: "Große, kräftige Raubmöwe, in Deutschland sehr seltener Durchzügler an den Küsten, Schwerpunkt August bis November (Frühjahr seltener); beste Beobachtungschancen außerhalb der Brutzeit auf den Nordfriesischen Inseln oder Helgoland. Beobachtungszahlen und Aufenthaltsdauer nehmen in den letzten Jahren zu. Meist still.",
+    background_en: "A large, powerful skua, a very rare passage migrant on the German coasts, mainly August to November (rarer in spring); the best observation chances outside the breeding season are on the North Frisian Islands or Heligoland. Observation numbers and length of stay have been increasing in recent years. Usually silent.",
     habitat: [],
     vocalMonths: null
   },
@@ -4892,6 +5291,7 @@ const SPECIES = [
     confusionGroup: "fluss_kuestenseeschwalbe",
     areas: ["byw", "hrz", "nwm", "ssc", "uot"],
     background: "Schlanke, spitzflügelige Seeschwalbe, stürzt sich kopfüber nach Fischen ins Wasser. Ruf: scharfes, krächzendes 'kirri-kirri'.",
+    background_en: "A slender, sharp-winged tern, plunging headfirst into the water after fish. Call: a sharp, grating 'kirri-kirri'.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -4907,6 +5307,7 @@ const SPECIES = [
     confusionGroup: "fluss_kuestenseeschwalbe",
     areas: ["kwe", "nwm"],
     background: "Seeschwalbe mit dem längsten bekannten Vogelzug der Welt (Arktis-Antarktis), der Flussseeschwalbe sehr ähnlich. Rote Liste 'vom Aussterben bedroht' – Brutbestand von 4.000-4.900 auf aktuell rund 3.300 Paare zurückgegangen (Niedersachsen allein von rund 1.000 Mitte der 1990er auf unter 130 eingebrochen), Hauptursachen Nahrungsmangel durch Überfischung sowie Prädation durch Waschbär/Fuchs/Marderhund. Ruf höher und schärfer als Flussseeschwalbe, im Feld schwer zu trennen.",
+    background_en: "A tern with the longest known migration of any bird in the world (Arctic-Antarctic), very similar to the Common Tern. Red List 'critically endangered' – breeding population down from 4,000-4,900 to currently around 3,300 pairs (Lower Saxony alone collapsing from around 1,000 in the mid-1990s to under 130), main causes food shortage from overfishing and predation by raccoons/foxes/raccoon dogs. Call higher and sharper than the Common Tern's, hard to tell apart in the field.",
     habitat: [],
     vocalMonths: [4,10]
   },
@@ -4922,6 +5323,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["kwe", "nwm", "uot"],
     background: "Kleinste heimische Seeschwalbe, brütet auf vegetationsarmen Sand-/Kiesflächen der Küste. Bundesweit nur noch 630-680 Brutpaare (Rote Liste 1, vom Aussterben bedroht), Rückgang von rund einem Drittel zwischen 2010 und 2019; im niedersächsischen Wattenmeer rund 200 Paare. Ruf: hohes, scharfes, schnelles Kreischen.",
+    background_en: "Germany's smallest native tern, breeding on sparsely vegetated sandy/gravelly coastal ground. Only 630-680 breeding pairs left nationwide (Red List 1, critically endangered), a decline of around a third between 2010 and 2019; around 200 pairs in the Lower Saxon Wadden Sea. Call: high, sharp, fast screeching.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -4937,6 +5339,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Lappentaucher, sehr heimlich an deckungsreichen Kleingewässern. Ruf: schnelles, hohes, wieherndes Trillern.",
+    background_en: "Germany's smallest native grebe, very secretive on small waterbodies with plenty of cover. Call: a fast, high, whinnying trill.",
     habitat: [],
     vocalMonths: null
   },
@@ -4952,6 +5355,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "nwm"],
     background: "Auffällig rostorange gefärbte Halbgans, ursprünglich Steppen Asiens/Nordafrikas, in Deutschland als Gefangenschaftsflüchtling und zunehmend auch Wildvogel. Ruf: lautes, trompetendes, nasales 'ay-ay-ay'.",
+    background_en: "A strikingly rust-orange coloured shelduck, originally from the steppes of Asia/North Africa, found in Germany as an escaped bird and increasingly also as a genuine wild bird. Call: a loud, trumpeting, nasal 'ay-ay-ay'.",
     habitat: [],
     vocalMonths: null
   },
@@ -4967,6 +5371,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hai", "hrz", "nwm", "uot"],
     background: "Große, auffällig schwarz-weiß-rostrot gefärbte Halbgans der Küste, brütet in Erdbauten/Kaninchenbauten. Ruf: lautes, trompetendes 'ak-ak-ak'.",
+    background_en: "A large, strikingly black-white-rust-red coloured shelduck of the coast, breeding in burrows/rabbit holes. Call: a loud, trumpeting 'ak-ak-ak'.",
     habitat: [],
     vocalMonths: null
   },
@@ -4982,6 +5387,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleiner Schnäpper aus der sibirischen Taiga mit blauem Schwanz und orangefarbenen Flanken – nur 5% der Weltpopulation brütet in Europa (Schwerpunkt Finnland, dort zunehmend). In Deutschland eine seltene Ausnahmeerscheinung, September bis November vereinzelt auf Helgoland.",
+    background_en: "A small flycatcher relative from the Siberian taiga with a blue tail and orange flanks – only 5% of the world population breeds in Europe (concentrated in Finland, increasing there). A rare, exceptional occurrence in Germany, occasionally on Heligoland from September to November.",
     habitat: [],
     vocalMonths: [9,11]
   },
@@ -4997,6 +5403,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Größere Seeschwalbe mit schwarzem Federschopf und gelber Schnabelspitze. Als Brutvogel Rote Liste 1 (vom Aussterben bedroht) – Bestand im Wattenmeer lag Anfang der 1990er noch bei rund 10.000 Brutpaaren (Hauptkolonien Hallig Norderoog, Trischen, Minsener Oog), ist seitdem aber stark rückläufig und wurde durch die Vogelgrippe-Epidemien der letzten Jahre zusätzlich dezimiert (allein auf Minsener Oog ca. 3.000 tote Altvögel, etwa die Hälfte der dortigen Kolonie).",
+    background_en: "A larger tern with a black crest and a yellow bill tip. Red List 1 (critically endangered) as a breeding bird – the Wadden Sea population still stood at around 10,000 breeding pairs in the early 1990s (main colonies Hallig Norderoog, Trischen, Minsener Oog), but has since declined strongly and was further decimated by the avian influenza epidemics of recent years (around 3,000 dead adult birds on Minsener Oog alone, about half the colony there).",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: [5,10]
   },
@@ -5012,6 +5419,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "hai", "nwm", "uot"],
     background: "Schlanker, dunkler Wasserläufer, Durchzügler an Flachwasserzonen. Ruf: unverwechselbares, klares, fallendes 'tschuit'.",
+    background_en: "A slender, dark wader, a passage migrant on shallow-water zones. Call: an unmistakable, clear, falling 'tchuit'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -5027,6 +5435,7 @@ const SPECIES = [
     confusionGroup: "waldwasser_bruchwasserlaeufer",
     areas: ["byw", "hrz", "nwm", "ssc", "uot"],
     background: "Schlanker Wasserläufer an Feuchtwiesen und flachen Gewässern, v.a. Durchzügler. Ruf: helles, gereihtes, hüpfendes 'jiff-jiff-jiff'.",
+    background_en: "A slender wader of wet meadows and shallow waters, mainly a passage migrant. Call: a bright, repeated, bouncing 'jiff-jiff-jiff'.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -5042,6 +5451,7 @@ const SPECIES = [
     confusionGroup: "rotschenkel_gruenschenkel",
     areas: ["byw", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Großer, hochbeiniger Wasserläufer, in Deutschland Durchzügler an Schlammufern und Feuchtwiesen. Ruf: lautes, klares, dreisilbiges 'tjü-tjü-tjü'.",
+    background_en: "A large, long-legged wader, a passage migrant in Germany on muddy banks and wet meadows. Call: a loud, clear, three-syllable 'tchu-tchu-tchu'.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -5057,6 +5467,7 @@ const SPECIES = [
     confusionGroup: "waldwasser_bruchwasserlaeufer",
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Watvogel an Waldgewässern und Gräben, oft einzeln, auffällig dunkel mit weißem Bürzel im Flug. Ruf: durchdringendes, klingendes 'tlü-witt-witt', meist beim Auffliegen.",
+    background_en: "A wader of woodland waters and ditches, often alone, strikingly dark with a white rump in flight. Call: a piercing, ringing 'tlui-witt-witt', usually given when flushed.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -5072,6 +5483,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "kwe", "uot"],
     background: "Zierlicher, dem Grünschenkel ähnlicher Wasserläufer, Brutgebiet überwiegend Osteuropa/östlich des Schwarzen Meeres, in Deutschland ein regelmäßiger, aber sehr seltener Durchzügler mit nur wenigen Individuen pro Jahr, rastet bevorzugt an Flachwasserzonen von Binnengewässern. 2012 gelang in Schleswig-Holstein der erste deutsche Brutnachweis. Ruf: helles, weiches 'tjü'.",
+    background_en: "A dainty wader similar to the Common Greenshank, with a breeding range mainly in Eastern Europe/east of the Black Sea, a regular but very rare passage migrant in Germany with only a few individuals per year, preferring to stop over in shallow-water zones of inland waters. The first German breeding record came in 2012 in Schleswig-Holstein. Call: a bright, soft 'tyu'.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -5087,6 +5499,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Ostasiatische Drossel, in ihrem eigentlichen Verbreitungsgebiet nicht selten (IUCN: nicht gefährdet), in Deutschland aber ein extrem seltener Irrgast mit bis 2022 weniger als zehn dokumentierten Nachweisen (u.a. Helgoland 2017, Sachsen 2021, Berlin 2023). Ruf: raues Schackern, ähnlich Wacholderdrossel.",
+    background_en: "An East Asian thrush, not rare within its actual range (IUCN: not threatened), but an extremely rare vagrant in Germany, with fewer than ten documented records up to 2022 (including Heligoland 2017, Saxony 2021, Berlin 2023). Call: a rough chatter, similar to the Fieldfare's.",
     habitat: [],
     vocalMonths: [3,3]
   },
@@ -5102,6 +5515,7 @@ const SPECIES = [
     confusionGroup: "rot_wacholderdrossel",
     areas: ["byw", "eif", "hho", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinste heimische Drossel, in Deutschland v.a. Durchzügler/Wintergast in großen Trupps mit Wacholderdrosseln. Ruf: hoher, dünner, gezogener 'siih'-Ruf, oft nachts beim Zug zu hören.",
+    background_en: "Germany's smallest native thrush, mainly a passage migrant/winter visitor in Germany in large flocks with Fieldfares. Call: a high, thin, drawn-out 'seeih' note, often heard at night during migration.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -5117,6 +5531,7 @@ const SPECIES = [
     confusionGroup: "rot_wacholderdrossel",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Gesellig lebende, oft in kleinen Kolonien brütende Drossel, im Winter in großen Trupps. Ruf: charakteristisches, raues, schackerndes 'schack-schack-schack' im Flug.",
+    background_en: "A sociable thrush, often breeding in small colonies, forming large flocks in winter. Call: a characteristic, rough, chattering 'chack-chack-chack' in flight.",
     habitat: [],
     vocalMonths: null
   },
@@ -5132,6 +5547,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["byw", "eif", "hho", "hrz", "nwm"],
     background: "Amsel-Verwandte mit weißem Brustband, Brutvogel der Gebirgslagen, in Deutschland v.a. Durchzügler. Gesang: einfache, flötende, monoton wiederholte Phrase.",
+    background_en: "A Blackbird relative with a white breast band, a breeding bird of mountain regions, mainly a passage migrant in Germany. Song: a simple, fluting, monotonously repeated phrase.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -5147,6 +5563,7 @@ const SPECIES = [
     confusionGroup: "singdrossel_misteldrossel",
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größte heimische Drossel, singt oft von hohen Baumwipfeln auch bei schlechtem Wetter. Gesang: weittragend, in kurzen, flötenden Phrasen mit Pausen, ähnlich Amsel aber unstetiger und weniger variabel.",
+    background_en: "Germany's largest native thrush, often singing from high treetops even in bad weather. Song: far-carrying, in short, fluting phrases with pauses, similar to the Blackbird's but less steady and less varied.",
     habitat: [],
     vocalMonths: null
   },
@@ -5161,7 +5578,8 @@ const SPECIES = [
     group: "Eulen",
     confusionGroup: null,
     areas: ["eif", "nwm", "uot"],
-    background: "Hell gefärbte Eule mit herzförmigem Gesichtsschleier, brütet in Scheunen und Kirchtürmen. Unverwechselbarer Ruf: lang gezogener, unheimlicher, zischender Schrei."
+    background: "Hell gefärbte Eule mit herzförmigem Gesichtsschleier, brütet in Scheunen und Kirchtürmen. Unverwechselbarer Ruf: lang gezogener, unheimlicher, zischender Schrei.",
+    background_en: "A pale-coloured owl with a heart-shaped facial disc, breeding in barns and church towers. Unmistakable call: a long, drawn-out, eerie, hissing shriek.",
   },
   {
     id: "trottellumme",
@@ -5175,6 +5593,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Schlanker Alkenvogel, brütet in dichten Kolonien an Steilküsten, sonst auf offener See. Der einzige deutsche Brutplatz ist der Lummenfelsen auf Helgoland – dort aber seit über 200 Jahren durchgehend und mit wachsendem Bestand die häufigste Brutvogelart der Insel (2019: 4.051, 2021: 4.726 Brutpaare). Außerhalb Helgolands (wie in unseren Gebieten) nur vereinzelte Vögel auf See. Meist still fernab der Kolonie.",
+    background_en: "A slender auk, breeding in dense colonies on sea cliffs, otherwise on the open sea. Germany's only breeding site is the guillemot cliff on Heligoland – but there, for over 200 years continuously and with a growing population, the most common breeding species on the island (2019: 4,051, 2021: 4,726 breeding pairs). Away from Heligoland (as in our areas) only occasional birds at sea. Usually silent away from the colony.",
+    background_en: "A pale-coloured owl with a heart-shaped facial disc, breeding in barns and church towers. Unmistakable call: a long, drawn-out, eerie, hissing shriek.",
     habitat: ["offshore_coast"],
     vocalMonths: null
   },
@@ -5190,6 +5610,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Zentralasiatischer Kiebitz-Verwandter mit auffällig weißem Schwanz, in Deutschland eine extreme Rarität mit nur vereinzelten dokumentierten Nachweisen (u.a. Brandenburg 2006, Hessen 2000 und 2013) – aufgrund der Arealausweitung am Schwarzen Meer wird die Art aber inzwischen etwas häufiger in Mitteleuropa beobachtet als früher. Ruf: kiebitzartiges Kreischen.",
+    background_en: "A Central Asian relative of the Northern Lapwing with a striking white tail, an extreme rarity in Germany with only isolated documented records (including Brandenburg 2006, Hesse 2000 and 2013) – due to range expansion around the Black Sea, the species is now observed somewhat more often in Central Europe than in the past. Call: lapwing-like screeching.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -5205,6 +5626,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleine arktische Möwe mit auffälligem, gegabeltem Schwanz, in Deutschland alljährlich in geringer Zahl als Irrgast zu beobachten, typischerweise bei starken Westwindlagen nach Herbststürmen; Schwerpunkt Deutsche Bucht/nordfriesisches Wattenmeer (1997 allein dort 71 Sichtungen), im Binnenland eine große Ausnahme (z.B. nur zwei Nachweise seit 1999 am Seeburger See/Niedersachsen). Meist still.",
+    background_en: "A small Arctic gull with a striking forked tail, observed annually in Germany in small numbers as a vagrant, typically during strong westerly winds after autumn storms; concentrated in the German Bight/North Frisian Wadden Sea (71 sightings there alone in 1997), a great exception inland (e.g. only two records since 1999 at Lake Seeburg/Lower Saxony). Usually silent.",
     habitat: [],
     vocalMonths: [8,10]
   },
@@ -5220,6 +5642,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Watvogel mit charakteristisch leicht aufwärts gebogenem Schnabel und eigentümlich wippendem Gang, Langstreckenzieher mit Überwinterung an tropischen Küsten Afrikas/Asiens/Australiens (bis über 12.000 km entfernt), in Deutschland ein extrem seltener Durchzügler. Ruf: klares, mehrsilbiges Trillern.",
+    background_en: "A wader with a characteristically slightly upturned bill and a peculiar bobbing gait, a long-distance migrant wintering on tropical coasts of Africa/Asia/Australia (up to over 12,000 km away), an extremely rare passage migrant in Germany. Call: a clear, multi-syllable trill.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -5235,6 +5658,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["hrz", "uot"],
     background: "Sehr kleines, extrem heimliches Sumpfhuhn. Bundesweiter Bestand hat sich deutlich erholt: von rund 130 Brutpaaren in den 1980ern über einen Tiefstand von nur 35-85 Paaren (1994) auf inzwischen 160-250 Brutpaare (2005-2009), Rote Liste dadurch um zwei Stufen auf Kategorie 3 (gefährdet) herabgesetzt. Ruf: kehliges, gereihtes 'kek-kek-kek', beschleunigend.",
+    background_en: "A very small, extremely secretive crake. The national population has recovered markedly: from around 130 breeding pairs in the 1980s, through a low point of only 35-85 pairs (1994), to now 160-250 breeding pairs (2005-2009), with the Red List consequently downgraded two levels to Category 3 (endangered). Call: a throaty, repeated 'kek-kek-kek', accelerating.",
     habitat: ["wetland_reed"],
     vocalMonths: [4,11]
   },
@@ -5250,6 +5674,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["nwm"],
     background: "Kleinste in Europa vorkommende Rallenart. In Mitteleuropa einer der seltensten Brutvögel überhaupt und lange als ausgestorben gegolten – seit einigen Jahren wieder vereinzelte Brutnachweise, gesamteuropäisch aber nur noch 15-60 Brutpaare geschätzt. Braucht Seggenwiesen/Sümpfe mit sehr stabilem Wasserstand.",
+    background_en: "The smallest rail species occurring in Europe. One of the rarest breeding birds in Central Europe altogether and long considered extinct – isolated breeding records again in recent years, but only an estimated 15-60 breeding pairs across all of Europe. Needs sedge meadows/marshes with a very stable water level.",
     habitat: ["wetland_reed"],
     vocalMonths: [5,6]
   },
@@ -5273,6 +5698,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Brütet von Südosteuropa bis Zentralasien in offener, halboffener Landschaft mit einzelnen Bäumen (Steppen-Wald-Mosaik) – nicht in Deutschland heimisch, hier nur als extrem seltener Irrgast. IUCN-Status: gefährdet (Vulnerable). Verwechslung mit anderen großen Adlerarten ist eine bekannte Bestimmungsfalle.",
+    background_en: "Breeds from south-eastern Europe to Central Asia in open, semi-open landscape with scattered trees (steppe-woodland mosaic) – not native to Germany, occurring here only as an extremely rare vagrant. IUCN status: Vulnerable. Confusion with other large eagle species is a well-known identification trap.",
     habitat: [],
     vocalMonths: [6,8]
   },
@@ -5287,7 +5713,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Riesiger ostasiatischer Adler (Kamtschatka, Japan) – einer der größten Greifvögel der Welt. In Deutschland gilt jeder Nachweis als absolute Ausnahmeerscheinung (Irrgast/entflogenes Gehegetier diskutiert)."
+    background: "Riesiger ostasiatischer Adler (Kamtschatka, Japan) – einer der größten Greifvögel der Welt. In Deutschland gilt jeder Nachweis als absolute Ausnahmeerscheinung (Irrgast/entflogenes Gehegetier diskutiert).",
+    background_en: "A huge East Asian eagle (Kamchatka, Japan) – one of the largest raptors in the world. In Germany, any record is considered an absolute exceptional occurrence (vagrant/escaped captive bird are both discussed as explanations).",
   },
   {
     id: "clanga",
@@ -5301,6 +5728,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Brütet von Ost-/Mitteleuropa bis Zentralasien/China in Feuchtwäldern und an Flussauen – anders als die meisten Adlerarten stark an Gewässer, Sümpfe und Moore gebunden. In Deutschland nur als extrem seltener Durchzügler/Irrgast nachgewiesen. Verwechslung mit dem ähnlichen Schreiadler ist eine bekannte Bestimmungsfalle.",
+    background_en: "Breeds from Eastern/Central Europe to Central Asia/China in wet forest and river floodplains – unlike most eagle species, strongly tied to water, marshes and bogs. Recorded in Germany only as an extremely rare passage migrant/vagrant. Confusion with the similar Lesser Spotted Eagle is a well-known identification trap.",
+    background_en: "A huge East Asian eagle (Kamchatka, Japan) – one of the largest raptors in the world. In Germany, any record is considered an absolute exceptional occurrence (vagrant/escaped captive bird are both discussed as explanations).",
     habitat: [],
     vocalMonths: [11,4]
   },
@@ -5316,6 +5745,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Charakterart der Alpen, in Deutschland nur im bayerischen Alpenraum als sehr seltener Brutvogel (ca. 50 Paare). Ruf: hohes, dünnes 'kjäh', wird aber selten vokal registriert.",
+    background_en: "A characteristic species of the Alps, in Germany a very rare breeding bird only in the Bavarian Alpine region (around 50 pairs). Call: a high, thin 'kyah', but rarely recorded vocalising.",
     habitat: ["alpine"],
     vocalMonths: null
   },
@@ -5330,7 +5760,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Brütet in den Steppen und Halbwüsten Zentralasiens (Schwerpunkt Kasachstan, über 80% des Weltbestands) bis in die südrussische Steppe – IUCN-Status: stark gefährdet (Endangered), Bestand stark rückläufig. In Deutschland nur als extreme Ausnahmeerscheinung nachgewiesen. Verwechslung mit anderen großen Adlerarten ist eine bekannte Bestimmungsfalle."
+    background: "Brütet in den Steppen und Halbwüsten Zentralasiens (Schwerpunkt Kasachstan, über 80% des Weltbestands) bis in die südrussische Steppe – IUCN-Status: stark gefährdet (Endangered), Bestand stark rückläufig. In Deutschland nur als extreme Ausnahmeerscheinung nachgewiesen. Verwechslung mit anderen großen Adlerarten ist eine bekannte Bestimmungsfalle.",
+    background_en: "Breeds in the steppes and semi-deserts of Central Asia (concentrated in Kazakhstan, over 80% of the world population) as far as the southern Russian steppe – IUCN status: Endangered, population strongly declining. Recorded in Germany only as an extreme exceptional occurrence. Confusion with other large eagle species is a well-known identification trap.",
   },
   {
     id: "pallida",
@@ -5344,6 +5775,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    background_en: "Breeds in the steppes and semi-deserts of Central Asia (concentrated in Kazakhstan, over 80% of the world population) as far as the southern Russian steppe – IUCN status: Endangered, population strongly declining. Recorded in Germany only as an extreme exceptional occurrence. Confusion with other large eagle species is a well-known identification trap.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -5359,6 +5792,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -5374,6 +5808,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -5389,6 +5824,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [11,11]
   },
@@ -5404,6 +5840,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -5418,7 +5855,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich."
+    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
   },
   {
     id: "calandra",
@@ -5432,6 +5870,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/osteuropäische Lerche, in Deutschland nur als seltener Gast nachgewiesen, meist auf dem Durchzug an der Küste oder in waldarmen Beckenlandschaften.",
+    background_en: "A southern/eastern European lark, recorded in Germany only as a rare visitor, usually on passage on the coast or in sparsely wooded basin landscapes.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -5447,6 +5887,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/osteuropäische Lerche, in Deutschland nur als seltener Gast nachgewiesen, meist auf dem Durchzug an der Küste oder in waldarmen Beckenlandschaften.",
+    background_en: "A southern/eastern European lark, recorded in Germany only as a rare visitor, usually on passage on the coast or in sparsely wooded basin landscapes.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -5461,7 +5902,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "grylle",
@@ -5475,6 +5917,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Küstenvogel Nord- und Ostsee mit auffallend rotem Fuß und weißem Flügelfeld, in Deutschland nur unregelmäßiger Wintergast, keine Brutvorkommen.",
+    background_en: "A coastal bird of the North and Baltic Seas with a striking red foot and white wing patch, only an irregular winter visitor in Germany, no breeding occurrences.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -5490,6 +5934,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [2,6]
   },
@@ -5505,6 +5950,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -5520,6 +5966,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [10,12]
   },
@@ -5535,6 +5982,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [11,6]
   },
@@ -5550,6 +5998,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [11,2]
   },
@@ -5564,7 +6013,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären."
+    background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
   },
   {
     id: "americana2",
@@ -5578,6 +6028,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [11,12]
   },
@@ -5593,6 +6045,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [11,12]
   },
@@ -5608,6 +6061,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ursprünglich Australien/Neuguinea. Taucht in Deutschland nur als entflogener Ziervogel aus Wasservogelhaltungen auf, keinerlei natürliches Vorkommen in Europa.",
+    background_en: "Originally from Australia/New Guinea. Occurs in Germany only as an escaped ornamental bird from waterfowl collections, with no natural occurrence in Europe whatsoever.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -5622,7 +6076,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären."
+    background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
   },
   {
     id: "falcata",
@@ -5636,6 +6091,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [12,3]
   },
@@ -5651,6 +6108,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
+    background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [1,3]
   },
@@ -5666,6 +6124,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
+    background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -5681,6 +6140,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
+    background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -5695,7 +6155,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig."
+    background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
+    background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
   },
   {
     id: "caffer",
@@ -5709,6 +6170,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
+    background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
+    background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -5723,7 +6186,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden."
+    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
   },
   {
     id: "grayii",
@@ -5736,7 +6200,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden."
+    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
   },
   {
     id: "thula",
@@ -5749,7 +6214,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden."
+    background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
   },
   {
     id: "oedicnemus",
@@ -5763,6 +6229,10 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Großäugiger, dämmerungs-/nachtaktiver Watvogel offener, trockener Flächen. In Deutschland seit 1987 als Brutvogel ausgestorben (im 19. Jahrhundert noch verbreitet im Norddeutschen Tiefland und Alpenvorland) – seit 2011 aber überraschend wieder mit wenigen Paaren in den Maisfeldern der Oberrheinebene brütend.",
+    background_en: "A large-eyed, crepuscular/nocturnal wader of open, dry ground. Extinct as a breeding bird in Germany since 1987 (still widespread in the North German lowlands and Alpine foothills in the 19th century) – but surprisingly breeding again since 2011 with a few pairs in the maize fields of the Upper Rhine Plain.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
+    background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
   },
   {
     id: "ludovicianus",
@@ -5775,7 +6245,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems."
   },
   {
     id: "cinereus",
@@ -5788,7 +6259,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen."
+    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
   },
   {
     id: "indicus",
@@ -5801,7 +6273,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen."
+    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
   },
   {
     id: "fulva",
@@ -5814,7 +6287,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen."
+    background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
   },
   {
     id: "macroura",
@@ -5827,7 +6301,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "orientalis",
@@ -5840,7 +6315,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "garrulus",
@@ -5854,6 +6330,12 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Auffallend blau-braun gefärbter, krähengroßer Vogel warmer, offener Landschaften mit Höhlenbäumen. War früher seltener Brutvogel in Ostdeutschland, heute nur noch ausnahmsweise zu beobachten. Ruf: raue, krähenartige Rufe.",
+    background_en: "A strikingly blue-and-brown, crow-sized bird of warm, open landscapes with cavity-bearing trees. Formerly a rare breeding bird in eastern Germany, today only observed exceptionally. Call: rough, crow-like calls.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
+    background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
     habitat: [],
     vocalMonths: [5,9]
   },
@@ -5869,6 +6351,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Geselliger Rabenvogel der Hochgebirgsfelsen, in Deutschland nur in den Alpen. Ruf: helle, klingende 'kjäh'-Rufe, oft in Trupps an Berghütten/Gipfeln.",
+    background_en: "A sociable corvid of high mountain cliffs, in Germany found only in the Alps. Call: bright, ringing 'kyah' calls, often in flocks at mountain huts/summits.",
     habitat: ["alpine"],
     vocalMonths: null
   },
@@ -5883,7 +6366,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "glandarius",
@@ -5897,6 +6381,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Kuckucksverwandter aus wärmeren Regionen bzw. Nordamerika, in Deutschland nur als große Ausnahme nachgewiesen.",
+    background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -5911,7 +6397,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Kuckucksverwandter aus wärmeren Regionen bzw. Nordamerika, in Deutschland nur als große Ausnahme nachgewiesen."
+    background: "Kuckucksverwandter aus wärmeren Regionen bzw. Nordamerika, in Deutschland nur als große Ausnahme nachgewiesen.",
+    background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
   },
   {
     id: "melanophris",
@@ -5925,6 +6412,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
     habitat: [],
     vocalMonths: [6,8]
   },
@@ -5939,7 +6428,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher."
+    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
   },
   {
     id: "leucocephalos",
@@ -5953,6 +6443,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -5967,7 +6459,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher."
+    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
   },
   {
     id: "caesia",
@@ -5981,6 +6474,8 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -5996,6 +6491,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -6011,6 +6507,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [12,12]
   },
@@ -6026,6 +6523,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -6040,7 +6538,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher."
+    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
   },
   {
     id: "rustica",
@@ -6054,6 +6553,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [3,3]
   },
@@ -6068,7 +6568,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher."
+    background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
   },
   {
     id: "cirlus",
@@ -6082,6 +6583,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Südwesteuropäische Ammer am Nordrand ihres Areals, in Deutschland nur ganz vereinzelt (z.B. Kaiserstuhl) nachgewiesen. Gesang: kurze, rasselnde, gleichbleibende Strophe, ähnlich der Goldammer, aber schneller und trockener.",
+    background_en: "A south-western European bunting at the northern edge of its range, recorded in Germany only very sporadically (e.g. Kaiserstuhl). Song: a short, rattling, steady phrase, similar to the Yellowhammer's but faster and drier.",
     habitat: [],
     vocalMonths: [2,8]
   },
@@ -6097,6 +6599,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Felsbewohnende Ammer Süd- und Südosteuropas, in Deutschland nur als große Ausnahme (z.B. Alpenrand) nachgewiesen. Gesang: hohe, klingelnde Strophe.",
+    background_en: "A rock-dwelling bunting of southern and south-eastern Europe, recorded in Germany only as a great exception (e.g. Alpine foothills). Song: a high, tinkling phrase.",
     habitat: [],
     vocalMonths: null
   },
@@ -6112,6 +6615,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
+    background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6127,6 +6631,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Falke, in Deutschland nur vereinzelt als Durchzügler/Irrgast (teils auch Gefangenschaftsflüchtling) nachgewiesen.",
+    background_en: "A rare falcon, recorded in Germany only occasionally as a passage migrant/vagrant (sometimes also an escaped captive bird).",
     habitat: [],
     vocalMonths: [9,9]
   },
@@ -6141,7 +6646,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Falke, in Deutschland nur vereinzelt als Durchzügler/Irrgast (teils auch Gefangenschaftsflüchtling) nachgewiesen."
+    background: "Seltener Falke, in Deutschland nur vereinzelt als Durchzügler/Irrgast (teils auch Gefangenschaftsflüchtling) nachgewiesen.",
+    background_en: "A rare falcon, recorded in Germany only occasionally as a passage migrant/vagrant (sometimes also an escaped captive bird).",
   },
   {
     id: "naumanni",
@@ -6155,6 +6661,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Kleiner Falke der Mittelmeerregion/Zentralasiens, brütet in offenen, trockenen, wärmebegünstigten Landschaften. Erlitt im 20. Jahrhundert einen Bestandseinbruch von 95% (v.a. durch Insektizide), stabilisiert sich seit dem 21. Jahrhundert aber wieder lokal. War im 19. Jahrhundert noch ein recht häufiger Gastvogel in Deutschland, seither aber extrem selten geworden: 1990-2014 gab es für ganz Deutschland nur drei dokumentierte Nachweise (Helgoland, Brandenburg, Schleswig-Holstein).",
+    background_en: "A small falcon of the Mediterranean region/Central Asia, breeding in open, dry, warm landscapes. Suffered a 95% population collapse in the 20th century (mainly due to insecticides), but has been stabilising locally again since the 21st century. Was still a fairly common visitor to Germany in the 19th century, but has since become extremely rare: only three documented records for all of Germany between 1990 and 2014 (Heligoland, Brandenburg, Schleswig-Holstein).",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -6170,6 +6677,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Etwas zierlicherer Verwandter des Fichtenkreuzschnabels mit Verbreitungsschwerpunkt in Nordamerika und russischer Taiga, in Nordskandinavien nur spärlich. In Deutschland eine echte Rarität, die nur bei starken Invasionen auftaucht – 1991 gelang sogar ein einmaliger Brutnachweis auf einem Berliner Friedhof, der bisher stärkste Einflug fand 2013/14 statt.",
+    background_en: "A somewhat daintier relative of the Common Crossbill, mainly distributed in North America and the Russian taiga, only sparse in northern Scandinavia. A genuine rarity in Germany, appearing only during strong invasions – in 1991 a one-off breeding record even succeeded in a Berlin cemetery, with the strongest influx so far occurring in 2013/14.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: null
   },
@@ -6185,6 +6693,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Kräftiger Kreuzschnabel-Verwandter, Brutvogel v.a. Skandinaviens/Baltikums in Kiefernwäldern, überwintert meist im Brutgebiet, wandert aber in manchen Jahren (Invasionsjahre bei Kiefernsamen-Mangel) bis nach Norddeutschland. Ruf ähnlich Fichtenkreuzschnabel, aber tiefer und kräftiger.",
+    background_en: "A robust crossbill relative, a breeding bird mainly of Scandinavia/the Baltic states in pine forest, usually wintering within its breeding range, but in some years (invasion years when pine-seed crops fail) wandering as far as northern Germany. Call similar to the Common Crossbill's, but lower and stronger.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: [10,12]
   },
@@ -6199,7 +6708,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Verwandter der einheimischen Finken mit Verbreitungsschwerpunkt in Nordeuropa/Gebirgen bzw. Nordafrika, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten."
+    background: "Verwandter der einheimischen Finken mit Verbreitungsschwerpunkt in Nordeuropa/Gebirgen bzw. Nordafrika, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
+    background_en: "A relative of the native finches mainly distributed in northern Europe/mountain ranges or North Africa, observed in Germany only irregularly (sometimes during invasion years).",
   },
   {
     id: "citrinella",
@@ -6213,6 +6723,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Verwandter der einheimischen Finken mit Verbreitungsschwerpunkt in Nordeuropa/Gebirgen bzw. Nordafrika, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
+    background_en: "A relative of the native finches mainly distributed in northern Europe/mountain ranges or North Africa, observed in Germany only irregularly (sometimes during invasion years).",
     habitat: [],
     vocalMonths: [5,10]
   },
@@ -6227,7 +6738,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören."
+    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
   },
   {
     id: "maldivarum",
@@ -6241,6 +6753,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Brachschwalben-Art wärmerer Regionen, in Deutschland nur als sehr seltener Gast auf dem Durchzug zu beobachten.",
+    background_en: "A pratincole species from warmer regions, observed in Germany only as a very rare visitor on passage.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -6256,6 +6769,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Brachschwalben-Art wärmerer Regionen, in Deutschland nur als sehr seltener Gast auf dem Durchzug zu beobachten.",
+    background_en: "A pratincole species from warmer regions, observed in Germany only as a very rare visitor on passage.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -6271,6 +6785,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Kranich, in Deutschland nur als extreme Ausnahme (meist im Gefolge ziehender Kranichtrupps) nachgewiesen.",
+    background_en: "A North American crane, recorded in Germany only as an extreme exception (usually travelling with migrating flocks of Common Cranes).",
     habitat: [],
     vocalMonths: [11,2]
   },
@@ -6285,7 +6800,8 @@ const SPECIES = [
     group: "Schwalben",
     confusionGroup: null,
     areas: ["de"],
-    background: "Schwalbe der Fels- und Gebirgslandschaften Südeuropas, in Deutschland nur ganz vereinzelt im äußersten Süden bzw. auf dem Zug zu beobachten. Ruf: kurze, trockene 'tschirr'-Laute, im Flug meist still."
+    background: "Schwalbe der Fels- und Gebirgslandschaften Südeuropas, in Deutschland nur ganz vereinzelt im äußersten Süden bzw. auf dem Zug zu beobachten. Ruf: kurze, trockene 'tschirr'-Laute, im Flug meist still.",
+    background_en: "A swallow of the rocky, mountainous landscapes of southern Europe, observed in Germany only very sporadically in the far south or on passage. Call: short, dry 'tchirr' sounds, usually silent in flight.",
   },
   {
     id: "castro",
@@ -6298,7 +6814,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören."
+    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
   },
   {
     id: "pelagicus2",
@@ -6312,6 +6829,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -6326,7 +6844,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören."
+    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
   },
   {
     id: "ater",
@@ -6339,7 +6858,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "cristatus",
@@ -6353,6 +6873,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6368,6 +6889,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -6383,6 +6905,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -6397,7 +6920,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen."
+    background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
   },
   {
     id: "minor",
@@ -6411,6 +6935,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -6425,7 +6950,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen."
+    background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
+    background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
   },
   {
     id: "atricilla",
@@ -6439,6 +6965,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -6454,6 +6981,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -6468,7 +6996,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "genei",
@@ -6482,6 +7011,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -6496,7 +7026,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "audouinii",
@@ -6510,6 +7041,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -6525,6 +7057,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -6540,6 +7073,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -6555,6 +7089,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -6569,7 +7104,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "fuscatus",
@@ -6582,7 +7118,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "bengalensis",
@@ -6595,7 +7132,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "elegans",
@@ -6609,6 +7147,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -6623,7 +7162,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten."
+    background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
+    background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
   },
   {
     id: "certhiola",
@@ -6637,6 +7177,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [9,9]
   },
@@ -6652,6 +7193,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6666,7 +7208,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Bienenfresser-Verwandter wärmerer Regionen, in Deutschland nur als seltener Gast auf dem Durchzug bekannt."
+    background: "Bienenfresser-Verwandter wärmerer Regionen, in Deutschland nur als seltener Gast auf dem Durchzug bekannt.",
+    background_en: "A bee-eater relative from warmer regions, known in Germany only as a rare visitor on passage.",
   },
   {
     id: "carolinensis",
@@ -6679,7 +7222,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "rubescens",
@@ -6692,7 +7236,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "gustavi",
@@ -6706,6 +7251,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6721,6 +7267,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [1,2]
   },
@@ -6736,6 +7283,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Ostasiatischer Stelzen-Verwandter mit Brutgebiet von Nordost-Mongolei/China bis Westalaska, überwintert in Südostasien bis Nordaustralien. Eine der seltensten Vogelarten Deutschlands überhaupt: der zweite je dokumentierte deutsche Nachweis gelang erst im Januar 2025 in Schleswig-Holstein. Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "An East Asian wagtail relative with a breeding range from north-east Mongolia/China to western Alaska, wintering in South-East Asia to northern Australia. One of the rarest bird species in Germany altogether: only the second documented German record ever came as recently as January 2025 in Schleswig-Holstein. Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -6751,6 +7299,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -6765,7 +7314,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "zanthopygia",
@@ -6778,7 +7328,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "semitorquata",
@@ -6791,7 +7342,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "galactotes",
@@ -6804,7 +7356,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "isabellina",
@@ -6818,6 +7371,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -6833,6 +7387,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -6848,6 +7403,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Fliegenschnäpper-Verwandter aus der asiatischen Taiga östlich des Urals, Männchen mit leuchtend rubinrotem Kehlfleck. In Deutschland bislang erst drei Mal nachgewiesen, zuletzt im Oktober 2024 auf Helgoland – der Jungvogel wurde dort von bis zu 400 Ornitholog:innen besucht.",
+    background_en: "A flycatcher relative from the Asian taiga east of the Urals, the male with a brilliant ruby-red throat patch. Recorded in Germany only three times so far, most recently in October 2024 on Heligoland – the young bird there was visited by up to 400 birdwatchers.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6862,7 +7418,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "leucopyga",
@@ -6876,6 +7433,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -6890,7 +7448,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung."
+    background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
   },
   {
     id: "stejnegeri",
@@ -6904,6 +7463,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6919,6 +7479,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirischer Fliegenschnäpper, brütet im nordöstlichen Eurasien bis zum Pazifik, überwintert in Süd-/Südostasien – in Mitteleuropa eine extreme Rarität mit bislang nur 13 europäischen Nachweisen insgesamt. Der bisher einzige deutsche Nachweis gelang am 31.10.2024 auf Helgoland.",
+    background_en: "A Siberian flycatcher, breeding in north-eastern Eurasia as far as the Pacific, wintering in South/South-East Asia – an extreme rarity in Central Europe, with only 13 European records in total so far. Germany's only record to date came on 31 October 2024 on Heligoland.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -6934,6 +7495,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
+    background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
     habitat: [],
     vocalMonths: [9,1]
   },
@@ -6949,6 +7511,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Trappenverwandter offener Agrarlandschaften Südwesteuropas, in Deutschland als Brutvogel ausgestorben, nur noch als Ausnahme auf dem Zug denkbar.",
+    background_en: "A bustard relative of open farmland in south-western Europe, extinct as a breeding bird in Germany, conceivable now only as an exception on passage.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6963,7 +7526,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Osteuropäisch-zentralasiatische Meise, in Deutschland nur als sehr seltener Gast bekannt."
+    background: "Osteuropäisch-zentralasiatische Meise, in Deutschland nur als sehr seltener Gast bekannt.",
+    background_en: "An Eastern European-Central Asian tit, known in Germany only as a very rare visitor.",
   },
   {
     id: "virens",
@@ -6976,7 +7540,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "americana3",
@@ -6989,7 +7554,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "sandwichensis",
@@ -7002,7 +7568,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "melodia",
@@ -7016,6 +7583,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -7030,7 +7598,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "italiae",
@@ -7044,6 +7613,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
+    background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7059,6 +7629,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
+    background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
     habitat: [],
     vocalMonths: [6,10]
   },
@@ -7073,7 +7644,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt."
+    background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
+    background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
   },
   {
     id: "muta",
@@ -7087,6 +7659,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Bewohner der alpinen Zone oberhalb der Baumgrenze, in Deutschland nur in den Bayerischen Alpen (Wetterstein, Karwendel). Ruf: raues, knarrendes Schnarren.",
+    background_en: "An inhabitant of the alpine zone above the tree line, found in Germany only in the Bavarian Alps (Wetterstein, Karwendel). Call: a rough, creaking rattle.",
     habitat: ["alpine"],
     vocalMonths: [3,11]
   },
@@ -7102,6 +7675,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Als Brutvogel in Deutschland bereits im 18. Jahrhundert ausgestorben (u.a. durch Klimawandel und intensive Bejagung); mehrere Wiederansiedlungsversuche in Mitteleuropa scheiterten. Wird als beliebtes Jagdwild in anderen Ländern (u.a. Großbritannien) häufig ausgesetzt – vereinzelte deutsche Nachweise (z.B. 2023 Steigerwald) dürften auf solche entkommenen/ausgesetzten Vögel zurückgehen.",
+    background_en: "Already extinct as a breeding bird in Germany by the 18th century (among other causes, climate change and intensive hunting); several reintroduction attempts in Central Europe failed. Often released as popular game in other countries (including Britain) – isolated German records (e.g. 2023 Steigerwald) are likely to trace back to such escaped/released birds.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -7117,6 +7691,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Rebhuhn-verwandtes Feldhuhn der süd- und mitteleuropäischen Gebirge, in Deutschland nur durch vereinzelte Aussetzungen/Gehegeflüchtlinge in den Alpen bekannt, keine gesicherte Wildpopulation.",
+    background_en: "A partridge relative of the mountains of southern and central Europe, known in Germany only through isolated releases/escapees from enclosures in the Alps, no confirmed wild population.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -7132,6 +7707,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Kleinste Flamingo-Art, ursprünglich Ost-/Südafrika. In Deutschland praktisch ausschließlich als Gefangenschaftsflüchtling aus Zoos/Vogelparks zu beobachten, keine echten Wildvögel aus Afrika zu erwarten.",
+    background_en: "The smallest flamingo species, originally from East/Southern Africa. In Germany observed practically only as an escaped bird from zoos/bird parks, no genuine wild birds from Africa to be expected.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7147,6 +7723,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7162,6 +7739,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7177,6 +7755,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Südwesteuropäischer Laubsänger, brütet in Deutschland nur vereinzelt am Oberrhein/Kaiserstuhl. Gesang: klingelnder, perlender Triller, dem Waldlaubsänger entfernt ähnlich.",
+    background_en: "A south-western European leaf warbler, breeding in Germany only sparsely on the Upper Rhine/Kaiserstuhl. Song: a tinkling, bubbling trill, distantly similar to the Wood Warbler's.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -7191,7 +7770,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich."
+    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
   },
   {
     id: "neglectus",
@@ -7204,7 +7784,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich."
+    background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
   },
   {
     id: "coronatus",
@@ -7218,6 +7799,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7233,6 +7815,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7248,6 +7831,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
+    background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -7263,6 +7847,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Buntspecht-ähnlicher Specht Südosteuropas/Kleinasiens, breitet sich langsam nordwärts aus, in Deutschland bislang nur vereinzelte Nachweise am Rand des Verbreitungsgebiets.",
+    background_en: "A woodpecker resembling the Great Spotted Woodpecker from south-eastern Europe/Asia Minor, slowly spreading northward; only isolated records so far in Germany at the edge of its range.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -7278,6 +7863,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Lappentaucher, in Deutschland nur als extreme Ausnahme nachgewiesen.",
+    background_en: "A North American grebe, recorded in Germany only as an extreme exception.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -7293,6 +7879,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
     habitat: ["offshore_coast"],
     vocalMonths: [5,5]
   },
@@ -7307,7 +7894,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören."
+    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
   },
   {
     id: "diomedea",
@@ -7321,6 +7909,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -7336,6 +7925,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirische Braunelle, in Deutschland nur in Ausnahmejahren (Invasionen) als seltener Wintergast nachgewiesen.",
+    background_en: "A Siberian accentor, recorded in Germany only in exceptional years (invasions) as a rare winter visitor.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -7351,6 +7941,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Größerer Verwandter des Halsbandsittichs, ursprünglich Süd-/Südostasien. Tritt in einigen deutschen Städten in kleiner Zahl gemeinsam mit Halsbandsittich-Schwärmen auf, ebenfalls aus entflogenen Ziervögeln entstanden.",
+    background_en: "A larger relative of the Rose-ringed Parakeet, originally from South/South-East Asia. Occurs in small numbers in some German cities together with Rose-ringed Parakeet flocks, likewise originating from escaped ornamental birds.",
     habitat: [],
     vocalMonths: null
   },
@@ -7365,7 +7956,8 @@ const SPECIES = [
     group: "Exoten & Gefangenschaftsflüchtlinge",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ursprünglich aus Afrika/Südasien, in mehreren deutschen Großstädten (u.a. Köln, Düsseldorf, Wiesbaden, Heidelberg) seit Jahrzehnten als selbsterhaltende, wildlebende Population etabliert. Ruf: durchdringendes, kreischendes 'kjäk-kjäk', meist in Schwärmen an Schlafplätzen."
+    background: "Ursprünglich aus Afrika/Südasien, in mehreren deutschen Großstädten (u.a. Köln, Düsseldorf, Wiesbaden, Heidelberg) seit Jahrzehnten als selbsterhaltende, wildlebende Population etabliert. Ruf: durchdringendes, kreischendes 'kjäk-kjäk', meist in Schwärmen an Schlafplätzen.",
+    background_en: "Originally from Africa/South Asia, established for decades as a self-sustaining, free-living population in several major German cities (including Cologne, Düsseldorf, Wiesbaden, Heidelberg). Call: a piercing, screeching 'kee-ak', usually in flocks at roost sites.",
   },
   {
     id: "orientalis3",
@@ -7378,7 +7970,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten."
+    background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten.",
+    background_en: "A sandgrouse of Asian-North African steppes, historically occurring in Germany only during rare large invasions (last in notable numbers in the 19th century), today practically never to be expected.",
   },
   {
     id: "paradoxus",
@@ -7391,7 +7984,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten."
+    background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten.",
+    background_en: "A sandgrouse of Asian-North African steppes, historically occurring in Germany only during rare large invasions (last in notable numbers in the 19th century), today practically never to be expected.",
   },
   {
     id: "porphyrio",
@@ -7405,6 +7999,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Rallenverwandter wärmerer Feuchtgebiete Südeuropas, breitet sich klimabedingt langsam nordwärts aus, in Deutschland bislang nur vereinzelte Nachweise.",
+    background_en: "A rail relative of warmer wetlands in southern Europe, slowly spreading northward due to climate change; only isolated records in Germany so far.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -7419,7 +8014,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A Siberian-Asian wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "bairdii",
@@ -7433,6 +8029,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -7448,6 +8045,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -7463,6 +8061,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Größere, gedrungenere Verwandte der Bekassine, brütet in Feuchtmooren/Flussniederungen von Norwegen bis Russland. In Deutschland als Brutvogel seit 1930 ausgestorben, seitdem nur noch seltener, aber regelmäßiger Durchzügler (Frühjahrszug April/Mai, Wegzug ab Mitte August) mit vereinzelten Rastvorkommen, gelegentlich sogar mit mehrtägigem Balzverhalten.",
+    background_en: "A larger, stockier relative of the Common Snipe, breeding in wet bogs/river floodplains from Norway to Russia. Extinct as a breeding bird in Germany since 1930, since then only a rare but regular passage migrant (spring passage April/May, autumn passage from mid-August) with occasional stopovers, sometimes even with multi-day display behaviour.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -7478,6 +8077,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [3,7]
   },
@@ -7493,6 +8093,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [11,12]
   },
@@ -7508,6 +8109,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -7522,7 +8124,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "longicauda",
@@ -7535,7 +8138,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "ruficollis",
@@ -7548,7 +8152,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A Siberian-Asian wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "pusilla2",
@@ -7562,6 +8167,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -7577,6 +8183,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -7592,6 +8199,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -7606,7 +8214,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "fuscicollis",
@@ -7620,6 +8229,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7634,7 +8244,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung."
+    background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
   },
   {
     id: "tricolor",
@@ -7648,6 +8259,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
+    background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
     habitat: [],
     vocalMonths: [7,8]
   },
@@ -7663,6 +8275,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Kleiber, in Deutschland nur als extreme Ausnahme nachgewiesen.",
+    background_en: "A North American nuthatch, recorded in Germany only as an extreme exception.",
     habitat: [],
     vocalMonths: [11,11]
   },
@@ -7677,7 +8290,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten."
+    background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
+    background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
   },
   {
     id: "ulula",
@@ -7691,6 +8305,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
+    background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
     habitat: [],
     vocalMonths: [10,1]
   },
@@ -7705,7 +8320,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten."
+    background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
+    background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
   },
   {
     id: "unicolor",
@@ -7718,7 +8334,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten."
+    background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
+    background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
   },
   {
     id: "tristis",
@@ -7731,7 +8348,8 @@ const SPECIES = [
     group: "Exoten & Gefangenschaftsflüchtlinge",
     confusionGroup: null,
     areas: ["de"],
-    background: "Ursprünglich Süd-/Südostasien, weltweit eine der invasivsten Vogelarten (u.a. eingebürgert in Portugal). In Deutschland bislang nur vereinzelte Nachweise, meist Gefangenschaftsflüchtlinge."
+    background: "Ursprünglich Süd-/Südostasien, weltweit eine der invasivsten Vogelarten (u.a. eingebürgert in Portugal). In Deutschland bislang nur vereinzelte Nachweise, meist Gefangenschaftsflüchtlinge.",
+    background_en: "Originally from South/South-East Asia, one of the most invasive bird species worldwide (established, among other places, in Portugal). Only isolated records in Germany so far, mostly escaped captive birds.",
   },
   {
     id: "leucogaster",
@@ -7744,7 +8362,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören."
+    background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
+    background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
   },
   {
     id: "iberiae",
@@ -7758,6 +8377,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
+    background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -7772,7 +8392,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug."
+    background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
+    background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
   },
   {
     id: "hortensis",
@@ -7786,6 +8407,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
+    background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
     habitat: [],
     vocalMonths: [1,2]
   },
@@ -7801,6 +8423,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/südwesteuropäische Grasmücke der Macchie und Heidelandschaften (Verbreitungsschwerpunkt Spanien, Frankreich, Italien bis Nordwestafrika), am Rand ihres Areals. Erscheint in Deutschland nur als sehr seltener Gast, meist auf dem Zug – wie andere mediterrane Arten durch anhaltende Dürreperioden und Wüstenausbreitung im Verbreitungsgebiet zunehmend unter Druck.",
+    background_en: "A south-western European warbler of maquis scrub and heathland (mainly distributed in Spain, France, Italy to north-west Africa), at the edge of its range. Appears in Germany only as a very rare visitor, mostly on passage – like other Mediterranean species, increasingly under pressure within its range from persistent droughts and desertification.",
     habitat: [],
     vocalMonths: [3,3]
   },
@@ -7816,6 +8439,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
+    background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7831,6 +8455,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Durch ein internationales Wiederansiedlungsprojekt (u.a. Brutkolonie Burghausen/Bayern) seit einigen Jahren wieder als freifliegende, ziehende Population in Süddeutschland vorhanden – ähnlich wie beim Habichtskauz eine dokumentierte Ausnahme trotz fehlender eBird-Treffer in den 11 Gebieten. Ruf: heisere, grunzende Rufe an der Kolonie.",
+    background_en: "Present again in southern Germany for several years as a free-flying, migratory population thanks to an international reintroduction project (including a breeding colony at Burghausen/Bavaria) – similar to the Ural Owl, a documented exception despite no eBird hits in the 11 areas. Call: hoarse, grunting calls at the colony.",
     habitat: [],
     vocalMonths: [10,12]
   },
@@ -7846,6 +8471,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Kletterspezialist an Felswänden und in Schluchten, in Deutschland selten im Alpenraum, im Winter vereinzelt auch an Steinbrüchen/Gebäuden im Flachland. Ruf: hohes, dünnes 'sist' oder 'sri'.",
+    background_en: "A climbing specialist on rock faces and in gorges, rare in Germany in the Alpine region, in winter occasionally also at quarries/buildings in the lowlands. Call: a high, thin 'sist' or 'sri'.",
     habitat: ["alpine"],
     vocalMonths: null
   },
@@ -7860,7 +8486,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich."
+    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
   },
   {
     id: "guttatus",
@@ -7873,7 +8500,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "aurea",
@@ -7887,6 +8515,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -7902,6 +8531,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -7916,7 +8546,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "naumanni2",
@@ -7929,7 +8560,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich."
+    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
   },
   {
     id: "ruficollis2",
@@ -7942,7 +8574,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich."
+    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
   },
   {
     id: "sibirica2",
@@ -7955,7 +8588,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich."
+    background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
   },
   {
     id: "atrogularis",
@@ -7969,6 +8603,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -7983,7 +8618,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanische Drossel, taucht in Europa nur als extreme Ausnahme nach Verdriftung über den Atlantik auf, meist im Spätherbst/Winter."
+    background: "Nordamerikanische Drossel, taucht in Europa nur als extreme Ausnahme nach Verdriftung über den Atlantik auf, meist im Spätherbst/Winter.",
+    background_en: "A North American thrush, occurring in Europe only as an extreme exception after being carried across the Atlantic, mostly in late autumn/winter.",
   },
   {
     id: "obscurus",
@@ -7997,6 +8633,7 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
+    background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8011,7 +8648,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "flavifrons",
@@ -8024,7 +8662,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   },
   {
     id: "olivaceus",
@@ -8037,7 +8676,8 @@ const SPECIES = [
     group: "Seltene Gäste (Irrgäste)",
     confusionGroup: null,
     areas: ["de"],
-    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs."
+    background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
   }
 
 ];
@@ -8046,156 +8686,232 @@ const SPECIES = [
 const CONFUSION_NOTES = {
   zilpzalp_fitis_iberienzilpzalp: {
     title: "Zilpzalp vs. Fitis vs. Iberienzilpzalp",
-    note: "Optisch kaum zu unterscheiden – der Gesang trennt Zilpzalp und Fitis sicher: Zilpzalp singt monoton seinen eigenen Namen ('zilp-zalp-zilp'), der Fitis singt eine fließende, absteigende, wehmütige Tonkaskade ohne Wiederholung. Die eigentliche Bestimmungsfalle ist der Iberienzilpzalp (seltener Gast/potenzieller Arealrand-Brüter): sein Gesang ähnelt dem des Zilpzalp sehr stark, klingt aber meist etwas schneller, unregelmäßiger und mit zusätzlichen, bunteren Silben durchsetzt – ohne Vergleichsaufnahme kaum sicher zu trennen."
+    note: "Optisch kaum zu unterscheiden – der Gesang trennt Zilpzalp und Fitis sicher: Zilpzalp singt monoton seinen eigenen Namen ('zilp-zalp-zilp'), der Fitis singt eine fließende, absteigende, wehmütige Tonkaskade ohne Wiederholung. Die eigentliche Bestimmungsfalle ist der Iberienzilpzalp (seltener Gast/potenzieller Arealrand-Brüter): sein Gesang ähnelt dem des Zilpzalp sehr stark, klingt aber meist etwas schneller, unregelmäßiger und mit zusätzlichen, bunteren Silben durchsetzt – ohne Vergleichsaufnahme kaum sicher zu trennen.",
+    title_en: "Common Chiffchaff vs. Willow Warbler vs. Iberian Chiffchaff",
+    note_en: "Visually almost impossible to tell apart – song reliably separates Chiffchaff and Willow Warbler: the Chiffchaff sings its own name monotonously ('chiff-chaff-chiff'), while the Willow Warbler sings a flowing, descending, wistful cascade of notes without repetition. The real identification trap is the Iberian Chiffchaff (a rare vagrant/potential range-edge breeder): its song closely resembles the Chiffchaff's but usually sounds a bit faster, more irregular, and interspersed with extra, more varied syllables – without a comparison recording it's hard to separate reliably.",
   },
   sumpfmeise_weidenmeise: {
     title: "Sumpfmeise vs. Weidenmeise",
-    note: "Optisch fast identisch (beide unscheinbar braun-schwarz-weiß). Der Ruf ist der sicherste Weg: Sumpfmeise = scharfes, klares 'pitchuu'; Weidenmeise = nasales, gezogenes 'dääh-dääh-dääh'. Habitat hilft zusätzlich: Weidenmeise eher in feuchten/moorigen Wäldern."
+    note: "Optisch fast identisch (beide unscheinbar braun-schwarz-weiß). Der Ruf ist der sicherste Weg: Sumpfmeise = scharfes, klares 'pitchuu'; Weidenmeise = nasales, gezogenes 'dääh-dääh-dääh'. Habitat hilft zusätzlich: Weidenmeise eher in feuchten/moorigen Wäldern.",
+    title_en: "Marsh Tit vs. Willow Tit",
+    note_en: "Visually almost identical (both plain brown-black-and-white). The call is the surest way to tell them apart: Marsh Tit = a sharp, clear 'pitchou'; Willow Tit = a nasal, drawn-out 'dzaa-dzaa-dzaa'. Habitat helps too: Willow Tit tends to favour damp or boggy woodland.",
   },
   gruenspecht_grauspecht_wendehals: {
     title: "Grünspecht vs. Grauspecht vs. Wendehals",
-    note: "Optisch durch Kopfzeichnung unterscheidbar, akustisch über das Tempo des Rufs: Grünspecht ruft eine gleichmäßig laute, 'lachende' Serie; Grauspecht beginnt ähnlich, wird zum Ende aber deutlich langsamer UND fällt in der Tonhöhe ab – klingt dadurch eher 'traurig verklingend'. Der viel kleinere Wendehals hat eine monotonere, näselnde, schnellere Serie 'quiquiquiquiqui', die entfernt an beide Spechte erinnert, aber insgesamt dünner und nasaler klingt."
+    note: "Optisch durch Kopfzeichnung unterscheidbar, akustisch über das Tempo des Rufs: Grünspecht ruft eine gleichmäßig laute, 'lachende' Serie; Grauspecht beginnt ähnlich, wird zum Ende aber deutlich langsamer UND fällt in der Tonhöhe ab – klingt dadurch eher 'traurig verklingend'. Der viel kleinere Wendehals hat eine monotonere, näselnde, schnellere Serie 'quiquiquiquiqui', die entfernt an beide Spechte erinnert, aber insgesamt dünner und nasaler klingt.",
+    title_en: "European Green Woodpecker vs. Grey-headed Woodpecker vs. Eurasian Wryneck",
+    note_en: "Distinguishable visually by head pattern, and acoustically by the pace of the call: the Green Woodpecker gives an evenly loud, 'laughing' series; the Grey-headed Woodpecker starts similarly but slows down noticeably towards the end AND drops in pitch – sounding more like it 'trails off sadly'. The much smaller Wryneck has a more monotonous, nasal, faster series 'qui-qui-qui-qui-qui', distantly reminiscent of both woodpeckers but overall thinner and more nasal.",
   },
   waldbaumlaeufer_gartenbaumlaeufer: {
     title: "Waldbaumläufer vs. Gartenbaumläufer",
-    note: "Optisch kaum zu trennen, beide klettern spiralförmig Stämme hoch. Der Gesang hilft: Waldbaumläufer singt gleichmäßig-fließend und sehr hoch; Gartenbaumläufer beendet seine Strophe mit einem markanten, abgehackten Schlussmotiv ('...tü-tü-tü-teruit'). Zusätzlich: Waldbaumläufer eher in Nadel-/Bergwald, Gartenbaumläufer auch in Parks und Gärten."
+    note: "Optisch kaum zu trennen, beide klettern spiralförmig Stämme hoch. Der Gesang hilft: Waldbaumläufer singt gleichmäßig-fließend und sehr hoch; Gartenbaumläufer beendet seine Strophe mit einem markanten, abgehackten Schlussmotiv ('...tü-tü-tü-teruit'). Zusätzlich: Waldbaumläufer eher in Nadel-/Bergwald, Gartenbaumläufer auch in Parks und Gärten.",
+    title_en: "Eurasian Treecreeper vs. Short-toed Treecreeper",
+    note_en: "Almost impossible to tell apart visually, both spiral up tree trunks. The song helps: the Eurasian Treecreeper sings evenly and very high-pitched; the Short-toed Treecreeper ends its phrase with a distinctive, clipped closing motif ('...tü-tü-tü-teruit'). In addition: Eurasian Treecreeper favours conifer/montane forest, Short-toed Treecreeper also occurs in parks and gardens.",
   },
   moenchsgrasmuecke_gartengrasmuecke: {
     title: "Mönchsgrasmücke vs. Gartengrasmücke",
-    note: "Beide unauffällig gefärbt und im dichten Gebüsch/Unterholz. Der Gesang trennt sicher: Mönchsgrasmücke plappert erst leise und mündet in einen lauten, klaren, flötenden 'Überschlag' am Ende; Gartengrasmücke plappert durchgehend gleichmäßig-sprudelnd, OHNE lauten Höhepunkt – eher eintönig."
+    note: "Beide unauffällig gefärbt und im dichten Gebüsch/Unterholz. Der Gesang trennt sicher: Mönchsgrasmücke plappert erst leise und mündet in einen lauten, klaren, flötenden 'Überschlag' am Ende; Gartengrasmücke plappert durchgehend gleichmäßig-sprudelnd, OHNE lauten Höhepunkt – eher eintönig.",
+    title_en: "Eurasian Blackcap vs. Garden Warbler",
+    note_en: "Both inconspicuously coloured and found in dense scrub/undergrowth. The song separates them reliably: the Blackcap starts with quiet chattering and builds to a loud, clear, fluting 'flourish' at the end; the Garden Warbler chatters on evenly and burblingly throughout, WITHOUT a loud climax – more monotonous overall.",
   }
 ,
   sumpfrohrsaenger_teichrohrsaenger: {
     title: "Sumpfrohrsänger vs. Teichrohrsänger",
-    note: "Optisch fast identisch. Der Sumpfrohrsänger baut in seinen sehr variablen, plappernden Gesang ständig Fremdgesänge anderer Vogelarten ein (klingt dadurch 'bunt gemischt'). Der Teichrohrsänger singt dagegen deutlich monotoner und rhythmischer, mit charakteristischem, sich wiederholendem 'karr-karr-tit-tit-tirr'."
+    note: "Optisch fast identisch. Der Sumpfrohrsänger baut in seinen sehr variablen, plappernden Gesang ständig Fremdgesänge anderer Vogelarten ein (klingt dadurch 'bunt gemischt'). Der Teichrohrsänger singt dagegen deutlich monotoner und rhythmischer, mit charakteristischem, sich wiederholendem 'karr-karr-tit-tit-tirr'.",
+    title_en: "Marsh Warbler vs. Eurasian Reed Warbler",
+    note_en: "Visually almost identical. The Marsh Warbler constantly weaves other species' songs into its own highly variable, chattering song (giving it a 'colourfully mixed' sound). The Reed Warbler, by contrast, sings noticeably more monotonously and rhythmically, with a characteristic, repeated 'karr-karr-tit-tit-tirr'.",
   },
   schwirl_trio: {
     title: "Feldschwirl vs. Schlagschwirl vs. Rohrschwirl",
-    note: "Alle drei erzeugen ein monotones, insektenartiges Schwirren, unterscheidbar über Tonhöhe und Klangfarbe: Feldschwirl schwirrt am schnellsten und höchsten, mechanisch wie eine Angelrolle; Schlagschwirl schwirrt härter und tiefer; Rohrschwirl schwirrt am weichsten und gleichmäßigsten. Zusätzlich hilft das Habitat: Feldschwirl in Hochstauden/Brachen, Schlagschwirl in feuchten Gebüschen, Rohrschwirl im dichten Schilf."
+    note: "Alle drei erzeugen ein monotones, insektenartiges Schwirren, unterscheidbar über Tonhöhe und Klangfarbe: Feldschwirl schwirrt am schnellsten und höchsten, mechanisch wie eine Angelrolle; Schlagschwirl schwirrt härter und tiefer; Rohrschwirl schwirrt am weichsten und gleichmäßigsten. Zusätzlich hilft das Habitat: Feldschwirl in Hochstauden/Brachen, Schlagschwirl in feuchten Gebüschen, Rohrschwirl im dichten Schilf.",
+    title_en: "Common Grasshopper Warbler vs. River Warbler vs. Savi's Warbler",
+    note_en: "All three produce a monotonous, insect-like reeling, distinguishable by pitch and tone: the Grasshopper Warbler reels fastest and highest, mechanical like a fishing reel; the River Warbler reels harder and lower; Savi's Warbler reels the softest and most even. Habitat helps too: Grasshopper Warbler in tall herbage/fallow land, River Warbler in damp scrub, Savi's Warbler in dense reedbeds.",
   },
   goldhaehnchen: {
     title: "Wintergoldhähnchen vs. Sommergoldhähnchen",
-    note: "Beide extrem klein, mit sehr hohem, für manche Ohren kaum hörbarem Gesang. Wintergoldhähnchen singt eine gleichmäßige Serie 'sisisi-sisisi' mit kleinem Schnörkel am Ende; Sommergoldhähnchen singt ähnlich, aber gleichmäßiger und ohne den abschließenden Schnörkel. Optisch trennt der auffällige schwarz-weiße Augenstreif des Sommergoldhähnchens sicher."
+    note: "Beide extrem klein, mit sehr hohem, für manche Ohren kaum hörbarem Gesang. Wintergoldhähnchen singt eine gleichmäßige Serie 'sisisi-sisisi' mit kleinem Schnörkel am Ende; Sommergoldhähnchen singt ähnlich, aber gleichmäßiger und ohne den abschließenden Schnörkel. Optisch trennt der auffällige schwarz-weiße Augenstreif des Sommergoldhähnchens sicher.",
+    title_en: "Goldcrest vs. Common Firecrest",
+    note_en: "Both extremely small, with a very high-pitched song that some people can barely hear. The Goldcrest sings an even series 'sisisi-sisisi' with a little flourish at the end; the Firecrest sings similarly but more evenly and without that closing flourish. Visually, the Firecrest's striking black-and-white eye-stripe is the reliable distinguishing feature.",
   },
   pieper_trio: {
     title: "Baumpieper vs. Wiesenpieper vs. Bergpieper",
-    note: "Drei unscheinbare Pieper, die leicht verwechselt werden. Der Baumpieper hat einen auffälligen Singflug, der vom Baum startet und mit einem gleitenden, gedehnten 'sia-sia-sia' im Abwärtsfallen endet. Der Wiesenpieper singt eine beschleunigte Serie feiner 'ist-ist-ist'-Töne, ohne das charakteristische Ende des Baumpiepers. Der Bergpieper ist in Deutschland meist nur Wintergast/Durchzügler (Küste, Bergland) und ruft ein feines, dünnes, einzelnes 'sist' – unauffälliger und einsilbiger als die Rufe der beiden anderen Arten."
+    note: "Drei unscheinbare Pieper, die leicht verwechselt werden. Der Baumpieper hat einen auffälligen Singflug, der vom Baum startet und mit einem gleitenden, gedehnten 'sia-sia-sia' im Abwärtsfallen endet. Der Wiesenpieper singt eine beschleunigte Serie feiner 'ist-ist-ist'-Töne, ohne das charakteristische Ende des Baumpiepers. Der Bergpieper ist in Deutschland meist nur Wintergast/Durchzügler (Küste, Bergland) und ruft ein feines, dünnes, einzelnes 'sist' – unauffälliger und einsilbiger als die Rufe der beiden anderen Arten.",
+    title_en: "Tree Pipit vs. Meadow Pipit vs. Water Pipit",
+    note_en: "Three unassuming pipits that are easily confused. The Tree Pipit has a conspicuous song flight that starts from a tree and ends with a gliding, drawn-out 'sia-sia-sia' as it parachutes down. The Meadow Pipit sings an accelerating series of thin 'ist-ist-ist' notes, without the Tree Pipit's characteristic ending. The Water Pipit is in Germany mostly a winter visitor/passage migrant (coast, uplands) and gives a thin, single 'sist' call – more understated and monosyllabic than the calls of the other two species.",
   },
   nachtigall_sprosser: {
     title: "Nachtigall vs. Sprosser",
-    note: "Nahezu identisch aussehende, eng verwandte Arten mit sehr ähnlichem, kraftvollem Gesang. Die Nachtigall singt klarer, mit dem unverwechselbaren, anschwellenden 'düo düo düo düo'; der Sprosser (in Deutschland nur im äußersten Nordosten, z.B. Odertal) singt rauer, mit mehr schnarrenden und knarrenden Elementen."
+    note: "Nahezu identisch aussehende, eng verwandte Arten mit sehr ähnlichem, kraftvollem Gesang. Die Nachtigall singt klarer, mit dem unverwechselbaren, anschwellenden 'düo düo düo düo'; der Sprosser (in Deutschland nur im äußersten Nordosten, z.B. Odertal) singt rauer, mit mehr schnarrenden und knarrenden Elementen.",
+    title_en: "Common Nightingale vs. Thrush Nightingale",
+    note_en: "Nearly identical-looking, closely related species with a very similar, powerful song. The Nightingale sings more clearly, with its unmistakable, swelling 'du-du-du-du'; the Thrush Nightingale (in Germany found only in the far north-east, e.g. the Oder valley) sings more coarsely, with more churring and creaking elements.",
   },
   schwarz_braunkehlchen: {
     title: "Schwarzkehlchen vs. Braunkehlchen",
-    note: "Beide Ansitzjäger offener, buschreicher Flächen. Das Schwarzkehlchen ruft ein hartes, schmatzendes 'tschack' (wie zwei aneinandergeschlagene Steine); das Braunkehlchen hat einen variableren, leiseren Gesang mit oft nachgeahmten Fremdlauten. Optisch trennt die Kehlfarbe (schwarz vs. hell mit Überaugenstreif) sicher."
+    note: "Beide Ansitzjäger offener, buschreicher Flächen. Das Schwarzkehlchen ruft ein hartes, schmatzendes 'tschack' (wie zwei aneinandergeschlagene Steine); das Braunkehlchen hat einen variableren, leiseren Gesang mit oft nachgeahmten Fremdlauten. Optisch trennt die Kehlfarbe (schwarz vs. hell mit Überaugenstreif) sicher.",
+    title_en: "European Stonechat vs. Whinchat",
+    note_en: "Both are perch-hunters of open, scrubby ground. The Stonechat gives a hard, smacking 'tschack' call (like two stones knocked together); the Whinchat has a more variable, quieter song, often incorporating mimicry of other species' calls. Visually, throat colour (black vs. pale with a supercilium) is a reliable distinguishing feature.",
   },
   grossmoewen_trio: {
     title: "Silbermöwe vs. Mittelmeermöwe vs. Steppenmöwe",
-    note: "Diese drei Großmöwen sind akustisch selbst für Expert:innen kaum sicher zu trennen – alle rufen den typischen, lauten 'Möwenschrei' 'kjau-kjau-kjau'. Eine sichere Unterscheidung gelingt praktisch nur über Gefieder- und Beinfarbe-Merkmale im Feld, nicht über den Ruf."
+    note: "Diese drei Großmöwen sind akustisch selbst für Expert:innen kaum sicher zu trennen – alle rufen den typischen, lauten 'Möwenschrei' 'kjau-kjau-kjau'. Eine sichere Unterscheidung gelingt praktisch nur über Gefieder- und Beinfarbe-Merkmale im Feld, nicht über den Ruf.",
+    title_en: "European Herring Gull vs. Yellow-legged Gull vs. Caspian Gull",
+    note_en: "These three large gulls are barely reliably separable acoustically even for experts – all give the typical, loud 'gull scream' 'kyow-kyow-kyow'. A reliable distinction is really only possible via plumage and leg-colour features in the field, not by call.",
   },
   hohl_ringeltaube: {
     title: "Hohltaube vs. Ringeltaube",
-    note: "Die kleinere Hohltaube ruft ein dumpfes, zweisilbiges, monoton wiederholtes 'huu-hu'. Die größere Ringeltaube ruft eine längere, fünfsilbige Strophe 'gru-gu-gu, gru-gu', oft umschrieben als 'ich hab´ zwei Kühe gestohlen'."
+    note: "Die kleinere Hohltaube ruft ein dumpfes, zweisilbiges, monoton wiederholtes 'huu-hu'. Die größere Ringeltaube ruft eine längere, fünfsilbige Strophe 'gru-gu-gu, gru-gu', oft umschrieben als 'ich hab´ zwei Kühe gestohlen'.",
+    title_en: "Stock Dove vs. Common Wood Pigeon",
+    note_en: "The smaller Stock Dove gives a dull, two-syllable, monotonously repeated 'hoo-hu'. The larger Wood Pigeon gives a longer, five-syllable phrase 'coo-COO-coo, coo-coo', often rendered in English as 'my toe bleeds, Betty'.",
   },
   berg_buchfink: {
     title: "Bergfink vs. Buchfink",
-    note: "Beide oft gemeinsam in großen Wintertrupps an Buchen. Der Buchfink ruft ein helles, energisches 'pink'; der Bergfink ruft nasaler und rauer, ein schnarrendes 'quäk'."
+    note: "Beide oft gemeinsam in großen Wintertrupps an Buchen. Der Buchfink ruft ein helles, energisches 'pink'; der Bergfink ruft nasaler und rauer, ein schnarrendes 'quäk'.",
+    title_en: "Brambling vs. Common Chaffinch",
+    note_en: "Both often occur together in large winter flocks in beech woods. The Chaffinch gives a bright, energetic 'pink' call; the Brambling calls more nasally and harshly, a rasping wheeze.",
   },
   spechte_trio: {
     title: "Kleinspecht vs. Mittelspecht vs. Buntspecht",
-    note: "Alle drei rufen ähnliche, gereihte 'ki-ki-ki'-Serien. Der Buntspecht trommelt am kräftigsten und kürzesten, der Kleinspecht am längsten und leisesten, der Mittelspecht trommelt nur sehr selten und ruft stattdessen häufiger sein nasales 'quäg-quäg-quäg'."
+    note: "Alle drei rufen ähnliche, gereihte 'ki-ki-ki'-Serien. Der Buntspecht trommelt am kräftigsten und kürzesten, der Kleinspecht am längsten und leisesten, der Mittelspecht trommelt nur sehr selten und ruft stattdessen häufiger sein nasales 'quäg-quäg-quäg'.",
+    title_en: "Lesser Spotted Woodpecker vs. Middle Spotted Woodpecker vs. Great Spotted Woodpecker",
+    note_en: "All three give similar, repeated 'ki-ki-ki' call series. The Great Spotted Woodpecker drums the loudest and shortest, the Lesser Spotted Woodpecker the longest and quietest, while the Middle Spotted Woodpecker drums only very rarely and instead more often gives its nasal 'quäg-quäg-quäg' call.",
   },
   fluss_kuestenseeschwalbe: {
     title: "Flussseeschwalbe vs. Küstenseeschwalbe",
-    note: "Beide sehr ähnlich schlank und spitzflügelig, mit ähnlichem, scharfem Krächzen. Die Küstenseeschwalbe ruft tendenziell etwas höher und schärfer, eine sichere akustische Trennung gelingt aber auch Expert:innen oft nur im direkten Vergleich."
+    note: "Beide sehr ähnlich schlank und spitzflügelig, mit ähnlichem, scharfem Krächzen. Die Küstenseeschwalbe ruft tendenziell etwas höher und schärfer, eine sichere akustische Trennung gelingt aber auch Expert:innen oft nur im direkten Vergleich.",
+    title_en: "Common Tern vs. Arctic Tern",
+    note_en: "Both very similarly slender and sharp-winged, with a similarly sharp, grating call. The Arctic Tern tends to call slightly higher and sharper, but a reliable acoustic distinction is often possible for experts too only in direct comparison.",
   },
   rot_wacholderdrossel: {
     title: "Rotdrossel vs. Wacholderdrossel",
-    note: "Häufig gemeinsam in Wintertrupps unterwegs, aber gut über den Ruf zu trennen: die Rotdrossel ruft einen hohen, dünnen, gezogenen 'siih'-Ton (v.a. nachts beim Zug), die Wacholderdrossel ein raues, schackerndes 'schack-schack-schack' im Flug."
+    note: "Häufig gemeinsam in Wintertrupps unterwegs, aber gut über den Ruf zu trennen: die Rotdrossel ruft einen hohen, dünnen, gezogenen 'siih'-Ton (v.a. nachts beim Zug), die Wacholderdrossel ein raues, schackerndes 'schack-schack-schack' im Flug.",
+    title_en: "Redwing vs. Fieldfare",
+    note_en: "Often travelling together in winter flocks, but easily separated by call: the Redwing gives a high, thin, drawn-out 'seeih' note (especially at night during migration), the Fieldfare a harsh, chattering 'chack-chack-chack' in flight.",
   },
   klapper_dorngrasmuecke: {
     title: "Klappergrasmücke vs. Dorngrasmücke",
-    note: "Beide unauffällige Grasmücken. Die Klappergrasmücke plaudert leise und mündet in ein hartes, rasselndes 'Klappern'; die Dorngrasmücke singt eine kurze, kratzige, hastige Strophe, oft aus einem kurzen Singflug heraus vorgetragen."
+    note: "Beide unauffällige Grasmücken. Die Klappergrasmücke plaudert leise und mündet in ein hartes, rasselndes 'Klappern'; die Dorngrasmücke singt eine kurze, kratzige, hastige Strophe, oft aus einem kurzen Singflug heraus vorgetragen.",
+    title_en: "Lesser Whitethroat vs. Common Whitethroat",
+    note_en: "Both unassuming warblers. The Lesser Whitethroat murmurs quietly and finishes with a hard, rattling clatter; the Common Whitethroat sings a short, scratchy, hurried phrase, often delivered from a brief song flight.",
   },
   bekassine_zwergschnepfe: {
     title: "Bekassine vs. Zwergschnepfe",
-    note: "Die Bekassine fällt v.a. durch das mechanische 'Meckern' (Vibrieren der Schwanzfedern im Sturzflug) auf, ruft aber auch ein scharfes 'ätsch' bei Störung. Die viel kleinere, extrem heimliche Zwergschnepfe ist in Deutschland fast nie rufend zu hören und fliegt erst bei sehr naher Störung lautlos auf – ein Größen- und Verhaltensunterschied mehr als ein Ruf-Unterschied."
+    note: "Die Bekassine fällt v.a. durch das mechanische 'Meckern' (Vibrieren der Schwanzfedern im Sturzflug) auf, ruft aber auch ein scharfes 'ätsch' bei Störung. Die viel kleinere, extrem heimliche Zwergschnepfe ist in Deutschland fast nie rufend zu hören und fliegt erst bei sehr naher Störung lautlos auf – ein Größen- und Verhaltensunterschied mehr als ein Ruf-Unterschied.",
+    title_en: "Common Snipe vs. Jack Snipe",
+    note_en: "The Common Snipe is mainly noticeable for its mechanical 'drumming' (tail feathers vibrating in a diving display flight), but also gives a sharp call when flushed. The much smaller, extremely secretive Jack Snipe is almost never heard calling in Germany and only flushes silently when disturbed at very close range – more a difference in size and behaviour than in call.",
   },
   rabenvoegel_trio: {
     title: "Rabenkrähe vs. Saatkrähe vs. Kolkrabe",
-    note: "Die häufigste Verwechslung unter den großen Rabenvögeln. Die Rabenkrähe ruft ein raues, eher tiefes 'krah' oder 'kraa', meist einzeln oder in kurzen Serien. Die Saatkrähe klingt näselnder und höher, oft ein nasales 'kjah', und tritt fast immer in größeren, lärmenden Trupps/Kolonien auf. Der viel größere Kolkrabe hat einen tiefen, hohlen, weittragenden Ruf ('krock' oder 'prook'), der sich klar von beiden Krähen unterscheidet, aber mit etwas Abstand oder bei schlechter Aufnahmequalität trotzdem verwechselt wird."
+    note: "Die häufigste Verwechslung unter den großen Rabenvögeln. Die Rabenkrähe ruft ein raues, eher tiefes 'krah' oder 'kraa', meist einzeln oder in kurzen Serien. Die Saatkrähe klingt näselnder und höher, oft ein nasales 'kjah', und tritt fast immer in größeren, lärmenden Trupps/Kolonien auf. Der viel größere Kolkrabe hat einen tiefen, hohlen, weittragenden Ruf ('krock' oder 'prook'), der sich klar von beiden Krähen unterscheidet, aber mit etwas Abstand oder bei schlechter Aufnahmequalität trotzdem verwechselt wird.",
+    title_en: "Carrion Crow vs. Rook vs. Common Raven",
+    note_en: "The most frequent confusion among the large corvids. The Carrion Crow gives a harsh, rather low 'craa' or 'kraa', usually singly or in short series. The Rook sounds more nasal and higher, often a nasal 'kaah', and almost always occurs in larger, noisy flocks/colonies. The much larger Raven has a deep, hollow, far-carrying call ('kronk' or 'prruk') that is clearly different from both crows, but is still sometimes confused with them at a distance or with poor recording quality.",
   },
   waldwasser_bruchwasserlaeufer: {
     title: "Waldwasserläufer vs. Bruchwasserläufer",
-    note: "Zwei ähnlich große, dunkle 'Tringa'-Wasserläufer mit klassischer Verwechslungsgefahr. Der Waldwasserläufer ruft beim Auffliegen ein klares, hohes, dreisilbiges 'tlü-it-it' oder 'klüwitt-witt-witt'. Der Bruchwasserläufer klingt weicher und melodischer, oft ein fallendes, mehrsilbiges 'tjiff-jiff-jiff' – insgesamt runder und weniger scharf als der Waldwasserläufer."
+    note: "Zwei ähnlich große, dunkle 'Tringa'-Wasserläufer mit klassischer Verwechslungsgefahr. Der Waldwasserläufer ruft beim Auffliegen ein klares, hohes, dreisilbiges 'tlü-it-it' oder 'klüwitt-witt-witt'. Der Bruchwasserläufer klingt weicher und melodischer, oft ein fallendes, mehrsilbiges 'tjiff-jiff-jiff' – insgesamt runder und weniger scharf als der Waldwasserläufer.",
+    title_en: "Green Sandpiper vs. Wood Sandpiper",
+    note_en: "Two similarly sized, dark 'Tringa' sandpipers with a classic risk of confusion. The Green Sandpiper gives a clear, high, three-syllable 'tlui-witt-witt' call when flushed. The Wood Sandpiper sounds softer and more melodious, often a falling, multi-syllable 'chiff-iff-iff' – overall rounder and less sharp than the Green Sandpiper.",
   },
   rotschenkel_gruenschenkel: {
     title: "Rotschenkel vs. Grünschenkel",
-    note: "Beide mittelgroße Wasserläufer mit lautem, weittragendem Warnruf beim Auffliegen. Der Rotschenkel ruft ein klagendes, dreisilbiges 'tjü-hü-hü', fallend in der Tonhöhe. Der größere Grünschenkel hat einen kräftigeren, dreisilbigen, eher gleichbleibenden Ruf 'tjü-tjü-tjü', der etwas heiserer/kräftiger klingt als der des Rotschenkels."
+    note: "Beide mittelgroße Wasserläufer mit lautem, weittragendem Warnruf beim Auffliegen. Der Rotschenkel ruft ein klagendes, dreisilbiges 'tjü-hü-hü', fallend in der Tonhöhe. Der größere Grünschenkel hat einen kräftigeren, dreisilbigen, eher gleichbleibenden Ruf 'tjü-tjü-tjü', der etwas heiserer/kräftiger klingt als der des Rotschenkels.",
+    title_en: "Common Redshank vs. Common Greenshank",
+    note_en: "Both medium-sized sandpipers with a loud, far-carrying alarm call when flushed. The Redshank gives a plaintive, three-syllable 'tyu-hu-hu', falling in pitch. The larger Greenshank has a stronger, three-syllable, more even call 'tchu-tchu-tchu' that sounds a bit hoarser/more forceful than the Redshank's.",
   },
   sperber_habicht: {
     title: "Sperber vs. Habicht",
-    note: "Beide Arten derselben Gattung mit ähnlichem Rufmuster, aber deutlichem Größenunterschied. Der kleinere Sperber ruft eine schnelle Serie hoher, dünner 'kju-kju-kju'-Töne. Der deutlich größere Habicht ruft lauter, härter und tiefer: eine schnelle Serie von 'gick-gick-gick-gick', v.a. am Horst zu hören. Bei entfernten oder kurzen Aufnahmen ist die Unterscheidung allein am Ruf nicht immer sicher."
+    note: "Beide Arten derselben Gattung mit ähnlichem Rufmuster, aber deutlichem Größenunterschied. Der kleinere Sperber ruft eine schnelle Serie hoher, dünner 'kju-kju-kju'-Töne. Der deutlich größere Habicht ruft lauter, härter und tiefer: eine schnelle Serie von 'gick-gick-gick-gick', v.a. am Horst zu hören. Bei entfernten oder kurzen Aufnahmen ist die Unterscheidung allein am Ruf nicht immer sicher.",
+    title_en: "Eurasian Sparrowhawk vs. Northern Goshawk",
+    note_en: "Both species of the same genus with a similar call pattern, but a marked size difference. The smaller Sparrowhawk gives a fast series of high, thin 'kew-kew-kew' notes. The much larger Goshawk calls louder, harder and lower: a fast series of 'gick-gick-gick-gick', mainly heard near the nest. With distant or short recordings, the distinction by call alone is not always reliable.",
   },
   maeusebussard_wespenbussard: {
     title: "Mäusebussard vs. Wespenbussard",
-    note: "Beide mittelgroße, breitflügelige Greifvögel gleicher Silhouette, aber unterschiedlicher Ruf. Der Mäusebussard hat den bekannten, katzenartig miauenden Ruf 'hiäääh', meist gedehnt und klagend. Der Wespenbussard ruft kürzer und pfeifender, ein helles, zwei- bis dreisilbiges 'pjii-lü', deutlich weniger miauend als der Mäusebussard."
+    note: "Beide mittelgroße, breitflügelige Greifvögel gleicher Silhouette, aber unterschiedlicher Ruf. Der Mäusebussard hat den bekannten, katzenartig miauenden Ruf 'hiäääh', meist gedehnt und klagend. Der Wespenbussard ruft kürzer und pfeifender, ein helles, zwei- bis dreisilbiges 'pjii-lü', deutlich weniger miauend als der Mäusebussard.",
+    title_en: "Common Buzzard vs. European Honey Buzzard",
+    note_en: "Both medium-sized, broad-winged raptors of similar silhouette but different calls. The Common Buzzard has the well-known, cat-like mewing call 'peee-yoo', usually drawn-out and plaintive. The Honey Buzzard calls more briefly and whistling, a bright, two- to three-syllable 'pee-lu', much less mewing than the Buzzard.",
   },
   kleine_strandlaeufer_trio: {
     title: "Alpenstrandläufer vs. Zwergstrandläufer vs. Sanderling",
-    note: "Die drei häufigsten kleinen 'Watvogel-Peeps' an der Küste, optisch wie akustisch eine klassische Bestimmungsfalle. Der Alpenstrandläufer ruft ein raues, rollendes 'trrr' oder 'krrrit'. Der viel kleinere Zwergstrandläufer hat einen kurzen, trockenen, hohen 'tit'- oder 'trit'-Ruf. Der Sanderling ruft ein kurzes, hartes 'plit' oder 'twick', oft von seinem charakteristischen Laufen in der Brandungszone begleitet."
+    note: "Die drei häufigsten kleinen 'Watvogel-Peeps' an der Küste, optisch wie akustisch eine klassische Bestimmungsfalle. Der Alpenstrandläufer ruft ein raues, rollendes 'trrr' oder 'krrrit'. Der viel kleinere Zwergstrandläufer hat einen kurzen, trockenen, hohen 'tit'- oder 'trit'-Ruf. Der Sanderling ruft ein kurzes, hartes 'plit' oder 'twick', oft von seinem charakteristischen Laufen in der Brandungszone begleitet.",
+    title_en: "Dunlin vs. Little Stint vs. Sanderling",
+    note_en: "The three most common small 'peep' waders on the coast, a classic identification trap both visually and acoustically. The Dunlin gives a rough, rolling 'trrr' or 'krrit'. The much smaller Little Stint has a short, dry, high 'tit' or 'trit' call. The Sanderling gives a short, hard 'plit' or 'twick', often accompanied by its characteristic running in the surf zone.",
   },
   singdrossel_misteldrossel: {
     title: "Singdrossel vs. Misteldrossel",
-    note: "Die Singdrossel singt kräftige, klare Motive, die sie typischerweise 2- bis 4-mal wiederholt, bevor sie zur nächsten Phrase wechselt – abwechslungsreich und variabel. Die Misteldrossel singt ähnlich flötend, aber deutlich eintöniger, schwermütiger und weniger variantenreich, mit größeren Pausen zwischen den Strophen; oft schon von weitem, auch bei schlechtem Wetter, von hohen Baumwipfeln aus zu hören (daher der Volksname 'Regenpfeifer')."
+    note: "Die Singdrossel singt kräftige, klare Motive, die sie typischerweise 2- bis 4-mal wiederholt, bevor sie zur nächsten Phrase wechselt – abwechslungsreich und variabel. Die Misteldrossel singt ähnlich flötend, aber deutlich eintöniger, schwermütiger und weniger variantenreich, mit größeren Pausen zwischen den Strophen; oft schon von weitem, auch bei schlechtem Wetter, von hohen Baumwipfeln aus zu hören (daher der Volksname 'Regenpfeifer').",
+    title_en: "Song Thrush vs. Mistle Thrush",
+    note_en: "The Song Thrush sings strong, clear phrases that it typically repeats 2 to 4 times before moving on to the next phrase – varied and full of variety. The Mistle Thrush sings in a similarly fluting way, but noticeably more monotonous, more melancholic and less varied, with longer pauses between phrases; often audible from far away, even in bad weather, from high treetops (hence the German nickname 'rain piper').",
   },
   haussperling_feldsperling: {
     title: "Haussperling vs. Feldsperling",
-    note: "Beide unauffällig zwitschernde und tschilpende Sperlinge. Der Haussperling ruft ein raues, unstrukturiertes 'tschilp' bzw. eine unrhythmische Serie ähnlicher Laute. Der Feldsperling klingt heller, schärfer und rhythmischer, oft ein charakteristisches, zweisilbiges 'teck' oder ein helles 'tek-tek' im Flug – insgesamt spitzer und weniger 'gemütlich' als der Haussperling."
+    note: "Beide unauffällig zwitschernde und tschilpende Sperlinge. Der Haussperling ruft ein raues, unstrukturiertes 'tschilp' bzw. eine unrhythmische Serie ähnlicher Laute. Der Feldsperling klingt heller, schärfer und rhythmischer, oft ein charakteristisches, zweisilbiges 'teck' oder ein helles 'tek-tek' im Flug – insgesamt spitzer und weniger 'gemütlich' als der Haussperling.",
+    title_en: "House Sparrow vs. Eurasian Tree Sparrow",
+    note_en: "Both unremarkable, chirping sparrows. The House Sparrow gives a rough, unstructured 'chirrup' or an unrhythmic series of similar notes. The Tree Sparrow sounds brighter, sharper and more rhythmic, often a characteristic, two-syllable 'tek' or a bright 'tek-tek' in flight – overall crisper and less 'relaxed' than the House Sparrow.",
   },
   stieglitz_erlenzeisig: {
     title: "Stieglitz vs. Erlenzeisig",
-    note: "Beide kleine, gesellige Finken mit hohem, klingelndem Zwitschern, oft in gemischten Trupps im Winter. Der Stieglitz (Distelfink) hat einen charakteristischen, hellen, klingelnden Ruf 'stiglit' oder 'didelit'. Der Erlenzeisig klingt näselnder und rauer, mit einem typischen, leicht zittrigen 'dlüü' oder 'tlüi', oft in fragendem Tonfall ansteigend."
+    note: "Beide kleine, gesellige Finken mit hohem, klingelndem Zwitschern, oft in gemischten Trupps im Winter. Der Stieglitz (Distelfink) hat einen charakteristischen, hellen, klingelnden Ruf 'stiglit' oder 'didelit'. Der Erlenzeisig klingt näselnder und rauer, mit einem typischen, leicht zittrigen 'dlüü' oder 'tlüi', oft in fragendem Tonfall ansteigend.",
+    title_en: "European Goldfinch vs. Eurasian Siskin",
+    note_en: "Both small, sociable finches with a high, tinkling twitter, often in mixed flocks in winter. The Goldfinch has a characteristic, bright, tinkling call. The Siskin sounds more nasal and harsher, with a typical, slightly quivering, wheezy call, often rising as if asking a question.",
   },
   regenpfeifer_trio: {
     title: "Flussregenpfeifer vs. Sandregenpfeifer vs. Seeregenpfeifer",
-    note: "Drei kleine, ähnlich gefärbte Regenpfeifer mit pfeifenden Rufen. Der Flussregenpfeifer (an Fluss-/Kiesufern) ruft ein klares, fallendes, gedehntes 'pjuu' oder 'tju-ip'. Der Sandregenpfeifer (Küste) klingt runder und melodischer, ein weiches, ansteigendes 'tjuli' oder 'poo-ip'. Der Seeregenpfeifer (Salzwiesen/Küste, sehr selten) hat den kürzesten, trockensten Ruf der drei, ein hartes 'prrit' oder 'tuup', weniger melodisch als die beiden anderen."
+    note: "Drei kleine, ähnlich gefärbte Regenpfeifer mit pfeifenden Rufen. Der Flussregenpfeifer (an Fluss-/Kiesufern) ruft ein klares, fallendes, gedehntes 'pjuu' oder 'tju-ip'. Der Sandregenpfeifer (Küste) klingt runder und melodischer, ein weiches, ansteigendes 'tjuli' oder 'poo-ip'. Der Seeregenpfeifer (Salzwiesen/Küste, sehr selten) hat den kürzesten, trockensten Ruf der drei, ein hartes 'prrit' oder 'tuup', weniger melodisch als die beiden anderen.",
+    title_en: "Little Ringed Plover vs. Common Ringed Plover vs. Kentish Plover",
+    note_en: "Three small, similarly coloured plovers with whistling calls. The Little Ringed Plover (on river/gravel banks) gives a clear, falling, drawn-out 'peeu' call. The Ringed Plover (coastal) sounds rounder and more melodious, a soft, rising 'tooli'. The Kentish Plover (salt marshes/coast, very rare) has the shortest, driest call of the three, a hard 'prrit', less melodious than the other two.",
   },
   garten_hausrotschwanz: {
     title: "Gartenrotschwanz vs. Hausrotschwanz",
-    note: "Beide Arten derselben Gattung mit ähnlichem Rotschwanz-Zittern, aber unterschiedlichem Gesang. Der Gartenrotschwanz singt eine kurze, klare, wehmütig-flötende Strophe, die oft abrupt in ein leiseres, unstrukturiertes Geplauder übergeht. Der Hausrotschwanz beginnt ähnlich flötend, hat aber in der Mitte eine unverkennbare, kratzig-knirschende Passage (klingt fast wie zerknülltes Papier), bevor die Strophe endet – dieses 'Knirschen' ist das sicherste Unterscheidungsmerkmal."
+    note: "Beide Arten derselben Gattung mit ähnlichem Rotschwanz-Zittern, aber unterschiedlichem Gesang. Der Gartenrotschwanz singt eine kurze, klare, wehmütig-flötende Strophe, die oft abrupt in ein leiseres, unstrukturiertes Geplauder übergeht. Der Hausrotschwanz beginnt ähnlich flötend, hat aber in der Mitte eine unverkennbare, kratzig-knirschende Passage (klingt fast wie zerknülltes Papier), bevor die Strophe endet – dieses 'Knirschen' ist das sicherste Unterscheidungsmerkmal.",
+    title_en: "Common Redstart vs. Black Redstart",
+    note_en: "Both species of the same genus share a similar tail-quivering habit, but their songs differ. The Common Redstart sings a short, clear, wistfully fluting phrase that often trails off abruptly into quieter, unstructured chatter. The Black Redstart starts similarly fluting, but has an unmistakable, scratchy, crunching passage in the middle (sounds almost like crumpled paper) before the phrase ends – this 'crunch' is the most reliable distinguishing feature.",
   },
   turmfalke_baumfalke: {
     title: "Turmfalke vs. Baumfalke",
-    note: "Beide Falken rufen schnelle, helle Serien, v.a. in Horstnähe. Der Turmfalke ruft ein durchdringendes, gleichbleibendes 'ki-ki-ki-ki-ki'. Der Baumfalke klingt ähnlich, aber etwas tiefer, weicher und mit stärker betonten Einzeltönen ('kju-kju-kju'), oft im schnellen Jagdflug über offenem Gelände oder Gewässern zu hören."
+    note: "Beide Falken rufen schnelle, helle Serien, v.a. in Horstnähe. Der Turmfalke ruft ein durchdringendes, gleichbleibendes 'ki-ki-ki-ki-ki'. Der Baumfalke klingt ähnlich, aber etwas tiefer, weicher und mit stärker betonten Einzeltönen ('kju-kju-kju'), oft im schnellen Jagdflug über offenem Gelände oder Gewässern zu hören.",
+    title_en: "Common Kestrel vs. Eurasian Hobby",
+    note_en: "Both falcons give fast, bright series of calls, especially near the nest. The Kestrel gives a piercing, even 'ki-ki-ki-ki-ki'. The Hobby sounds similar but a bit lower, softer and with more strongly accented individual notes, often heard during fast hunting flights over open ground or water.",
   },
   heidelerche_feldlerche: {
     title: "Heidelerche vs. Feldlerche",
-    note: "Die Feldlerche singt einen lang anhaltenden, ununterbrochenen, sprudelnden Singflug-Gesang oft minutenlang aus großer Höhe. Die Heidelerche singt ähnlich im Singflug, aber die Strophe ist melodischer, wehmütiger und in fallenden, gebundenen Tonfolgen gegliedert ('dlü-dlü-dlü-dlü', abfallend) statt des gleichmäßigen Sprudelns der Feldlerche – insgesamt weniger hektisch und musikalischer."
+    note: "Die Feldlerche singt einen lang anhaltenden, ununterbrochenen, sprudelnden Singflug-Gesang oft minutenlang aus großer Höhe. Die Heidelerche singt ähnlich im Singflug, aber die Strophe ist melodischer, wehmütiger und in fallenden, gebundenen Tonfolgen gegliedert ('dlü-dlü-dlü-dlü', abfallend) statt des gleichmäßigen Sprudelns der Feldlerche – insgesamt weniger hektisch und musikalischer.",
+    title_en: "Woodlark vs. Sky Lark",
+    note_en: "The Sky Lark sings a prolonged, uninterrupted, bubbling song-flight song, often for minutes on end from great height. The Woodlark also sings in song flight, but its phrase is more melodious, more wistful and organised into falling, connected note sequences ('dlu-dlu-dlu-dlu', descending) instead of the Sky Lark's even bubbling – overall less frantic and more musical.",
   },
   bachstelze_gebirgsstelze: {
     title: "Bachstelze vs. Gebirgsstelze",
-    note: "Beide Stelzen rufen ein scharfes, zweisilbiges 'tsvitt' oder 'tschizzik' im Flug. Der Ruf der Bachstelze ist kräftiger und klarer, der der Gebirgsstelze etwas höher und feiner. Die Gebirgsstelze ist an schnell fließenden Gewässern/Wehren gebunden, die Bachstelze überall in halboffener Landschaft – das Habitat hilft oft mehr als der Ruf allein."
+    note: "Beide Stelzen rufen ein scharfes, zweisilbiges 'tsvitt' oder 'tschizzik' im Flug. Der Ruf der Bachstelze ist kräftiger und klarer, der der Gebirgsstelze etwas höher und feiner. Die Gebirgsstelze ist an schnell fließenden Gewässern/Wehren gebunden, die Bachstelze überall in halboffener Landschaft – das Habitat hilft oft mehr als der Ruf allein.",
+    title_en: "White Wagtail vs. Grey Wagtail",
+    note_en: "Both wagtails give a sharp, two-syllable call in flight. The White Wagtail's call is stronger and clearer, the Grey Wagtail's a bit higher and finer. The Grey Wagtail is tied to fast-flowing water/weirs, the White Wagtail occurs everywhere in semi-open landscape – habitat often helps more than the call alone.",
   },
   neuntoeter_raubwuerger: {
     title: "Neuntöter vs. Raubwürger",
-    note: "Beide Würger sitzen gerne exponiert auf Büschen/Zäunen als Ansitzwarte. Der Neuntöter (Sommervogel) hat einen unauffälligen, leisen, oft mimikry-haltigen Gesang mit eingebauten Imitationen anderer Vogelstimmen. Der deutlich größere Raubwürger (v.a. Wintergast) ruft härter und lauter, eine raue, gereihte Folge scharfer 'schäck-schäck'-Laute – durch die überwiegend unterschiedliche Jahreszeit (Neuntöter Sommer, Raubwürger Winter) meist gut trennbar, akustisch aber ähnlich schrill."
+    note: "Beide Würger sitzen gerne exponiert auf Büschen/Zäunen als Ansitzwarte. Der Neuntöter (Sommervogel) hat einen unauffälligen, leisen, oft mimikry-haltigen Gesang mit eingebauten Imitationen anderer Vogelstimmen. Der deutlich größere Raubwürger (v.a. Wintergast) ruft härter und lauter, eine raue, gereihte Folge scharfer 'schäck-schäck'-Laute – durch die überwiegend unterschiedliche Jahreszeit (Neuntöter Sommer, Raubwürger Winter) meist gut trennbar, akustisch aber ähnlich schrill.",
+    title_en: "Red-backed Shrike vs. Great Grey Shrike",
+    note_en: "Both shrikes like to perch exposed on bushes/fences as a hunting lookout. The Red-backed Shrike (a summer visitor) has an unremarkable, quiet song that often incorporates mimicry of other birds' calls. The much larger Great Grey Shrike (mainly a winter visitor) calls harder and louder, a rough, repeated series of sharp 'shack-shack' notes – since the two mostly occupy different seasons (Red-backed Shrike in summer, Great Grey Shrike in winter) they are usually easy to separate that way, though acoustically both sound similarly harsh.",
   },
   habichtskauz_waldkauz: {
     title: "Habichtskauz vs. Waldkauz",
-    note: "Beide Waldeulen mit tiefen, hohlen Rufserien. Der Waldkauz ruft den klassischen, tremolierenden Ruf 'huhuhuHUuuuu'. Der viel größere Habichtskauz (in Deutschland nur durch das Wiederansiedlungsprojekt im Bayerischen Wald) ruft ähnlich, aber tiefer, kräftiger und in einer schnelleren, kürzeren Serie dumpfer 'wuff-wuff-wuff'-Töne – wer im Bayerischen Wald unterwegs ist, sollte beide kennen."
+    note: "Beide Waldeulen mit tiefen, hohlen Rufserien. Der Waldkauz ruft den klassischen, tremolierenden Ruf 'huhuhuHUuuuu'. Der viel größere Habichtskauz (in Deutschland nur durch das Wiederansiedlungsprojekt im Bayerischen Wald) ruft ähnlich, aber tiefer, kräftiger und in einer schnelleren, kürzeren Serie dumpfer 'wuff-wuff-wuff'-Töne – wer im Bayerischen Wald unterwegs ist, sollte beide kennen.",
+    title_en: "Ural Owl vs. Tawny Owl",
+    note_en: "Both woodland owls with deep, hollow call series. The Tawny Owl gives the classic, tremulous 'hoo-hoo-hoo-HOOooo' call. The much larger Ural Owl (in Germany present only through the reintroduction project in the Bavarian Forest) calls similarly but deeper, stronger and in a faster, shorter series of dull hooting notes – anyone out and about in the Bavarian Forest should know both.",
   },
   sperlingskauz_raufusskauz: {
     title: "Sperlingskauz vs. Raufußkauz",
-    note: "Zwei kleine Waldeulen ähnlicher Größe und ähnlichen Lebensraums (Nadel-/Bergwald), deren Rufe Anfänger leicht verwechseln. Der Sperlingskauz ruft eine Serie klarer, einzelner, leicht ansteigender Pfeiftöne 'düü... düü... düü'. Der Raufußkauz ruft eine schnellere, dumpfere, tutende Serie 'pupupupupu', die entfernt an einen Wiedehopf erinnert – tiefer und gereihter als der Sperlingskauz."
+    note: "Zwei kleine Waldeulen ähnlicher Größe und ähnlichen Lebensraums (Nadel-/Bergwald), deren Rufe Anfänger leicht verwechseln. Der Sperlingskauz ruft eine Serie klarer, einzelner, leicht ansteigender Pfeiftöne 'düü... düü... düü'. Der Raufußkauz ruft eine schnellere, dumpfere, tutende Serie 'pupupupupu', die entfernt an einen Wiedehopf erinnert – tiefer und gereihter als der Sperlingskauz.",
+    title_en: "Eurasian Pygmy Owl vs. Boreal Owl (Tengmalm's Owl)",
+    note_en: "Two small woodland owls of similar size and similar habitat (conifer/montane forest), whose calls beginners easily confuse. The Pygmy Owl gives a series of clear, single, slightly rising whistled notes. The Boreal Owl gives a faster, duller, tooting series, distantly reminiscent of a Hoopoe – deeper and more strung-together than the Pygmy Owl.",
   },
   sumpf_seeschwalben_trio: {
     title: "Trauerseeschwalbe vs. Weißflügel-Seeschwalbe vs. Weißbart-Seeschwalbe",
-    note: "Die drei 'Sumpfseeschwalben' (Gattung Chlidonias) ähneln sich sowohl im Feld als auch stimmlich und brüten/rasten oft gemeinsam an Verlandungszonen. Die Trauerseeschwalbe ruft ein kurzes, kratziges 'kik' oder 'kreek'. Die Weißflügel-Seeschwalbe klingt ähnlich, aber etwas weicher und höher. Die Weißbart-Seeschwalbe (die häufigste der drei) hat einen etwas raueren, kräftigeren Ruf 'kek' – die sichere Unterscheidung gelingt meist erst im Zusammenspiel mit Gefieder-/Flugbild."
+    note: "Die drei 'Sumpfseeschwalben' (Gattung Chlidonias) ähneln sich sowohl im Feld als auch stimmlich und brüten/rasten oft gemeinsam an Verlandungszonen. Die Trauerseeschwalbe ruft ein kurzes, kratziges 'kik' oder 'kreek'. Die Weißflügel-Seeschwalbe klingt ähnlich, aber etwas weicher und höher. Die Weißbart-Seeschwalbe (die häufigste der drei) hat einen etwas raueren, kräftigeren Ruf 'kek' – die sichere Unterscheidung gelingt meist erst im Zusammenspiel mit Gefieder-/Flugbild.",
+    title_en: "Black Tern vs. White-winged Tern vs. Whiskered Tern",
+    note_en: "The three 'marsh terns' (genus Chlidonias) resemble each other both in the field and vocally, and often breed/roost together at reedy wetlands. The Black Tern gives a short, scratchy 'kik' or 'kreek'. The White-winged Tern sounds similar but a little softer and higher. The Whiskered Tern (the most common of the three) has a somewhat harsher, stronger call – reliable identification usually only succeeds together with plumage/flight features.",
   },
   kleine_schnaepper_trio: {
     title: "Grauschnäpper vs. Trauerschnäpper vs. Zwergschnäpper",
-    note: "Drei kleine Fliegenschnäpper mit unauffälligen, hohen, dünnen Rufen. Der Grauschnäpper hat einen einfachen, feinen 'tzee'- oder 'srii'-Ruf, oft kaum auffällig. Der Trauerschnäpper ruft schärfer und kurz, ein hartes 'whit' oder 'tic', oft in einer kurzen Serie. Der viel seltenere Zwergschnäpper hat einen weicheren, leicht abfallenden Pfeifruf und einen unverwechselbaren, weittragenden, mehrsilbigen Gesang, der ihn trotz geringer Größe verrät."
+    note: "Drei kleine Fliegenschnäpper mit unauffälligen, hohen, dünnen Rufen. Der Grauschnäpper hat einen einfachen, feinen 'tzee'- oder 'srii'-Ruf, oft kaum auffällig. Der Trauerschnäpper ruft schärfer und kurz, ein hartes 'whit' oder 'tic', oft in einer kurzen Serie. Der viel seltenere Zwergschnäpper hat einen weicheren, leicht abfallenden Pfeifruf und einen unverwechselbaren, weittragenden, mehrsilbigen Gesang, der ihn trotz geringer Größe verrät.",
+    title_en: "Spotted Flycatcher vs. European Pied Flycatcher vs. Red-breasted Flycatcher",
+    note_en: "Three small flycatchers with unremarkable, high, thin calls. The Spotted Flycatcher has a simple, fine 'tzee' call, often barely noticeable. The Pied Flycatcher calls more sharply and briefly, a hard 'whit' or 'tic', often in a short series. The much rarer Red-breasted Flycatcher has a softer, slightly falling whistled call and an unmistakable, far-carrying, multi-syllable song that gives it away despite its small size.",
   }
 };
 
@@ -8751,5 +9467,8 @@ const LEARN_GROUPS = {
 };
 
 if (typeof module !== "undefined") {
-  module.exports = { AREAS, SPECIES, CONFUSION_NOTES, GROUP_ORDER, LEARN_GROUPS, HABITAT_LABELS };
+  module.exports = {
+    AREAS, SPECIES, CONFUSION_NOTES, GROUP_ORDER, LEARN_GROUPS, HABITAT_LABELS,
+    AREAS_EN, HABITAT_LABELS_EN, GROUP_ORDER_EN,
+  };
 }

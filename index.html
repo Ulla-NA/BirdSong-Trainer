@@ -10,83 +10,88 @@
 </head>
 <body>
 <header class="app-header">
-  <h1><img src="icon.svg" alt="" class="app-logo">Vogelstimmen-Trainer <span class="badge">Prototyp</span></h1>
-  <button id="settingsBtn" class="icon-btn" title="Einstellungen">⚙️</button>
+  <h1><img src="icon.svg" alt="" class="app-logo"><span data-i18n="header.title">Vogelstimmen-Trainer</span> <span class="badge" data-i18n="header.badge">Prototyp</span></h1>
+  <div class="header-actions">
+    <button id="langToggleBtn" class="icon-btn" title="Language / Sprache">EN</button>
+    <button id="settingsBtn" class="icon-btn" data-i18n-title="header.settingsBtn" title="Einstellungen">⚙️</button>
+  </div>
 </header>
 
 <dialog id="settingsDialog">
-  <h2>Einstellungen</h2>
-  <p>Zum Laden echter Aufnahmen wird ein kostenloser <strong>xeno-canto API-Key</strong> benötigt
+  <h2 data-i18n="settings.title">Einstellungen</h2>
+  <p data-i18n="settings.apiKeyIntro">Zum Laden echter Aufnahmen wird ein kostenloser <strong>xeno-canto API-Key</strong> benötigt
      (Account anlegen auf <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>,
      Key erscheint dann unter „Your account" → „API key").</p>
-  <label for="apiKeyInput">xeno-canto API-Key</label>
-  <input type="text" id="apiKeyInput" placeholder="dein-api-key">
-  <p class="hint">Der Key wird nur lokal in deinem Browser gespeichert, nicht an uns übertragen.</p>
+  <label for="apiKeyInput" data-i18n="settings.apiKeyLabel">xeno-canto API-Key</label>
+  <input type="text" id="apiKeyInput" data-i18n-placeholder="settings.apiKeyPlaceholder" placeholder="dein-api-key">
+  <p class="hint" data-i18n="settings.apiKeyHint">Der Key wird nur lokal in deinem Browser gespeichert, nicht an uns übertragen.</p>
 
-  <label for="maxRecInput" style="margin-top:0.8rem;">Aufnahmen pro Art laden (max.)</label>
+  <label for="maxRecInput" style="margin-top:0.8rem;" data-i18n="settings.maxRecLabel">Aufnahmen pro Art laden (max.)</label>
   <input type="number" id="maxRecInput" min="5" max="40" style="max-width:120px;">
-  <p class="hint">Höherer Wert = mehr Abwechslung, aber etwas langsameres erstes Laden pro Art.</p>
+  <p class="hint" data-i18n="settings.maxRecHint">Höherer Wert = mehr Abwechslung, aber etwas langsameres erstes Laden pro Art.</p>
 
-  <p class="hint" style="margin-top:0.8rem;">Ausgeschlossene Aufnahmen (z.B. weil kein Ton hörbar war oder die Art falsch bestimmt wirkte): <span id="excludedCount">0</span></p>
+  <p class="hint" style="margin-top:0.8rem;"><span data-i18n="settings.excludedLabel">Ausgeschlossene Aufnahmen (z.B. weil kein Ton hörbar war oder die Art falsch bestimmt wirkte):</span> <span id="excludedCount">0</span></p>
   <div class="dialog-actions">
-    <button id="resetExcludedBtn">Ausschlussliste zurücksetzen</button>
+    <button id="resetExcludedBtn" data-i18n="settings.resetExcludedBtn">Ausschlussliste zurücksetzen</button>
   </div>
 
-  <label for="learnGroupInput" style="margin-top:0.8rem;">Lerngruppe (für Teams)</label>
+  <label for="learnGroupInput" style="margin-top:0.8rem;" data-i18n="settings.learnGroupLabel">Lerngruppe (für Teams)</label>
   <select id="learnGroupInput">
-    <option value="all">Keine Aufteilung – alle Arten</option>
-    <option value="A">Gruppe A</option>
-    <option value="B">Gruppe B</option>
-    <option value="C">Gruppe C</option>
+    <option value="all" data-i18n="settings.learnGroupNone">Keine Aufteilung – alle Arten</option>
+    <option value="A" data-i18n="settings.learnGroupA">Gruppe A</option>
+    <option value="B" data-i18n="settings.learnGroupB">Gruppe B</option>
+    <option value="C" data-i18n="settings.learnGroupC">Gruppe C</option>
   </select>
-  <p class="hint">Wenn ihr zu mehreren die App nutzt und nicht alle mit denselben Arten anfangen wollt: jede Person wählt hier
+  <p class="hint"><span data-i18n="settings.learnGroupHintIntro">Wenn ihr zu mehreren die App nutzt und nicht alle mit denselben Arten anfangen wollt: jede Person wählt hier
      einmalig ihren Buchstaben. Die drei Gruppen sind fest und ausgewogen eingeteilt (je gleich viele leichte/mittlere/schwere Arten
-     aus allen Vogelfamilien) – <span id="learnGroupCount"></span></p>
+     aus allen Vogelfamilien) –</span> <span id="learnGroupCount"></span></p>
 
   <div class="dialog-actions" style="margin-top:1rem;">
-    <button id="saveKeyBtn" class="primary">Speichern</button>
-    <button id="closeSettingsBtn">Schließen</button>
+    <button id="saveKeyBtn" class="primary" data-i18n="settings.saveBtn">Speichern</button>
+    <button id="closeSettingsBtn" data-i18n="settings.closeBtn">Schließen</button>
   </div>
 </dialog>
 
 <nav class="mode-tabs">
-  <button class="tab active" data-mode="erkennen">Arten erkennen</button>
-  <button class="tab" data-mode="unterscheiden">Verwechslungsarten unterscheiden</button>
-  <button class="tab" data-mode="validieren">🔍 Validieren</button>
-  <button class="tab" data-mode="fortschritt">📊 Fortschritt</button>
+  <button class="tab active" data-mode="erkennen" data-i18n="tabs.erkennen">Arten erkennen</button>
+  <button class="tab" data-mode="unterscheiden" data-i18n="tabs.unterscheiden">Verwechslungsarten unterscheiden</button>
+  <button class="tab" data-mode="validieren" data-i18n="tabs.validieren">🔍 Validieren</button>
+  <button class="tab" data-mode="fortschritt" data-i18n="tabs.fortschritt">📊 Fortschritt</button>
+  <button class="tab" data-mode="anleitung" data-i18n="tabs.anleitung">❓ Anleitung</button>
+  <button class="tab" data-mode="disclaimer" data-i18n="tabs.disclaimer">⚠️ Hinweise</button>
 </nav>
 
 <section class="filters">
   <div class="filter-group">
-    <span class="filter-label">Häufigkeit</span>
-    <label><input type="checkbox" class="freq-filter" value="haeufig" checked> häufig</label>
-    <label><input type="checkbox" class="freq-filter" value="mittel" checked> mittel</label>
-    <label><input type="checkbox" class="freq-filter" value="selten" checked> selten</label>
-    <label><input type="checkbox" class="freq-filter" value="sehr_selten" checked> sehr selten</label>
+    <span class="filter-label" data-i18n="filters.frequency">Häufigkeit</span>
+    <label><input type="checkbox" class="freq-filter" value="haeufig" checked> <span data-i18n="filters.freq_haeufig">häufig</span></label>
+    <label><input type="checkbox" class="freq-filter" value="mittel" checked> <span data-i18n="filters.freq_mittel">mittel</span></label>
+    <label><input type="checkbox" class="freq-filter" value="selten" checked> <span data-i18n="filters.freq_selten">selten</span></label>
+    <label><input type="checkbox" class="freq-filter" value="sehr_selten" checked> <span data-i18n="filters.freq_sehr_selten">sehr selten</span></label>
   </div>
   <div class="filter-group">
-    <span class="filter-label">Schwierigkeit</span>
-    <label><input type="checkbox" class="diff-filter" value="leicht" checked> leicht</label>
-    <label><input type="checkbox" class="diff-filter" value="mittel" checked> mittel</label>
-    <label><input type="checkbox" class="diff-filter" value="schwer" checked> schwer</label>
+    <span class="filter-label" data-i18n="filters.difficulty">Schwierigkeit</span>
+    <label><input type="checkbox" class="diff-filter" value="leicht" checked> <span data-i18n="filters.diff_leicht">leicht</span></label>
+    <label><input type="checkbox" class="diff-filter" value="mittel" checked> <span data-i18n="filters.diff_mittel">mittel</span></label>
+    <label><input type="checkbox" class="diff-filter" value="schwer" checked> <span data-i18n="filters.diff_schwer">schwer</span></label>
   </div>
   <div class="filter-group">
-    <span class="filter-label">Gebiet</span>
+    <span class="filter-label" data-i18n="filters.area">Gebiet</span>
     <select id="areaFilter">
-      <option value="all">Deutschlandweit</option>
-      <option value="kern11">alle 11 Gebiete</option>
+      <option value="all" data-i18n="filters.area_all">Deutschlandweit</option>
+      <option value="kern11" data-i18n="filters.area_kern11">alle 11 Gebiete</option>
     </select>
   </div>
   <div class="filter-group">
-    <span class="filter-label">Artengruppe</span>
+    <span class="filter-label" data-i18n="filters.group">Artengruppe</span>
     <select id="groupFilter">
-      <option value="all">alle Gruppen</option>
+      <option value="all" data-i18n="filters.group_all">alle Gruppen</option>
     </select>
   </div>
   <div class="filter-group">
-    <span class="filter-label">Anzahl Arten zum Start</span>
+    <span class="filter-label" data-i18n="filters.count">Anzahl Arten zum Start</span>
     <select id="countFilter">
-      <option value="all">alle</option>
+      <option value="all" data-i18n="filters.count_all">alle</option>
       <option value="10">10</option>
       <option value="15">15</option>
       <option value="20">20</option>
@@ -107,27 +112,27 @@
     </select>
   </div>
   <div class="filter-group">
-    <span class="filter-label">Namen anzeigen</span>
-    <label><input type="checkbox" class="name-toggle" value="de" checked> DE</label>
-    <label><input type="checkbox" class="name-toggle" value="en"> EN</label>
-    <label><input type="checkbox" class="name-toggle" value="sci"> Lat</label>
+    <span class="filter-label" data-i18n="filters.names">Namen anzeigen</span>
+    <label><input type="checkbox" class="name-toggle" value="de" checked> <span data-i18n="filters.names_de">DE</span></label>
+    <label><input type="checkbox" class="name-toggle" value="en"> <span data-i18n="filters.names_en">EN</span></label>
+    <label><input type="checkbox" class="name-toggle" value="sci"> <span data-i18n="filters.names_sci">Lat</span></label>
   </div>
 </section>
 
 <main id="erkennenView" class="view">
   <div class="card" id="quizCard">
-    <p class="muted">Lade Frage…</p>
+    <p class="muted" data-i18n="erkennen.loadingQuestion">Lade Frage…</p>
   </div>
   <div class="quiz-actions">
-    <label class="autoplay-label"><input type="checkbox" id="autoplayToggle"> Automatisch abspielen</label>
-    <button id="nextBtn" class="primary">Nächste Aufnahme</button>
+    <label class="autoplay-label"><input type="checkbox" id="autoplayToggle"> <span data-i18n="erkennen.autoplayLabel">Automatisch abspielen</span></label>
+    <button id="nextBtn" class="primary" data-i18n="erkennen.nextBtn">Nächste Aufnahme</button>
   </div>
   <p class="score" id="scoreDisplay"></p>
 </main>
 
 <main id="unterscheidenView" class="view hidden">
   <div class="filter-group">
-    <span class="filter-label">Verwechslungspaar</span>
+    <span class="filter-label" data-i18n="confusion.pairLabel">Verwechslungspaar</span>
     <select id="confusionSelect"></select>
   </div>
   <div class="card" id="confusionCard"></div>
@@ -135,29 +140,33 @@
 
 <main id="validierenView" class="view hidden">
   <div class="card validation-search-card">
-    <label for="validationSearchInput" class="filter-label">Art suchen (deutsch, englisch oder lateinisch)</label>
+    <label for="validationSearchInput" class="filter-label" data-i18n="validation.searchLabel">Art suchen (deutsch, englisch oder lateinisch)</label>
     <div class="validation-search-row">
-      <input type="text" id="validationSearchInput" list="validationSpeciesList" placeholder="z.B. Kohlmeise, Great Tit, Parus major" autocomplete="off">
-      <button id="validationSearchBtn" class="primary">Suchen</button>
+      <input type="text" id="validationSearchInput" list="validationSpeciesList" data-i18n-placeholder="validation.searchPlaceholder" placeholder="z.B. Kohlmeise, Great Tit, Parus major" autocomplete="off">
+      <button id="validationSearchBtn" class="primary" data-i18n="validation.searchBtn">Suchen</button>
     </div>
     <datalist id="validationSpeciesList"></datalist>
     <div id="validationSearchHint" class="hint"></div>
   </div>
   <div class="card hidden" id="validationHeaderCard"></div>
   <div class="card" id="validationCard">
-    <p class="muted">Oben eine Art auswählen, um alle xeno-canto-Aufnahmen dazu einzeln durchzugehen.</p>
+    <p class="muted" data-i18n="validation.initialHint">Oben eine Art auswählen, um alle xeno-canto-Aufnahmen dazu einzeln durchzugehen.</p>
   </div>
   <div class="card hidden" id="validationDetailsCard"></div>
 </main>
 
 <main id="fortschrittView" class="view hidden"></main>
 
+<main id="anleitungView" class="view hidden"></main>
+
+<main id="disclaimerView" class="view hidden"></main>
+
 <footer>
-  <p>Audioquelle: <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>
+  <p data-i18n="footer.text">Audioquelle: <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>
      (Creative-Commons-lizenzierte Aufnahmen, Namensnennung wird jeweils angezeigt).
      Artenliste: eigene Taxonomie-Tabelle. Gebietsvorkommen: <a href="https://ebird.org" target="_blank" rel="noopener">eBird.org</a>
-     (kumulative Hotspot-Meldungen im gebietsangepassten Suchradius, Stand 2026-07-23 – kein Ersatz für echtes Monitoring).
-     Häufigkeits- und Schwierigkeitsangaben sind weiterhin erste Einschätzungen zur Prüfung.</p>
+     (kumulative Hotspot-Meldungen im gebietsangepassten Suchradius – kein Ersatz für echtes Monitoring).
+     Wichtige Einschränkungen zur Datenqualität: siehe Tab „⚠️ Hinweise".</p>
 </footer>
 
 <script src="species-data.js"></script>
