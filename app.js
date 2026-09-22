@@ -2232,7 +2232,16 @@ function renderFortschritt() {
 // Enthält v.a. den Hinweis auf KI-gestützt recherchierte/formulierte
 // Artdaten und die bekannten Datenqualitäts-Einschränkungen (eBird kumulativ,
 // xeno-canto-Artbestimmung ungeprüft) – s. STRINGS.*.disclaimer.
-const CONTACT_EMAIL = "ursula.verfuss@natureanalytics.earth";
+// E-Mail-Adresse der Nutzerin bewusst NICHT als zusammenhängender "name@domain"-String im
+// Quellcode (Spam-Schutz vor E-Mail-Harvestern, die Webseiten nach genau diesem Muster
+// durchsuchen) – Nutzer- und Domain-Teil getrennt gespeichert, zur Anzeige mit " (at) " statt
+// "@" zusammengesetzt. Bewusst kein klickbarer mailto:-Link mehr (der würde die Adresse im
+// gerenderten HTML wieder als kompletten String preisgeben und den Zweck untergraben).
+const CONTACT_EMAIL_USER = "ursula.verfuss";
+const CONTACT_EMAIL_DOMAIN = "natureanalytics.earth";
+function contactEmailDisplay() {
+  return `${CONTACT_EMAIL_USER} (at) ${CONTACT_EMAIL_DOMAIN}`;
+}
 
 function renderDisclaimer() {
   const view = document.getElementById("disclaimerView");
@@ -2252,7 +2261,7 @@ function renderDisclaimer() {
       <h3 style="color: var(--green-dark);">${d("disclaimer.s5h")}</h3>
       <p>${d("disclaimer.s5")}</p>
       <h3 style="color: var(--green-dark);">${d("disclaimer.s6h")}</h3>
-      <p>${d("disclaimer.s6", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+      <p>${d("disclaimer.s6", { email: contactEmailDisplay() })}</p>
     </div>
   `;
 }
@@ -2273,7 +2282,7 @@ function renderAnleitung() {
       <h3 style="color: var(--green-dark);">${d("anleitung.s4h")}</h3>
       ${d("anleitung.s4")}
       <h3 style="color: var(--green-dark);">${d("anleitung.s5h")}</h3>
-      <p>${d("anleitung.s5", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+      <p>${d("anleitung.s5", { email: contactEmailDisplay() })}</p>
     </div>
   `;
 }
