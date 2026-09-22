@@ -900,6 +900,12 @@ function mapXcRecording(pick, tier) {
   if (sonoUrl && sonoUrl.startsWith("//")) sonoUrl = "https:" + sonoUrl;
   return {
     fileUrl,
+    // Das "file"-Feld ist immer eine erweiterungslose Download-URL
+    // ("…/download"), verrät also NIE das tatsächliche Dateiformat. Das
+    // separate "file-name"-Feld liefert dagegen den echten Dateinamen inkl.
+    // Endung (meist .mp3, gelegentlich aber auch .wav o.ä.) – wird für
+    // guessAudioMimeType() gebraucht, s. dort.
+    fileName: pick["file-name"] || null,
     sonoUrl,
     recordist: pick.rec,
     license: pick.lic,
@@ -1379,15 +1385,24 @@ function renderQuestion(rec, target) {
 // neue Aufnahme derselben Art nachladen, ohne die laufende Frage (Optionen,
 // bereits gegebene Antwort, Punktestand) zu verlieren.
 // Safari (v.a. macOS/iOS) spielt manche xeno-canto-Dateien nicht inline ab,
-// sondern bietet nur "Herunterladen" an – vermutlich weil Safari ohne
-// expliziten MIME-Type-Hinweis manchmal nicht erkennt, dass die Datei
-// abspielbares Audio ist (Content-Type-/Sniffing-Eigenheit). Ein <source>
-// mit explizitem "type" (statt nur "src" am <audio>-Tag) hilft Safari
-// häufig, das Format sofort korrekt zuzuordnen, statt zu raten. xeno-canto
-// liefert praktisch immer .mp3-Dateien; die Endung wird trotzdem geprüft,
-// um für unerwartete Formate (.wav/.ogg/.flac) einen passenden Typ zu setzen.
-function guessAudioMimeType(url) {
-  const m = /\.([a-z0-9]+)(?:\?|#|$)/i.exec(url || "");
+// sondern bietet nur "Herunterladen" an. Ursache gefunden (2026-09-22,
+// Nutzerin-Report: heruntergeladene Dateien waren teils echte .wav-Dateien,
+// nicht .mp3): die "file"-Download-URL von xeno-canto
+// ("https://xeno-canto.org/<id>/download") enthält NIE eine Dateiendung –
+// die alte Version dieser Funktion hat mangels erkennbarer Endung also
+// praktisch immer pauschal "mp3"/"audio/mpeg" angenommen. Die meisten
+// xeno-canto-Aufnahmen sind tatsächlich mp3, aber eben nicht alle (manche
+// Hochlader laden verlustfreies .wav hoch) – bei einer echten .wav-Datei mit
+// fälschlich deklariertem <source type="audio/mpeg"> lehnt Safari die
+// Wiedergabe ab (strikter beim Abgleich deklarierter vs. tatsächlicher
+// Typ als Chrome/Firefox, die den Typ eher ignorieren/selbst schnüffeln) –
+// das erklärt auch, warum das Problem nur bestimmte, nicht alle Aufnahmen
+// betraf. Fix: die xeno-canto-API liefert zusätzlich ein "file-name"-Feld
+// mit dem echten Dateinamen inkl. korrekter Endung (s. mapXcRecording) –
+// das wird jetzt bevorzugt ausgewertet, die URL nur noch als Rückfallebene
+// genutzt (falls "file-name" mal fehlen sollte).
+function guessAudioMimeType(url, fileName) {
+  const m = /\.([a-z0-9]+)(?:\?|#|$)/i.exec(fileName || url || "");
   const ext = m ? m[1].toLowerCase() : "mp3";
   const map = { mp3: "audio/mpeg", wav: "audio/wav", ogg: "audio/ogg", flac: "audio/flac", m4a: "audio/mp4" };
   return map[ext] || "audio/mpeg";
@@ -1404,7 +1419,7 @@ function renderAudioSection(rec, target, containerId, opts) {
   const container = document.getElementById(containerId);
   const durSec = parseLengthToSeconds(rec.length);
   const isLongRecording = durSec && durSec > XC_SONO_MAX_SECONDS;
-  const audioMime = guessAudioMimeType(rec.fileUrl);
+  const audioMime = guessAudioMimeType(rec.fileUrl, rec.fileName);
   const isExcluded = getExcludedIds().has(String(rec.xcId));
   const altLabel = opts.altLabel || t("audio.altRecBtn");
   const excludeLabel = opts.excludeLabel
