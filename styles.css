@@ -153,6 +153,11 @@ select, input[type=text] {
   text-align: center;
 }
 
+/* Höhere Spezifität als die einzelne .hidden-Klasse nötig, sonst gewinnt .update-banner{display:flex}
+   die Kaskade rein durch Reihenfolge im Stylesheet, obwohl .hidden gesetzt ist – Banner wäre dann
+   nie wirklich unsichtbar (Bug gefunden 2026-09-22: Banner stand dauerhaft da, auch nach Reload). */
+.update-banner.hidden { display: none; }
+
 .update-banner button {
   background: #fff;
   color: var(--green-dark, #2e5339);
