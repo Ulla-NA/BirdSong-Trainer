@@ -163,9 +163,10 @@ const STRINGS = {
       intro: "Bitte vor der Nutzung lesen – besonders, wenn du die App zur Validierung echter Monitoring-Ergebnisse einsetzt.",
       s1h: "KI-gestützte Inhalte", s1: "Große Teile der Artdaten in dieser App (Häufigkeits-/Schwierigkeitseinstufung, Hintergrundtexte, Ruf-/Gesangsbeschreibungen) wurden mit Unterstützung von KI (Claude) recherchiert und formuliert – auf Basis öffentlicher Quellen wie NABU, BfN, DDA, IUCN, Wikipedia und Landesämtern, aber nicht durchgehend von Ornitholog:innen gegengeprüft. Insbesondere bei selten behandelten Arten sind Fehler möglich.",
       s2h: "Datenqualität im Detail", s2: "eBird-Gebietsvorkommen sind kumulative Meldungen (jemals dort beobachtet), keine aktuelle Bestandsaufnahme – eine Art kann als „vorkommend\" markiert sein, obwohl sie dort nur einmal vor Jahren gemeldet wurde. Die Artbestimmung der xeno-canto-Aufnahmen stammt von der jeweils aufnehmenden Person und ist nicht durch die App geprüft – gelegentliche Fehlbestimmungen sind möglich (nutzt den „Ausschließen\"-Button, wenn dir eine Aufnahme fragwürdig vorkommt). Häufigkeits- und Schwierigkeitsangaben sind fortlaufend verbesserte Einschätzungen, kein amtlicher Status.",
-      s3h: "Trainingstool, kein Ersatz für Monitoring", s3: "Diese App dient dem Einüben und Auffrischen von Rufkenntnissen sowie als Hilfsmittel bei der manuellen Validierung von automatisierten Erkennungen (z.B. BirdNET). Sie ersetzt keine fachliche Bestimmung, keine offizielle Artenliste und keine wissenschaftliche Auswertung.",
-      s4h: "Keine Gewähr", s4: "Die App wird ohne Gewähr für Richtigkeit oder Vollständigkeit bereitgestellt. Bei Zweifeln an einer Angabe: bitte unabhängig gegenprüfen (z.B. über die verlinkten Quellen) und uns gerne Bescheid geben.",
-      s5h: "Fehler gefunden?", s5: "Rückmeldungen sind sehr willkommen – bitte an {email} melden.",
+      s3h: "Mehrstimmiger Auftritt: mehrere Arten in einer Aufnahme", s3: "Vögel halten sich leider nicht an unsere Quiz-Regeln: In vielen xeno-canto-Aufnahmen ist im Hintergrund noch die ein oder andere weitere Stimme zu hören – manchmal sogar eine Art, die ebenfalls unter den Antwortoptionen steht. Hör also ruhig zweimal hin und achte darauf, welche Stimme am besten zum Sonogramm passt, bevor du dich entscheidest. Wir übernehmen die Artbestimmung unverändert von xeno-canto und prüfen nicht selbst nach, wer im Hintergrund noch mitzwitschert – das liegt schlicht außerhalb dessen, was wir als App beeinflussen können. Bei eindeutig verwirrenden Aufnahmen hilft wie immer der „Ausschließen\"-Button.",
+      s4h: "Trainingstool, kein Ersatz für Monitoring", s4: "Diese App dient dem Einüben und Auffrischen von Rufkenntnissen sowie als Hilfsmittel bei der manuellen Validierung von automatisierten Erkennungen (z.B. BirdNET). Sie ersetzt keine fachliche Bestimmung, keine offizielle Artenliste und keine wissenschaftliche Auswertung.",
+      s5h: "Keine Gewähr", s5: "Die App wird ohne Gewähr für Richtigkeit oder Vollständigkeit bereitgestellt. Bei Zweifeln an einer Angabe: bitte unabhängig gegenprüfen (z.B. über die verlinkten Quellen) und uns gerne Bescheid geben.",
+      s6h: "Fehler gefunden?", s6: "Rückmeldungen sind sehr willkommen – bitte an {email} melden.",
     },
     anleitung: {
       heading: "❓ Kurzanleitung",
@@ -174,8 +175,10 @@ const STRINGS = {
       s2h: "2. Die vier Modi",
       s2: "<ul><li><strong>Arten erkennen</strong>: Quiz-Modus – Aufnahme anhören, richtige Art aus mehreren Optionen auswählen. Mit den Filtern oben (Häufigkeit, Schwierigkeit, Gebiet, Artengruppe, Anzahl, Lerngruppe) lässt sich der Umfang einschränken.</li><li><strong>Verwechslungsarten unterscheiden</strong>: zwei leicht verwechselbare Arten direkt nebeneinander anhören und vergleichen.</li><li><strong>🔍 Validieren</strong>: gezielt eine bestimmte Art suchen und alle xeno-canto-Aufnahmen dazu der Reihe nach durchgehen – gedacht für den Abgleich von automatisierten Erkennungsergebnissen (z.B. BirdNET) mit der echten Aufnahme.</li><li><strong>📊 Fortschritt</strong>: zeigt, welche Arten du schon sicher erkennst und wie sich das über die Zeit entwickelt hat.</li></ul>",
       s3h: "3. Nützliche Kleinigkeiten",
-      s3: '<ul><li>🚫 „Diese Aufnahme ausschließen": falls eine Aufnahme keinen Ton enthält oder die Art falsch bestimmt wirkt – merkt sich die App dauerhaft (nur in diesem Browser).</li><li>Die App lässt sich als eigenständige App installieren (Desktop-Icon/Smartphone-Startbildschirm) – Anleitung dazu von {contact} erfragen.</li><li>Sprache umschalten: Button oben rechts neben dem Zahnrad.</li></ul>',
-      s4h: "Fragen?", s4: "Bei Problemen oder Fragen: {email}",
+      s3: '<ul><li>🚫 „Diese Aufnahme ausschließen": falls eine Aufnahme keinen Ton enthält oder die Art falsch bestimmt wirkt – merkt sich die App dauerhaft (nur in diesem Browser).</li><li>Sprache umschalten: Button oben rechts neben dem Zahnrad.</li></ul>',
+      s4h: "4. App installieren (optional)",
+      s4: '<p>Die App lässt sich wie eine eigenständige App installieren – sie startet dann z.B. per Doppelklick auf ein Icon, ganz ohne Adressleiste drumherum.</p><p><strong>Am Computer (Chrome oder Edge):</strong> Seite öffnen, dann rechts in der Adressleiste auf das Installieren-Symbol klicken (ein kleiner Bildschirm mit Pfeil nach unten, meist ganz rechts neben der URL) und „Installieren" bestätigen. Falls das Symbol nicht zu sehen ist: oben rechts auf die drei Punkte („⋮") klicken → „App installieren".</p><p><strong>Am Handy (Android, Chrome):</strong> Seite öffnen, oben rechts auf die drei Punkte tippen → „Zum Startbildschirm hinzufügen" (oder „App installieren").</p><p><strong>Am iPhone/iPad (Safari):</strong> Seite öffnen, unten das Teilen-Symbol antippen (Quadrat mit Pfeil nach oben) → nach unten scrollen → „Zum Home-Bildschirm".</p><p class="hint">Browser-Menüs ändern sich gelegentlich, und nicht jeder Browser unterstützt die Installation gleich gut (in Firefox z.B. nur eingeschränkt). Findest du das Symbol oder den Menüpunkt nicht: einfach „[Browsername] Web-App installieren" googeln, oder frag ChatGPT oder Claude – die können dich Schritt für Schritt durch dein konkretes Gerät führen.</p>',
+      s5h: "Fragen?", s5: "Bei Problemen oder Fragen: {email}",
     },
   },
   en: {
@@ -329,9 +332,10 @@ const STRINGS = {
       intro: "Please read before use – especially if you're using the app to validate real monitoring results.",
       s1h: "AI-assisted content", s1: "Large parts of the species data in this app (frequency/difficulty classification, background texts, call/song descriptions) were researched and written with the help of AI (Claude) – based on public sources such as NABU, BfN, DDA, IUCN, Wikipedia and state agencies, but not comprehensively cross-checked by ornithologists. Errors are possible, especially for less commonly covered species.",
       s2h: "Data quality in detail", s2: "eBird area occurrence is cumulative reporting (ever observed there), not a current population count – a species can be marked as \"present\" even if it was only reported there once, years ago. Species identification on xeno-canto recordings comes from the person who recorded it and is not verified by this app – occasional misidentifications are possible (use the \"Exclude\" button if a recording seems questionable to you). Frequency and difficulty ratings are ongoing, improving estimates, not an official status.",
-      s3h: "A training tool, not a substitute for monitoring", s3: "This app is meant for practicing and refreshing call/song recognition, and as an aid when manually validating automated detections (e.g. BirdNET). It does not replace expert identification, an official species list, or scientific analysis.",
-      s4h: "No warranty", s4: "This app is provided without warranty of correctness or completeness. If you doubt a piece of information: please cross-check it independently (e.g. via the linked sources) and let us know.",
-      s5h: "Found an error?", s5: "Feedback is very welcome – please report it to {email}.",
+      s3h: "A crowded stage: more than one species per recording", s3: "Birds don't follow our quiz rules: many xeno-canto recordings have one or more other voices audible in the background – sometimes even a species that's also listed among the answer options. So feel free to listen twice, and pay attention to which voice actually matches the sonogram before deciding. We take the species identification directly from xeno-canto as given and don't independently verify who else might be singing along in the background – that's simply outside what we, as an app, can control. As always, the \"Exclude\" button is there for recordings that are genuinely too confusing.",
+      s4h: "A training tool, not a substitute for monitoring", s4: "This app is meant for practicing and refreshing call/song recognition, and as an aid when manually validating automated detections (e.g. BirdNET). It does not replace expert identification, an official species list, or scientific analysis.",
+      s5h: "No warranty", s5: "This app is provided without warranty of correctness or completeness. If you doubt a piece of information: please cross-check it independently (e.g. via the linked sources) and let us know.",
+      s6h: "Found an error?", s6: "Feedback is very welcome – please report it to {email}.",
     },
     anleitung: {
       heading: "❓ Quick guide",
@@ -340,8 +344,10 @@ const STRINGS = {
       s2h: "2. The four modes",
       s2: "<ul><li><strong>Identify Species</strong>: quiz mode – listen to a recording, pick the right species from several options. The filters above (frequency, difficulty, area, species group, count, learning group) narrow down the scope.</li><li><strong>Compare Similar Species</strong>: listen to and compare two easily-confused species side by side.</li><li><strong>🔍 Validate</strong>: search for a specific species and go through all its xeno-canto recordings one by one – meant for cross-checking automated detection results (e.g. BirdNET) against the actual recording.</li><li><strong>📊 Progress</strong>: shows which species you already recognize reliably and how that has developed over time.</li></ul>",
       s3h: "3. Handy details",
-      s3: '<ul><li>🚫 "Exclude this recording": if a recording has no audible sound or the species seems misidentified – the app remembers this permanently (only in this browser).</li><li>The app can be installed as a standalone app (desktop icon/phone home screen) – ask {contact} for instructions.</li><li>Switch language: button top right next to the gear icon.</li></ul>',
-      s4h: "Questions?", s4: "For problems or questions: {email}",
+      s3: '<ul><li>🚫 "Exclude this recording": if a recording has no audible sound or the species seems misidentified – the app remembers this permanently (only in this browser).</li><li>Switch language: button top right next to the gear icon.</li></ul>',
+      s4h: "4. Install the app (optional)",
+      s4: '<p>The app can be installed like a standalone app – it then opens e.g. by double-clicking an icon, with no address bar around it.</p><p><strong>On a computer (Chrome or Edge):</strong> open the page, then click the install icon in the address bar (a small screen with a down arrow, usually at the far right of the URL) and confirm "Install". If you don\'t see the icon: click the three dots ("⋮") top right → "Install app".</p><p><strong>On a phone (Android, Chrome):</strong> open the page, tap the three dots top right → "Add to Home screen" (or "Install app").</p><p><strong>On iPhone/iPad (Safari):</strong> open the page, tap the Share icon at the bottom (a square with an arrow pointing up) → scroll down → "Add to Home Screen".</p><p class="hint">Browser menus change from time to time, and not every browser supports installation equally well (Firefox, for example, only in a limited way). If you can\'t find the icon or menu item: just search "[browser name] install web app", or ask ChatGPT or Claude – they can walk you step by step through your specific device.</p>',
+      s5h: "Questions?", s5: "For problems or questions: {email}",
     },
   },
 };
@@ -2154,7 +2160,9 @@ function renderDisclaimer() {
       <h3 style="color: var(--green-dark);">${d("disclaimer.s4h")}</h3>
       <p>${d("disclaimer.s4")}</p>
       <h3 style="color: var(--green-dark);">${d("disclaimer.s5h")}</h3>
-      <p>${d("disclaimer.s5", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+      <p>${d("disclaimer.s5")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s6h")}</h3>
+      <p>${d("disclaimer.s6", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
     </div>
   `;
 }
@@ -2171,9 +2179,11 @@ function renderAnleitung() {
       <h3 style="color: var(--green-dark);">${d("anleitung.s2h")}</h3>
       ${d("anleitung.s2")}
       <h3 style="color: var(--green-dark);">${d("anleitung.s3h")}</h3>
-      ${d("anleitung.s3", { contact: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}
+      ${d("anleitung.s3")}
       <h3 style="color: var(--green-dark);">${d("anleitung.s4h")}</h3>
-      <p>${d("anleitung.s4", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
+      ${d("anleitung.s4")}
+      <h3 style="color: var(--green-dark);">${d("anleitung.s5h")}</h3>
+      <p>${d("anleitung.s5", { email: `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>` })}</p>
     </div>
   `;
 }
