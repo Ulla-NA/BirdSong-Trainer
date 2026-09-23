@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.9";
+const APP_VERSION = "2026-09-23.10";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
