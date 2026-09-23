@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.3";
+const APP_VERSION = "2026-09-23.4";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -102,7 +102,8 @@ const STRINGS = {
       unknownSampleRateSuffix: " Achtung: Sample-Rate dieser Aufnahme unbekannt, y-Achse zeigt daher keine kHz-Werte.",
       altRecBtn: "🔄 Andere Aufnahme",
       excludeBtnDefault: "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)",
-      playError: 'Wiedergabe fehlgeschlagen. Das kann an einer Autoplay-Sperre liegen (einfach nochmal auf ▶ klicken) oder daran, dass dein Browser (v.a. Safari auf Mac/iPhone) genau diese Aufnahmedatei nicht unterstützt. Falls Letzteres: bitte "🔄 Andere Aufnahme" probieren, oder Direktlink: <a href="{url}" target="_blank" rel="noopener">Audiodatei öffnen</a>',
+      playError: 'Wiedergabe fehlgeschlagen. Das kann an einer Autoplay-Sperre liegen (einfach nochmal auf ▶ klicken) oder daran, dass dein Browser (v.a. Safari auf Mac/iPhone) genau diese Aufnahmedatei nicht unterstützt. Falls Letzteres: bitte "🔄 Andere Aufnahme" probieren, oder den Direktlink unten öffnen.',
+      openFileLink: "Audiodatei öffnen",
       autoplayBlocked: "Automatische Wiedergabe wurde vom Browser blockiert – bitte einmal auf ▶ klicken.",
       blobFallbackTrying: "Wiedergabe versucht es auf einem zweiten Weg (v.a. für Safari) – einen Moment…",
     },
@@ -286,7 +287,8 @@ const STRINGS = {
       unknownSampleRateSuffix: " Note: sample rate of this recording unknown, so the y-axis shows no kHz values.",
       altRecBtn: "🔄 Different recording",
       excludeBtnDefault: "🚫 Exclude this recording (no sound audible, wrong species, etc.)",
-      playError: 'Playback failed. This can be due to your browser blocking autoplay (just click ▶ again), or your browser (especially Safari on Mac/iPhone) not supporting this particular recording file. If it\'s the latter: please try "🔄 Different recording", or the direct link: <a href="{url}" target="_blank" rel="noopener">open audio file</a>',
+      playError: 'Playback failed. This can be due to your browser blocking autoplay (just click ▶ again), or your browser (especially Safari on Mac/iPhone) not supporting this particular recording file. If it\'s the latter: please try "🔄 Different recording", or open the direct link below.',
+      openFileLink: "Open audio file",
       autoplayBlocked: "Automatic playback was blocked by the browser – please click ▶ once.",
       blobFallbackTrying: "Trying a second way to load this (mainly helps Safari) – one moment…",
     },
@@ -424,6 +426,30 @@ function getStoredLang() {
   return v === "en" ? "en" : "de";
 }
 
+// ---------- Sicherheit: HTML-Escaping für extern eingebettete Daten ----------
+// xeno-canto ist eine offene, community-befüllte Datenbank – Felder wie Aufnehmer-Name (rec),
+// Bemerkungen (rmk), Lizenz-URL (lic) und Klangtyp (type) sind von den Hochladenden frei editierbar
+// und NICHT von uns kontrolliert. Diese App rendert solche Werte per innerHTML bzw. als href/src.
+// Ohne Escaping wäre ein böswillig präparierter xeno-canto-Eintrag (z.B. Aufnehmer-Name
+// "<img src=x onerror=...>") ein Stored-XSS-Vektor: das Skript liefe im Ursprung dieser App und
+// könnte u.a. den in localStorage gespeicherten xeno-canto-API-Key der Nutzerin auslesen.
+// escapeHtml() neutralisiert HTML-Metazeichen für Text-/Attribut-Inhalte; safeHref() lässt für
+// href/src zusätzlich nur http(s)- bzw. protokollrelative URLs zu, damit z.B. eine als Lizenz-URL
+// eingeschleuste "javascript:..."-Adresse nicht ausgeführt werden kann.
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
+
+function safeHref(url) {
+  if (typeof url !== "string") return "#";
+  const trimmed = url.trim();
+  if (/^https?:\/\//i.test(trimmed) || trimmed.startsWith("//")) return escapeHtml(trimmed);
+  return "#";
+}
+
 function t(key, vars) {
   const path = key.split(".");
   const lookup = (dict) => path.reduce((node, p) => (node && typeof node === "object") ? node[p] : undefined, dict);
@@ -431,7 +457,11 @@ function t(key, vars) {
   if (val === undefined) val = lookup(STRINGS.de); // Fallback: fehlende EN-Strings zeigen deutschen Text statt nichts
   if (typeof val !== "string") return key;
   if (vars) {
-    return val.replace(/\{(\w+)\}/g, (m, k) => (vars[k] !== undefined ? String(vars[k]) : m));
+    // Platzhalter-Werte werden IMMER escaped (s. Sicherheits-Kommentar oben) – die STRINGS-Vorlage
+    // selbst darf weiterhin bewusst HTML enthalten (z.B. settings.apiKeyIntro), nur die eingesetzten
+    // Werte nicht. Ein href, der einen dynamischen Wert enthalten muss (z.B. audio.playError früher),
+    // wird deshalb bewusst NICHT über {platzhalter} gebaut, sondern separat mit safeHref() zusammengesetzt.
+    return val.replace(/\{(\w+)\}/g, (m, k) => (vars[k] !== undefined ? escapeHtml(vars[k]) : m));
   }
   return val;
 }
@@ -1670,21 +1700,25 @@ function renderAudioSection(rec, target, containerId, opts) {
   const excludeLabel = opts.excludeLabel
     ? opts.excludeLabel(isExcluded)
     : t("audio.excludeBtnDefault");
-  const licenseHtml = rec.license ? `${t("audio.license")}<a href="${rec.license}" target="_blank" rel="noopener">${t("audio.licenseLink")}</a>` : "";
+  // rec.type/recordist/remarks/license/pageUrl/fileUrl/sonoUrl stammen von xeno-canto (offene,
+  // community-befüllte API, nicht von uns kontrolliert) – s. Sicherheits-Kommentar bei escapeHtml()/
+  // safeHref() oben: Text-Werte werden escaped, Links/Quellen über safeHref() geprüft, statt sie
+  // roh in innerHTML/href/src einzusetzen.
+  const licenseHtml = rec.license ? `${t("audio.license")}<a href="${safeHref(rec.license)}" target="_blank" rel="noopener">${t("audio.licenseLink")}</a>` : "";
   container.innerHTML = `
     <div class="audio-row">
       <button class="play-btn" id="playBtn">▶</button>
       <div>
-        <div class="sound-type">${rec.type || t("audio.unknownType")}${rec.length ? t("audio.lengthLabel", { length: rec.length }) : ""}</div>
+        <div class="sound-type">${rec.type ? escapeHtml(rec.type) : t("audio.unknownType")}${rec.length ? t("audio.lengthLabel", { length: rec.length }) : ""}</div>
         <div class="attribution">${t("audio.recordingBy", { recordist: rec.recordist || t("audio.unknownRecordist") })}
-          (<a href="${rec.pageUrl}" target="_blank" rel="noopener">${t("audio.source")}</a>${licenseHtml})
+          (<a href="${safeHref(rec.pageUrl)}" target="_blank" rel="noopener">${t("audio.source")}</a>${licenseHtml})
         </div>
         ${originNote(rec) ? `<div class="hint">${originNote(rec)}</div>` : ""}
         ${rec.remarks && rec.remarks.trim() ? `<div class="hint">${t("audio.remarksLabel", { remarks: rec.remarks.trim() })}</div>` : ""}
       </div>
     </div>
     <audio id="audioPlayer" preload="metadata">
-      <source src="${rec.fileUrl}">
+      <source src="${safeHref(rec.fileUrl)}">
     </audio>
     ${rec.sonoUrl ? `
       <div class="sono-container">
@@ -1692,7 +1726,7 @@ function renderAudioSection(rec, target, containerId, opts) {
         <div class="sono-scroll" id="sonoScroll">
           <div class="sono-wrap" id="sonoWrap">
             <div class="sono-imgwrap" id="sonoImgWrap">
-              <img class="spectrogram" id="sonoImg" src="${rec.sonoUrl}" alt="Sonogramm">
+              <img class="spectrogram" id="sonoImg" src="${safeHref(rec.sonoUrl)}" alt="Sonogramm">
               <div class="playhead" id="playhead"></div>
             </div>
             <div class="sono-xaxis" id="sonoXAxis"></div>
@@ -1936,7 +1970,12 @@ function setupAudioControls(rec, container, autoplayAllowed) {
   // Server), daher der Hinweis auf "Andere Aufnahme" als praktischer Ausweg.
   function showPlayError() {
     if (!playError) return;
-    playError.innerHTML = `<div class="error-box">${t("audio.playError", { url: rec.fileUrl })}</div>`;
+    // rec.fileUrl kommt von xeno-canto (externe, nicht von uns kontrollierte Daten) – nicht als
+    // roher {platzhalter} in den href einsetzen (s. Sicherheits-Kommentar bei t()/escapeHtml()
+    // oben), sondern über safeHref() geprüft separat als Link anhängen.
+    const href = safeHref(rec.fileUrl);
+    const linkHtml = href !== "#" ? ` <a href="${href}" target="_blank" rel="noopener">${t("audio.openFileLink")}</a>` : "";
+    playError.innerHTML = `<div class="error-box">${t("audio.playError")}${linkHtml}</div>`;
   }
 
   // Safari-Blob-Fallback (2026-09-23, noch ungetestet): Fix-Versuch 3 (kein <source type="...">
@@ -2117,7 +2156,9 @@ async function renderDetailsContent(sp, content) {
   try {
     const imgUrl = await fetchWikiImage(sp);
     if (imgUrl) {
-      imgWrap.innerHTML = `<img class="species-photo" src="${imgUrl}" alt="${sp.de}"><div class="hint">${t("details.imageCaption")}</div>`;
+      // imgUrl kommt von Wikipedias REST-API (externe Quelle) – über safeHref() prüfen statt roh
+      // als src einzusetzen (s. Sicherheits-Kommentar bei escapeHtml()/safeHref() oben).
+      imgWrap.innerHTML = `<img class="species-photo" src="${safeHref(imgUrl)}" alt="${escapeHtml(sp.de)}"><div class="hint">${t("details.imageCaption")}</div>`;
     } else {
       imgWrap.innerHTML = "";
     }
