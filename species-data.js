@@ -1822,6 +1822,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Der Rauchschwalbe ähnlich, aber mit rostrotem Bürzel, brütet v.a. im Mittelmeerraum. Erster deutscher Nachweis bereits 1855 auf Helgoland; bis 1970 nur zehn, von 1970-2010 aber schon 82 anerkannte Nachweise – die meisten Beobachtungen im Frühjahr (Ende April/Anfang Mai), vermutlich überschießende Zugvögel auf dem Heimzug aus Afrika. Gesang: schwirrend-zwitschernd, dem der Mehlschwalbe ähnlich.",
     background_en: "Similar to the Barn Swallow but with a rust-red rump, breeds mainly around the Mediterranean. The first German record was already in 1855 on Heligoland; only ten records up to 1970, but 82 accepted records from 1970-2010 – most observations in spring (late April/early May), presumably overshooting migrants returning from Africa. Song: whirring and twittering, similar to the House Martin's.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "wuestenregenpfeifer",
@@ -1836,6 +1838,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Asiatischer Watvogel, in Deutschland eine extreme Seltenheit: insgesamt nur rund 12 Nachweise (Stand 2022), meist in der norddeutschen Tiefebene, überwiegend im Juli/August. Ruf: kurzes, trillerndes 'trrit'.",
     background_en: "An Asian wader, an extreme rarity in Germany: only around 12 records in total (as of 2022), mostly in the North German lowlands, predominantly in July/August. Call: a short, trilling 'trrit'.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "mornellregenpfeifer",
@@ -1850,6 +1854,8 @@ const SPECIES = [
     areas: ["hrz", "lbr"],
     background: "Als Brutvogel in Deutschland schon länger ausgestorben, tritt bei uns nur noch als Durchzügler auf abgeernteten Feldern/kurzen Wiesen auf (Herbstzug Richtung Nordafrika). 2018 wurde der Gesamtbestand auf dem Durchzug auf unter 100 Tiere geschätzt, rastende Trupps meist nur rund 10 Vögel – wenige traditionelle Rastplätze, u.a. Schröcker Feld bei Marburg, Eifel-Maifeld.",
     background_en: "Has long been extinct as a breeding bird in Germany, now occurring here only as a passage migrant on harvested fields/short meadows (autumn migration towards North Africa). In 2018 the total passage population was estimated at under 100 birds, with roosting flocks usually only around 10 birds – few traditional stopover sites, including Schröcker Feld near Marburg and the Eifel-Maifeld.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -1866,6 +1872,8 @@ const SPECIES = [
     areas: ["nwm", "uot"],
     background: "Auffällig kontrastreich gefärbte Gans aus der sibirischen Arktis, überwintert normalerweise am Schwarzen Meer. Seit 1970 fast alljährlich in Nordwestdeutschland (meist 5-7 Individuen), seit dem Bestandsanstieg der Art in den 1990er-Jahren deutschlandweit bis zu rund 50 durchziehende/überwinternde Vögel zu erwarten – meist in Gesellschaft anderer arktischer Gänse. Ruf: hohes, doppeltöniges Bellen.",
     background_en: "A strikingly high-contrast goose from the Siberian Arctic, normally wintering around the Black Sea. Almost annual in north-west Germany since 1970 (usually 5-7 individuals); since the species' population increase in the 1990s, up to around 50 passage/wintering birds can be expected nationwide – usually in the company of other Arctic geese. Call: a high, two-note barking.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,5]
   },
@@ -1882,6 +1890,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Kleiner arktischer Alkenvogel, brütet in dichten Kolonien weit im Norden (u.a. Spitzbergen). Fast jedes Jahr einzelne Vögel an der deutschen Nordseeküste, meist nach schweren Herbst-/Winterstürmen ('Sturmschwemmlinge') – deutlich seltener sind echte Masseneinflüge mit über 1.000 Vögeln. Ruf: schnatterndes Trillern (v.a. am Brutplatz, in Deutschland meist stumm).",
     background_en: "A small Arctic auk, breeding in dense colonies far to the north (including Svalbard). Individual birds turn up almost every year on the German North Sea coast, usually after severe autumn/winter storms ('storm-wrecked' birds) – true mass influxes of over 1,000 birds are much rarer. Call: a chattering trill (mainly at the breeding site, usually silent in Germany).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["offshore_coast"],
     vocalMonths: [1,1]
   },
@@ -1898,6 +1908,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Nordamerikanische Gans; in Deutschland kein natürliches Vorkommen, sondern überwiegend entflogene Ziervögel oder echte Irrgäste. Einzige (verwilderte) Brutkolonie an einem Parksee bei Neuss (rund 100 Individuen, Stand 2012). Ruf: hohes, näselndes Bellen, oft in großen, lauten Schwärmen.",
     background_en: "A North American goose; not naturally occurring in Germany, mostly escaped ornamental birds or genuine vagrants. The only (feral) breeding colony is at a park lake near Neuss (around 100 individuals, as of 2012). Call: a high, nasal barking, often in large, noisy flocks.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -1914,6 +1926,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Kleinere Verwandte der Schneegans aus Nordamerika (etwa ringelgansgroß, 53-66 cm), von dieser durch kürzeren, an der Basis grünlich-blauen Schnabel und runderen Kopf zu unterscheiden. In Westeuropa eine extreme Rarität – ein Teil der Beobachtungen dürfte auf Gefangenschaftsflüchtlinge statt echte Wildvögel zurückgehen. Ruf: höher und weniger rau als die Schneegans.",
     background_en: "A smaller North American relative of the Snow Goose (about Brent Goose-sized, 53-66 cm), distinguished from it by a shorter bill with a greenish-blue base and a rounder head. An extreme rarity in Western Europe – some observations are likely to be escapees rather than genuine wild birds. Call: higher-pitched and less harsh than the Snow Goose's.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -1930,6 +1944,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Nordamerikanischer Singvogel (Neuweltammer), in Westeuropa (v.a. Großbritannien) schon mehrfach als Irrgast beobachtet – für Deutschland selbst gibt es aber bislang keinen zweifelsfrei anerkannten Nachweis. Eine gemeldete Beobachtung wäre also höchst ungewöhnlich und sollte besonders sorgfältig geprüft werden (Verwechslung wahrscheinlicher als echter Nachweis). Ruf: helles, metallisches Schmatzen; Gesang ein einfacher Triller.",
     background_en: "A North American songbird (New World sparrow), repeatedly recorded as a vagrant in Western Europe (mainly Britain) – but for Germany itself there is so far no unequivocally accepted record. A reported observation would therefore be highly unusual and should be checked especially carefully (misidentification more likely than a genuine record). Call: bright, metallic smacking; song a simple trill.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "wellensittich",
@@ -6263,6 +6279,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Brütet von Südosteuropa bis Zentralasien in offener, halboffener Landschaft mit einzelnen Bäumen (Steppen-Wald-Mosaik) – nicht in Deutschland heimisch, hier nur als extrem seltener Irrgast. IUCN-Status: gefährdet (Vulnerable). Verwechslung mit anderen großen Adlerarten ist eine bekannte Bestimmungsfalle.",
     background_en: "Breeds from south-eastern Europe to Central Asia in open, semi-open landscape with scattered trees (steppe-woodland mosaic) – not native to Germany, occurring here only as an extremely rare vagrant. IUCN status: Vulnerable. Confusion with other large eagle species is a well-known identification trap.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,8]
   },
@@ -6279,6 +6297,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Riesiger ostasiatischer Adler (Kamtschatka, Japan) – einer der größten Greifvögel der Welt. In Deutschland gilt jeder Nachweis als absolute Ausnahmeerscheinung (Irrgast/entflogenes Gehegetier diskutiert).",
     background_en: "A huge East Asian eagle (Kamchatka, Japan) – one of the largest raptors in the world. In Germany, any record is considered an absolute exceptional occurrence (vagrant/escaped captive bird are both discussed as explanations).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "clanga",
@@ -6293,6 +6313,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Brütet von Ost-/Mitteleuropa bis Zentralasien/China in Feuchtwäldern und an Flussauen – anders als die meisten Adlerarten stark an Gewässer, Sümpfe und Moore gebunden. In Deutschland nur als extrem seltener Durchzügler/Irrgast nachgewiesen. Verwechslung mit dem ähnlichen Schreiadler ist eine bekannte Bestimmungsfalle.",
     background_en: "Breeds from Eastern/Central Europe to Central Asia/China in wet forest and river floodplains – unlike most eagle species, strongly tied to water, marshes and bogs. Recorded in Germany only as an extremely rare passage migrant/vagrant. Confusion with the similar Lesser Spotted Eagle is a well-known identification trap.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A huge East Asian eagle (Kamchatka, Japan) – one of the largest raptors in the world. In Germany, any record is considered an absolute exceptional occurrence (vagrant/escaped captive bird are both discussed as explanations).",
     habitat: [],
     vocalMonths: [11,4]
@@ -6328,6 +6350,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Brütet in den Steppen und Halbwüsten Zentralasiens (Schwerpunkt Kasachstan, über 80% des Weltbestands) bis in die südrussische Steppe – IUCN-Status: stark gefährdet (Endangered), Bestand stark rückläufig. In Deutschland nur als extreme Ausnahmeerscheinung nachgewiesen. Verwechslung mit anderen großen Adlerarten ist eine bekannte Bestimmungsfalle.",
     background_en: "Breeds in the steppes and semi-deserts of Central Asia (concentrated in Kazakhstan, over 80% of the world population) as far as the southern Russian steppe – IUCN status: Endangered, population strongly declining. Recorded in Germany only as an extreme exceptional occurrence. Confusion with other large eagle species is a well-known identification trap.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "pallida",
@@ -6342,6 +6366,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "Breeds in the steppes and semi-deserts of Central Asia (concentrated in Kazakhstan, over 80% of the world population) as far as the southern Russian steppe – IUCN status: Endangered, population strongly declining. Recorded in Germany only as an extreme exceptional occurrence. Confusion with other large eagle species is a well-known identification trap.",
     habitat: [],
     vocalMonths: [5,5]
@@ -6359,6 +6385,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -6375,6 +6403,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -6391,6 +6421,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,11]
   },
@@ -6407,6 +6439,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -6423,6 +6457,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "calandra",
@@ -6437,6 +6473,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/osteuropäische Lerche, in Deutschland nur als seltener Gast nachgewiesen, meist auf dem Durchzug an der Küste oder in waldarmen Beckenlandschaften.",
     background_en: "A southern/eastern European lark, recorded in Germany only as a rare visitor, usually on passage on the coast or in sparsely wooded basin landscapes.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
     habitat: [],
     vocalMonths: [5,5]
@@ -6454,6 +6492,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/osteuropäische Lerche, in Deutschland nur als seltener Gast nachgewiesen, meist auf dem Durchzug an der Küste oder in waldarmen Beckenlandschaften.",
     background_en: "A southern/eastern European lark, recorded in Germany only as a rare visitor, usually on passage on the coast or in sparsely wooded basin landscapes.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -6470,6 +6510,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "grylle",
@@ -6501,6 +6543,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [2,6]
   },
@@ -6517,6 +6561,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -6533,6 +6579,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,12]
   },
@@ -6549,6 +6597,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,6]
   },
@@ -6565,6 +6615,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,2]
   },
@@ -6581,6 +6633,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "americana2",
@@ -6595,6 +6649,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [11,12]
@@ -6612,6 +6668,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,12]
   },
@@ -6644,6 +6702,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "falcata",
@@ -6658,6 +6718,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
     habitat: [],
     vocalMonths: [12,3]
@@ -6675,6 +6737,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanisch-asiatische Ente, in Deutschland nur als sehr seltener Wintergast/Irrgast unter einheimischen Schwimmentenschwärmen zu finden – Herkunft (Wildvogel vs. Gefangenschaftsflüchtling) ist bei manchen Einzeltieren nicht immer sicher zu klären.",
     background_en: "A North American/Asian duck, found in Germany only as a very rare winter visitor/vagrant among flocks of native dabbling/diving ducks – for some individual birds, origin (wild bird vs. escaped captive bird) cannot always be reliably determined.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [1,3]
   },
@@ -6691,6 +6755,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
     background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -6707,6 +6773,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
     background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -6723,6 +6791,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
     background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "caffer",
@@ -6737,6 +6807,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seglerverwandter aus wärmeren Regionen, in Deutschland nur als seltene Ausnahme unter Mauerseglerschwärmen zu entdecken – Bestimmung im Flug sehr schwierig.",
     background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A swift relative from warmer regions, discoverable in Germany only as a rare exception among flocks of Common Swifts – identification in flight is very difficult.",
     habitat: [],
     vocalMonths: [10,10]
@@ -6754,6 +6826,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
     background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "grayii",
@@ -6768,6 +6842,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
     background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "thula",
@@ -6782,6 +6858,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Reiherverwandter aus wärmeren Regionen, in Deutschland nur als sehr seltener Gast unter einheimischen Reihern zu finden.",
     background_en: "A heron relative from warmer regions, found in Germany only as a very rare visitor among native herons.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "oedicnemus",
@@ -6812,7 +6890,9 @@ const SPECIES = [
     confusionGroup: null,
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
-    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems."
+    background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist."
   },
   {
     id: "cinereus",
@@ -6827,6 +6907,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
     background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "indicus",
@@ -6841,6 +6923,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
     background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "fulva",
@@ -6855,6 +6939,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Regenpfeifer-/Kiebitzverwandter aus Asien, in Deutschland nur als extreme Ausnahme nachgewiesen.",
     background_en: "An Asian plover/lapwing relative, recorded in Germany only as an extreme exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "macroura",
@@ -6869,6 +6955,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "orientalis",
@@ -6883,6 +6971,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "garrulus",
@@ -6936,6 +7026,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["alpine"],
   },
   {
@@ -6951,6 +7043,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Kuckucksverwandter aus wärmeren Regionen bzw. Nordamerika, in Deutschland nur als große Ausnahme nachgewiesen.",
     background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
     habitat: [],
     vocalMonths: [7,7]
@@ -6968,6 +7062,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Kuckucksverwandter aus wärmeren Regionen bzw. Nordamerika, in Deutschland nur als große Ausnahme nachgewiesen.",
     background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "melanophris",
@@ -6982,6 +7078,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "A cuckoo relative from warmer regions or North America, recorded in Germany only as a great exception.",
     habitat: [],
     vocalMonths: [6,8]
@@ -6999,6 +7097,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "leucocephalos",
@@ -7013,6 +7113,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [10,11]
@@ -7030,6 +7132,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "caesia",
@@ -7044,6 +7148,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
     habitat: [],
     vocalMonths: [5,5]
@@ -7061,6 +7167,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -7077,6 +7185,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [12,12]
   },
@@ -7093,6 +7203,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -7109,6 +7221,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "rustica",
@@ -7123,6 +7237,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,3]
   },
@@ -7139,6 +7255,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "cirlus",
@@ -7185,6 +7303,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ost-/südosteuropäische bis sibirische Ammer, in Deutschland nur als sehr seltener Gast auf dem Zug (v.a. Helgoland, Küste) nachgewiesen. Gesang/Ruf den einheimischen Ammern ähnlich, Bestimmung meist nur mit guter Aufnahme/Spektrogramm sicher.",
     background_en: "An Eastern/south-eastern European to Siberian bunting, recorded in Germany only as a very rare visitor on migration (mainly Heligoland, the coast). Song/call similar to native buntings; identification is usually only reliable with a good recording/spectrogram.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7201,6 +7321,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Falke, in Deutschland nur vereinzelt als Durchzügler/Irrgast (teils auch Gefangenschaftsflüchtling) nachgewiesen.",
     background_en: "A rare falcon, recorded in Germany only occasionally as a passage migrant/vagrant (sometimes also an escaped captive bird).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,9]
   },
@@ -7217,6 +7339,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Falke, in Deutschland nur vereinzelt als Durchzügler/Irrgast (teils auch Gefangenschaftsflüchtling) nachgewiesen.",
     background_en: "A rare falcon, recorded in Germany only occasionally as a passage migrant/vagrant (sometimes also an escaped captive bird).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "naumanni",
@@ -7231,6 +7355,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Kleiner Falke der Mittelmeerregion/Zentralasiens, brütet in offenen, trockenen, wärmebegünstigten Landschaften. Erlitt im 20. Jahrhundert einen Bestandseinbruch von 95% (v.a. durch Insektizide), stabilisiert sich seit dem 21. Jahrhundert aber wieder lokal. War im 19. Jahrhundert noch ein recht häufiger Gastvogel in Deutschland, seither aber extrem selten geworden: 1990-2014 gab es für ganz Deutschland nur drei dokumentierte Nachweise (Helgoland, Brandenburg, Schleswig-Holstein).",
     background_en: "A small falcon of the Mediterranean region/Central Asia, breeding in open, dry, warm landscapes. Suffered a 95% population collapse in the 20th century (mainly due to insecticides), but has been stabilising locally again since the 21st century. Was still a fairly common visitor to Germany in the 19th century, but has since become extremely rare: only three documented records for all of Germany between 1990 and 2014 (Heligoland, Brandenburg, Schleswig-Holstein).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -7247,6 +7373,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Etwas zierlicherer Verwandter des Fichtenkreuzschnabels mit Verbreitungsschwerpunkt in Nordamerika und russischer Taiga, in Nordskandinavien nur spärlich. In Deutschland eine echte Rarität, die nur bei starken Invasionen auftaucht – 1991 gelang sogar ein einmaliger Brutnachweis auf einem Berliner Friedhof, der bisher stärkste Einflug fand 2013/14 statt.",
     background_en: "A somewhat daintier relative of the Common Crossbill, mainly distributed in North America and the Russian taiga, only sparse in northern Scandinavia. A genuine rarity in Germany, appearing only during strong invasions – in 1991 a one-off breeding record even succeeded in a Berlin cemetery, with the strongest influx so far occurring in 2013/14.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["boreal_montane_conifer"],
     vocalMonths: null
   },
@@ -7281,6 +7409,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Verwandter der einheimischen Finken mit Verbreitungsschwerpunkt in Nordeuropa/Gebirgen bzw. Nordafrika, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
     background_en: "A relative of the native finches mainly distributed in northern Europe/mountain ranges or North Africa, observed in Germany only irregularly (sometimes during invasion years).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "citrinella",
@@ -7295,6 +7425,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Verwandter der einheimischen Finken mit Verbreitungsschwerpunkt in Nordeuropa/Gebirgen bzw. Nordafrika, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
     background_en: "A relative of the native finches mainly distributed in northern Europe/mountain ranges or North Africa, observed in Germany only irregularly (sometimes during invasion years).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,10]
   },
@@ -7311,6 +7443,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["offshore_coast","water_shoreline"],
   },
   {
@@ -7326,6 +7460,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Brachschwalben-Art wärmerer Regionen, in Deutschland nur als sehr seltener Gast auf dem Durchzug zu beobachten.",
     background_en: "A pratincole species from warmer regions, observed in Germany only as a very rare visitor on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -7342,6 +7478,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Brachschwalben-Art wärmerer Regionen, in Deutschland nur als sehr seltener Gast auf dem Durchzug zu beobachten.",
     background_en: "A pratincole species from warmer regions, observed in Germany only as a very rare visitor on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -7358,6 +7496,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Kranich, in Deutschland nur als extreme Ausnahme (meist im Gefolge ziehender Kranichtrupps) nachgewiesen.",
     background_en: "A North American crane, recorded in Germany only as an extreme exception (usually travelling with migrating flocks of Common Cranes).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,2]
   },
@@ -7389,6 +7529,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "pelagicus2",
@@ -7403,6 +7545,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -7419,6 +7563,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "ater",
@@ -7433,6 +7579,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "cristatus",
@@ -7447,6 +7595,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7463,6 +7613,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -7479,6 +7631,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -7495,6 +7649,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "minor",
@@ -7509,6 +7665,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,8]
   },
@@ -7525,6 +7683,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Würger-Verwandter aus Süd-/Ost-/Zentralasien, in Deutschland nur als seltener Gast (meist Herbst) nachgewiesen. Sitzt wie einheimische Würger gerne exponiert auf Büschen/Zäunen.",
     background_en: "A shrike relative from South/East/Central Asia, recorded in Germany only as a rare visitor (mostly autumn). Like native shrikes, likes to perch exposed on bushes/fences.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "atricilla",
@@ -7539,6 +7699,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -7555,6 +7717,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -7571,6 +7735,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "genei",
@@ -7585,6 +7751,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -7601,6 +7769,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "audouinii",
@@ -7615,6 +7785,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,6]
   },
@@ -7631,6 +7803,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -7647,6 +7821,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -7663,6 +7839,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -7679,6 +7857,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "fuscatus",
@@ -7693,6 +7873,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "bengalensis",
@@ -7707,6 +7889,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "elegans",
@@ -7721,6 +7905,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -7737,6 +7923,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Seltener Gast unter einheimischen Möwen/Seeschwalben, in Deutschland meist nur wenige Einzelnachweise. Bestimmung im Feld/an der Stimme erfordert genaue Kenntnis der Gefiedermerkmale bzw. Ruf-Nuancen ähnlicher Arten.",
     background_en: "A rare visitor among native gulls/terns, usually with only a few isolated records in Germany. Identification in the field/by call requires close knowledge of plumage features or call nuances of similar species.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "certhiola",
@@ -7751,6 +7939,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,9]
   },
@@ -7767,6 +7957,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7783,6 +7975,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Bienenfresser-Verwandter wärmerer Regionen, in Deutschland nur als seltener Gast auf dem Durchzug bekannt.",
     background_en: "A bee-eater relative from warmer regions, known in Germany only as a rare visitor on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "carolinensis",
@@ -7797,6 +7991,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "rubescens",
@@ -7811,6 +8007,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "gustavi",
@@ -7825,6 +8023,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7841,6 +8041,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [1,2]
   },
@@ -7857,6 +8059,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Ostasiatischer Stelzen-Verwandter mit Brutgebiet von Nordost-Mongolei/China bis Westalaska, überwintert in Südostasien bis Nordaustralien. Eine der seltensten Vogelarten Deutschlands überhaupt: der zweite je dokumentierte deutsche Nachweis gelang erst im Januar 2025 in Schleswig-Holstein. Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "An East Asian wagtail relative with a breeding range from north-east Mongolia/China to western Alaska, wintering in South-East Asia to northern Australia. One of the rarest bird species in Germany altogether: only the second documented German record ever came as recently as January 2025 in Schleswig-Holstein. Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -7873,6 +8077,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -7889,6 +8095,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "zanthopygia",
@@ -7903,6 +8111,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "semitorquata",
@@ -7917,6 +8127,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "galactotes",
@@ -7931,6 +8143,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "isabellina",
@@ -7945,6 +8159,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -7961,6 +8177,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [2,2]
   },
@@ -7977,6 +8195,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Fliegenschnäpper-Verwandter aus der asiatischen Taiga östlich des Urals, Männchen mit leuchtend rubinrotem Kehlfleck. In Deutschland bislang erst drei Mal nachgewiesen, zuletzt im Oktober 2024 auf Helgoland – der Jungvogel wurde dort von bis zu 400 Ornitholog:innen besucht.",
     background_en: "A flycatcher relative from the Asian taiga east of the Urals, the male with a brilliant ruby-red throat patch. Recorded in Germany only three times so far, most recently in October 2024 on Heligoland – the young bird there was visited by up to 400 birdwatchers.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -7993,6 +8213,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "leucopyga",
@@ -8007,6 +8229,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -8023,6 +8247,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "stejnegeri",
@@ -8037,6 +8263,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8053,6 +8281,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirischer Fliegenschnäpper, brütet im nordöstlichen Eurasien bis zum Pazifik, überwintert in Süd-/Südostasien – in Mitteleuropa eine extreme Rarität mit bislang nur 13 europäischen Nachweisen insgesamt. Der bisher einzige deutsche Nachweis gelang am 31.10.2024 auf Helgoland.",
     background_en: "A Siberian flycatcher, breeding in north-eastern Eurasia as far as the Pacific, wintering in South/South-East Asia – an extreme rarity in Central Europe, with only 13 European records in total so far. Germany's only record to date came on 31 October 2024 on Heligoland.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -8069,6 +8299,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Schmätzer/Schnäpper/Kehlchen-Verwandter, in Deutschland nur als seltener Irrgast (meist Herbst, Küste) nachgewiesen. Ruf/Gesang den einheimischen Verwandten ähnlich, Bestimmung erfordert Erfahrung.",
     background_en: "A Siberian-Central Asian chat/flycatcher/robin relative, recorded in Germany only as a rare vagrant (mostly autumn, coast). Call/song similar to native relatives; identification requires experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,1]
   },
@@ -8085,6 +8317,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Trappenverwandter offener Agrarlandschaften Südwesteuropas, in Deutschland als Brutvogel ausgestorben, nur noch als Ausnahme auf dem Zug denkbar.",
     background_en: "A bustard relative of open farmland in south-western Europe, extinct as a breeding bird in Germany, conceivable now only as an exception on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8101,6 +8335,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Osteuropäisch-zentralasiatische Meise, in Deutschland nur als sehr seltener Gast bekannt.",
     background_en: "An Eastern European-Central Asian tit, known in Germany only as a very rare visitor.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "virens",
@@ -8115,6 +8351,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "americana3",
@@ -8129,6 +8367,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "sandwichensis",
@@ -8143,6 +8383,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "melodia",
@@ -8157,6 +8399,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -8173,6 +8417,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "italiae",
@@ -8187,6 +8433,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
     background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -8203,6 +8451,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
     background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,10]
   },
@@ -8219,6 +8469,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sperling(sverwandter) mit Verbreitungsschwerpunkt außerhalb Mitteleuropas, in Deutschland nur als sehr seltener Gast/Ausnahme bekannt.",
     background_en: "A sparrow (relative) mainly distributed outside Central Europe, known in Germany only as a very rare visitor/exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["alpine"],
   },
   {
@@ -8300,6 +8552,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -8316,6 +8570,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8350,6 +8606,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "neglectus",
@@ -8364,6 +8622,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "coronatus",
@@ -8378,6 +8638,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8394,6 +8656,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -8410,6 +8674,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-zentralasiatischer Laubsänger/Rohrsänger-Verwandter, wird in Deutschland nur unregelmäßig und meist im Spätherbst an der Küste (z.B. Helgoland) nachgewiesen. Gesang/Ruf ähnelt verwandten einheimischen Arten, sichere Bestimmung meist nur mit Spektrogrammvergleich möglich.",
     background_en: "A Siberian-Central Asian leaf-warbler/reed-warbler relative, recorded in Germany only irregularly and mostly in late autumn on the coast (e.g. Heligoland). Song/call resembles related native species; reliable identification is usually only possible by comparing spectrograms.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -8426,6 +8692,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Buntspecht-ähnlicher Specht Südosteuropas/Kleinasiens, breitet sich langsam nordwärts aus, in Deutschland bislang nur vereinzelte Nachweise am Rand des Verbreitungsgebiets.",
     background_en: "A woodpecker resembling the Great Spotted Woodpecker from south-eastern Europe/Asia Minor, slowly spreading northward; only isolated records so far in Germany at the edge of its range.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,4]
   },
@@ -8442,6 +8710,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Lappentaucher, in Deutschland nur als extreme Ausnahme nachgewiesen.",
     background_en: "A North American grebe, recorded in Germany only as an extreme exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -8458,6 +8728,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: ["offshore_coast"],
     vocalMonths: [5,5]
   },
@@ -8474,6 +8746,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "diomedea",
@@ -8488,6 +8762,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [9,10]
   },
@@ -8504,6 +8780,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirische Braunelle, in Deutschland nur in Ausnahmejahren (Invasionen) als seltener Wintergast nachgewiesen.",
     background_en: "A Siberian accentor, recorded in Germany only in exceptional years (invasions) as a rare winter visitor.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,11]
   },
@@ -8554,6 +8832,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten.",
     background_en: "A sandgrouse of Asian-North African steppes, historically occurring in Germany only during rare large invasions (last in notable numbers in the 19th century), today practically never to be expected.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "paradoxus",
@@ -8568,6 +8848,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Flughuhn asiatisch-nordafrikanischer Steppen, in Deutschland historisch nur bei seltenen großen Invasionen aufgetreten (letztmals im 19. Jahrhundert in nennenswerter Zahl), heute praktisch nie zu erwarten.",
     background_en: "A sandgrouse of Asian-North African steppes, historically occurring in Germany only during rare large invasions (last in notable numbers in the 19th century), today practically never to be expected.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "porphyrio",
@@ -8582,6 +8864,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Rallenverwandter wärmerer Feuchtgebiete Südeuropas, breitet sich klimabedingt langsam nordwärts aus, in Deutschland bislang nur vereinzelte Nachweise.",
     background_en: "A rail relative of warmer wetlands in southern Europe, slowly spreading northward due to climate change; only isolated records in Germany so far.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -8598,6 +8882,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A Siberian-Asian wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "bairdii",
@@ -8612,6 +8898,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -8628,6 +8916,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,7]
   },
@@ -8644,6 +8934,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Größere, gedrungenere Verwandte der Bekassine, brütet in Feuchtmooren/Flussniederungen von Norwegen bis Russland. In Deutschland als Brutvogel seit 1930 ausgestorben, seitdem nur noch seltener, aber regelmäßiger Durchzügler (Frühjahrszug April/Mai, Wegzug ab Mitte August) mit vereinzelten Rastvorkommen, gelegentlich sogar mit mehrtägigem Balzverhalten.",
     background_en: "A larger, stockier relative of the Common Snipe, breeding in wet bogs/river floodplains from Norway to Russia. Extinct as a breeding bird in Germany since 1930, since then only a rare but regular passage migrant (spring passage April/May, autumn passage from mid-August) with occasional stopovers, sometimes even with multi-day display behaviour.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -8660,6 +8952,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,7]
   },
@@ -8676,6 +8970,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,12]
   },
@@ -8692,6 +8988,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,6]
   },
@@ -8708,6 +9006,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "longicauda",
@@ -8722,6 +9022,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "ruficollis",
@@ -8736,6 +9038,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-asiatischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A Siberian-Asian wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "pusilla2",
@@ -8750,6 +9054,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,8]
   },
@@ -8766,6 +9072,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [8,9]
   },
@@ -8782,6 +9090,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -8798,6 +9108,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "fuscicollis",
@@ -8812,6 +9124,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -8828,6 +9142,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "tricolor",
@@ -8842,6 +9158,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Watvogel, gilt in Deutschland als extreme Seltenheit (meist nach Herbststürmen an der Küste bzw. Verdriftung auf dem Zug). Verwechslungsgefahr mit ähnlichen einheimischen Strandläufern/Wasserläufern hoch, sichere Bestimmung erfordert viel Erfahrung.",
     background_en: "A North American wader, considered an extreme rarity in Germany (usually after autumn storms on the coast or carried off course on migration). High risk of confusion with similar native sandpipers/shanks; reliable identification requires a lot of experience.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [7,8]
   },
@@ -8858,6 +9176,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Kleiber, in Deutschland nur als extreme Ausnahme nachgewiesen.",
     background_en: "A North American nuthatch, recorded in Germany only as an extreme exception.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [11,11]
   },
@@ -8874,6 +9194,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
     background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "ulula",
@@ -8888,6 +9210,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
     background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,1]
   },
@@ -8904,6 +9228,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Eulenart mit Verbreitungsschwerpunkt in nördlicheren/südlicheren Regionen, in Deutschland nur unregelmäßig (teils bei Invasionsjahren) zu beobachten.",
     background_en: "An owl species mainly distributed in more northerly/southerly regions, observed in Germany only irregularly (sometimes during invasion years).",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "unicolor",
@@ -8918,6 +9244,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sehr seltene Art in Deutschland, meist nur mit wenigen Einzelnachweisen (Irrgast oder Gefangenschaftsflüchtling). Für die Praxis der akustischen Überwachung in den 11 Gebieten aktuell ohne Relevanz, der Vollständigkeit halber aber in der Artenliste enthalten.",
     background_en: "A very rare species in Germany, usually with only a few isolated records (vagrant or escaped captive bird). Currently of no relevance for practical acoustic monitoring in the 11 areas, but included in the species list for completeness.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "tristis",
@@ -8946,6 +9274,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Hochsee-/Seevogel, in Deutschland nur ausnahmsweise nach schweren Herbst-/Winterstürmen vor der Küste oder sogar verdriftet im Binnenland zu beobachten. Lautäußerungen werden fast nur an der Kolonie geäußert, in Deutschland daher praktisch nie zu hören.",
     background_en: "A pelagic/seabird, observed in Germany only exceptionally off the coast after severe autumn/winter storms, or even carried inland. Vocalisations are given almost exclusively at the colony, so practically never heard in Germany.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "iberiae",
@@ -8960,6 +9290,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
     background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -8976,6 +9308,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
     background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "hortensis",
@@ -8990,6 +9324,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
     background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [1,2]
   },
@@ -9006,6 +9342,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/südwesteuropäische Grasmücke der Macchie und Heidelandschaften (Verbreitungsschwerpunkt Spanien, Frankreich, Italien bis Nordwestafrika), am Rand ihres Areals. Erscheint in Deutschland nur als sehr seltener Gast, meist auf dem Zug – wie andere mediterrane Arten durch anhaltende Dürreperioden und Wüstenausbreitung im Verbreitungsgebiet zunehmend unter Druck.",
     background_en: "A south-western European warbler of maquis scrub and heathland (mainly distributed in Spain, France, Italy to north-west Africa), at the edge of its range. Appears in Germany only as a very rare visitor, mostly on passage – like other Mediterranean species, increasingly under pressure within its range from persistent droughts and desertification.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [3,3]
   },
@@ -9022,6 +9360,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Süd-/südosteuropäische Grasmücke am Rand ihres Areals, erscheint in Deutschland nur als seltener Gast, meist auf dem Zug.",
     background_en: "A southern/south-eastern European warbler at the edge of its range, appearing in Germany only as a rare visitor, mostly on passage.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [5,5]
   },
@@ -9074,6 +9414,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "guttatus",
@@ -9088,6 +9430,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "aurea",
@@ -9102,6 +9446,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -9118,6 +9464,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [7,7]
   },
@@ -9134,6 +9482,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "naumanni2",
@@ -9148,6 +9498,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "ruficollis2",
@@ -9162,6 +9514,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "sibirica2",
@@ -9176,6 +9530,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "atrogularis",
@@ -9190,6 +9546,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [4,4]
   },
@@ -9206,6 +9564,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanische Drossel, taucht in Europa nur als extreme Ausnahme nach Verdriftung über den Atlantik auf, meist im Spätherbst/Winter.",
     background_en: "A North American thrush, occurring in Europe only as an extreme exception after being carried across the Atlantic, mostly in late autumn/winter.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "obscurus",
@@ -9220,6 +9580,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Sibirisch-ostasiatische Drossel, taucht in Deutschland nur ausnahmsweise auf (meist Spätherbst, Küste/Helgoland, oft nach Ostwind-Wetterlagen). Ruf/Gesang den einheimischen Drosseln ähnlich, sichere Bestimmung meist nur mit guter Aufnahme möglich.",
     background_en: "A Siberian-East Asian thrush, occurring in Germany only exceptionally (mostly late autumn, coast/Heligoland, often after easterly wind conditions). Call/song similar to native thrushes; reliable identification is usually only possible with a good recording.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
     habitat: [],
     vocalMonths: [10,10]
   },
@@ -9236,6 +9598,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanische Waldsänger-Drossel (Gattung Catharus), taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American forest thrush (genus Catharus), occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "flavifrons",
@@ -9250,6 +9614,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   },
   {
     id: "olivaceus",
@@ -9264,6 +9630,8 @@ const SPECIES = [
     areas: ["de"],
     background: "Nordamerikanischer Singvogel, taucht in Europa/Deutschland nur als extreme Ausnahme auf – meist nach Verdriftung über den Atlantik im Herbst, oft im Zusammenhang mit Sturmtiefs.",
     background_en: "A North American songbird, occurring in Europe/Germany only as an extreme exception – usually after being carried across the Atlantic in autumn, often in connection with storm systems.",
+    habitatDesc: "Echter Irrgast ohne verlässlichen Fundort in Deutschland – kein artspezifisches Habitat angebbar, da nur vereinzelte Einzelnachweise vorliegen.",
+    habitatDesc_en: "A genuine vagrant with no reliable location in Germany – no species-specific habitat can be given, as only isolated individual records exist.",
   }
 
 ];
