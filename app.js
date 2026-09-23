@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-22.2";
+const APP_VERSION = "2026-09-23.1";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -64,6 +64,7 @@ const STRINGS = {
       group: "Artengruppe", group_all: "alle Gruppen",
       count: "Anzahl Arten zum Start", count_all: "alle",
       names: "Namen anzeigen", names_de: "DE", names_en: "EN", names_sci: "Lat",
+      showBtn: "🔧 Filter anzeigen", hideBtn: "🔧 Filter ausblenden",
     },
     erkennen: {
       loadingQuestion: "Lade Frage…",
@@ -241,6 +242,7 @@ const STRINGS = {
       group: "Species group", group_all: "all groups",
       count: "Number of species to start", count_all: "all",
       names: "Show names", names_de: "DE", names_en: "EN", names_sci: "Lat",
+      showBtn: "🔧 Show filters", hideBtn: "🔧 Hide filters",
     },
     erkennen: {
       loadingQuestion: "Loading question…",
@@ -487,6 +489,11 @@ function setupLangToggle() {
     populateAreaFilter();
     populateGroupFilter();
     populateConfusionSelect();
+    // applyStaticTranslations() setzt den Filter-Toggle-Button auf seinen data-i18n-Grundtext
+    // ("Filter anzeigen") zurück, unabhängig vom tatsächlichen Ein-/Ausgeklappt-Zustand – hier
+    // die passende Beschriftung für den aktuellen Zustand neu setzen (idempotent).
+    const filtersSection = document.getElementById("filtersSection");
+    if (filtersSection) setFiltersCollapsed(filtersSection.classList.contains("hidden"));
     rerenderCurrentView();
   });
 }
@@ -1369,8 +1376,37 @@ function restoreFilterState() {
   if (saved.count && Array.from(countSel.options).some(o => o.value === saved.count)) countSel.value = saved.count;
 }
 
+// Ob der Filterbereich ein-/ausgeklappt ist, wird separat von den Filterwerten selbst gemerkt
+// (eigener Key, nicht Teil von FILTER_STATE_KEY) – Nutzerin-Wunsch 2026-09-23: nach "Nächste
+// Aufnahme" musste man auf dem Handy erst am langen, immer ausgeklappten Filterblock
+// vorbeiscrollen, um Sonogramm + Antwortoptionen zu sehen. Standardmäßig eingeklappt (auch für
+// wiederkehrende Nutzer:innen ohne gespeicherten Zustand), macht aber keinen Unterschied bei den
+// eigentlichen Filterwerten selbst (die bleiben wie gehabt gesetzt, auch wenn der Bereich
+// eingeklappt ist).
+const FILTERS_COLLAPSED_KEY = "vogeltrainer_filters_collapsed_v1";
+
+function setFiltersCollapsed(collapsed) {
+  const section = document.getElementById("filtersSection");
+  const btn = document.getElementById("filterToggleBtn");
+  section.classList.toggle("hidden", collapsed);
+  btn.textContent = t(collapsed ? "filters.showBtn" : "filters.hideBtn");
+  btn.setAttribute("aria-expanded", String(!collapsed));
+  localStorage.setItem(FILTERS_COLLAPSED_KEY, collapsed ? "1" : "0");
+}
+
+function setupFilterToggle() {
+  const stored = localStorage.getItem(FILTERS_COLLAPSED_KEY);
+  // Kein gespeicherter Wert (erster Besuch) -> eingeklappt starten (s. Kommentar oben).
+  setFiltersCollapsed(stored === null ? true : stored === "1");
+  document.getElementById("filterToggleBtn").addEventListener("click", () => {
+    const section = document.getElementById("filtersSection");
+    setFiltersCollapsed(!section.classList.contains("hidden"));
+  });
+}
+
 function setupFilters() {
   restoreFilterState();
+  setupFilterToggle();
 
   document.querySelectorAll(".freq-filter, .diff-filter, .name-toggle").forEach(el => {
     el.addEventListener("change", () => {

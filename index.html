@@ -72,7 +72,9 @@
   <button class="tab" data-mode="disclaimer" data-i18n="tabs.disclaimer">⚠️ Hinweise</button>
 </nav>
 
-<section class="filters">
+<button id="filterToggleBtn" type="button" class="filter-toggle-btn" data-i18n="filters.showBtn">🔧 Filter anzeigen</button>
+
+<section class="filters hidden" id="filtersSection">
   <div class="filter-group">
     <span class="filter-label" data-i18n="filters.frequency">Häufigkeit</span>
     <label><input type="checkbox" class="freq-filter" value="haeufig" checked> <span data-i18n="filters.freq_haeufig">häufig</span></label>

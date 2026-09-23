@@ -96,6 +96,17 @@ body {
   border-color: var(--green);
 }
 
+.filter-toggle-btn {
+  display: block;
+  margin: 0.8rem 1.2rem 0;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -157,6 +168,10 @@ select, input[type=text] {
    die Kaskade rein durch Reihenfolge im Stylesheet, obwohl .hidden gesetzt ist – Banner wäre dann
    nie wirklich unsichtbar (Bug gefunden 2026-09-22: Banner stand dauerhaft da, auch nach Reload). */
 .update-banner.hidden { display: none; }
+/* Gleiche Absicherung für den einklappbaren Filterbereich (neu 2026-09-23) – .filters selbst setzt
+   ebenfalls display:flex, .filters.hidden garantiert unabhängig von der Reihenfolge im Stylesheet,
+   dass die eingeklappte Ansicht auch wirklich verschwindet. */
+.filters.hidden { display: none; }
 
 .update-banner button {
   background: #fff;
