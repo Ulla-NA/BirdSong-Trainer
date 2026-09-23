@@ -305,6 +305,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Trotz des Namens kein Sumpfvogel, sondern Laub-/Mischwald mit Totholz. Ruf: scharfes 'pitchuu'. Von der Weidenmeise oft nur am Ruf sicher zu trennen.",
     background_en: "Despite its name, not a wetland bird but found in deciduous/mixed woodland with dead wood. Call: sharp 'pitchou'. Often only reliably told apart from the Willow Tit by call.",
+    habitatDesc: "Laubwälder mit Unterholz, Parks.",
+    habitatDesc_en: "Deciduous woodland with undergrowth, parks.",
     habitat: [],
     vocalMonths: null
   },
@@ -321,6 +323,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bevorzugt feuchte, morastige Wälder und Moorränder, zimmert eigene Bruthöhlen in morschem Holz. Ruf: näselndes, gezogenes 'dääh-dääh-dääh' – nasaler als die Sumpfmeise.",
     background_en: "Prefers damp, boggy woodland and bog margins, excavates its own nest cavity in rotten wood. Call: nasal, drawn-out 'dzaa-dzaa-dzaa' – more nasal than the Marsh Tit.",
+    habitatDesc: "Feuchte Wälder, Moorränder, Bruchwald.",
+    habitatDesc_en: "Damp woodland, moorland edges, wet woodland.",
     habitat: [],
     vocalMonths: null
   },
@@ -337,6 +341,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Charakterart alter, geschlossener Buchenwälder mit wenig Unterwuchs. Gesang: beschleunigender 'Schwirrgesang', der wie eine klimpernde Münze auf einem Teller endet.",
     background_en: "Characteristic species of old, closed beech forests with little undergrowth. Song: an accelerating trilling song that ends like a coin spinning to a stop on a plate.",
+    habitatDesc: "Lichte, hochstämmige Buchen-/Laubwälder.",
+    habitatDesc_en: "Open, tall-stemmed beech/deciduous woodland.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -476,6 +482,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Höhlenbrüter lichter, alter Wälder und Streuobstwiesen; in vielen Regionen im Rückgang. Gesang: kurze, wehmütige Strophe, endet oft in einem leisen, kratzigen Schnörkel.",
     background_en: "A cavity nester of open, old woodland and traditional orchards; declining in many regions. Song: a short, wistful phrase, often ending in a quiet, scratchy flourish.",
+    habitatDesc: "Lichte Laubwälder, Parks, Gärten mit Höhlenbäumen.",
+    habitatDesc_en: "Open deciduous woodland, parks, gardens with hole-nesting trees.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -492,6 +500,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Zugvogel alter Laubwälder mit Höhlenangebot. Gesang: klare, rhythmische Wechseltöne, oft als 'zritt-zritt zree zree' beschrieben.",
     background_en: "A migratory bird of old deciduous forest with cavities available. Song: clear, rhythmic alternating notes, often described as 'zritt-zritt zree zree'.",
+    habitatDesc: "Laub- und Mischwälder mit Höhlenbäumen.",
+    habitatDesc_en: "Deciduous and mixed woodland with hole-nesting trees.",
     habitat: [],
     vocalMonths: [4,5]
   },
@@ -544,6 +554,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Specht, braucht alte, störungsarme Wälder mit dicken Bäumen zum Höhlenbau. Ruf: lautes, weithin hörbares 'krri-krri-krri' sowie langes, lautes Trommeln.",
     background_en: "Germany's largest native woodpecker, needs old, undisturbed forest with thick trees for cavity excavation. Call: a loud, far-carrying 'krri-krri-krri' as well as long, loud drumming.",
+    habitatDesc: "Ausgedehnte Altwälder, v.a. Buchenwälder.",
+    habitatDesc_en: "Extensive old-growth forest, esp. beech woodland.",
     habitat: [],
     vocalMonths: null
   },
@@ -560,6 +572,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bodenspecht, der viel Zeit auf Wiesen bei der Ameisensuche verbringt. Ruf: lautes, lachendes 'kchükchükchükchü', oft im Fallton absteigend.",
     background_en: "A ground-feeding woodpecker that spends much of its time on meadows searching for ants. Call: a loud, laughing 'kyu-kyu-kyu-kyu', often falling in pitch.",
+    habitatDesc: "Offene Wälder, Parks, Wiesen mit Ameisenvorkommen.",
+    habitatDesc_en: "Open woodland, parks, meadows with ants.",
     habitat: [],
     vocalMonths: null
   },
@@ -610,6 +624,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bevorzugt Nadel- und Bergmischwälder. Sehr hoher, feiner Gesang – am sichersten vom Gartenbaumläufer über den Ruf zu trennen, der Gesang ist eher gleichmäßig-fließend.",
     background_en: "Prefers coniferous and montane mixed forest. A very high, fine song – most reliably told apart from the Short-toed Treecreeper by call; the song is more even and flowing.",
+    habitatDesc: "Nadel- und Mischwälder.",
+    habitatDesc_en: "Coniferous and mixed woodland.",
     habitat: [],
     vocalMonths: null
   },
@@ -715,6 +731,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbarer als die Mönchsgrasmücke, ähnliches Habitat. Gesang durchgehend gleichmäßig plappernd-sprudelnd, OHNE den klaren, lauten Überschlag der Mönchsgrasmücke – eher eintönig-fließend.",
     background_en: "Less conspicuous than the Blackcap, similar habitat. Song is evenly chattering and burbling throughout, WITHOUT the Blackcap's clear, loud flourish – more monotonous and flowing.",
+    habitatDesc: "Dichtes Gebüsch, Waldränder, Hecken.",
+    habitatDesc_en: "Dense scrub, woodland edges, hedgerows.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -731,6 +749,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Offenlandart in Hecken, Gebüsch und Waldrändern. Gesang: kurze, kratzig-schnarrende Strophe, oft im Singflug vorgetragen.",
     background_en: "An open-country species of hedgerows, scrub and woodland edges. Song: a short, scratchy, hurried phrase, often delivered in a song flight.",
+    habitatDesc: "Hecken, Gebüsch, Brachflächen, Offenland.",
+    habitatDesc_en: "Hedgerows, scrub, fallow land, open country.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -747,6 +767,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Charaktervogel von Mooren und Feuchtgebieten, in Deutschland wieder zunehmend. Ruf: sehr lautes, trompetendes, weithin hörbares Trompeten, oft im Duett oder Flug.",
     background_en: "A characteristic bird of bogs and wetlands, increasing again in Germany. Call: very loud, trumpeting, far-carrying, often given as a duet or in flight.",
+    habitatDesc: "Moore, Feuchtwälder, Feuchtwiesen.",
+    habitatDesc_en: "Bogs, wet woodland, wet meadows.",
     habitat: [],
     vocalMonths: null
   },
@@ -763,6 +785,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Bekannter Kulturfolger, brütet auf Dächern/Masten nahe Feuchtwiesen. Fast stumm, kommuniziert stattdessen über lautes 'Klappern' mit dem Schnabel.",
     background_en: "A well-known commensal species, nesting on roofs/poles near wet meadows. Almost silent, communicating instead via loud bill-clattering.",
+    habitatDesc: "Feuchtwiesen, Flussauen, Offenland.",
+    habitatDesc_en: "Wet meadows, river floodplains, open country.",
     habitat: [],
     vocalMonths: [2,9]
   },
@@ -779,6 +803,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "nwm", "uot"],
     background: "Wiesenbrüter offener, feuchter Flächen, stark im Rückgang. Ruf: unverwechselbares, quietschendes 'kie-witt', besonders auffällig im artistischen Balzflug.",
     background_en: "A meadow-breeding bird of open, damp ground, strongly declining. Call: an unmistakable, squeaky 'pee-wit', especially conspicuous during its acrobatic display flight.",
+    habitatDesc: "Feuchtwiesen, Äcker, Offenland.",
+    habitatDesc_en: "Wet meadows, arable fields, open country.",
     habitat: ["farmland_open"],
     vocalMonths: null
   },
@@ -900,6 +926,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Koloniebrüter mit charakteristischer heller Schnabelbasis (adult), oft in großen, lauten Schwärmen auf Feldern. Ruf: näselndes 'kaah', rauer und höher als die Rabenkrähe.",
     background_en: "A colonial breeder with a characteristic pale bill base (adult), often in large, noisy flocks on farmland. Call: nasal 'kaah', harsher and higher than the Carrion Crow's.",
+    habitatDesc: "Offenland, Agrarland mit Baumgruppen (Koloniebrüter).",
+    habitatDesc_en: "Open farmland with tree stands (colonial breeder).",
     habitat: [],
     vocalMonths: null
   },
@@ -916,6 +944,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Rabenvogel, brütet in Kolonien in Baumhöhlen, alten Gemäuern und Kirchtürmen. Ruf: helles, metallisches 'kjak' oder 'tschack', oft im Duett/Schwarm.",
     background_en: "The smallest native corvid, breeding in colonies in tree cavities, old walls and church towers. Call: bright, metallic 'kyak' or 'chack', often given as a duet/in a flock.",
+    habitatDesc: "Offenland, Parks, Gebäude mit Nischen (Kirchtürme etc.).",
+    habitatDesc_en: "Open country, parks, buildings with cavities (church towers etc.).",
     habitat: [],
     vocalMonths: null
   },
@@ -932,6 +962,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter Rabenvogel der Welt, mit tiefem, weit tragendem, glucksendem 'krropp-krropp'. In störungsarmen Wäldern und Gebirgen wieder zunehmend.",
     background_en: "The world's largest corvid, with a deep, far-carrying, gurgling 'kronk-kronk'. Increasing again in undisturbed forests and mountains.",
+    habitatDesc: "Wälder, Felsen, offenes Gelände.",
+    habitatDesc_en: "Woodland, cliffs, open terrain.",
     habitat: [],
     vocalMonths: null
   },
@@ -984,6 +1016,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Eleganter Greifvogel mit tief gegabeltem Schwanz, in Deutschland ein globaler Brutvogel-Schwerpunkt. Ruf: hohes, wehmütiges Wiehern/Miauen, oft im gleitenden Suchflug.",
     background_en: "An elegant raptor with a deeply forked tail; Germany holds a globally important share of the breeding population. Call: a high, wistful whinnying/mewing, often given during a gliding search flight.",
+    habitatDesc: "Offenes, strukturreiches Agrarland mit Feldgehölzen.",
+    habitatDesc_en: "Open, structurally rich farmland with copses.",
     habitat: [],
     vocalMonths: null
   },
@@ -1000,6 +1034,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Dem Rotmilan ähnlich, aber dunkler und mit weniger tief gegabeltem Schwanz, oft an Gewässern. Ruf: helles, wieherndes Trillern.",
     background_en: "Similar to the Red Kite but darker and with a less deeply forked tail, often found near water. Call: a bright, whinnying trill.",
+    habitatDesc: "Gewässernähe, Auwälder, Offenland.",
+    habitatDesc_en: "Near water, floodplain forest, open country.",
     habitat: [],
     vocalMonths: [4,8]
   },
@@ -1016,6 +1052,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Heimlicher Waldgreifvogel, deutlich größer als der Sperber. Ruf (v.a. am Horst): schnelles, hartes 'gick-gick-gick-gick'.",
     background_en: "A secretive woodland raptor, noticeably larger than the Sparrowhawk. Call (mainly at the nest): a fast, hard 'gick-gick-gick-gick'.",
+    habitatDesc: "Wälder, auch Stadtparks.",
+    habitatDesc_en: "Woodland, also urban parks.",
     habitat: [],
     vocalMonths: null
   },
@@ -1150,6 +1188,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Ursprünglich afrikanischer Neubürger, mittlerweile weit verbreitet an Gewässern und Grünflächen. Ruf: lautes, raues Schnattern/Fauchen.",
     background_en: "Originally an African newcomer, now widespread at bodies of water and on green spaces. Call: loud, harsh honking/hissing.",
+    habitatDesc: "Gewässer, Parks, Grünflächen.",
+    habitatDesc_en: "Waterbodies, parks, green spaces.",
     habitat: [],
     vocalMonths: null
   },
@@ -1202,6 +1242,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "uot"],
     background: "Verwandte des Blässhuhns, meist versteckter im Uferbewuchs. Ruf: lautes, plötzliches 'Krrock', oft nachts zu hören.",
     background_en: "A relative of the Coot, usually more hidden in bankside vegetation. Call: a loud, sudden 'krrock', often heard at night.",
+    habitatDesc: "Gewässer mit Ufervegetation.",
+    habitatDesc_en: "Waterbodies with shoreline vegetation.",
     habitat: ["water_shoreline","wetland_reed"],
     vocalMonths: null
   },
@@ -1218,6 +1260,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Größter heimischer Wasservogel, meist stumm, aber mit charakteristischem, rhythmischem Flügelsingen im Flug sowie zischenden Drohlauten.",
     background_en: "Germany's largest native waterbird, usually silent, but with a characteristic, rhythmic wing-singing in flight as well as hissing threat calls.",
+    habitatDesc: "Seen, Teiche, langsam fließende Gewässer.",
+    habitatDesc_en: "Lakes, ponds, slow-flowing waters.",
     habitat: [],
     vocalMonths: null
   },
@@ -1250,6 +1294,8 @@ const SPECIES = [
     areas: ["nwm", "uot"],
     background: "Auffälliger schwarz-weißer Küstenvogel mit langem orangerotem Schnabel. Ruf: sehr lautes, durchdringendes 'kleep-kleep-kleep'.",
     background_en: "A conspicuous black-and-white coastal bird with a long orange-red bill. Call: a very loud, piercing 'kleep-kleep-kleep'.",
+    habitatDesc: "Küsten, auch Flussufer/Kiesbänke im Binnenland.",
+    habitatDesc_en: "Coasts, also river banks/gravel bars inland.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: [2,10]
   },
@@ -1384,6 +1430,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kurzschwänziger als die Rauchschwalbe, mit weißem Bürzel, baut Lehmnester an Hausfassaden. Ruf: helles, knarrendes Zwitschern, meist im Schwarm.",
     background_en: "Shorter-tailed than the Barn Swallow, with a white rump, builds mud nests on house facades. Call: bright, creaky twittering, usually given in a flock.",
+    habitatDesc: "Siedlungen, Brutplätze an Gebäuden.",
+    habitatDesc_en: "Settlements, nests on buildings.",
   },
   {
     id: "feldlerche",
@@ -1417,6 +1465,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleinstes heimisches Feldhuhn, extrem heimlich, fast nie zu sehen. Ruf des Männchens: unverwechselbares, dreisilbiges 'pick-wick-wick' ('Wachtelschlag').",
     background_en: "Germany's smallest native gamebird, extremely secretive, almost never seen. The male's call: an unmistakable, three-syllable 'wet-my-lips' ('quail call').",
+    habitatDesc: "Offenes Agrarland, Getreidefelder.",
+    habitatDesc_en: "Open farmland, cereal fields.",
     habitat: ["farmland_open"],
     vocalMonths: [5,7]
   },
@@ -1505,6 +1555,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Bewohner von Schilf- und Röhrichtzonen. Gesang: kurze, einfache, etwas eintönige Strophe aus wenigen abgehackten Tönen, vom Schilfhalm aus vorgetragen.",
     background_en: "An inhabitant of reed and rush zones. Song: a short, simple, somewhat monotonous phrase of a few clipped notes, delivered from a reed stem.",
+    habitatDesc: "Feuchtgebiete, Schilf, Gräben.",
+    habitatDesc_en: "Wetlands, reed beds, ditches.",
     habitat: ["wetland_reed"],
     vocalMonths: null
   },
@@ -1557,6 +1609,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Leuchtend gelber Vogel (Männchen), aber selbst im Blattwerk der Baumkronen fast nie zu sehen. Gesang: unverwechselbarer, wohlklingender, flötender Ruf 'düdlü-düo'.",
     background_en: "A brilliant yellow bird (male), but almost never seen even in the foliage of the treetops. Song: an unmistakable, melodious, fluting call.",
+    habitatDesc: "Lichte Laubwälder, Auwälder, Parks mit hohen Bäumen.",
+    habitatDesc_en: "Open deciduous woodland, floodplain forest, parks with tall trees.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -1573,6 +1627,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hho", "hrz", "nwm", "ssc"],
     background: "Einziger heimischer Singvogel, der aktiv taucht und unter Wasser nach Nahrung sucht, an klaren, schnellen Bächen. Gesang: langer, plätschernder, unstrukturiert wirkender Gesang, oft am Ufer sitzend vorgetragen.",
     background_en: "The only native songbird that actively dives and forages underwater, found on clear, fast-flowing streams. Song: a long, babbling, seemingly unstructured song, often delivered while perched at the water's edge.",
+    habitatDesc: "Schnell fließende, klare Bäche/Flüsse.",
+    habitatDesc_en: "Fast-flowing, clear streams/rivers.",
     habitat: ["water_shoreline"],
     vocalMonths: null
   },
@@ -1605,6 +1661,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Leuchtend blau-orangener Vogel an klaren Bächen und Teichen, meist nur als schneller, tief über dem Wasser fliegender Farbblitz zu sehen. Ruf: hoher, durchdringender, einzelner oder gereihter Pfiff 'tiit'.",
     background_en: "A brilliant blue-and-orange bird found on clear streams and ponds, usually only seen as a fast flash of colour flying low over the water. Call: a high, piercing, single or repeated 'tseet'.",
+    habitatDesc: "Gewässer mit Steilufern zum Brüten.",
+    habitatDesc_en: "Waterbodies with steep banks for nesting.",
     habitat: [],
     vocalMonths: null
   },
@@ -1658,6 +1716,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Häufiger als der Seeregenpfeifer, besiedelt Kiesbänke, Kiesgruben und Ufer von Binnengewässern. Ruf: klares, gepfiffenes, absteigendes 'pjuu'.",
     background_en: "More common than the Kentish Plover, found on gravel banks, gravel pits and the banks of inland waters. Call: a clear, whistled, falling 'peeu'.",
+    habitatDesc: "Kiesbänke, Sand-/Schotterflächen an Gewässern, auch Abbaugebiete.",
+    habitatDesc_en: "Gravel bars, sand/gravel areas near water, also quarries.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -2008,6 +2068,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "nwm", "ssc", "uot"],
     background: "Charaktervogel offener Grünländer, Moore und Heiden. Singflug mit Fallschirm-artigem Abgleiten; Gesang eine beschleunigte Serie feiner 'ist-ist-ist'-Töne.",
     background_en: "A characteristic bird of open grassland, bogs and heathland. Song flight with a parachute-like glide down; song an accelerating series of thin 'ist-ist-ist' notes.",
+    habitatDesc: "Offenes Grünland, Moore, Feuchtwiesen.",
+    habitatDesc_en: "Open grassland, moorland, wet meadows.",
     habitat: ["farmland_open"],
     vocalMonths: [9,11]
   },
@@ -2040,6 +2102,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Bodenbrüter extensiv genutzter Wiesen mit Ansitzwarten, stark rückläufig. Gesang: kurze, variable Strophen, oft mit nachgeahmten Fremdlauten.",
     background_en: "A ground-nesting bird of extensively managed meadows with perches, strongly declining. Song: short, variable phrases, often incorporating mimicry of other species' calls.",
+    habitatDesc: "Extensiv genutztes Grünland, Brachen.",
+    habitatDesc_en: "Extensively managed grassland, fallow land.",
     habitat: ["farmland_open"],
     vocalMonths: [4,6]
   },
@@ -2056,6 +2120,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Vogel halboffener Landschaften mit einzelnen Bäumen als Singwarten. Auffälliger Singflug: startet vom Baum, endet mit gleitendem 'sia-sia-sia' im Abwärtsfallen.",
     background_en: "A bird of semi-open landscapes with scattered trees as song posts. Conspicuous song flight: starts from a tree, ends with a gliding 'sia-sia-sia' as it parachutes down.",
+    habitatDesc: "Lichte Wälder, Waldränder, Heiden mit Bäumen.",
+    habitatDesc_en: "Open woodland, woodland edges, heathland with trees.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -2072,6 +2138,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Würgerart dornenreicher Hecken und Gebüsche, bekannt für das Aufspießen von Beute an Dornen. Gesang: leise, schwätzende Strophe mit vielen nachgeahmten Vogelrufen.",
     background_en: "A shrike of thorny hedges and scrub, known for impaling prey on thorns. Song: a quiet, chattering phrase with many imitated bird calls.",
+    habitatDesc: "Hecken, Dornsträucher, Offenland.",
+    habitatDesc_en: "Hedgerows, thorny scrub, open country.",
     habitat: ["farmland_open"],
     vocalMonths: [5,8]
   },
@@ -2136,6 +2204,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Leitart alter, grobborkiger Eichen- und Buchenwälder mit hohem Totholzanteil. Ruf: nasales, gereihtes 'quäg-quäg-quäg'; trommelt selten.",
     background_en: "A flagship species of old, rough-barked oak and beech forest with a high proportion of dead wood. Call: nasal, repeated 'quäg-quäg-quäg'; drums rarely.",
+    habitatDesc: "Alte Eichen-/Laubwälder.",
+    habitatDesc_en: "Old oak/deciduous woodland.",
     habitat: [],
     vocalMonths: null
   },
@@ -2168,6 +2238,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbare, robuste Ammer der offenen Agrarlandschaft, singt oft von Zäunen oder Leitungsdrähten. Gesang: unverwechselbar wie klirrende Schlüssel ('Schlüsselbund-Gesang').",
     background_en: "An unassuming, sturdy bunting of open farmland, often singing from fences or power lines. Song: unmistakable, like a jangling bunch of keys.",
+    habitatDesc: "Offenes Agrarland, Wiesen.",
+    habitatDesc_en: "Open farmland, meadows.",
     habitat: ["farmland_open"],
     vocalMonths: [3,7]
   },
@@ -2232,6 +2304,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Vogel halboffener, sandiger Heiden und lichter Kiefernwälder. Gesang: melancholische, abfallende Tonfolgen 'lülülülü', oft im hohen Singflug oder in der Dämmerung.",
     background_en: "A bird of semi-open, sandy heathland and open pine forest. Song: melancholic, falling note sequences 'lu-lu-lu-lu', often given in high song flight or at dusk.",
+    habitatDesc: "Trockene Heiden, lichte Wälder, Waldränder.",
+    habitatDesc_en: "Dry heathland, open woodland, woodland edges.",
     habitat: ["farmland_open"],
   },
   {
@@ -2247,6 +2321,8 @@ const SPECIES = [
     areas: ["byw", "nwm", "uot"],
     background: "Elegant schwarz-weißer Watvogel mit charakteristisch aufwärts gebogenem Schnabel, brütet an Salzwiesen und Wattflächen. Ruf: klares, fluteartiges 'kluit-kluit'.",
     background_en: "An elegant black-and-white wader with a characteristic upturned bill, breeding on salt marshes and mudflats. Call: a clear, fluty 'kluit-kluit'.",
+    habitatDesc: "Flache Küstengewässer, Salzwiesen.",
+    habitatDesc_en: "Shallow coastal waters, salt marshes.",
     background_en: "A bird of semi-open, sandy heathland and open pine forest. Song: melancholic, falling note sequences 'lu-lu-lu-lu', often given in high song flight or at dusk.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: [4,10]
@@ -2296,6 +2372,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Häufigster Wintergast unter den arktischen Gänsen im Wattenmeer, oft in riesigen Schwärmen. Ruf: hohes, mehrsilbiges, lachendes Gegacker 'kljü-jüjüjü'.",
     background_en: "The most common Arctic goose wintering in the Wadden Sea, often in huge flocks. Call: a high, multi-syllable, laughing cackle.",
+    habitatDesc: "Feuchtwiesen, Äcker (v.a. im Winter).",
+    habitatDesc_en: "Wet meadows, farmland (mainly winter).",
     habitat: ["farmland_open"],
     vocalMonths: [10,3]
   },
@@ -2392,6 +2470,8 @@ const SPECIES = [
     areas: ["byw", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Heimlicher Rallenvogel extensiv genutzter, hochgrasiger Feuchtwiesen, nachtaktiv rufend. Unverwechselbarer, rätschender Ruf 'krrp-krrp', oft stundenlang wiederholt.",
     background_en: "A secretive rail of extensively managed, tall wet meadows, calling nocturnally. An unmistakable, rasping call 'krrp-krrp', often repeated for hours.",
+    habitatDesc: "Feuchtwiesen mit hoher Vegetation.",
+    habitatDesc_en: "Wet meadows with tall vegetation.",
     habitat: ["farmland_open","wetland_reed"],
     vocalMonths: [5,7]
   },
@@ -2529,6 +2609,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "nwm", "ssc", "uot"],
     background: "Rohrsänger-Verwandter feuchter Hochstaudenfluren, berühmt für seine Fähigkeit, Fremdgesänge anderer Vogelarten einzubauen. Gesang: sehr variabel, plaudernd, mit vielen nachgeahmten Motiven.",
     background_en: "A reed-warbler relative of damp tall-herb vegetation, famous for its ability to incorporate other species' songs into its own. Song: highly variable, chattering, with many imitated motifs.",
+    habitatDesc: "Hochstaudenfluren, Brachen – nicht zwingend ans Feuchtgebiet gebunden.",
+    habitatDesc_en: "Tall herb vegetation, fallow land – not strictly tied to wetlands.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -2545,6 +2627,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Rohrsänger-Verwandter feuchter Ufer- und Schilfzonen. Gesang: schnelles, unruhiges Gemisch aus Schnarr- und Pfeiftönen, oft im kurzen Singflug vorgetragen.",
     background_en: "A reed-warbler relative of damp bankside and reed zones. Song: a fast, restless mix of grating and whistled notes, often delivered in a short song flight.",
+    habitatDesc: "Schilf, Ufergebüsch an Gewässern.",
+    habitatDesc_en: "Reed beds, waterside scrub.",
     habitat: ["wetland_reed"],
     vocalMonths: [4,7]
   },
@@ -2561,6 +2645,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Rohrsänger dichter Schilfbestände, sehr heimlich lebend. Gesang: rhythmisches, monotones 'karr-karr-tit-tit-tirr', gleichmäßiger als Sumpfrohrsänger.",
     background_en: "A reed warbler of dense reedbeds, living very secretively. Song: a rhythmic, monotonous 'karr-karr-tit-tit-tirr', more even than the Marsh Warbler's.",
+    habitatDesc: "Schilfgürtel an Gewässern.",
+    habitatDesc_en: "Reed beds at waterbodies.",
     habitat: ["wetland_reed"],
     vocalMonths: [5,8]
   },
@@ -2577,6 +2663,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Kleiner Watvogel an kiesigen Fluss- und Seeufern, typisch wippend laufend. Ruf: hohe, klare, gereihte Pfeiftöne 'hidi-hidi-hidi', meist im schnellen, niedrigen Flug.",
     background_en: "A small wader on gravelly river and lake banks, typically bobbing as it walks. Call: high, clear, repeated whistled notes 'hidi-hidi-hidi', usually given in fast, low flight.",
+    habitatDesc: "Kiesige/steinige Ufer von Fließgewässern.",
+    habitatDesc_en: "Gravelly/stony banks of rivers.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -2691,6 +2779,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinste heimische Ente, an flachen, deckungsreichen Gewässern und Feuchtwiesen. Ruf des Erpels: helles, glockenklares, oft wiederholtes 'krrick'.",
     background_en: "Germany's smallest native duck, found on shallow waters with plenty of cover and wet meadows. The drake's call: a bright, bell-clear, often repeated 'krrick'.",
+    habitatDesc: "Flache Gewässer, Feuchtgebiete.",
+    habitatDesc_en: "Shallow waterbodies, wetlands.",
   },
   {
     id: "zwerggans",
@@ -2817,6 +2907,8 @@ const SPECIES = [
     areas: ["nwm"],
     background: "Pieper felsiger/sandiger Meeresküsten, in Deutschland kein Brutvogel, aber häufiger und typischer Wintergast im Wattenmeer (Nov-März, mehrere Tausend Individuen allein an der niedersächsischen Küste). Ruf: kräftiges 'ist' ähnlich Wiesenpieper.",
     background_en: "A pipit of rocky/sandy sea coasts, not a breeding bird in Germany, but a common and typical winter visitor in the Wadden Sea (Nov-Mar, several thousand individuals on the Lower Saxon coast alone). Call: a strong 'ist', similar to the Meadow Pipit's.",
+    habitatDesc: "Felsige Küsten, im Winter auch Wattenmeer.",
+    habitatDesc_en: "Rocky coasts, also mudflats in winter.",
     habitat: ["offshore_coast"],
     vocalMonths: [10,10]
   },
@@ -2849,6 +2941,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Pieper der Hochgebirgslagen, in Deutschland v.a. an der Küste und im Bergland als Wintergast/Durchzügler. Ruf: feines, dünnes 'sist'.",
     background_en: "A pipit of high mountain regions, in Germany mainly a winter visitor/passage migrant on the coast and in the uplands. Call: a thin, fine 'sist'.",
+    habitatDesc: "Alpine Wiesen zur Brutzeit, im Winter Feuchtgebiete/Küsten.",
+    habitatDesc_en: "Alpine meadows when breeding, wetlands/coasts in winter.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -2865,6 +2959,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Großer, rein weißer Reiher, seit einigen Jahrzehnten stark zunehmend an Gewässern und Feuchtwiesen. Meist still; Ruf ein raues, krächzendes 'kraak', ähnlich Graureiher aber höher.",
     background_en: "A large, pure-white heron, strongly increasing at bodies of water and wet meadows over the past few decades. Usually silent; call a rough, croaking 'kraak', similar to the Grey Heron's but higher.",
+    habitatDesc: "Feuchtgebiete, Gewässerufer.",
+    habitatDesc_en: "Wetlands, waterside habitats.",
     habitat: [],
     vocalMonths: null
   },
@@ -2977,6 +3073,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Tauchente mit rostrotem Kopf und grauem Rücken, an größeren, fischreichen Seen. Meist still; Balzruf ein heiseres, katzenartiges 'wurr'.",
     background_en: "A diving duck with a rust-red head and grey back, found on larger, fish-rich lakes. Usually silent; display call a hoarse, cat-like 'wurr'.",
+    habitatDesc: "Seen, Teiche mit offenem Wasser.",
+    habitatDesc_en: "Lakes, ponds with open water.",
     habitat: [],
     vocalMonths: null
   },
@@ -3059,6 +3157,8 @@ const SPECIES = [
     areas: ["eif", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Große, ursprünglich nordamerikanische Gans, in Deutschland als eingebürgerter Neubürger an Parkgewässern und Seen verbreitet. Ruf: lautes, trompetendes, zweisilbiges 'ah-honk'.",
     background_en: "A large, originally North American goose, established in Germany on park waters and lakes. Call: a loud, trumpeting, two-syllable 'ah-honk'.",
+    habitatDesc: "Seen, Parks, Wiesen in Gewässernähe.",
+    habitatDesc_en: "Lakes, parks, meadows near water.",
     habitat: [],
     vocalMonths: null
   },
@@ -3107,6 +3207,8 @@ const SPECIES = [
     areas: ["eif", "hai", "hho", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Tauchente mit rundem, grün-schwarz glänzendem Kopf, brütet in Baumhöhlen an Gewässern. Namensgebend: lautes, klirrendes Flügelschwirren im Flug; Rufe meist unauffällig.",
     background_en: "A diving duck with a round, glossy green-black head, breeding in tree cavities near water. Its name comes from the loud, whistling whirr of its wings in flight; calls otherwise unremarkable.",
+    habitatDesc: "Seen, Flüsse mit Höhlenbäumen zum Brüten.",
+    habitatDesc_en: "Lakes, rivers with hole-nesting trees for breeding.",
     habitat: [],
     vocalMonths: [10,5]
   },
@@ -3425,6 +3527,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "lbr", "nwm", "ssc", "uot"],
     background: "Schlanker Greifvogel offener Landschaften, gleitet niedrig mit angehobenen Flügeln über Felder und Moore. Meist still; Ruf ein schnelles, kecklendes 'jick-jick-jick'.",
     background_en: "A slender raptor of open landscapes, gliding low with raised wings over fields and bogs. Usually silent; call a fast, chattering 'jick-jick-jick'.",
+    habitatDesc: "Offenes Grünland, Moore, Marschen.",
+    habitatDesc_en: "Open grassland, moorland, marshes.",
     habitat: ["farmland_open"],
     vocalMonths: [10,4]
   },
@@ -3541,6 +3645,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinere, unscheinbarere Verwandte der Ringeltaube, brütet in Baumhöhlen und alten Spechthöhlen. Ruf: dumpfes, zweisilbiges, monoton wiederholtes 'huu-hu'.",
     background_en: "A smaller, less conspicuous relative of the Woodpigeon, breeding in tree cavities and old woodpecker holes. Call: a dull, two-syllable, monotonously repeated 'hoo-hu'.",
+    habitatDesc: "Wälder mit Höhlenbäumen, Parks, Feldgehölze.",
+    habitatDesc_en: "Woodland with hole-nesting trees, parks, field copses.",
     habitat: [],
     vocalMonths: [2,10]
   },
@@ -3589,6 +3695,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleine, unscheinbare Grasmücke dichter Hecken und Gebüsche. Gesang: leises Plaudern, mündet in ein hartes, rasselndes 'klapper-klapper-klapper' – namensgebend.",
     background_en: "A small, unassuming warbler of dense hedges and scrub. Song: quiet murmuring, building into a hard, rattling clatter – the source of its German name.",
+    habitatDesc: "Hecken, Gebüsch, Waldränder.",
+    habitatDesc_en: "Hedgerows, scrub, woodland edges.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -3653,6 +3761,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Specht, sperlingsgroß, oft hoch in Baumkronen und daher leicht übersehen. Ruf: hohe, gereihte Serie 'ki-ki-ki-ki-ki'; Trommelwirbel sehr lang und leise.",
     background_en: "Germany's smallest native woodpecker, sparrow-sized, often high in the treetops and therefore easily overlooked. Call: a high, repeated series 'ki-ki-ki-ki-ki'; drum roll very long and quiet.",
+    habitatDesc: "Laubwälder, Auwälder, Streuobstwiesen.",
+    habitatDesc_en: "Deciduous woodland, floodplain forest, orchard meadows.",
     habitat: [],
     vocalMonths: null
   },
@@ -3797,6 +3907,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Nordischer Verwandter des Buchfinken, in Deutschland v.a. Wintergast in großen, oft riesigen Schwärmen an Buchen. Ruf: nasales, schnarrendes 'quäk'.",
     background_en: "A northern relative of the Chaffinch, mainly a winter visitor in Germany in large, sometimes huge flocks in beech woods. Call: a nasal, rasping wheeze.",
+    habitatDesc: "Wälder (Brut in Skandinavien), im Winter Buchenwälder/Agrarland.",
+    habitatDesc_en: "Woodland (breeds in Scandinavia), beech woodland/farmland in winter.",
     habitat: [],
     vocalMonths: [10,3]
   },
@@ -3877,6 +3989,8 @@ const SPECIES = [
     areas: ["kwe", "nwm"],
     background: "Kleinster und häufigster der drei Seetaucher-Arten in Deutschland, regelmäßiger Wintergast auf Nord- und Ostsee (allein in der östlichen Deutschen Bucht ca. 6500 Individuen). Auf See meist still, an Land gelegentlich klagende Rufe.",
     background_en: "The smallest and most common of the three diver species in Germany, a regular winter visitor on the North Sea and Baltic (around 6,500 individuals in the eastern German Bight alone). Usually silent at sea, occasionally plaintive calls on land.",
+    habitatDesc: "Küstengewässer als Wintergast, Brut an nordischen Seen.",
+    habitatDesc_en: "Coastal waters as a winter visitor, breeds at northern lakes.",
     habitat: ["offshore_coast","water_shoreline"],
     vocalMonths: null
   },
@@ -3955,6 +4069,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "uot"],
     background: "Gelblicher Sänger lichter Laubwälder und Parks mit Unterholz. Gesang: sehr langer, schwatzhafter, plappernder Wortschwall mit vielen nachgeahmten Elementen.",
     background_en: "A yellowish songster of open deciduous woodland and parks with undergrowth. Song: a very long, chattering, babbling stream of notes with many imitated elements.",
+    habitatDesc: "Parks, Gärten, Auwälder mit hohen Bäumen.",
+    habitatDesc_en: "Parks, gardens, floodplain forest with tall trees.",
     habitat: [],
     vocalMonths: [5,7]
   },
@@ -4035,6 +4151,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Ungewöhnlicher, zugvoller Spechtverwandter ohne Trommelwirbel, in Streuobstwiesen und lichten Wäldern. Unverwechselbarer Ruf: laute, gereihte Serie nasaler 'quii-quii-quii'-Töne.",
     background_en: "An unusual, migratory woodpecker relative without a drum roll, found in traditional orchards and open woodland. Unmistakable call: a loud, repeated series of nasal 'qui-qui-qui' notes.",
+    habitatDesc: "Streuobstwiesen, lichte Wälder mit Ameisenvorkommen.",
+    habitatDesc_en: "Orchard meadows, open woodland with ants.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -4067,6 +4185,8 @@ const SPECIES = [
     areas: ["eif", "hai", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Große, kräftige Möwe der Küste und großer Gewässer. Ruf: lautes, weittragendes 'kjau-kjau-kjau', typischer 'Möwenschrei'.",
     background_en: "A large, powerful gull of the coast and large waterbodies. Call: a loud, far-carrying 'kyow-kyow-kyow', the classic 'gull scream'.",
+    habitatDesc: "Küsten, auch Binnengewässer/Städte.",
+    habitatDesc_en: "Coasts, also inland waters/towns.",
   },
   {
     id: "steppenmoewe",
@@ -4081,6 +4201,8 @@ const SPECIES = [
     areas: ["eif", "hai", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Der Silbermöwe sehr ähnliche, aus Osteuropa stammende Großmöwe, breitet sich in Deutschland aus. Ruf der Silbermöwe sehr ähnlich, im Feld kaum zu unterscheiden.",
     background_en: "A large gull very similar to the Herring Gull, originating from Eastern Europe, spreading in Germany. Call very similar to the Herring Gull's, barely distinguishable in the field.",
+    habitatDesc: "Gewässer, auch Binnenland/Städte.",
+    habitatDesc_en: "Waterbodies, also inland areas/towns.",
     background_en: "A large, powerful gull of the coast and large waterbodies. Call: a loud, far-carrying 'kyow-kyow-kyow', the classic 'gull scream'.",
     habitat: [],
     vocalMonths: null
@@ -4098,6 +4220,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "nwm", "uot"],
     background: "Mittelgroße, zierliche Möwe, an Küsten und im Binnenland auf Feldern und Gewässern. Ruf: hohes, klagendes, miauendes 'kiiu'.",
     background_en: "A medium-sized, dainty gull, found on coasts and inland on fields and waterbodies. Call: a high, plaintive, mewing 'kiew'.",
+    habitatDesc: "Küsten, Binnengewässer, Agrarland.",
+    habitatDesc_en: "Coasts, inland waters, farmland.",
     habitat: [],
     vocalMonths: null
   },
@@ -4178,6 +4302,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "kwe", "nwm", "ssc", "uot"],
     background: "Große Möwe mit gelben Beinen, ursprünglich Mittelmeerraum, in Deutschland zunehmend verbreitet. Ruf ähnlich Silbermöwe, aber tendenziell tiefer und rauer.",
     background_en: "A large gull with yellow legs, originally from the Mediterranean, increasingly widespread in Germany. Call similar to the Herring Gull's, but tending to be lower and rougher.",
+    habitatDesc: "Küsten, zunehmend auch Binnenland/Städte.",
+    habitatDesc_en: "Coasts, increasingly inland areas/towns too.",
     habitat: [],
     vocalMonths: null
   },
@@ -4242,6 +4368,8 @@ const SPECIES = [
     areas: ["jtb", "nwm", "uot"],
     background: "Nordischer, dem Bluthänfling ähnlicher Fink. Im Wattenmeer häufiger Durchzügler/Wintergast (bis 13.600 rastende Vögel in Niedersachsen, fast die Hälfte der skandinavischen Population überwintert dort), im übrigen Binnenland dagegen nur unregelmäßiger Gast. Ruf: nasales, hartes 'tvite'.",
     background_en: "A northern finch similar to the Linnet. A common passage migrant/winter visitor in the Wadden Sea (up to 13,600 birds stopping over in Lower Saxony, with almost half the Scandinavian population wintering there), but only an irregular visitor elsewhere inland. Call: a nasal, hard 'tvite'.",
+    habitatDesc: "Küsten, Moore – Wintergast in Deutschland.",
+    habitatDesc_en: "Coasts, moorland – a winter visitor in Germany.",
     background_en: "A small finch of open, scrubby landscapes and heathland. Song: a pleasant, chattering twitter interspersed with trills.",
     habitat: [],
     vocalMonths: [10,2]
@@ -4307,6 +4435,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Meise mit charakteristischer, spitzer Federhaube, an Nadelwald gebunden. Ruf: unverwechselbares, schnurrendes 'zi-zi-ziriirrr'.",
     background_en: "A tit with a characteristic pointed crest, tied to coniferous forest. Call: an unmistakable, purring 'zi-zi-ziriirrr'.",
+    habitatDesc: "Nadelwälder, v.a. Kiefer/Fichte.",
+    habitatDesc_en: "Coniferous woodland, esp. pine/spruce.",
     habitat: [],
     vocalMonths: null
   },
@@ -4355,6 +4485,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Unscheinbarer, meist versteckt in dichtem Gebüsch lebender Sänger, berühmt für seinen nächtlichen Gesang. Gesang: kraftvoll, sehr abwechslungsreich, mit dem unverwechselbaren, anschwellenden 'düo düo düo düo'.",
     background_en: "An unassuming songster, usually living hidden in dense scrub, famous for its nocturnal song. Song: powerful, highly varied, with the unmistakable, swelling 'du-du-du-du'.",
+    habitatDesc: "Dichtes Gebüsch/Unterholz in Auwäldern, Parks.",
+    habitatDesc_en: "Dense scrub/undergrowth in floodplain forest, parks.",
     habitat: [],
     vocalMonths: [4,6]
   },
@@ -4503,6 +4635,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Großer, schlanker Sägerbeim Fischfang an klaren Flüssen und Seen, Männchen mit auffälligem grün-schwarzem Kopf. Meist recht still; Balzruf ein tiefes, klingendes 'oaach'.",
     background_en: "A large, slender merganser catching fish on clear rivers and lakes, the male with a striking green-black head. Usually fairly quiet; display call a deep, ringing 'oaach'.",
+    habitatDesc: "Seen, Flüsse mit Höhlenbäumen.",
+    habitatDesc_en: "Lakes, rivers with hole-nesting trees.",
   },
   {
     id: "mittelsaeger",
@@ -4566,6 +4700,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Schlanke Stelze mit langem Schwanz und gelber Unterseite, an schnell fließenden Bächen und Flüssen. Ruf: hartes, metallisches 'zit-zit', dem der Bachstelze ähnlich aber schärfer.",
     background_en: "A slender wagtail with a long tail and yellow underside, found on fast-flowing streams and rivers. Call: a hard, metallic 'zit-zit', similar to the White Wagtail's but sharper.",
+    habitatDesc: "Schnell fließende Bäche/Flüsse.",
+    habitatDesc_en: "Fast-flowing streams/rivers.",
     habitat: [],
     vocalMonths: null
   },
@@ -4598,6 +4734,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "uot"],
     background: "Zierliche, gelbe Stelze auf Feuchtwiesen und Weiden, oft bei Weidevieh. Ruf: kurzes, ansteigendes 'psjüü'.",
     background_en: "A dainty, yellow wagtail of wet meadows and pastures, often among grazing livestock. Call: a short, rising 'psyew'.",
+    habitatDesc: "Feuchtwiesen, Äcker, Weiden.",
+    habitatDesc_en: "Wet meadows, arable fields, pasture.",
     habitat: [],
     vocalMonths: [4,9]
   },
@@ -4648,6 +4786,8 @@ const SPECIES = [
     areas: ["nwm", "uot"],
     background: "Kleinerer Verwandter des Großen Brachvogels, kein Brutvogel, aber regelmäßiger Durchzügler (April/Mai und Juli-Oktober), am häufigsten an Nord-/Ostseeküste, im Binnenland seltener. Unverwechselbarer Ruf: schnelle, gereihte Serie von 7 hellen Pfeiftönen.",
     background_en: "A smaller relative of the Eurasian Curlew, not a breeding bird but a regular passage migrant (April/May and July-October), most common on the North/Baltic Sea coast, rarer inland. Unmistakable call: a fast, repeated series of 7 bright whistled notes.",
+    habitatDesc: "Küsten, Wattenmeer als Durchzügler.",
+    habitatDesc_en: "Coasts, mudflats as a passage migrant.",
     habitat: [],
     vocalMonths: [7,9]
   },
@@ -4744,6 +4884,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleiner, schlankerer Verwandter des Haussperlings mit braunem Scheitel und schwarzem Wangenfleck, an Dörfern und Feldgehölzen. Ruf: helles, hartes 'tek-tek', Gesang ein einfaches Zwitschern.",
     background_en: "A small, slimmer relative of the House Sparrow with a brown crown and black cheek patch, found in villages and farmland copses. Call: a bright, hard 'tek-tek', song a simple twitter.",
+    habitatDesc: "Dörfer, Feldgehölze, Streuobstwiesen.",
+    habitatDesc_en: "Villages, field copses, orchard meadows.",
     habitat: [],
     vocalMonths: null
   },
@@ -5171,6 +5313,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Rundlicher, farbenprächtiger Fink mit schwarzer Kappe, meist paarweise in Gebüschen und Wäldern. Ruf: weiches, klagendes, unverwechselbares 'düü'.",
     background_en: "A round, colourful finch with a black cap, usually found in pairs in scrub and woodland. Call: a soft, plaintive, unmistakable 'deu'.",
+    habitatDesc: "Nadel-/Mischwälder mit dichtem Unterholz, Gärten.",
+    habitatDesc_en: "Coniferous/mixed woodland with dense undergrowth, gardens.",
     habitat: [],
     vocalMonths: null
   },
@@ -5203,6 +5347,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Dem Wintergoldhähnchen sehr ähnlich, mit auffälligem schwarz-weißem Augenstreif, auch in Laubbäumen. Gesang ähnlich Wintergoldhähnchen, aber gleichmäßiger, ohne Schnörkel am Ende.",
     background_en: "Very similar to the Goldcrest, with a striking black-and-white eye-stripe, also found in broadleaved trees. Song similar to the Goldcrest's, but more even, without the flourish at the end.",
+    habitatDesc: "Nadel- und Mischwälder.",
+    habitatDesc_en: "Coniferous and mixed woodland.",
     habitat: [],
     vocalMonths: [3,11]
   },
@@ -5251,6 +5397,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Kleinste heimische Schwalbe, brütet kolonieweise in selbstgegrabenen Röhren in Steilwänden/Abbaugruben. Ruf: trockenes, schnarrendes Zwitschern, rauer als bei anderen Schwalben.",
     background_en: "Germany's smallest native swallow, breeding colonially in self-dug tunnels in steep banks/quarry pits. Call: a dry, rasping twitter, harsher than other swallows'.",
+    habitatDesc: "Steilufer an Gewässern, Abbaugebiete (Koloniebrüter).",
+    habitatDesc_en: "Steep banks at waterbodies, quarries (colonial breeder).",
     habitat: ["water_shoreline"],
   },
   {
@@ -5284,6 +5432,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hrz", "jtb", "kwe", "lbr", "nwm", "uot"],
     background: "Kleiner Ansitzjäger offener, buschreicher Flächen, oft auf exponierten Warten sitzend. Ruf: hartes, schmatzendes 'tschack', wie zwei Steine aneinandergeschlagen.",
     background_en: "A small perch-hunter of open, scrubby ground, often sitting on exposed lookouts. Call: a hard, smacking 'tschack', like two stones knocked together.",
+    habitatDesc: "Offenland mit Hecken/Büschen, Brachen.",
+    habitatDesc_en: "Open country with hedgerows/bushes, fallow land.",
     habitat: [],
     vocalMonths: [3,10]
   },
@@ -5300,6 +5450,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Winziger, gelbgrüner Fink, gerne auf hohen Singwarten wie Antennen. Gesang: sehr schnelles, klirrend-sprudelndes Geleier, oft mit 'Zisch'-Endung.",
     background_en: "A tiny, yellow-green finch, fond of high song posts such as antennas. Song: a very fast, jangling, bubbling jingle, often ending in a 'zip' sound.",
+    habitatDesc: "Parks, Gärten, Waldränder.",
+    habitatDesc_en: "Parks, gardens, woodland edges.",
     habitat: [],
     vocalMonths: [4,7]
   },
@@ -5491,6 +5643,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "kwe", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinster heimischer Lappentaucher, sehr heimlich an deckungsreichen Kleingewässern. Ruf: schnelles, hohes, wieherndes Trillern.",
     background_en: "Germany's smallest native grebe, very secretive on small waterbodies with plenty of cover. Call: a fast, high, whinnying trill.",
+    habitatDesc: "Kleine Gewässer mit Ufervegetation.",
+    habitatDesc_en: "Small waterbodies with shoreline vegetation.",
     habitat: [],
     vocalMonths: null
   },
@@ -5603,6 +5757,8 @@ const SPECIES = [
     areas: ["byw", "hai", "hrz", "kwe", "nwm", "ssc", "uot"],
     background: "Großer, hochbeiniger Wasserläufer, in Deutschland Durchzügler an Schlammufern und Feuchtwiesen. Ruf: lautes, klares, dreisilbiges 'tjü-tjü-tjü'.",
     background_en: "A large, long-legged wader, a passage migrant in Germany on muddy banks and wet meadows. Call: a loud, clear, three-syllable 'tchu-tchu-tchu'.",
+    habitatDesc: "Feuchtgebiete, Ufer als Durchzügler.",
+    habitatDesc_en: "Wetlands, shorelines as a passage migrant.",
     habitat: [],
     vocalMonths: [7,10]
   },
@@ -5619,6 +5775,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hrz", "kwe", "nwm", "uot"],
     background: "Watvogel an Waldgewässern und Gräben, oft einzeln, auffällig dunkel mit weißem Bürzel im Flug. Ruf: durchdringendes, klingendes 'tlü-witt-witt', meist beim Auffliegen.",
     background_en: "A wader of woodland waters and ditches, often alone, strikingly dark with a white rump in flight. Call: a piercing, ringing 'tlui-witt-witt', usually given when flushed.",
+    habitatDesc: "Waldtümpel, Bachufer, Gräben.",
+    habitatDesc_en: "Woodland pools, stream banks, ditches.",
     habitat: [],
     vocalMonths: [6,9]
   },
@@ -5667,6 +5825,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hho", "hrz", "lbr", "nwm", "ssc", "uot"],
     background: "Kleinste heimische Drossel, in Deutschland v.a. Durchzügler/Wintergast in großen Trupps mit Wacholderdrosseln. Ruf: hoher, dünner, gezogener 'siih'-Ruf, oft nachts beim Zug zu hören.",
     background_en: "Germany's smallest native thrush, mainly a passage migrant/winter visitor in Germany in large flocks with Fieldfares. Call: a high, thin, drawn-out 'seeih' note, often heard at night during migration.",
+    habitatDesc: "Wälder (Brut Nordeuropa), im Winter Offenland/Hecken.",
+    habitatDesc_en: "Woodland (breeds in northern Europe), open country/hedgerows in winter.",
     habitat: [],
     vocalMonths: [10,4]
   },
@@ -5683,6 +5843,8 @@ const SPECIES = [
     areas: ["byw", "eif", "hai", "hho", "hrz", "jtb", "kwe", "nwm", "ssc", "uot"],
     background: "Gesellig lebende, oft in kleinen Kolonien brütende Drossel, im Winter in großen Trupps. Ruf: charakteristisches, raues, schackerndes 'schack-schack-schack' im Flug.",
     background_en: "A sociable thrush, often breeding in small colonies, forming large flocks in winter. Call: a characteristic, rough, chattering 'chack-chack-chack' in flight.",
+    habitatDesc: "Lichte Wälder, Feldgehölze, Offenland.",
+    habitatDesc_en: "Open woodland, field copses, open country.",
     habitat: [],
     vocalMonths: null
   },
