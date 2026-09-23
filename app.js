@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.4";
+const APP_VERSION = "2026-09-23.5";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -126,6 +126,9 @@ const STRINGS = {
       confusionDangerPrefix: "Verwechslungsgefahr – {title}:",
       jumpValidationBtn: "🔍 Alle xeno-canto-Aufnahmen dieser Art durchgehen",
       imageCaption: "Bild: Wikipedia",
+      imageCredit: "Foto: {artist} ({license}), via Wikimedia Commons",
+      imageLicenseUnknown: "Lizenz unbekannt",
+      imageSourceLink: "Quelle ansehen →",
       notYetTranslated: "(Text noch nicht ins Englische übersetzt, zeige deutschen Originaltext)",
     },
     confusion: {
@@ -184,11 +187,12 @@ const STRINGS = {
       heading: "⚠️ Wichtige Hinweise zu dieser App",
       intro: "Bitte vor der Nutzung lesen – besonders, wenn du die App zur Validierung echter Monitoring-Ergebnisse einsetzt.",
       s1h: "KI-gestützte Inhalte", s1: "Große Teile der Artdaten in dieser App (Häufigkeits-/Schwierigkeitseinstufung, Hintergrundtexte, Ruf-/Gesangsbeschreibungen) wurden mit Unterstützung von KI (Claude) recherchiert und formuliert – auf Basis öffentlicher Quellen wie NABU, BfN, DDA, IUCN, Wikipedia und Landesämtern, aber nicht durchgehend von Ornitholog:innen gegengeprüft. Insbesondere bei selten behandelten Arten sind Fehler möglich.",
-      s2h: "Datenqualität im Detail", s2: "eBird-Gebietsvorkommen sind kumulative Meldungen (jemals dort beobachtet), keine aktuelle Bestandsaufnahme – eine Art kann als „vorkommend\" markiert sein, obwohl sie dort nur einmal vor Jahren gemeldet wurde. Die Artbestimmung der xeno-canto-Aufnahmen stammt von der jeweils aufnehmenden Person und ist nicht durch die App geprüft – gelegentliche Fehlbestimmungen sind möglich (nutzt den „Ausschließen\"-Button, wenn dir eine Aufnahme fragwürdig vorkommt). Häufigkeits- und Schwierigkeitsangaben sind fortlaufend verbesserte Einschätzungen, kein amtlicher Status.",
-      s3h: "Mehrstimmiger Auftritt: mehrere Arten in einer Aufnahme", s3: "Vögel halten sich leider nicht an unsere Quiz-Regeln: In vielen xeno-canto-Aufnahmen ist im Hintergrund noch die ein oder andere weitere Stimme zu hören – manchmal sogar eine Art, die ebenfalls unter den Antwortoptionen steht. Hör also ruhig zweimal hin und achte darauf, welche Stimme am besten zum Sonogramm passt, bevor du dich entscheidest. Wir übernehmen die Artbestimmung unverändert von xeno-canto und prüfen nicht selbst nach, wer im Hintergrund noch mitzwitschert – das liegt schlicht außerhalb dessen, was wir als App beeinflussen können. Bei eindeutig verwirrenden Aufnahmen hilft wie immer der „Ausschließen\"-Button.",
-      s4h: "Trainingstool, kein Ersatz für Monitoring", s4: "Diese App dient dem Einüben und Auffrischen von Rufkenntnissen sowie als Hilfsmittel bei der manuellen Validierung von automatisierten Erkennungen (z.B. BirdNET). Sie ersetzt keine fachliche Bestimmung, keine offizielle Artenliste und keine wissenschaftliche Auswertung.",
-      s5h: "Keine Gewähr", s5: "Die App wird ohne Gewähr für Richtigkeit oder Vollständigkeit bereitgestellt. Bei Zweifeln an einer Angabe: bitte unabhängig gegenprüfen (z.B. über die verlinkten Quellen) und uns gerne Bescheid geben.",
-      s6h: "Fehler gefunden?", s6: "Rückmeldungen sind sehr willkommen – bitte an {email} melden.",
+      s2h: "Quellen im Detail", s2: "Konkret genutzte Quellen für Häufigkeit, Schwierigkeit, Verbreitung und Ruf-/Gesangsbeschreibungen: NABU (Naturschutzbund Deutschland), BfN (Bundesamt für Naturschutz), DDA (Dachverband Deutscher Avifaunisten), IUCN Red List, Wikipedia sowie diverse Landesämter für Umwelt/Naturschutz. Gebietsvorkommen stammen von eBird.org (Cornell Lab of Ornithology), Audioaufnahmen von xeno-canto.org, Artfotos von Wikipedia/Wikimedia Commons (Fotograf:in und Lizenz werden jeweils unter dem Bild angezeigt). Wichtig: die Hintergrundtexte sind keine Kopien dieser Quellen, sondern eigenständige, mit KI-Unterstützung aus mehreren Quellen zusammengefasste Texte in eigenen Worten. Bei Unstimmigkeiten gelten die verlinkten Originalquellen als maßgeblich.",
+      s3h: "Datenqualität im Detail", s3: "eBird-Gebietsvorkommen sind kumulative Meldungen (jemals dort beobachtet), keine aktuelle Bestandsaufnahme – eine Art kann als „vorkommend\" markiert sein, obwohl sie dort nur einmal vor Jahren gemeldet wurde. Die Artbestimmung der xeno-canto-Aufnahmen stammt von der jeweils aufnehmenden Person und ist nicht durch die App geprüft – gelegentliche Fehlbestimmungen sind möglich (nutzt den „Ausschließen\"-Button, wenn dir eine Aufnahme fragwürdig vorkommt). Häufigkeits- und Schwierigkeitsangaben sind fortlaufend verbesserte Einschätzungen, kein amtlicher Status.",
+      s4h: "Mehrstimmiger Auftritt: mehrere Arten in einer Aufnahme", s4: "Vögel halten sich leider nicht an unsere Quiz-Regeln: In vielen xeno-canto-Aufnahmen ist im Hintergrund noch die ein oder andere weitere Stimme zu hören – manchmal sogar eine Art, die ebenfalls unter den Antwortoptionen steht. Hör also ruhig zweimal hin und achte darauf, welche Stimme am besten zum Sonogramm passt, bevor du dich entscheidest. Wir übernehmen die Artbestimmung unverändert von xeno-canto und prüfen nicht selbst nach, wer im Hintergrund noch mitzwitschert – das liegt schlicht außerhalb dessen, was wir als App beeinflussen können. Bei eindeutig verwirrenden Aufnahmen hilft wie immer der „Ausschließen\"-Button.",
+      s5h: "Trainingstool, kein Ersatz für Monitoring", s5: "Diese App dient dem Einüben und Auffrischen von Rufkenntnissen sowie als Hilfsmittel bei der manuellen Validierung von automatisierten Erkennungen (z.B. BirdNET). Sie ersetzt keine fachliche Bestimmung, keine offizielle Artenliste und keine wissenschaftliche Auswertung.",
+      s6h: "Keine Gewähr", s6: "Die App wird ohne Gewähr für Richtigkeit oder Vollständigkeit bereitgestellt. Bei Zweifeln an einer Angabe: bitte unabhängig gegenprüfen (z.B. über die verlinkten Quellen) und uns gerne Bescheid geben.",
+      s7h: "Fehler gefunden?", s7: "Rückmeldungen sind sehr willkommen – bitte an {email} melden.",
     },
     anleitung: {
       heading: "❓ Kurzanleitung",
@@ -311,6 +315,9 @@ const STRINGS = {
       confusionDangerPrefix: "Risk of confusion – {title}:",
       jumpValidationBtn: "🔍 Go through all xeno-canto recordings of this species",
       imageCaption: "Image: Wikipedia",
+      imageCredit: "Photo: {artist} ({license}), via Wikimedia Commons",
+      imageLicenseUnknown: "license unknown",
+      imageSourceLink: "View source →",
       notYetTranslated: "(text not yet translated into English, showing the German original)",
     },
     confusion: {
@@ -369,11 +376,12 @@ const STRINGS = {
       heading: "⚠️ Important notes about this app",
       intro: "Please read before use – especially if you're using the app to validate real monitoring results.",
       s1h: "AI-assisted content", s1: "Large parts of the species data in this app (frequency/difficulty classification, background texts, call/song descriptions) were researched and written with the help of AI (Claude) – based on public sources such as NABU, BfN, DDA, IUCN, Wikipedia and state agencies, but not comprehensively cross-checked by ornithologists. Errors are possible, especially for less commonly covered species.",
-      s2h: "Data quality in detail", s2: "eBird area occurrence is cumulative reporting (ever observed there), not a current population count – a species can be marked as \"present\" even if it was only reported there once, years ago. Species identification on xeno-canto recordings comes from the person who recorded it and is not verified by this app – occasional misidentifications are possible (use the \"Exclude\" button if a recording seems questionable to you). Frequency and difficulty ratings are ongoing, improving estimates, not an official status.",
-      s3h: "A crowded stage: more than one species per recording", s3: "Birds don't follow our quiz rules: many xeno-canto recordings have one or more other voices audible in the background – sometimes even a species that's also listed among the answer options. So feel free to listen twice, and pay attention to which voice actually matches the sonogram before deciding. We take the species identification directly from xeno-canto as given and don't independently verify who else might be singing along in the background – that's simply outside what we, as an app, can control. As always, the \"Exclude\" button is there for recordings that are genuinely too confusing.",
-      s4h: "A training tool, not a substitute for monitoring", s4: "This app is meant for practicing and refreshing call/song recognition, and as an aid when manually validating automated detections (e.g. BirdNET). It does not replace expert identification, an official species list, or scientific analysis.",
-      s5h: "No warranty", s5: "This app is provided without warranty of correctness or completeness. If you doubt a piece of information: please cross-check it independently (e.g. via the linked sources) and let us know.",
-      s6h: "Found an error?", s6: "Feedback is very welcome – please report it to {email}.",
+      s2h: "Sources in detail", s2: "Sources actually used for frequency, difficulty, distribution and call/song descriptions: NABU (German nature conservation association), BfN (German Federal Agency for Nature Conservation), DDA (German Ornithologists' Association), IUCN Red List, Wikipedia, and various German state environmental agencies. Area occurrence comes from eBird.org (Cornell Lab of Ornithology), audio recordings from xeno-canto.org, species photos from Wikipedia/Wikimedia Commons (photographer and license are shown under each photo). Important: the background texts are not copies of these sources but independent summaries written in our own words, with AI assistance, drawing on multiple sources. In case of discrepancies, the linked original sources take precedence.",
+      s3h: "Data quality in detail", s3: "eBird area occurrence is cumulative reporting (ever observed there), not a current population count – a species can be marked as \"present\" even if it was only reported there once, years ago. Species identification on xeno-canto recordings comes from the person who recorded it and is not verified by this app – occasional misidentifications are possible (use the \"Exclude\" button if a recording seems questionable to you). Frequency and difficulty ratings are ongoing, improving estimates, not an official status.",
+      s4h: "A crowded stage: more than one species per recording", s4: "Birds don't follow our quiz rules: many xeno-canto recordings have one or more other voices audible in the background – sometimes even a species that's also listed among the answer options. So feel free to listen twice, and pay attention to which voice actually matches the sonogram before deciding. We take the species identification directly from xeno-canto as given and don't independently verify who else might be singing along in the background – that's simply outside what we, as an app, can control. As always, the \"Exclude\" button is there for recordings that are genuinely too confusing.",
+      s5h: "A training tool, not a substitute for monitoring", s5: "This app is meant for practicing and refreshing call/song recognition, and as an aid when manually validating automated detections (e.g. BirdNET). It does not replace expert identification, an official species list, or scientific analysis.",
+      s6h: "No warranty", s6: "This app is provided without warranty of correctness or completeness. If you doubt a piece of information: please cross-check it independently (e.g. via the linked sources) and let us know.",
+      s7h: "Found an error?", s7: "Feedback is very welcome – please report it to {email}.",
     },
     anleitung: {
       heading: "❓ Quick guide",
@@ -398,7 +406,7 @@ const state = {
   recordingListCache: {}, // sciName -> array of recording objects (Lernmodus, gedeckelt)
   validationRecordingCache: {}, // sciName -> array of recording objects (Validierungs-Seite, ungedeckelt/vollständig)
   lastShownId: {},        // sciName -> zuletzt gezeigte xcId (um Wiederholung zu vermeiden)
-  wikiImageCache: {},     // sciName -> imageUrl | null
+  wikiImageCache: {},     // sciName -> { url, artist, license, sourceUrl } | null
   stats: {},              // speciesId -> { attempts, correct, streak, lastSeen }
   answerLog: [],          // [{ speciesId, correct, ts }] – für Verlauf über Zeit
   questionRequestId: 0,   // Schutz gegen Race Conditions bei schnellem Klicken
@@ -1141,8 +1149,52 @@ function xcSpeciesPageUrl(sp) {
 }
 
 // ---------- Wikipedia-Bild (für Hintergrundinfo) ----------
-// Nutzt die öffentliche, CORS-freundliche Wikipedia REST-Summary-API.
-// Rein dekorativ – schlägt der Abruf fehl, wird einfach kein Bild gezeigt.
+// Nutzt die öffentliche, CORS-freundliche Wikipedia REST-Summary-API für das Bild selbst,
+// und zusätzlich die Wikimedia-Commons-API (imageinfo/extmetadata, ebenfalls CORS-offen via
+// origin=*, kein API-Key nötig) für Fotograf:in/Lizenz/Quelllink – nötig für korrekte
+// Bildattribution bei kommerzieller/institutioneller Nutzung (CC-Lizenzen verlangen i.d.R.
+// Namensnennung, nicht nur "Bild: Wikipedia"). Rein dekorativ – schlägt der Abruf fehl
+// (inkl. Attributionsdaten), wird einfach kein Bild bzw. keine Zusatzangabe gezeigt.
+
+function commonsFilenameFromImageUrl(imgUrl) {
+  try {
+    const path = new URL(imgUrl).pathname.split("/").filter(Boolean);
+    const thumbIdx = path.indexOf("thumb");
+    // Thumb-URLs: .../commons/thumb/a/ab/Dateiname.jpg/300px-Dateiname.jpg
+    if (thumbIdx !== -1 && path.length > thumbIdx + 3) return decodeURIComponent(path[thumbIdx + 3]);
+    // Original-URLs: .../commons/a/ab/Dateiname.jpg
+    return decodeURIComponent(path[path.length - 1]);
+  } catch (e) {
+    return null;
+  }
+}
+
+function stripHtmlTags(str) {
+  if (!str) return "";
+  return String(str).replace(/<[^>]*>/g, "").trim();
+}
+
+async function fetchCommonsAttribution(imgUrl) {
+  const filename = commonsFilenameFromImageUrl(imgUrl);
+  if (!filename) return null;
+  try {
+    const apiUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent("File:" + filename)}&prop=imageinfo&iiprop=extmetadata&format=json&origin=*`;
+    const res = await fetch(apiUrl);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const pages = data.query && data.query.pages;
+    const page = pages && Object.values(pages)[0];
+    const meta = page && page.imageinfo && page.imageinfo[0] && page.imageinfo[0].extmetadata;
+    if (!meta) return null;
+    const artist = stripHtmlTags(meta.Artist && meta.Artist.value);
+    const license = (meta.LicenseShortName && meta.LicenseShortName.value) || "";
+    const sourceUrl = (meta.ImageDescriptionURL && meta.ImageDescriptionURL.value) ||
+      `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(filename)}`;
+    return { artist: artist || null, license: license || null, sourceUrl };
+  } catch (e) {
+    return null;
+  }
+}
 
 async function fetchWikiImage(sp) {
   if (sp.sci in state.wikiImageCache) return state.wikiImageCache[sp.sci];
@@ -1155,8 +1207,15 @@ async function fetchWikiImage(sp) {
       const data = await res.json();
       const img = (data.thumbnail && data.thumbnail.source) || (data.originalimage && data.originalimage.source) || null;
       if (img) {
-        state.wikiImageCache[sp.sci] = img;
-        return img;
+        const attribution = await fetchCommonsAttribution(img);
+        const result = {
+          url: img,
+          artist: attribution ? attribution.artist : null,
+          license: attribution ? attribution.license : null,
+          sourceUrl: attribution ? attribution.sourceUrl : null,
+        };
+        state.wikiImageCache[sp.sci] = result;
+        return result;
       }
     } catch (e) {
       // still try next title / fail silently
@@ -2154,11 +2213,19 @@ async function renderDetailsContent(sp, content) {
 
   const imgWrap = document.getElementById("speciesImgWrap");
   try {
-    const imgUrl = await fetchWikiImage(sp);
-    if (imgUrl) {
-      // imgUrl kommt von Wikipedias REST-API (externe Quelle) – über safeHref() prüfen statt roh
-      // als src einzusetzen (s. Sicherheits-Kommentar bei escapeHtml()/safeHref() oben).
-      imgWrap.innerHTML = `<img class="species-photo" src="${safeHref(imgUrl)}" alt="${escapeHtml(sp.de)}"><div class="hint">${t("details.imageCaption")}</div>`;
+    const imgData = await fetchWikiImage(sp);
+    if (imgData) {
+      // imgData.url/.sourceUrl kommen von Wikipedia-/Commons-APIs (externe Quelle) – über
+      // safeHref() prüfen statt roh als src/href einzusetzen (s. Sicherheits-Kommentar bei
+      // escapeHtml()/safeHref() oben). artist/license laufen durch t()'s automatisches
+      // Escaping (Platzhalter-Werte werden dort escaped).
+      const creditText = imgData.artist
+        ? t("details.imageCredit", { artist: imgData.artist, license: imgData.license || t("details.imageLicenseUnknown") })
+        : t("details.imageCaption");
+      const creditLink = imgData.sourceUrl
+        ? ` <a href="${safeHref(imgData.sourceUrl)}" target="_blank" rel="noopener">${t("details.imageSourceLink")}</a>`
+        : "";
+      imgWrap.innerHTML = `<img class="species-photo" src="${safeHref(imgData.url)}" alt="${escapeHtml(sp.de)}"><div class="hint">${creditText}${creditLink}</div>`;
     } else {
       imgWrap.innerHTML = "";
     }
@@ -2500,7 +2567,9 @@ function renderDisclaimer() {
       <h3 style="color: var(--green-dark);">${d("disclaimer.s5h")}</h3>
       <p>${d("disclaimer.s5")}</p>
       <h3 style="color: var(--green-dark);">${d("disclaimer.s6h")}</h3>
-      <p>${d("disclaimer.s6", { email: contactEmailDisplay() })}</p>
+      <p>${d("disclaimer.s6")}</p>
+      <h3 style="color: var(--green-dark);">${d("disclaimer.s7h")}</h3>
+      <p>${d("disclaimer.s7", { email: contactEmailDisplay() })}</p>
     </div>
   `;
 }
