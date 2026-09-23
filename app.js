@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.5";
+const APP_VERSION = "2026-09-23.6";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -150,6 +150,7 @@ const STRINGS = {
       noRecordings: "Für diese Art sind auf xeno-canto aktuell keine Aufnahmen zu finden.",
       genericError: "Aufnahmen konnten nicht geladen werden ({msg}).",
       habitatLabel: "Habitat",
+      habitatSpecialistNote: "Spezialist für Plausibilitätscheck: {tags}",
       seasonLabel: "Ruf-/Gesangssaison",
       areasLabel: "Vorkommen in euren Gebieten",
       noDataYet: "keine Angabe (noch nicht recherchiert)",
@@ -339,6 +340,7 @@ const STRINGS = {
       noRecordings: "No recordings currently found for this species on xeno-canto.",
       genericError: "Recordings could not be loaded ({msg}).",
       habitatLabel: "Habitat",
+      habitatSpecialistNote: "Specialist for plausibility check: {tags}",
       seasonLabel: "Calling/singing season",
       areasLabel: "Occurrence in your areas",
       noDataYet: "no data (not yet researched)",
@@ -2378,9 +2380,17 @@ function renderValidationDetails(sp) {
   card.classList.remove("hidden");
   const areaNames = sp.areas.map(a => areaName(a)).join(", ") || t("details.noAreaData");
   const monthNames = state.lang === "en" ? MONTH_NAMES_EN : MONTH_NAMES_DE;
-  const habitatText = (sp.habitat && sp.habitat.length)
-    ? sp.habitat.map(h => habitatLabel(h)).join(", ")
-    : t("validation.noDataYet");
+  // habitatDesc/habitatDesc_en: freier Beschreibungstext des typischen Lebensraums (unabhängig
+  // von `habitat`), aktuell nur für einen Teil der Arten recherchiert (Start: die 54
+  // frequency:"haeufig"-Arten, s. CLAUDE.md). `habitat` bleibt daneben die schmalere
+  // Spezialisten-Tag-Liste fürs BirdNET-Plausibilitätscheck-Tool – beide können unabhängig
+  // voneinander vorhanden sein (z.B. Feldlerche: Beschreibungstext UND Spezialisten-Tag
+  // "farmland_open").
+  const habitatDescText = state.lang === "en" ? sp.habitatDesc_en : sp.habitatDesc;
+  const specialistTags = (sp.habitat && sp.habitat.length) ? sp.habitat.map(h => habitatLabel(h)).join(", ") : null;
+  const habitatText = habitatDescText
+    ? habitatDescText + (specialistTags ? ` <span class="hint">(${t("validation.habitatSpecialistNote", { tags: specialistTags })})</span>` : "")
+    : (specialistTags || t("validation.noDataYet"));
   const seasonText = sp.vocalMonths
     ? `${monthNames[sp.vocalMonths[0] - 1]}–${monthNames[sp.vocalMonths[1] - 1]}`
     : (sp.habitat ? t("validation.yearRoundNoSeason") : t("validation.noDataYet"));
