@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.1";
+const APP_VERSION = "2026-09-23.2";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -27,6 +27,10 @@ const STRINGS = {
       fortschritt: "📊 Fortschritt",
       anleitung: "❓ Anleitung",
       disclaimer: "⚠️ Hinweise",
+    },
+    nav: {
+      showBtn: "📋 Optionen anzeigen",
+      hideBtn: "📋 Optionen ausblenden",
     },
     settings: {
       title: "Einstellungen",
@@ -99,6 +103,7 @@ const STRINGS = {
       excludeBtnDefault: "🚫 Diese Aufnahme ausschließen (kein Ton hörbar, falsche Art o.ä.)",
       playError: 'Wiedergabe fehlgeschlagen. Das kann an einer Autoplay-Sperre liegen (einfach nochmal auf ▶ klicken) oder daran, dass dein Browser (v.a. Safari auf Mac/iPhone) genau diese Aufnahmedatei nicht unterstützt. Falls Letzteres: bitte "🔄 Andere Aufnahme" probieren, oder Direktlink: <a href="{url}" target="_blank" rel="noopener">Audiodatei öffnen</a>',
       autoplayBlocked: "Automatische Wiedergabe wurde vom Browser blockiert – bitte einmal auf ▶ klicken.",
+      blobFallbackTrying: "Wiedergabe versucht es auf einem zweiten Weg (v.a. für Safari) – einen Moment…",
     },
     swap: {
       loading: "Lade andere Aufnahme…",
@@ -206,6 +211,10 @@ const STRINGS = {
       anleitung: "❓ Guide",
       disclaimer: "⚠️ Disclaimer",
     },
+    nav: {
+      showBtn: "📋 Show options",
+      hideBtn: "📋 Hide options",
+    },
     settings: {
       title: "Settings",
       apiKeyIntro: 'A free <strong>xeno-canto API key</strong> is needed to load real recordings (create an account at <a href="https://xeno-canto.org" target="_blank" rel="noopener">xeno-canto.org</a>, the key then appears under "Your account" → "API key"). A more detailed guide is available on the Guide tab above.',
@@ -277,6 +286,7 @@ const STRINGS = {
       excludeBtnDefault: "🚫 Exclude this recording (no sound audible, wrong species, etc.)",
       playError: 'Playback failed. This can be due to your browser blocking autoplay (just click ▶ again), or your browser (especially Safari on Mac/iPhone) not supporting this particular recording file. If it\'s the latter: please try "🔄 Different recording", or the direct link: <a href="{url}" target="_blank" rel="noopener">open audio file</a>',
       autoplayBlocked: "Automatic playback was blocked by the browser – please click ▶ once.",
+      blobFallbackTrying: "Trying a second way to load this (mainly helps Safari) – one moment…",
     },
     swap: {
       loading: "Loading a different recording…",
@@ -429,6 +439,12 @@ function t(key, vars) {
 function areaName(code) {
   return state.lang === "en" ? (AREAS_EN[code] || AREAS[code] || code) : (AREAS[code] || code);
 }
+// Kurzform für die Gebiets-Chips (s. AREAS_SHORT/AREAS_SHORT_EN in species-data.js) – voller Name
+// bleibt über areaName() als title-Tooltip verfügbar.
+function areaShortLabel(code) {
+  const src = state.lang === "en" ? AREAS_SHORT_EN : AREAS_SHORT;
+  return src[code] || areaName(code);
+}
 function habitatLabel(tag) {
   const src = state.lang === "en" ? HABITAT_LABELS_EN : HABITAT_LABELS;
   return src[tag] || HABITAT_LABELS[tag] || tag;
@@ -494,6 +510,8 @@ function setupLangToggle() {
     // die passende Beschriftung für den aktuellen Zustand neu setzen (idempotent).
     const filtersSection = document.getElementById("filtersSection");
     if (filtersSection) setFiltersCollapsed(filtersSection.classList.contains("hidden"));
+    const navSection = document.getElementById("modeTabsNav");
+    if (navSection) setNavCollapsed(navSection.classList.contains("hidden"));
     rerenderCurrentView();
   });
 }
@@ -812,8 +830,8 @@ const FREQUENCY_RANK = { haeufig: 0, mittel: 1, selten: 2, sehr_selten: 3 };
 function currentFilteredSpecies() {
   const freqs = checkedValues(".freq-filter");
   const diffs = checkedValues(".diff-filter");
-  const area = document.getElementById("areaFilter").value;
-  const group = document.getElementById("groupFilter").value;
+  const area = getChipValue("areaFilterChips");
+  const group = getChipValue("groupFilterChips");
   const countVal = document.getElementById("countFilter").value;
   const learnGroup = getLearnGroup();
 
@@ -1118,41 +1136,78 @@ async function fetchWikiImage(sp) {
 
 // ---------- UI: Init ----------
 
-// Baut die Gebiets-Dropdown-Optionen neu (behält die aktuelle Auswahl bei,
-// wichtig beim Sprachwechsel: die ersten beiden Optionen "all"/"kern11"
-// stehen bereits statisch in index.html mit data-i18n und bleiben stehen,
-// nur die dynamisch angehängten Gebiete werden neu aufgebaut).
-function populateAreaFilter() {
-  const sel = document.getElementById("areaFilter");
-  const prev = sel.value;
-  Array.from(sel.querySelectorAll("option[data-dynamic]")).forEach(o => o.remove());
-  Object.entries(AREAS).forEach(([code]) => {
-    const opt = document.createElement("option");
-    opt.value = code;
-    opt.dataset.dynamic = "1";
-    opt.textContent = areaName(code);
-    sel.appendChild(opt);
+// ---------- Filter-Chips (Gebiet/Artengruppe) ----------
+// Ersetzt seit 2026-09-23 die vorherigen nativen <select>-Dropdowns für Gebiet und Artengruppe:
+// Nutzerin-Feedback, dass die aufgeklappte Optionsliste eines <select> auf dem Handy vom
+// Betriebssystem (nicht per CSS beeinflussbar) in schlichter System-Optik dargestellt wird, unpassend
+// zum Rest der App. Antickbare Chip-Buttons (wie in einer von der Nutzerin gezeigten Referenz-App)
+// sehen auf jedem Gerät gleich aus, weil sie ganz normale, selbst gestylte <button>-Elemente sind.
+// Bewusst (noch) Single-Select – behält exakt das bisherige Verhalten (ein Gebiet/eine Gruppe
+// gleichzeitig), nur die Optik ändert sich. Mehrfachauswahl (mehrere Gebiete/Gruppen gleichzeitig)
+// wäre technisch machbar (currentFilteredSpecies() bräuchte dafür sp.areas.some(a => selected.has(a))
+// statt eines Einzelvergleichs), wurde aber bewusst auf einen möglichen Folgeschritt verschoben, um
+// diese erste, für sich schon nicht ganz kleine Umstellung zunächst einzeln am echten Handy zu
+// verifizieren, bevor eine weitere Verhaltensänderung (nicht nur Optik) obendrauf kommt.
+//
+// "selected" wird als data-selected-Attribut am Container gespeichert (statt in einer globalen
+// Variable), damit getChipValue() den aktuellen Wert jederzeit direkt aus dem DOM lesen kann – genau
+// wie zuvor sel.value bei einem <select>.
+function renderChipRow(containerId, options, selected, onChange) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const validValues = new Set(options.map(o => o.value));
+  const resolved = validValues.has(selected) ? selected : options[0].value;
+  el.innerHTML = "";
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chip-btn" + (opt.value === resolved ? " active" : "");
+    btn.dataset.value = opt.value;
+    if (opt.title) btn.title = opt.title;
+    btn.textContent = opt.label;
+    btn.addEventListener("click", () => {
+      setChipValue(containerId, opt.value);
+      onChange(opt.value);
+    });
+    el.appendChild(btn);
   });
-  if (Array.from(sel.options).some(o => o.value === prev)) sel.value = prev;
+  el.dataset.selected = resolved;
 }
 
-// Nur Gruppen anzeigen, die tatsächlich im aktuellen Artenset vorkommen –
-// in fester, alltagstauglicher Reihenfolge (GROUP_ORDER), nicht alphabetisch.
-// sp.group bleibt immer der deutsche Name (Artdaten sind nicht übersetzt),
-// nur die Anzeige im Dropdown wird per groupLabel() übersetzt.
-function populateGroupFilter() {
-  const sel = document.getElementById("groupFilter");
-  const prev = sel.value;
-  Array.from(sel.querySelectorAll("option[data-dynamic]")).forEach(o => o.remove());
-  const present = new Set(SPECIES.map(sp => sp.group).filter(Boolean));
-  GROUP_ORDER.filter(g => present.has(g)).forEach(g => {
-    const opt = document.createElement("option");
-    opt.value = g;
-    opt.dataset.dynamic = "1";
-    opt.textContent = groupLabel(g);
-    sel.appendChild(opt);
+function getChipValue(containerId) {
+  const el = document.getElementById(containerId);
+  return (el && el.dataset.selected) || "all";
+}
+
+function setChipValue(containerId, value) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.dataset.selected = value;
+  el.querySelectorAll(".chip-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.value === value);
   });
-  if (Array.from(sel.options).some(o => o.value === prev)) sel.value = prev;
+}
+
+// Baut die Gebiets-Chips neu (behält die aktuelle Auswahl bei, wichtig beim Sprachwechsel).
+function populateAreaFilter() {
+  const options = [
+    { value: "all", label: t("filters.area_all") },
+    { value: "kern11", label: t("filters.area_kern11") },
+    ...Object.keys(AREAS).map(code => ({ value: code, label: areaShortLabel(code), title: areaName(code) })),
+  ];
+  renderChipRow("areaFilterChips", options, getChipValue("areaFilterChips"), reloadAfterFilterChange);
+}
+
+// Nur Gruppen anzeigen, die tatsächlich im aktuellen Artenset vorkommen – in fester,
+// alltagstauglicher Reihenfolge (GROUP_ORDER), nicht alphabetisch. sp.group bleibt immer der
+// deutsche Name (Artdaten sind nicht übersetzt), nur die Anzeige wird per groupLabel() übersetzt.
+function populateGroupFilter() {
+  const present = new Set(SPECIES.map(sp => sp.group).filter(Boolean));
+  const options = [
+    { value: "all", label: t("filters.group_all") },
+    ...GROUP_ORDER.filter(g => present.has(g)).map(g => ({ value: g, label: groupLabel(g) })),
+  ];
+  renderChipRow("groupFilterChips", options, getChipValue("groupFilterChips"), reloadAfterFilterChange);
 }
 
 function populateConfusionSelect() {
@@ -1185,10 +1240,24 @@ function switchMode(mode, opts) {
   document.getElementById("fortschrittView").classList.toggle("hidden", mode !== "fortschritt");
   document.getElementById("anleitungView").classList.toggle("hidden", mode !== "anleitung");
   document.getElementById("disclaimerView").classList.toggle("hidden", mode !== "disclaimer");
-  // Die Quiz-Filterleiste (Häufigkeit/Schwierigkeit/Gebiet/...) betrifft nur
-  // Erkennen/Unterscheiden/Fortschritt – auf der Validierungs-Seite sowie den
-  // reinen Infoseiten (Anleitung/Disclaimer) wäre sie nur verwirrend.
-  document.querySelector(".filters").classList.toggle("hidden", mode === "validieren" || mode === "anleitung" || mode === "disclaimer");
+  // Die Quiz-Filterleiste (Häufigkeit/Schwierigkeit/Gebiet/...) und der zugehörige Toggle-Button
+  // betreffen nur Erkennen/Unterscheiden/Fortschritt – auf der Validierungs-Seite sowie den reinen
+  // Infoseiten (Anleitung/Disclaimer) wären sie nur verwirrend.
+  // Wichtig (Bug gefunden & behoben 2026-09-23): hier NICHT einfach unconditional "hidden" entfernen,
+  // wenn der Filterbereich relevant ist – das hätte den vom Filter-Toggle-Button gespeicherten
+  // Ein-/Ausklapp-Zustand bei jedem Tab-Wechsel zurück zu Erkennen/Unterscheiden/Fortschritt
+  // überschrieben (Filter wären dann immer wieder aufgeklappt aufgetaucht, egal was man vorher
+  // eingestellt hatte). Stattdessen: bei irrelevanten Tabs hart verstecken, bei relevanten Tabs den
+  // gespeicherten Collapse-Zustand über setFiltersCollapsed() wiederherstellen.
+  const filtersRelevant = mode !== "validieren" && mode !== "anleitung" && mode !== "disclaimer";
+  const filterToggleBtn = document.getElementById("filterToggleBtn");
+  if (filterToggleBtn) filterToggleBtn.classList.toggle("hidden", !filtersRelevant);
+  if (!filtersRelevant) {
+    document.getElementById("filtersSection").classList.add("hidden");
+  } else {
+    const stored = localStorage.getItem(FILTERS_COLLAPSED_KEY);
+    setFiltersCollapsed(stored === null ? true : stored === "1");
+  }
 
   if (mode === "erkennen") {
     loadQuestion();
@@ -1343,8 +1412,8 @@ function saveFilterState() {
     freq: checkedValues(".freq-filter"),
     diff: checkedValues(".diff-filter"),
     names: checkedValues(".name-toggle"),
-    area: document.getElementById("areaFilter").value,
-    group: document.getElementById("groupFilter").value,
+    area: getChipValue("areaFilterChips"),
+    group: getChipValue("groupFilterChips"),
     count: document.getElementById("countFilter").value,
   };
   localStorage.setItem(FILTER_STATE_KEY, JSON.stringify(s));
@@ -1368,10 +1437,17 @@ function restoreFilterState() {
   if (Array.isArray(saved.names)) {
     document.querySelectorAll(".name-toggle").forEach(el => { el.checked = saved.names.includes(el.value); });
   }
-  const areaSel = document.getElementById("areaFilter");
-  if (saved.area && Array.from(areaSel.options).some(o => o.value === saved.area)) areaSel.value = saved.area;
-  const groupSel = document.getElementById("groupFilter");
-  if (saved.group && Array.from(groupSel.options).some(o => o.value === saved.group)) groupSel.value = saved.group;
+  // Die Chip-Reihen sind zu diesem Zeitpunkt bereits gerendert (populateAreaFilter()/
+  // populateGroupFilter() laufen in init() vor setupFilters()/restoreFilterState()) – hier reicht
+  // es, den gespeicherten Wert zu übernehmen, falls er einer der vorhandenen Chips ist.
+  const areaChips = document.getElementById("areaFilterChips");
+  if (saved.area && areaChips && areaChips.querySelector(`.chip-btn[data-value="${CSS.escape(saved.area)}"]`)) {
+    setChipValue("areaFilterChips", saved.area);
+  }
+  const groupChips = document.getElementById("groupFilterChips");
+  if (saved.group && groupChips && groupChips.querySelector(`.chip-btn[data-value="${CSS.escape(saved.group)}"]`)) {
+    setChipValue("groupFilterChips", saved.group);
+  }
   const countSel = document.getElementById("countFilter");
   if (saved.count && Array.from(countSel.options).some(o => o.value === saved.count)) countSel.value = saved.count;
 }
@@ -1404,32 +1480,47 @@ function setupFilterToggle() {
   });
 }
 
+// Gleiches Muster wie beim Filterbereich (s. FILTERS_COLLAPSED_KEY oben), diesmal für die
+// Mode-Tabs-Leiste (Arten erkennen/Verwechslungsarten/Validieren/…) – Nutzerin-Feedback
+// 2026-09-23: nach dem Einklappen der Filter störte auf dem Handy noch die immer sichtbare
+// Tab-Leiste oben. Eigener, unabhängiger Toggle-Button, ebenfalls standardmäßig eingeklappt.
+const NAV_COLLAPSED_KEY = "vogeltrainer_nav_collapsed_v1";
+
+function setNavCollapsed(collapsed) {
+  const nav = document.getElementById("modeTabsNav");
+  const btn = document.getElementById("navToggleBtn");
+  nav.classList.toggle("hidden", collapsed);
+  btn.textContent = t(collapsed ? "nav.showBtn" : "nav.hideBtn");
+  btn.setAttribute("aria-expanded", String(!collapsed));
+  localStorage.setItem(NAV_COLLAPSED_KEY, collapsed ? "1" : "0");
+}
+
+function setupNavToggle() {
+  const stored = localStorage.getItem(NAV_COLLAPSED_KEY);
+  setNavCollapsed(stored === null ? true : stored === "1");
+  document.getElementById("navToggleBtn").addEventListener("click", () => {
+    const nav = document.getElementById("modeTabsNav");
+    setNavCollapsed(!nav.classList.contains("hidden"));
+  });
+}
+
+// Gemeinsame Reaktion auf jede Filteränderung (Checkboxen, Chips, Anzahl-Select): Zustand
+// speichern und die aktuell sichtbare Ansicht neu laden. Ausgelagert, damit die Chip-Reihen
+// (Gebiet/Artengruppe) dieselbe Logik nutzen können wie die übrigen Filterelemente.
+function reloadAfterFilterChange() {
+  saveFilterState();
+  if (state.mode === "erkennen") loadQuestion();
+  else renderConfusionPair();
+}
+
 function setupFilters() {
   restoreFilterState();
   setupFilterToggle();
 
   document.querySelectorAll(".freq-filter, .diff-filter, .name-toggle").forEach(el => {
-    el.addEventListener("change", () => {
-      saveFilterState();
-      if (state.mode === "erkennen") loadQuestion();
-      else renderConfusionPair();
-    });
+    el.addEventListener("change", reloadAfterFilterChange);
   });
-  document.getElementById("areaFilter").addEventListener("change", () => {
-    saveFilterState();
-    if (state.mode === "erkennen") loadQuestion();
-    else renderConfusionPair();
-  });
-  document.getElementById("groupFilter").addEventListener("change", () => {
-    saveFilterState();
-    if (state.mode === "erkennen") loadQuestion();
-    else renderConfusionPair();
-  });
-  document.getElementById("countFilter").addEventListener("change", () => {
-    saveFilterState();
-    if (state.mode === "erkennen") loadQuestion();
-    else renderConfusionPair();
-  });
+  document.getElementById("countFilter").addEventListener("change", reloadAfterFilterChange);
   document.getElementById("nextBtn").addEventListener("click", loadQuestion);
   document.getElementById("confusionSelect").addEventListener("change", renderConfusionPair);
 }
@@ -1823,15 +1914,58 @@ function setupAudioControls(rec, container, autoplayAllowed) {
     playError.innerHTML = `<div class="error-box">${t("audio.playError", { url: rec.fileUrl })}</div>`;
   }
 
+  // Safari-Blob-Fallback (2026-09-23, noch ungetestet): Fix-Versuch 3 (kein <source type="...">
+  // mehr, s. Kommentar oben bei renderAudioSection) hat mp4-Aufnahmen gefixt, aber echte .wav-
+  // Dateien spielen in Safari weiterhin nicht – ABER laut Test der Nutzerin spielt dieselbe .wav-
+  // Datei in Safari anstandslos, wenn man sie direkt auf xeno-canto.org öffnet, UND in Chrome auch
+  // innerhalb unserer App. Nur "Safari + unsere App" schlägt fehl. Das schließt ein grundsätzliches
+  // Safari-Decoder-/Codec-Problem aus (Safari kann die Datei ja nachweislich abspielen) und deutet
+  // stattdessen auf ein WebKit-Sonderverhalten hin: xeno-cantos "/download"-Endpunkt liefert
+  // vermutlich einen "Content-Disposition: attachment"-Header (es ist wörtlich der Download-
+  // Endpunkt) – Safari/WebKit ist dafür bekannt, diesen Header auch bei einer in <audio>
+  // eingebetteten Ressource zu respektieren und die Anfrage als Download statt als abspielbares
+  // Medium zu behandeln, während Chrome/Firefox die Disposition in einem Medien-Element-Kontext
+  // ignorieren. Fallback: bei einem Wiedergabefehler die Datei stattdessen per fetch() + Blob laden
+  // und als "blob:"-URL setzen – eine solche lokale Blob-URL hat keine Content-Disposition-Semantik
+  // mehr, das Problem kann dort prinzipiell nicht auftreten. Voraussetzung: xeno-cantos Server
+  // erlaubt Cross-Origin-fetch()-Lesezugriffe (Access-Control-Allow-Origin) – unbestätigt, aber bei
+  // einer für Fremdeinbindung gedachten öffentlichen API plausibel. Falls nicht, schlägt der fetch()
+  // selbst fehl (anderer, spezifischerer Fehler als bisher) statt den Blob-Umweg zu ermöglichen –
+  // auch das wäre ein nützliches Diagnosesignal. Konnte in der Sandbox nicht gegen die echte API
+  // getestet werden (Anubis-Bot-Schutz, s. CLAUDE.md) – braucht wieder einen echten Test durch die
+  // Nutzerin, diesmal gezielt mit einer bisher fehlschlagenden .wav-Datei in Safari.
+  let blobFallbackTried = false;
+  function tryBlobFallback(thenPlay) {
+    if (blobFallbackTried) {
+      showPlayError();
+      return;
+    }
+    blobFallbackTried = true;
+    if (playError) playError.innerHTML = `<p class="hint">${t("audio.blobFallbackTrying")}</p>`;
+    fetch(rec.fileUrl)
+      .then(r => {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.blob();
+      })
+      .then(blob => {
+        const objectUrl = URL.createObjectURL(blob);
+        if (playError) playError.innerHTML = "";
+        audio.src = objectUrl;
+        audio.load();
+        if (thenPlay) audio.play().catch(() => {});
+      })
+      .catch(showPlayError);
+  }
+
   playBtn.addEventListener("click", () => {
     if (audio.paused) {
-      audio.play().catch(showPlayError);
+      audio.play().catch(() => tryBlobFallback(true));
     } else {
       audio.pause();
     }
   });
 
-  audio.addEventListener("error", showPlayError);
+  audio.addEventListener("error", () => tryBlobFallback(autoplayAllowed));
   audio.addEventListener("play", () => { playBtn.textContent = "⏸"; });
   audio.addEventListener("pause", () => { playBtn.textContent = "▶"; });
   audio.addEventListener("ended", () => {
@@ -1840,10 +1974,16 @@ function setupAudioControls(rec, container, autoplayAllowed) {
   });
 
   if (autoplayAllowed) {
-    audio.play().catch(() => {
-      // Browser hat automatische Wiedergabe blockiert (Autoplay-Richtlinie) –
-      // dann einfach manuell über den Play-Button starten.
-      if (playError) playError.innerHTML = `<p class="hint">${t("audio.autoplayBlocked")}</p>`;
+    audio.play().catch(err => {
+      if (err && err.name === "NotAllowedError") {
+        // Browser hat automatische Wiedergabe blockiert (Autoplay-Richtlinie, harmlos) – dann
+        // einfach manuell über den Play-Button starten.
+        if (playError) playError.innerHTML = `<p class="hint">${t("audio.autoplayBlocked")}</p>`;
+      } else {
+        // Anderer Fehler (z.B. NotSupportedError) – vermutlich das oben beschriebene Safari/WAV-
+        // Problem, Blob-Fallback versuchen statt nur die generische Fehlermeldung zu zeigen.
+        tryBlobFallback(true);
+      }
     });
   }
 }
@@ -2330,6 +2470,7 @@ function init() {
   populateGroupFilter();
   populateConfusionSelect();
   setupTabs();
+  setupNavToggle();
   setupSettings();
   setupFilters();
   setupAutoplayToggle();

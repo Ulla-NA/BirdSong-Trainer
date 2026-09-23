@@ -63,7 +63,9 @@
   </p>
 </dialog>
 
-<nav class="mode-tabs">
+<button id="navToggleBtn" type="button" class="filter-toggle-btn" data-i18n="nav.showBtn">📋 Optionen anzeigen</button>
+
+<nav class="mode-tabs hidden" id="modeTabsNav">
   <button class="tab active" data-mode="erkennen" data-i18n="tabs.erkennen">Arten erkennen</button>
   <button class="tab" data-mode="unterscheiden" data-i18n="tabs.unterscheiden">Verwechslungsarten unterscheiden</button>
   <button class="tab" data-mode="validieren" data-i18n="tabs.validieren">🔍 Validieren</button>
@@ -88,18 +90,13 @@
     <label><input type="checkbox" class="diff-filter" value="mittel" checked> <span data-i18n="filters.diff_mittel">mittel</span></label>
     <label><input type="checkbox" class="diff-filter" value="schwer" checked> <span data-i18n="filters.diff_schwer">schwer</span></label>
   </div>
-  <div class="filter-group">
+  <div class="filter-group filter-group-wide">
     <span class="filter-label" data-i18n="filters.area">Gebiet</span>
-    <select id="areaFilter">
-      <option value="all" data-i18n="filters.area_all">Deutschlandweit</option>
-      <option value="kern11" data-i18n="filters.area_kern11">alle 11 Gebiete</option>
-    </select>
+    <div class="chip-row" id="areaFilterChips" role="group"></div>
   </div>
-  <div class="filter-group">
+  <div class="filter-group filter-group-wide">
     <span class="filter-label" data-i18n="filters.group">Artengruppe</span>
-    <select id="groupFilter">
-      <option value="all" data-i18n="filters.group_all">alle Gruppen</option>
-    </select>
+    <div class="chip-row" id="groupFilterChips" role="group"></div>
   </div>
   <div class="filter-group">
     <span class="filter-label" data-i18n="filters.count">Anzahl Arten zum Start</span>

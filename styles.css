@@ -125,6 +125,12 @@ body {
   font-size: 0.85rem;
 }
 
+/* Gebiet/Artengruppe haben viele Chips (bis zu 14 bzw. 27) – als eigene volle Zeile statt in der
+   schmalen Flex-Spalte der übrigen Filtergruppen, damit die Chips vernünftig umbrechen können. */
+.filter-group-wide {
+  flex: 1 1 100%;
+}
+
 .filter-label {
   font-weight: 600;
   color: var(--green-dark);
@@ -172,6 +178,31 @@ select, input[type=text] {
    ebenfalls display:flex, .filters.hidden garantiert unabhängig von der Reihenfolge im Stylesheet,
    dass die eingeklappte Ansicht auch wirklich verschwindet. */
 .filters.hidden { display: none; }
+/* Gleiche Absicherung für die einklappbare Mode-Tabs-Navigation (neu 2026-09-23). */
+.mode-tabs.hidden { display: none; }
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip-btn {
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--ink);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.chip-btn.active {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
 
 .update-banner button {
   background: #fff;

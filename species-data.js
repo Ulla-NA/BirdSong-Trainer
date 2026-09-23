@@ -44,6 +44,40 @@ const AREAS_EN = {
   de: "outside the 11 areas"
 };
 
+// Kurzformen von AREAS/AREAS_EN für die Gebiets-Chips im Filter (neu 2026-09-23, Umstellung von
+// <select> auf antickbare Chip-Buttons, s. app.js renderChipRow()/populateAreaFilter()) – die vollen
+// Namen sind auf einer Handy-Chip-Reihe zu lang (v.a. "Wildnisgebiet Brandenburg – Jüterbog/Lieberose"
+// und "Niedersächsisches Wattenmeer"), volle Namen bleiben als title-Attribut (Tooltip) erhalten.
+const AREAS_SHORT = {
+  byw: "Bayer. Wald",
+  eif: "Eifel",
+  hai: "Hainich",
+  hho: "Hunsrück-Hochw.",
+  hrz: "Harz",
+  jtb: "Jüterbog",
+  kwe: "Kellerwald",
+  lbr: "Lieberose",
+  nwm: "Nds. Wattenmeer",
+  ssc: "Sächs. Schweiz",
+  uot: "Unt. Odertal",
+  de: "außerhalb"
+};
+
+const AREAS_SHORT_EN = {
+  byw: "Bavarian F.",
+  eif: "Eifel",
+  hai: "Hainich",
+  hho: "Hunsrück-H.",
+  hrz: "Harz",
+  jtb: "Jüterbog",
+  kwe: "Kellerwald",
+  lbr: "Lieberose",
+  nwm: "Wadden Sea",
+  ssc: "Saxon Switz.",
+  uot: "Oder Valley",
+  de: "outside"
+};
+
 // Habitat-Tags für die Validierungs-Seite (Erkennen-Modus nutzt sie nicht).
 // habitat/vocalMonths-Felder, zwei unterschiedliche Quellen (Stand 2026-09-21,
 // s. CLAUDE.md Abschnitt "Validierungs-Seite" für Details):
