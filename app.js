@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.2";
+const APP_VERSION = "2026-09-23.3";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -60,6 +60,7 @@ const STRINGS = {
       reloadBtn: "Jetzt neu laden",
       checking: "Suche nach Updates …",
       upToDate: "Du nutzt bereits die neueste Version.",
+      checkFailed: "Prüfung fehlgeschlagen (evtl. offline) – bitte später nochmal versuchen.",
     },
     filters: {
       frequency: "Häufigkeit", freq_haeufig: "häufig", freq_mittel: "mittel", freq_selten: "selten", freq_sehr_selten: "sehr selten",
@@ -243,6 +244,7 @@ const STRINGS = {
       reloadBtn: "Reload now",
       checking: "Checking for updates …",
       upToDate: "You're already using the latest version.",
+      checkFailed: "Check failed (maybe offline) – please try again later.",
     },
     filters: {
       frequency: "Frequency", freq_haeufig: "common", freq_mittel: "moderate", freq_selten: "rare", freq_sehr_selten: "very rare",
@@ -1335,67 +1337,90 @@ function setupSettings() {
 
 // ---------- PWA-Update-Mechanismus ----------
 // Hintergrund: der Service Worker ist Network-First (s. service-worker.js) und bedient neue
-// Deploys daher praktisch sofort – das eigentliche Problem ist nur, dass eine bereits offene
-// Seite (v.a. die installierte App, die oft tagelang im selben Fenster offen bleibt) das *alte*
-// app.js weiter im Speicher hat, selbst wenn der Service Worker im Hintergrund längst
-// aktualisiert wurde. Der Banner + "Nach Updates suchen"-Button machen das sichtbar und geben
-// eine bewusste Reload-Möglichkeit, statt die Seite ungefragt neu zu laden (das würde sonst
-// mitten in einer Quiz-Runde passieren können).
-
-// Nur true, wenn beim Laden der Seite bereits ein Service Worker aktiv war – unterscheidet
-// "echtes Update" (Banner zeigen) von der allerersten Installation (kein Banner nötig, da noch
-// keine alte Version im Speicher war, die ersetzt werden könnte).
-const hadServiceWorkerControllerAtLoad =
-  "serviceWorker" in navigator && !!navigator.serviceWorker.controller;
+// Deploys daher praktisch sofort bei jedem normalen Seitenaufruf – das eigentliche Problem ist nur,
+// dass eine bereits offene Seite (v.a. die installierte App, die oft tagelang im selben Fenster
+// offen bleibt) das *alte* app.js weiter im Speicher hat, selbst wenn der Server längst eine neue
+// Version ausliefert. Der Banner + "Nach Updates suchen"-Button machen das sichtbar und geben eine
+// bewusste Reload-Möglichkeit, statt die Seite ungefragt neu zu laden (das würde sonst mitten in
+// einer Quiz-Runde passieren können).
+//
+// **Bug gefunden & behoben (2026-09-23, Nutzerin-Test)**: Die ursprüngliche Version dieses
+// Mechanismus erkannte Updates AUSSCHLIESSLICH über `registration.update()` + das
+// `controllerchange`-Event – das ist der Browser-eigene Mechanismus zum Erkennen einer geänderten
+// `service-worker.js`-DATEI (reiner Byte-Vergleich dieser einen Datei). Der entscheidende
+// Denkfehler: seit dem Network-First-Fix (s. Architektur-Abschnitt oben) ändert sich
+// `service-worker.js` bei einem reinen Inhalts-Deploy (nur app.js/index.html/species-data.js
+// geändert) überhaupt nicht mehr – das ist ja gerade der Sinn dieses Fixes, Inhalts-Updates
+// unabhängig von einem Service-Worker-Datei-Update sofort auszuliefern. Der "Nach Updates
+// suchen"-Button hat also zuverlässig geprüft, ob sich `service-worker.js` geändert hat (nein, wie
+// erwartet), und daraus fälschlich "kein Update verfügbar" geschlossen, obwohl `app.js` auf dem
+// Server längst neuer war. Von der Nutzerin bestätigt: Button meldete "neueste Version" in Chrome
+// (und in der installierten App sogar über einen Tag hinweg), obwohl ein frisch geöffneter
+// Safari-Tab zur selben Zeit bereits die neuen Änderungen zeigte.
+//
+// Gefixt: `checkForUpdate()`/die proaktive Prüfung fragen jetzt NICHT mehr den Service Worker,
+// sondern laden `app.js` direkt per `fetch()` mit einem Cache-Busting-Query-Parameter (Zeitstempel)
+// und `{ cache: "no-store" }` – das umgeht sowohl den Browser-Cache als auch einen eventuellen
+// CDN-Edge-Cache von GitHub Pages (ein bloßes `cache: "no-store"` allein würde nur den
+// Browser-Cache umgehen, nicht eine zwischengeschaltete CDN-Cache-Ebene; ein einzigartiger
+// Query-Parameter erzwingt dagegen auf jeder Cache-Ebene einen echten Cache-Miss). Die darin
+// enthaltene `APP_VERSION`-Zeile wird per Regex extrahiert und mit der aktuell im Speicher
+// laufenden `APP_VERSION` verglichen. Das ist die tatsächlich relevante Frage ("ist der
+// Server-Inhalt neuer als das, was hier gerade läuft?"), unabhängig davon, ob sich
+// `service-worker.js` selbst je ändert. Der Service Worker wird weiterhin registriert (nötig fürs
+// Offline-Caching/PWA-Grundgerüst), spielt für die Update-ERKENNUNG aber keine Rolle mehr.
 
 function showUpdateBanner() {
   const el = document.getElementById("updateBanner");
   if (el) el.classList.remove("hidden");
 }
 
-function setupServiceWorker() {
-  if (!("serviceWorker" in navigator)) return;
+// Lädt app.js frisch vom Server (Cache-Busting, s. Kommentar oben) und vergleicht die darin
+// enthaltene APP_VERSION mit der aktuell laufenden. Rückgabe: true = Update gefunden (Banner wurde
+// bereits eingeblendet), false = kein Update, null = Prüfung fehlgeschlagen (z.B. offline oder
+// APP_VERSION im geladenen Text nicht gefunden).
+async function fetchLatestVersionAndCompare() {
+  try {
+    const res = await fetch("app.js?cachebust=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) return null;
+    const text = await res.text();
+    const m = text.match(/const APP_VERSION\s*=\s*"([^"]+)"/);
+    if (!m) return null;
+    if (m[1] !== APP_VERSION) {
+      showUpdateBanner();
+      return true;
+    }
+    return false;
+  } catch {
+    return null;
+  }
+}
 
+function setupServiceWorker() {
+  // Die eigentliche Update-Erkennung (fetchLatestVersionAndCompare(), s. Kommentar oben) hängt
+  // nicht am Service Worker und lohnt sich auch ohne SW-Unterstützung – einmal direkt beim Laden,
+  // danach jedes Mal, wenn die App wieder in den Vordergrund geholt wird (wichtig für eine
+  // installierte App, die oft tagelang im selben Fenster offen bleibt).
+  fetchLatestVersionAndCompare();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") fetchLatestVersionAndCompare();
+  });
+  document.getElementById("updateReloadBtn")?.addEventListener("click", () => location.reload());
+
+  if (!("serviceWorker" in navigator)) return;
   navigator.serviceWorker
     .register("service-worker.js", { updateViaCache: "none" })
-    .then(reg => {
-      state.swRegistration = reg;
-      // Aktiv nach einer neueren service-worker.js suchen, nicht nur auf den passiven
-      // Browser-Update-Zyklus warten (der bei einer lange offenen installierten App selten
-      // von selbst greift) – einmal direkt beim Laden, danach jedes Mal, wenn die App wieder
-      // in den Vordergrund geholt wird.
-      reg.update().catch(() => {});
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") reg.update().catch(() => {});
-      });
-    })
+    .then(reg => { state.swRegistration = reg; })
     .catch(() => {});
-
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (hadServiceWorkerControllerAtLoad) showUpdateBanner();
-  });
-
-  document.getElementById("updateReloadBtn")?.addEventListener("click", () => location.reload());
 }
 
 async function checkForUpdate() {
   const statusEl = document.getElementById("updateStatusText");
-  if (!("serviceWorker" in navigator)) return;
   statusEl.textContent = t("update.checking");
-  try {
-    const reg = state.swRegistration || (await navigator.serviceWorker.getRegistration());
-    if (reg) await reg.update();
-  } catch {
-    // Offline oder Netzwerkfehler beim Update-Check – einfach still bleiben, kein Fehlerdialog
-    // nötig für eine reine Hintergrundprüfung.
-  }
-  // Kurze Wartezeit: falls ein Update gefunden wurde, übernimmt der neue Service Worker
-  // (skipWaiting + clients.claim in service-worker.js) fast sofort die Kontrolle und löst den
-  // "controllerchange"-Listener oben aus, der dann den Banner einblendet.
-  setTimeout(() => {
-    const bannerVisible = !document.getElementById("updateBanner").classList.contains("hidden");
-    statusEl.textContent = bannerVisible ? "" : t("update.upToDate");
-  }, 1500);
+  const result = await fetchLatestVersionAndCompare();
+  if (result === true) statusEl.textContent = "";
+  else if (result === false) statusEl.textContent = t("update.upToDate");
+  else statusEl.textContent = t("update.checkFailed");
 }
 
 // Merkt sich Häufigkeit/Schwierigkeit/Gebiet/Gruppe/Anzahl/Namensanzeige
