@@ -11,7 +11,7 @@ const MAX_LOG_ENTRIES = 3000;
 // angekommen ist. Muss bei jedem inhaltlichen Deploy von Hand hochgezählt werden (Schema
 // "JJJJ-MM-TT.n", n hochzählen bei mehreren Deploys am selben Tag) – es gibt keinen Build-Step,
 // der das automatisch könnte. S. CLAUDE.md Abschnitt "PWA-Update-Mechanismus".
-const APP_VERSION = "2026-09-23.10";
+const APP_VERSION = "2026-09-25.1";
 
 // Alle UI-Texte auf Deutsch und Englisch. Artdaten selbst (Artnamen,
 // background-Texte, Verwechslungshinweise) stehen in species-data.js und
@@ -67,6 +67,7 @@ const STRINGS = {
       difficulty: "Schwierigkeit", diff_leicht: "leicht", diff_mittel: "mittel", diff_schwer: "schwer",
       area: "Gebiet", area_all: "Deutschlandweit", area_kern11: "alle 11 Gebiete",
       group: "Artengruppe", group_all: "alle Gruppen",
+      multiSelectHint: "Mehrfachauswahl möglich",
       count: "Anzahl Arten zum Start", count_all: "alle",
       names: "Namen anzeigen", names_de: "DE", names_en: "EN", names_sci: "Lat",
       showBtn: "🔧 Filter anzeigen", hideBtn: "🔧 Filter ausblenden",
@@ -257,6 +258,7 @@ const STRINGS = {
       difficulty: "Difficulty", diff_leicht: "easy", diff_mittel: "medium", diff_schwer: "hard",
       area: "Area", area_all: "Nationwide (Germany)", area_kern11: "all 11 areas",
       group: "Species group", group_all: "all groups",
+      multiSelectHint: "Multiple selection possible",
       count: "Number of species to start", count_all: "all",
       names: "Show names", names_de: "DE", names_en: "EN", names_sci: "Lat",
       showBtn: "🔧 Show filters", hideBtn: "🔧 Hide filters",
@@ -872,26 +874,34 @@ const FREQUENCY_RANK = { haeufig: 0, mittel: 1, selten: 2, sehr_selten: 3 };
 function currentFilteredSpecies() {
   const freqs = checkedValues(".freq-filter");
   const diffs = checkedValues(".diff-filter");
-  const area = getChipValue("areaFilterChips");
-  const group = getChipValue("groupFilterChips");
+  const areas = getChipValue("areaFilterChips");
+  const groups = getChipValue("groupFilterChips");
   const countVal = document.getElementById("countFilter").value;
   const learnGroup = getLearnGroup();
 
-  // Gebiets-Filter hat drei Modi:
+  // Gebiets-Filter: seit 2026-09-25 Mehrfachauswahl möglich (areas ist immer ein Array).
+  // "all"/"kern11" sind Sonderwerte, die renderChipRow() nie mit echten Gebietscodes mischt
+  // (s. Kommentar dort) – hier deshalb einfach zuerst prüfen, sonst OR-Verknüpfung über alle
+  // gewählten echten Gebietscodes:
   // - "all"     = Deutschlandweit: keine Einschränkung, alle Arten (11 Gebiete + Arten außerhalb davon)
   // - "kern11"  = alle 11 Gebiete zusammen: nur Arten mit mindestens einem echten Gebiets-Code
   //               (also NICHT die Arten, die ausschließlich areas: ["de"] haben)
-  // - <code>    = ein einzelnes Gebiet (inkl. "de" = außerhalb der 11 Gebiete): exakter areas-Treffer
+  // - <code>e   = eines oder mehrere einzelne Gebiete (inkl. "de" = außerhalb der 11 Gebiete):
+  //               Art passt, wenn sie in MINDESTENS einem der gewählten Gebiete vorkommt
   const areaMatches = sp =>
-    area === "all" ? true :
-    area === "kern11" ? sp.areas.some(a => a !== "de") :
-    sp.areas.includes(area);
+    areas.includes("all") ? true :
+    areas.includes("kern11") ? sp.areas.some(a => a !== "de") :
+    areas.some(a => sp.areas.includes(a));
+
+  // Gruppen-Filter analog: "all" = keine Einschränkung, sonst Art passt, wenn ihre Gruppe in der
+  // (ggf. mehrelementigen) Auswahl enthalten ist.
+  const groupMatches = sp => groups.includes("all") || groups.includes(sp.group);
 
   let pool = SPECIES.filter(sp =>
     freqs.includes(sp.frequency) &&
     diffs.includes(sp.difficulty) &&
     areaMatches(sp) &&
-    (group === "all" || sp.group === group) &&
+    groupMatches(sp) &&
     (learnGroup === "all" || LEARN_GROUPS[sp.id] === learnGroup)
   );
 
@@ -1235,49 +1245,72 @@ async function fetchWikiImage(sp) {
 // Betriebssystem (nicht per CSS beeinflussbar) in schlichter System-Optik dargestellt wird, unpassend
 // zum Rest der App. Antickbare Chip-Buttons (wie in einer von der Nutzerin gezeigten Referenz-App)
 // sehen auf jedem Gerät gleich aus, weil sie ganz normale, selbst gestylte <button>-Elemente sind.
-// Bewusst (noch) Single-Select – behält exakt das bisherige Verhalten (ein Gebiet/eine Gruppe
-// gleichzeitig), nur die Optik ändert sich. Mehrfachauswahl (mehrere Gebiete/Gruppen gleichzeitig)
-// wäre technisch machbar (currentFilteredSpecies() bräuchte dafür sp.areas.some(a => selected.has(a))
-// statt eines Einzelvergleichs), wurde aber bewusst auf einen möglichen Folgeschritt verschoben, um
-// diese erste, für sich schon nicht ganz kleine Umstellung zunächst einzeln am echten Handy zu
-// verifizieren, bevor eine weitere Verhaltensänderung (nicht nur Optik) obendrauf kommt.
+// Seit 2026-09-25 Mehrfachauswahl (Nutzerin-Wunsch: mehrere Gebiete/Gruppen gleichzeitig wählbar) –
+// vorher bewusst Single-Select, s. Git-Historie. "selected"/der Auswahl-Zustand wird weiterhin als
+// data-selected-Attribut am Container gespeichert (comma-separated Liste statt Einzelwert), damit
+// getChipValue() den aktuellen Wert jederzeit direkt aus dem DOM lesen kann.
 //
-// "selected" wird als data-selected-Attribut am Container gespeichert (statt in einer globalen
-// Variable), damit getChipValue() den aktuellen Wert jederzeit direkt aus dem DOM lesen kann – genau
-// wie zuvor sel.value bei einem <select>.
-function renderChipRow(containerId, options, selected, onChange) {
+// specialValues (z.B. ["all","kern11"] beim Gebiets-Filter, ["all"] beim Gruppen-Filter) markiert
+// Sonderoptionen, die sich gegenseitig UND mit echten Einzelwerten ausschließen (nie gemischt
+// auswählbar) – sonst wäre z.B. "Deutschlandweit" + "Hainich" gleichzeitig gewählt inhaltlich
+// widersprüchlich. Klickregeln:
+// - Klick auf eine Sonderoption ersetzt die gesamte Auswahl durch genau diese eine Option.
+// - War zuvor eine Sonderoption aktiv, startet ein Klick auf eine echte Option eine neue
+//   Einzelauswahl (ersetzt, statt zu ergänzen).
+// - Sonst wird die geklickte echte Option in der Auswahl getoggelt (an/aus); wird die Auswahl dabei
+//   leer, springt sie zurück auf die erste (Sonder-)Option (typischerweise "all"), damit nie eine
+//   leere, nichts-passt-Auswahl entsteht.
+function renderChipRow(containerId, options, selected, onChange, specialValues = []) {
   const el = document.getElementById(containerId);
   if (!el) return;
   const validValues = new Set(options.map(o => o.value));
-  const resolved = validValues.has(selected) ? selected : options[0].value;
+  const selectedArr = Array.isArray(selected) ? selected : [selected];
+  let resolved = selectedArr.filter(v => validValues.has(v));
+  if (!resolved.length) resolved = [options[0].value];
   el.innerHTML = "";
   options.forEach(opt => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "chip-btn" + (opt.value === resolved ? " active" : "");
+    btn.className = "chip-btn" + (resolved.includes(opt.value) ? " active" : "");
     btn.dataset.value = opt.value;
     if (opt.title) btn.title = opt.title;
     btn.textContent = opt.label;
     btn.addEventListener("click", () => {
-      setChipValue(containerId, opt.value);
-      onChange(opt.value);
+      const current = getChipValue(containerId);
+      let next;
+      if (specialValues.includes(opt.value)) {
+        next = [opt.value];
+      } else if (current.some(v => specialValues.includes(v))) {
+        next = [opt.value];
+      } else if (current.includes(opt.value)) {
+        next = current.filter(v => v !== opt.value);
+        if (!next.length) next = [options[0].value];
+      } else {
+        next = [...current, opt.value];
+      }
+      setChipValue(containerId, next);
+      onChange(next);
     });
     el.appendChild(btn);
   });
-  el.dataset.selected = resolved;
+  el.dataset.selected = resolved.join(",");
 }
 
+// Gibt IMMER ein Array zurück (auch bei nur einer Auswahl) – Aufrufer, die noch von einem
+// Einzelwert ausgehen, müssen auf Array-Semantik ("ist X in der Auswahl enthalten") umgestellt sein.
 function getChipValue(containerId) {
   const el = document.getElementById(containerId);
-  return (el && el.dataset.selected) || "all";
+  const raw = el && el.dataset.selected;
+  return raw ? raw.split(",").filter(Boolean) : ["all"];
 }
 
-function setChipValue(containerId, value) {
+function setChipValue(containerId, values) {
   const el = document.getElementById(containerId);
   if (!el) return;
-  el.dataset.selected = value;
+  const arr = Array.isArray(values) ? values : [values];
+  el.dataset.selected = arr.join(",");
   el.querySelectorAll(".chip-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.value === value);
+    btn.classList.toggle("active", arr.includes(btn.dataset.value));
   });
 }
 
@@ -1288,7 +1321,7 @@ function populateAreaFilter() {
     { value: "kern11", label: t("filters.area_kern11") },
     ...Object.keys(AREAS).map(code => ({ value: code, label: areaShortLabel(code), title: areaName(code) })),
   ];
-  renderChipRow("areaFilterChips", options, getChipValue("areaFilterChips"), reloadAfterFilterChange);
+  renderChipRow("areaFilterChips", options, getChipValue("areaFilterChips"), reloadAfterFilterChange, ["all", "kern11"]);
 }
 
 // Nur Gruppen anzeigen, die tatsächlich im aktuellen Artenset vorkommen – in fester,
@@ -1300,7 +1333,7 @@ function populateGroupFilter() {
     { value: "all", label: t("filters.group_all") },
     ...GROUP_ORDER.filter(g => present.has(g)).map(g => ({ value: g, label: groupLabel(g) })),
   ];
-  renderChipRow("groupFilterChips", options, getChipValue("groupFilterChips"), reloadAfterFilterChange);
+  renderChipRow("groupFilterChips", options, getChipValue("groupFilterChips"), reloadAfterFilterChange, ["all"]);
 }
 
 function populateConfusionSelect() {
@@ -1555,14 +1588,21 @@ function restoreFilterState() {
   }
   // Die Chip-Reihen sind zu diesem Zeitpunkt bereits gerendert (populateAreaFilter()/
   // populateGroupFilter() laufen in init() vor setupFilters()/restoreFilterState()) – hier reicht
-  // es, den gespeicherten Wert zu übernehmen, falls er einer der vorhandenen Chips ist.
+  // es, die gespeicherten Werte zu übernehmen, soweit sie noch existierenden Chips entsprechen.
+  // saved.area/saved.group sind seit der Mehrfachauswahl-Umstellung (2026-09-25) Arrays; ein
+  // älterer, noch gespeicherter Einzelwert (String, aus der Zeit vor dieser Umstellung) wird zur
+  // Abwärtskompatibilität in ein Array gepackt, statt die gespeicherte Filterauswahl zu verwerfen.
   const areaChips = document.getElementById("areaFilterChips");
-  if (saved.area && areaChips && areaChips.querySelector(`.chip-btn[data-value="${CSS.escape(saved.area)}"]`)) {
-    setChipValue("areaFilterChips", saved.area);
+  if (areaChips) {
+    const savedArea = Array.isArray(saved.area) ? saved.area : (saved.area ? [saved.area] : []);
+    const validArea = savedArea.filter(v => areaChips.querySelector(`.chip-btn[data-value="${CSS.escape(v)}"]`));
+    if (validArea.length) setChipValue("areaFilterChips", validArea);
   }
   const groupChips = document.getElementById("groupFilterChips");
-  if (saved.group && groupChips && groupChips.querySelector(`.chip-btn[data-value="${CSS.escape(saved.group)}"]`)) {
-    setChipValue("groupFilterChips", saved.group);
+  if (groupChips) {
+    const savedGroup = Array.isArray(saved.group) ? saved.group : (saved.group ? [saved.group] : []);
+    const validGroup = savedGroup.filter(v => groupChips.querySelector(`.chip-btn[data-value="${CSS.escape(v)}"]`));
+    if (validGroup.length) setChipValue("groupFilterChips", validGroup);
   }
   const countSel = document.getElementById("countFilter");
   if (saved.count && Array.from(countSel.options).some(o => o.value === saved.count)) countSel.value = saved.count;
@@ -2167,6 +2207,7 @@ function renderDetailsToggle(sp) {
       </div>
     ` : ""}
     <button class="details-toggle" id="detailsToggleBtn">${t("details.moreAbout", { name: sp.de })}</button>
+    <button class="details-toggle" id="jumpValidationBtnQuick">${t("details.jumpValidationBtn")}</button>
     <div class="details hidden" id="detailsContent"></div>
   `;
 
@@ -2175,6 +2216,14 @@ function renderDetailsToggle(sp) {
       switchMode("unterscheiden", { confusionKey: sp.confusionGroup });
     });
   }
+
+  // Direkter Sprung zur Validierungs-Seite, ohne erst "Mehr über {name}" aufklappen zu müssen
+  // (Nutzerin-Wunsch 2026-09-25) – bisher gab es diesen Link nur innerhalb des erst bei Bedarf
+  // geladenen renderDetailsContent()-Panels (dortiger #jumpValidationBtn bleibt unverändert
+  // bestehen, z.B. für alle, die schon aufgeklappt haben).
+  document.getElementById("jumpValidationBtnQuick").addEventListener("click", () => {
+    switchMode("validieren", { speciesId: sp.id });
+  });
 
   const toggleBtn = document.getElementById("detailsToggleBtn");
   const content = document.getElementById("detailsContent");
